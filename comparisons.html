@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>سيرف — المقارنات الاستراتيجية | الإسناد مقابل التخيير</title>
+<meta name="description" content="مقارنة استراتيجية شاملة بين نموذج الإسناد (Auto-Assignment) ونموذج تخيير العميل (Customer Choice) — الأثر على المنتج والسياسات والنموذج التجاري." />
+<meta name="theme-color" content="#0A2540" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Tajawal', 'Inter', 'system-ui', 'sans-serif'],
+          latin: ['Inter', 'system-ui', 'sans-serif'],
+        },
+        colors: {
+          ink: { 900: '#0A2540', 800: '#11314F', 700: '#1B3F62', 500: '#3C5A78', 400: '#5C7896', 300: '#94A8BD' },
+          brand: { DEFAULT: '#0FA89C', dark: '#0A8378', light: '#1FC7B8', ghost: '#E6F7F5' },
+          gold: { DEFAULT: '#D4A017', dark: '#A77E0F', light: '#F0C04A', ghost: '#FBF3D9' },
+          danger: { DEFAULT: '#C0392B', light: '#FBE7E4' },
+          warn: { DEFAULT: '#D97706', light: '#FEF3E0' },
+          ok: { DEFAULT: '#0F8C5A', light: '#E2F4EB' },
+          paper: '#F7F8FB',
+        },
+        boxShadow: {
+          card: '0 1px 2px rgba(10,37,64,.04), 0 8px 24px rgba(10,37,64,.06)',
+          float: '0 4px 12px rgba(10,37,64,.08), 0 16px 40px rgba(10,37,64,.10)',
+        }
+      }
+    }
+  };
+</script>
+
+<style>
+  html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+  body { font-family: 'Tajawal', 'Inter', system-ui, sans-serif; }
+  .num, .latin { font-family: 'Inter', system-ui, sans-serif; font-feature-settings: 'tnum' on, 'lnum' on; }
+  .doc-section { scroll-margin-top: 100px; }
+  a:focus-visible, button:focus-visible { outline: 3px solid #0FA89C; outline-offset: 2px; border-radius: 8px; }
+  @media print {
+    .no-print { display: none !important; }
+    body { background: #fff; }
+    section { break-inside: avoid; }
+  }
+  ::-webkit-scrollbar { height: 8px; width: 8px; }
+  ::-webkit-scrollbar-thumb { background: #94A8BD; border-radius: 8px; }
+</style>
+</head>
+<body class="bg-paper text-ink-900 antialiased">
+
+<!-- ================== MODE BAR ================== -->
+<div class="no-print bg-ink-900 text-white text-xs">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 h-9 flex items-center justify-between">
+    <div class="flex items-center gap-2 flex-wrap">
+      <span class="text-white/60">عرض المحتوى:</span>
+      <a href="home.html" class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 ring-white/15 transition"><span class="font-bold">الرئيسية</span></a>
+      <a href="now.html" class="px-2.5 py-0.5 rounded-md bg-brand/25 hover:bg-brand/40 ring-1 ring-brand-light/40 transition"><span class="font-bold text-brand-light">📊 سيرف الآن</span></a>
+      <a href="index.html" class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 ring-white/15 transition"><span class="font-bold">Presentation</span></a>
+      <a href="details.html" class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 ring-white/15 transition"><span class="font-bold">التفاصيل</span></a>
+      <a href="roadmap.html" class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 ring-white/15 transition"><span class="font-bold">خارطة التنفيذ</span></a>
+      <a href="legal.html" class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 ring-white/15 transition"><span class="font-bold">القانوني B2B</span></a>
+      <span class="px-2.5 py-0.5 rounded-md bg-brand text-white font-bold ring-1 ring-brand-light">المقارنات</span>
+      <a href="qa.html" class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 ring-white/15 transition"><span class="font-bold">سؤال وجواب</span></a>
+      <a href="final.html" class="px-2.5 py-0.5 rounded-md bg-gold/25 hover:bg-gold/40 ring-1 ring-gold-light/40 transition"><span class="font-bold text-gold-light">⭐ الترشيح الأخير</span></a>
+      <a href="blueprint.html" class="px-2.5 py-0.5 rounded-md bg-gold/25 hover:bg-gold/40 ring-1 ring-gold-light/40 transition"><span class="font-bold text-gold-light">📘 المنتج النهائي</span></a>
+      <a href="plan.html" class="px-2.5 py-0.5 rounded-md bg-gold/25 hover:bg-gold/40 ring-1 ring-gold-light/40 transition"><span class="font-bold text-gold-light">🎯 الخطة الشاملة</span></a>
+      <a href="providers.html" class="px-2.5 py-0.5 rounded-md bg-gold/25 hover:bg-gold/40 ring-1 ring-gold-light/40 transition"><span class="font-bold text-gold-light">🏅 مستويات المزوّدين</span></a>
+      <a href="pulse.html" class="px-2.5 py-0.5 rounded-md bg-brand/25 hover:bg-brand/40 ring-1 ring-brand-light/40 transition"><span class="font-bold text-brand-light">⚡ محاكاة Pulse</span></a>
+      <a href="sense.html" class="px-2.5 py-0.5 rounded-md bg-gold/25 hover:bg-gold/40 ring-1 ring-gold-light/40 transition"><span class="font-bold text-gold-light">🧠 محرّك Sense</span></a>
+      <a href="expansion.html" class="px-2.5 py-0.5 rounded-md bg-brand/25 hover:bg-brand/40 ring-1 ring-brand-light/40 transition"><span class="font-bold text-brand-light">🧩 التوسّع</span></a>
+    </div>
+    <div class="hidden sm:block text-white/60">قرارات معمارية · للمؤسسين وفريق المنتج</div>
+  </div>
+</div>
+
+<!-- ================== HEADER / NAV ================== -->
+<header class="no-print sticky top-9 z-40 backdrop-blur bg-white/90 border-b border-ink-300/30">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 h-16 flex items-center gap-4">
+    <a href="#top" class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand to-ink-900 grid place-items-center text-white font-extrabold">س</div>
+      <div class="leading-tight">
+        <div class="font-extrabold text-ink-900 tracking-tight">سيرف · Serve</div>
+        <div class="text-[11px] text-ink-500">المقارنات الاستراتيجية · Strategic Comparisons</div>
+      </div>
+    </a>
+    <nav class="hidden lg:flex items-center gap-1 text-xs font-medium text-ink-700 mr-auto">
+      <a href="#concept"   class="px-2.5 py-1.5 rounded-lg hover:bg-paper">الفرق الجوهري</a>
+      <a href="#matrix"    class="px-2.5 py-1.5 rounded-lg hover:bg-paper">الجدول الشامل</a>
+      <a href="#proscons"  class="px-2.5 py-1.5 rounded-lg hover:bg-paper">مزايا وعيوب</a>
+      <a href="#byservice" class="px-2.5 py-1.5 rounded-lg hover:bg-paper">أي نموذج لأي خدمة</a>
+      <a href="#impact"    class="px-2.5 py-1.5 rounded-lg hover:bg-paper">أثر التحوّل</a>
+      <a href="#disinter"  class="px-2.5 py-1.5 rounded-lg hover:bg-paper">خطر الالتفاف</a>
+      <a href="#verdict"   class="px-2.5 py-1.5 rounded-lg hover:bg-paper text-brand-dark font-bold">التوصية</a>
+    </nav>
+    <div class="flex items-center gap-2 mr-auto lg:mr-0">
+      <button onclick="window.print()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-ink-900 hover:bg-ink-800">طباعة / PDF</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ================== HERO ================== -->
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 -z-10 bg-gradient-to-bl from-ink-900 via-ink-800 to-ink-700"></div>
+  <div class="absolute -z-10 inset-0 opacity-30" style="background-image: radial-gradient(circle at 85% 10%, #0FA89C 0%, transparent 35%), radial-gradient(circle at 10% 90%, #D4A017 0%, transparent 30%);"></div>
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 pt-14 pb-16 lg:pt-20 lg:pb-20 text-white">
+    <div class="inline-flex items-center gap-2 text-[12px] font-bold tracking-wider uppercase bg-white/10 px-3 py-1 rounded-full ring-1 ring-white/15">
+      <span class="w-2 h-2 rounded-full bg-brand animate-pulse"></span>
+      قرار معماري · يمسّ هوية المنصة كاملة
+    </div>
+    <h1 class="mt-6 text-3xl md:text-5xl lg:text-6xl font-black leading-[1.15] max-w-4xl">
+      الإسناد <span class="text-brand-light">(Auto-Assignment)</span><br/>
+      مقابل التخيير <span class="text-gold">(Customer Choice)</span>
+    </h1>
+    <p class="mt-5 text-lg md:text-xl text-white/85 max-w-3xl leading-relaxed">
+      ليس مجرد ميزة منتج — بل <strong>فرع استراتيجي يحدّد هوية سيرف</strong>:
+      منصة مُدارة بخندق دفاعي قوي، أم سوق/دليل بهامش أضعف؟
+      تحليل شامل للأثر على المنتج، السياسات، والنموذج التجاري.
+    </p>
+
+    <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl">
+      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-4">
+        <div class="text-xs text-white/70">النماذج الثلاثة</div>
+        <div class="text-base font-extrabold mt-1">إسناد · تخيير · هجين</div>
+      </div>
+      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-4">
+        <div class="text-xs text-white/70">أبعاد المقارنة</div>
+        <div class="num text-2xl font-extrabold mt-1">18+</div>
+      </div>
+      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-4">
+        <div class="text-xs text-white/70">مجالات الأثر</div>
+        <div class="text-xl font-extrabold mt-1">تقني · قانوني · تجاري</div>
+      </div>
+      <div class="rounded-2xl bg-gradient-to-br from-brand/40 to-gold/30 ring-1 ring-white/20 p-4">
+        <div class="text-xs text-white/85">التوصية</div>
+        <div class="font-extrabold mt-1">الهجين الذكي</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== 1. CONCEPT ================== -->
+<section id="concept" class="doc-section max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+  <div class="text-[12px] font-bold text-brand tracking-widest uppercase">1 · الفرق الجوهري</div>
+  <h2 class="mt-2 text-2xl lg:text-3xl font-black text-ink-900">ليس فرقاً في الواجهة — بل في هوية المنصة</h2>
+
+  <div class="mt-8 grid lg:grid-cols-2 gap-6">
+    <!-- Assignment -->
+    <div class="rounded-2xl bg-gradient-to-br from-brand to-brand-dark text-white p-6 lg:p-8 shadow-float">
+      <div class="text-xs font-bold tracking-widest uppercase opacity-85">النموذج الأول · الحالي</div>
+      <h3 class="mt-2 text-2xl font-black">الإسناد · Auto-Assignment</h3>
+      <p class="mt-3 text-white/90 leading-relaxed">المنصة (المحرك) تختار أفضل مزوّد وتُسنده مباشرة. العميل يطلب → النظام يطابق → يُسند فنياً واحداً.</p>
+      <div class="mt-5 space-y-2 text-sm">
+        <div class="flex items-center gap-2"><span class="text-brand-light font-bold">●</span> الهوية: <strong>منصة مُدارة (Managed Marketplace)</strong></div>
+        <div class="flex items-center gap-2"><span class="text-brand-light font-bold">●</span> القرار: <strong>المنصة</strong></div>
+        <div class="flex items-center gap-2"><span class="text-brand-light font-bold">●</span> الرسالة: <strong>"سيرف تنفّذ وتضمن"</strong></div>
+        <div class="flex items-center gap-2"><span class="text-brand-light font-bold">●</span> النموذج المماثل: <strong>Uber · Careem · Urban Company</strong></div>
+      </div>
+    </div>
+
+    <!-- Choice -->
+    <div class="rounded-2xl bg-gradient-to-br from-gold to-gold-dark text-white p-6 lg:p-8 shadow-float">
+      <div class="text-xs font-bold tracking-widest uppercase opacity-85">النموذج الثاني · البديل</div>
+      <h3 class="mt-2 text-2xl font-black">التخيير · Customer Choice</h3>
+      <p class="mt-3 text-white/90 leading-relaxed">العميل يتصفّح قائمة مزوّدين (ملفات، تقييمات، أسعار، مسافة) ويختار بنفسه — أو يستقبل عدة عروض ويفاضل.</p>
+      <div class="mt-5 space-y-2 text-sm">
+        <div class="flex items-center gap-2"><span class="text-gold-light font-bold">●</span> الهوية: <strong>سوق/دليل (Listing / Discovery)</strong></div>
+        <div class="flex items-center gap-2"><span class="text-gold-light font-bold">●</span> القرار: <strong>العميل</strong></div>
+        <div class="flex items-center gap-2"><span class="text-gold-light font-bold">●</span> الرسالة: <strong>"سيرف مكان تجد فيه فنيين"</strong></div>
+        <div class="flex items-center gap-2"><span class="text-gold-light font-bold">●</span> النموذج المماثل: <strong>Mr. Carpenter · Thumbtack · Airbnb</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hybrid featured card -->
+  <div class="mt-6 rounded-2xl bg-gradient-to-br from-brand via-ink-800 to-gold-dark text-white p-6 lg:p-8 shadow-float ring-2 ring-gold-light/40 relative overflow-hidden">
+    <span class="absolute -top-3 right-6 px-3 py-1 rounded-md bg-gold text-ink-900 text-xs font-black">⭐ الموصى به</span>
+    <div class="text-xs font-bold tracking-widest uppercase opacity-85">النموذج الثالث · التوليفة</div>
+    <h3 class="mt-2 text-2xl font-black">الهجين الذكي · Smart Hybrid</h3>
+    <p class="mt-3 text-white/90 leading-relaxed max-w-4xl">
+      <strong>إسناد ذكي افتراضي</strong> (يحفظ السرعة والـ Moat والضمان وB2B) <strong>+ طبقة "اختر فنيك" اختيارية</strong>
+      للخدمات المدروسة والعميل المتكرر. يأخذ القوة من الإسناد والتحكّم من التخيير، دون التضحية بأيٍّ منهما.
+    </p>
+    <div class="mt-5 grid sm:grid-cols-2 lg:grid-cols-4 gap-3 text-sm">
+      <div class="rounded-xl bg-white/10 ring-1 ring-white/15 p-3"><div class="font-bold text-gold-light">القرار</div><div class="text-white/85 mt-1">المنصة افتراضياً + العميل اختيارياً</div></div>
+      <div class="rounded-xl bg-white/10 ring-1 ring-white/15 p-3"><div class="font-bold text-gold-light">الهوية</div><div class="text-white/85 mt-1">منصة مُدارة + طبقة اختيار</div></div>
+      <div class="rounded-xl bg-white/10 ring-1 ring-white/15 p-3"><div class="font-bold text-gold-light">النموذج المماثل</div><div class="text-white/85 mt-1">Urban Company + خيار TaskRabbit</div></div>
+      <div class="rounded-xl bg-white/10 ring-1 ring-white/15 p-3"><div class="font-bold text-gold-light">الرسالة</div><div class="text-white/85 mt-1">"نُسند لك الأفضل — ولك أن تختار"</div></div>
+    </div>
+  </div>
+
+  <div class="mt-6 rounded-2xl bg-ink-900 text-white p-6 lg:p-8">
+    <div class="text-xs font-bold text-brand-light tracking-widest uppercase">الخلاصة المفاهيمية</div>
+    <p class="mt-2 text-lg leading-relaxed">
+      الإسناد يجعل سيرف <strong class="text-brand-light">مشغّلاً مُداراً</strong> يملك العلاقة والضمان والخندق الدفاعي (Moat).
+      التخيير يجعلها <strong class="text-gold-light">دليلاً/سوقاً</strong> حيث يميل القرار والعلاقة للعميل والمزوّد —
+      وهذا <strong>يفكّك أطروحة "Urban Company السعودية" بالكامل</strong>.
+      أما <strong class="text-gold-light">الهجين</strong> فيحفظ هوية المنصة المُدارة ويضيف التحكّم حيث يفيد فقط.
+    </p>
+  </div>
+</section>
+
+<!-- ================== 2. FULL MATRIX ================== -->
+<section id="matrix" class="doc-section bg-white border-y border-ink-300/30">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+    <div class="text-[12px] font-bold text-brand tracking-widest uppercase">2 · الجدول الشامل</div>
+    <h2 class="mt-2 text-2xl lg:text-3xl font-black text-ink-900">18 بُعداً للمقارنة</h2>
+
+    <div class="mt-6 overflow-x-auto rounded-2xl shadow-card border border-ink-300/40">
+      <table class="w-full text-sm">
+        <thead class="bg-ink-900 text-white">
+          <tr>
+            <th class="text-right p-3">البُعد</th>
+            <th class="text-right p-3 bg-brand-dark">الإسناد</th>
+            <th class="text-right p-3 bg-gold-dark">التخيير</th>
+            <th class="text-right p-3 bg-gradient-to-l from-brand-dark to-gold-dark">⭐ الهجين</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-ink-300/30">
+          <tr><td class="p-3 font-bold">من يقرّر؟</td><td class="p-3">المنصة (المحرك)</td><td class="p-3">العميل</td><td class="p-3 bg-gold-ghost/40 font-bold">المنصة افتراضياً + العميل اختيارياً</td></tr>
+          <tr class="bg-paper"><td class="p-3 font-bold">هوية المنصة</td><td class="p-3 text-brand-dark font-bold">منصة مُدارة (Managed)</td><td class="p-3 text-gold-dark font-bold">سوق/دليل (Listing)</td><td class="p-3 bg-gold-ghost/40 font-bold text-ink-900">مُدارة + طبقة اختيار</td></tr>
+          <tr><td class="p-3 font-bold">النموذج المماثل</td><td class="p-3">Uber · Urban Company</td><td class="p-3">Mr. Carpenter · Thumbtack</td><td class="p-3 bg-gold-ghost/40 font-bold">Urban Company + خيار TaskRabbit</td></tr>
+          <tr><td class="p-3 font-bold">السرعة</td><td class="p-3 text-ok font-bold">فورية (ثوانٍ)</td><td class="p-3 text-warn font-bold">بطيئة (دقائق/ساعات)</td><td class="p-3 bg-gold-ghost/40 text-ok font-bold">فورية افتراضياً</td></tr>
+          <tr><td class="p-3 font-bold">الطوارئ والعاجل</td><td class="p-3 text-ok font-bold">ممتازة</td><td class="p-3 text-danger font-bold">✕ لا تعمل</td><td class="p-3 bg-gold-ghost/40 text-ok font-bold">ممتازة (إسناد للطوارئ)</td></tr>
+          <tr><td class="p-3 font-bold">التحكّم في الجودة</td><td class="p-3 text-ok font-bold">عالٍ (المنصة تختار)</td><td class="p-3">يعتمد على حكم العميل</td><td class="p-3 bg-gold-ghost/40 text-ok font-bold">عالٍ (يبقى مُدار)</td></tr>
+          <tr><td class="p-3 font-bold">شعور العميل بالتحكّم</td><td class="p-3 text-warn">أقل</td><td class="p-3 text-ok font-bold">عالٍ</td><td class="p-3 bg-gold-ghost/40 text-ok font-bold">عالٍ (خيار متاح)</td></tr>
+          <tr><td class="p-3 font-bold">الشفافية للعميل</td><td class="p-3">متوسطة</td><td class="p-3 text-ok font-bold">عالية</td><td class="p-3 bg-gold-ghost/40 text-ok font-bold">عالية</td></tr>
+          <tr><td class="p-3 font-bold">قوة المزوّد الفردي</td><td class="p-3">منخفضة (قابل للاستبدال)</td><td class="p-3 text-warn">عالية (علامة فردية)</td><td class="p-3 bg-gold-ghost/40 font-bold">متوازنة</td></tr>
+          <tr class="bg-paper"><td class="p-3 font-bold">الخندق الدفاعي (Moat)</td><td class="p-3 text-ok font-bold">قوي</td><td class="p-3 text-danger font-bold">ضعيف</td><td class="p-3 bg-gold-ghost/60 text-ok font-bold">قوي (الأساس مُدار)</td></tr>
+          <tr><td class="p-3 font-bold">قوة العلامة</td><td class="p-3 text-ok font-bold">قوية ("سيرف تضمن")</td><td class="p-3 text-warn">أضعف</td><td class="p-3 bg-gold-ghost/40 text-ok font-bold">قوية</td></tr>
+          <tr><td class="p-3 font-bold">الضمان وSLA</td><td class="p-3 text-ok font-bold">قابل للتنفيذ بقوة</td><td class="p-3 text-danger font-bold">يضعف جداً</td><td class="p-3 bg-gold-ghost/40 text-ok font-bold">قوي (الإسناد يحفظه)</td></tr>
+          <tr class="bg-paper"><td class="p-3 font-bold">B2B والاشتراكات</td><td class="p-3 text-ok font-bold">تعمل بسلاسة</td><td class="p-3 text-danger font-bold">تنهار عملياً</td><td class="p-3 bg-gold-ghost/60 text-ok font-bold">تعمل (إسناد)</td></tr>
+          <tr><td class="p-3 font-bold">العمولة (Take Rate)</td><td class="p-3 text-ok font-bold">مرتفعة مستدامة</td><td class="p-3 text-warn font-bold">ضغط للخفض</td><td class="p-3 bg-gold-ghost/40 text-ok font-bold">مرتفعة مع مرونة</td></tr>
+          <tr><td class="p-3 font-bold">ضغط الأسعار</td><td class="p-3 text-ok">مُدار (Managed Pricing)</td><td class="p-3 text-danger font-bold">سباق نحو القاع</td><td class="p-3 bg-gold-ghost/40 text-ok font-bold">مُدار (أسعار موحّدة)</td></tr>
+          <tr><td class="p-3 font-bold">شلل الاختيار</td><td class="p-3 text-ok font-bold">منعدم</td><td class="p-3 text-danger font-bold">مرتفع</td><td class="p-3 bg-gold-ghost/40 text-ok font-bold">منخفض (خيار لا إجبار)</td></tr>
+          <tr class="bg-danger-light/30"><td class="p-3 font-bold">خطر الالتفاف (Disintermediation)</td><td class="p-3 text-ok font-bold">منخفض (هوية مخفية)</td><td class="p-3 text-danger font-bold">مرتفع جداً</td><td class="p-3 bg-gold-ghost/40 text-warn font-bold">منخفض-متوسط (مُدار)</td></tr>
+          <tr><td class="p-3 font-bold">المسؤولية القانونية على المنصة</td><td class="p-3 text-warn">أعلى (هي اختارت)</td><td class="p-3 text-ok">أقل ("أنت اخترت")</td><td class="p-3 bg-gold-ghost/40 font-bold">متوازنة (حسب المسار)</td></tr>
+          <tr class="bg-paper"><td class="p-3 font-bold">الأنسب للخدمات</td><td class="p-3">سلعة · عاجل · موحّد</td><td class="p-3">مدروس · عالي القيمة · متخصص</td><td class="p-3 bg-gold-ghost/60 font-bold text-ink-900">كل الأنواع (مسار لكل نوع)</td></tr>
+          <tr><td class="p-3 font-bold">سرديّة المستثمر</td><td class="p-3 text-ok font-bold">Recurring + Managed (قوية)</td><td class="p-3 text-warn">دليل/سوق (أضعف)</td><td class="p-3 bg-gold-ghost/60 text-ok font-bold">الأقوى (مرونة + Moat)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-3 text-xs text-ink-500">العمود الذهبي (الهجين) يفوز أو يتعادل في غالبية الأبعاد لأنه يبني على أساس الإسناد المُدار ويضيف التحكّم انتقائياً.</p>
+  </div>
+</section>
+
+<!-- ================== 3. PROS & CONS ================== -->
+<section id="proscons" class="doc-section max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+  <div class="text-[12px] font-bold text-brand tracking-widest uppercase">3 · مزايا وعيوب كل نموذج</div>
+  <h2 class="mt-2 text-2xl lg:text-3xl font-black text-ink-900">الميزان الكامل</h2>
+
+  <div class="mt-8 grid lg:grid-cols-2 gap-6">
+    <!-- Assignment -->
+    <div class="rounded-2xl bg-white shadow-card border-2 border-brand/40 p-6">
+      <h3 class="text-xl font-black text-brand-dark">الإسناد · Auto-Assignment</h3>
+      <div class="mt-4">
+        <div class="text-xs font-bold text-ok tracking-widest uppercase">✅ المزايا</div>
+        <ul class="mt-2 text-sm space-y-1.5 text-ink-700">
+          <li class="flex items-start gap-2"><span class="text-ok mt-0.5">✓</span> سرعة فورية (ثوانٍ).</li>
+          <li class="flex items-start gap-2"><span class="text-ok mt-0.5">✓</span> جودة مضمونة (المنصة تختار الأفضل).</li>
+          <li class="flex items-start gap-2"><span class="text-ok mt-0.5">✓</span> خندق دفاعي (Moat) قوي.</li>
+          <li class="flex items-start gap-2"><span class="text-ok mt-0.5">✓</span> ضمان حقيقي قابل للتنفيذ.</li>
+          <li class="flex items-start gap-2"><span class="text-ok mt-0.5">✓</span> B2B + SLA + اشتراكات تعمل بسلاسة.</li>
+          <li class="flex items-start gap-2"><span class="text-ok mt-0.5">✓</span> عمولة مرتفعة مستدامة.</li>
+          <li class="flex items-start gap-2"><span class="text-ok mt-0.5">✓</span> حماية قوية من الالتفاف.</li>
+        </ul>
+      </div>
+      <div class="mt-4 pt-4 border-t border-ink-300/30">
+        <div class="text-xs font-bold text-danger tracking-widest uppercase">❌ العيوب</div>
+        <ul class="mt-2 text-sm space-y-1.5 text-ink-700">
+          <li class="flex items-start gap-2"><span class="text-danger mt-0.5">✕</span> العميل يشعر بتحكّم أقل.</li>
+          <li class="flex items-start gap-2"><span class="text-danger mt-0.5">✕</span> سؤال "لماذا هذا الفني؟".</li>
+          <li class="flex items-start gap-2"><span class="text-danger mt-0.5">✕</span> المزوّد يشعر أنه سلعة.</li>
+          <li class="flex items-start gap-2"><span class="text-danger mt-0.5">✕</span> نزاع "لم أختره أنا".</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Choice -->
+    <div class="rounded-2xl bg-white shadow-card border-2 border-gold/40 p-6">
+      <h3 class="text-xl font-black text-gold-dark">التخيير · Customer Choice</h3>
+      <div class="mt-4">
+        <div class="text-xs font-bold text-ok tracking-widest uppercase">✅ المزايا</div>
+        <ul class="mt-2 text-sm space-y-1.5 text-ink-700">
+          <li class="flex items-start gap-2"><span class="text-ok mt-0.5">✓</span> استقلالية وثقة العميل.</li>
+          <li class="flex items-start gap-2"><span class="text-ok mt-0.5">✓</span> شفافية أعلى.</li>
+          <li class="flex items-start gap-2"><span class="text-ok mt-0.5">✓</span> المزوّد يبني علامته وولاءه.</li>
+          <li class="flex items-start gap-2"><span class="text-ok mt-0.5">✓</span> ممتاز للخدمات عالية القيمة/المدروسة (ترميم، تجديد).</li>
+          <li class="flex items-start gap-2"><span class="text-ok mt-0.5">✓</span> مسؤولية قانونية أقل ("أنت اخترت").</li>
+        </ul>
+      </div>
+      <div class="mt-4 pt-4 border-t border-ink-300/30">
+        <div class="text-xs font-bold text-danger tracking-widest uppercase">❌ العيوب الخطيرة</div>
+        <ul class="mt-2 text-sm space-y-1.5 text-ink-700">
+          <li class="flex items-start gap-2"><span class="text-danger mt-0.5">✕</span> <strong>سباق نحو القاع في السعر</strong> → تآكل الهامش.</li>
+          <li class="flex items-start gap-2"><span class="text-danger mt-0.5">✕</span> <strong>شلل الاختيار</strong> → انخفاض التحويل.</li>
+          <li class="flex items-start gap-2"><span class="text-danger mt-0.5">✕</span> <strong>الطوارئ مستحيلة</strong>.</li>
+          <li class="flex items-start gap-2"><span class="text-danger mt-0.5">✕</span> <strong>خطر الالتفاف</strong> (العميل يأخذ رقم المزوّد).</li>
+          <li class="flex items-start gap-2"><span class="text-danger mt-0.5">✕</span> الضمان وSLA يضعفان.</li>
+          <li class="flex items-start gap-2"><span class="text-danger mt-0.5">✕</span> B2B والاشتراكات تنهار عملياً.</li>
+          <li class="flex items-start gap-2"><span class="text-danger mt-0.5">✕</span> علامة أضعف + عمولة أقل.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Hybrid card -->
+    <div class="mt-6 rounded-2xl bg-gradient-to-br from-brand-ghost via-white to-gold-ghost shadow-float border-2 border-gold/50 p-6 relative overflow-hidden">
+      <span class="absolute -top-3 right-6 px-3 py-1 rounded-md bg-gradient-to-l from-brand to-gold text-white text-xs font-black">⭐ الموصى به</span>
+      <h3 class="text-xl font-black text-ink-900">الهجين الذكي · Smart Hybrid</h3>
+      <div class="mt-4 grid lg:grid-cols-2 gap-6">
+        <div>
+          <div class="text-xs font-bold text-ok tracking-widest uppercase">✅ المزايا (يجمع الأفضل)</div>
+          <ul class="mt-2 text-sm space-y-1.5 text-ink-700">
+            <li class="flex items-start gap-2"><span class="text-ok mt-0.5">✓</span> سرعة فورية في المسار الافتراضي (إسناد).</li>
+            <li class="flex items-start gap-2"><span class="text-ok mt-0.5">✓</span> يحفظ الـ Moat والضمان وقصة المستثمر.</li>
+            <li class="flex items-start gap-2"><span class="text-ok mt-0.5">✓</span> B2B + الاشتراكات تعمل بكامل قوتها.</li>
+            <li class="flex items-start gap-2"><span class="text-ok mt-0.5">✓</span> تحكّم للعميل حيث يضيف قيمة (خدمات مدروسة).</li>
+            <li class="flex items-start gap-2"><span class="text-ok mt-0.5">✓</span> عمولة مرتفعة مع مرونة تسعير انتقائية.</li>
+            <li class="flex items-start gap-2"><span class="text-ok mt-0.5">✓</span> أقوى سرديّة مستثمر (مرونة + إدارة).</li>
+          </ul>
+        </div>
+        <div>
+          <div class="text-xs font-bold text-warn tracking-widest uppercase">⚠️ التكلفة (قابلة للإدارة)</div>
+          <ul class="mt-2 text-sm space-y-1.5 text-ink-700">
+            <li class="flex items-start gap-2"><span class="text-warn mt-0.5">▲</span> تعقيد تقني أعلى (مساران بدل واحد).</li>
+            <li class="flex items-start gap-2"><span class="text-warn mt-0.5">▲</span> يحتاج قواعد واضحة: متى إسناد، متى تخيير.</li>
+            <li class="flex items-start gap-2"><span class="text-warn mt-0.5">▲</span> ضبط الالتفاف في مسار التخيير (إخفاء الأرقام).</li>
+            <li class="flex items-start gap-2"><span class="text-warn mt-0.5">▲</span> تجربة مستخدم تحتاج تصميماً دقيقاً (لا إرباك).</li>
+          </ul>
+          <div class="mt-3 rounded-xl bg-ok-light border border-ok/30 p-3 text-xs text-ink-700">
+            <strong class="text-ok">المحصّلة:</strong> التعقيد ثمن صغير مقابل الجمع بين سرعة الإسناد وتحكّم التخيير — والتكلفة تُدار بقواعد مسار واضحة.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== 4. BY SERVICE ================== -->
+<section id="byservice" class="doc-section bg-white border-y border-ink-300/30">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+    <div class="text-[12px] font-bold text-brand tracking-widest uppercase">4 · أي نموذج لأي خدمة</div>
+    <h2 class="mt-2 text-2xl lg:text-3xl font-black text-ink-900">القاعدة الذهبية لاختيار النموذج</h2>
+    <p class="mt-2 text-ink-600">سلعة + عاجل + موحّد ← <strong>إسناد</strong>. مدروس + عالي القيمة + علاقة + متخصص ← <strong>تخيير</strong>.</p>
+
+    <div class="mt-6 overflow-x-auto rounded-2xl shadow-card border border-ink-300/40">
+      <table class="w-full text-sm">
+        <thead class="bg-paper text-ink-700">
+          <tr>
+            <th class="text-right p-3">نوع الخدمة</th>
+            <th class="text-right p-3">النموذج المناسب</th>
+            <th class="text-right p-3">السبب</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-ink-300/30">
+          <tr><td class="p-3 font-bold">طوارئ / عاجل</td><td class="p-3 text-brand-dark font-bold">إسناد حصراً</td><td class="p-3">لا وقت للاختيار.</td></tr>
+          <tr><td class="p-3 font-bold">اشتراكات Serve Care</td><td class="p-3 text-brand-dark font-bold">إسناد</td><td class="p-3">جوهر القيمة "سيرف تختار الأفضل".</td></tr>
+          <tr><td class="p-3 font-bold">عقود الشركات (B2B)</td><td class="p-3 text-brand-dark font-bold">إسناد حصراً</td><td class="p-3">الشركات تريد التزاماً لا تصفّحاً.</td></tr>
+          <tr><td class="p-3 font-bold">خدمات عادية موحّدة</td><td class="p-3 text-ink-900 font-bold">إسناد افتراضي + "شوف خيارات"</td><td class="p-3">السرعة أولاً، التحكّم اختياري.</td></tr>
+          <tr class="bg-gold-ghost/40"><td class="p-3 font-bold">عالية القيمة / مجدولة / متخصصة (ترميم، تجديد، Smart Home)</td><td class="p-3 text-gold-dark font-bold">تخيير (اختياري premium)</td><td class="p-3">قرار مدروس، العميل يريد المقارنة.</td></tr>
+          <tr class="bg-gold-ghost/40"><td class="p-3 font-bold">العميل المتكرر</td><td class="p-3 text-gold-dark font-bold">"اختر فنيك المفضّل"</td><td class="p-3">بناء علاقة + ولاء.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================== 5. IMPACT OF SWITCHING ================== -->
+<section id="impact" class="doc-section max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+  <div class="text-[12px] font-bold text-danger tracking-widest uppercase">5 · إذا تحوّلنا إلى التخيير</div>
+  <h2 class="mt-2 text-2xl lg:text-3xl font-black text-ink-900">الأثر الكامل على كل طبقة</h2>
+
+  <!-- A. Tech -->
+  <h3 class="mt-8 text-lg font-extrabold text-ink-900 flex items-center gap-2"><span>💻</span> أ) التغييرات التقنية (Product/Tech)</h3>
+  <div class="mt-3 grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+    <div class="rounded-xl bg-paper p-4 border border-ink-300/40 text-sm"><strong>1. شاشة اكتشاف المزوّدين</strong><div class="text-ink-500 mt-1">بحث + فلترة + فرز + مقارنة (جديدة كلياً).</div></div>
+    <div class="rounded-xl bg-paper p-4 border border-ink-300/40 text-sm"><strong>2. ملفات عامة للمزوّدين</strong><div class="text-ink-500 mt-1">معرض أعمال، تقييمات، أسعار، تقويم توفّر.</div></div>
+    <div class="rounded-xl bg-paper p-4 border border-ink-300/40 text-sm"><strong>3. نظام عروض أسعار (RFQ)</strong><div class="text-ink-500 mt-1">إن اعتمدنا "اطلب 3 عروض".</div></div>
+    <div class="rounded-xl bg-paper p-4 border border-ink-300/40 text-sm"><strong>4. تحوّل محرك التوزيع</strong><div class="text-ink-500 mt-1">من "إسناد" إلى "ترتيب وعرض" (Ranking).</div></div>
+    <div class="rounded-xl bg-paper p-4 border border-ink-300/40 text-sm"><strong>5. مراسلة داخل التطبيق</strong><div class="text-ink-500 mt-1">قبل الحجز — أكبر باب التفاف (إخفاء الأرقام).</div></div>
+    <div class="rounded-xl bg-paper p-4 border border-ink-300/40 text-sm"><strong>6. تقييمات مركزية للفرد</strong><div class="text-ink-500 mt-1">مرتبطة بالمزوّد الفرد لا بالطلب.</div></div>
+  </div>
+
+  <!-- B. Legal -->
+  <h3 class="mt-8 text-lg font-extrabold text-ink-900 flex items-center gap-2"><span>⚖️</span> ب) التغييرات في السياسات والوثائق القانونية</h3>
+  <div class="mt-3 overflow-x-auto rounded-2xl shadow-card border border-ink-300/40">
+    <table class="w-full text-sm">
+      <thead class="bg-ink-900 text-white"><tr><th class="text-right p-3">الوثيقة / السياسة</th><th class="text-right p-3">الأثر عند التحوّل للتخيير</th></tr></thead>
+      <tbody class="divide-y divide-ink-300/30">
+        <tr><td class="p-3 font-bold">وثيقة 13 (توزيع الطلبات)</td><td class="p-3">تتحوّل من <strong>إسناد</strong> إلى <strong>اكتشاف وترتيب</strong> — معادلة المطابقة تصبح ترتيب عرض، تختفي نافذة الأولوية والـ Cascade.</td></tr>
+        <tr><td class="p-3 font-bold">وثيقة 12 (الفئات)</td><td class="p-3">الفئة تؤثر على <strong>ترتيب الظهور + الشارات</strong> بدل أولوية الإسناد — يضعف ربط الفئة بالطلبات.</td></tr>
+        <tr class="bg-danger-light/20"><td class="p-3 font-bold">التزام القبول (Acceptance SLA)</td><td class="p-3"><strong>يختفي تقريباً</strong> — المزوّد يُختار لا يُسند → يُستبدل بـ "سرعة الرد على الاستفسار/العرض".</td></tr>
+        <tr class="bg-danger-light/20"><td class="p-3 font-bold">الحصص المضمونة (حماية السُّلّم)</td><td class="p-3"><strong>تتلاشى</strong> — السوق يقرّر → الفئات الأدنى قد تتجوّف → ينهار سُلّم الترقية ما لم نضِف عدالة ترتيب بديلة.</td></tr>
+        <tr class="bg-danger-light/20"><td class="p-3 font-bold">الضمان (Serve Guarantee)</td><td class="p-3"><strong>يضعف قانونياً</strong> — من يضمن إذا اختار العميل؟ يحتاج إعادة تعريف للمسؤولية.</td></tr>
+        <tr><td class="p-3 font-bold">التسعير الموحّد</td><td class="p-3"><strong>ينكسر</strong> — إذا حدّد المزوّد سعره → حوكمة أسعار + منع استغلال + إفصاح (حماية المستهلك + التجارة الإلكترونية).</td></tr>
+        <tr class="bg-danger-light/30"><td class="p-3 font-bold">منع الالتفاف (Disintermediation)</td><td class="p-3"><strong>يصبح أولوية قصوى</strong> — إخفاء الهوية/الأرقام + بند مكافحة الالتفاف + جزاءات.</td></tr>
+        <tr><td class="p-3 font-bold">خصوصية المزوّد (PDPL)</td><td class="p-3">الملف صار <strong>عاماً</strong> → موافقة صريحة لعرض الاسم/الصورة/الإحصاءات.</td></tr>
+        <tr><td class="p-3 font-bold">العمولة</td><td class="p-3"><strong>يصعب الإبقاء عليها مرتفعة</strong> — العميل يرى المزوّد فيشعر أنه يقدر يتعامل مباشرة → ضغط لخفض النسبة.</td></tr>
+        <tr><td class="p-3 font-bold">النزاعات</td><td class="p-3">تتحوّل لـ "اخترت بناءً على ملف مضلِّل" → قواعد دقة الملف + منع التقييمات المزيّفة.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- C. Business -->
+  <h3 class="mt-8 text-lg font-extrabold text-ink-900 flex items-center gap-2"><span>📊</span> ج) التغييرات في النموذج التجاري</h3>
+  <div class="mt-3 grid md:grid-cols-2 gap-3">
+    <div class="rounded-xl bg-paper p-4 border border-ink-300/40 text-sm"><strong>عمولة أقل غالباً</strong><div class="text-ink-500 mt-1">ضغط مستمر لخفض النسبة.</div></div>
+    <div class="rounded-xl bg-paper p-4 border border-ink-300/40 text-sm"><strong>قيمة الاشتراك تتغيّر جذرياً</strong><div class="text-ink-500 mt-1">جوهر Serve Care "سيرف تختار لك" — فما قيمته إذا العميل يختار؟</div></div>
+    <div class="rounded-xl bg-paper p-4 border border-ink-300/40 text-sm"><strong>B2B يجب أن يبقى إسناداً</strong><div class="text-ink-500 mt-1">لا شركة تقبل تصفّح فنيين لكل عطل.</div></div>
+    <div class="rounded-xl bg-danger-light/40 p-4 border border-danger/30 text-sm"><strong>تحوّل التموضع</strong><div class="text-ink-500 mt-1">من "مُدار ومضمون" إلى "سوق/دليل" → التخلّي عن الـ Moat وقصة المستثمر.</div></div>
+  </div>
+</section>
+
+<!-- ================== 6. DISINTERMEDIATION ================== -->
+<section id="disinter" class="doc-section bg-gradient-to-bl from-danger to-warn text-white">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+    <div class="text-[12px] font-bold text-white/90 tracking-widest uppercase">6 · الخطر الأكبر</div>
+    <h2 class="mt-2 text-2xl lg:text-3xl font-black">خطر الالتفاف · Disintermediation</h2>
+    <p class="mt-3 text-white/90 text-lg max-w-3xl leading-relaxed">
+      أكبر خطر تشغيلي للتخيير: لحظة يرى العميل <strong>هوية المزوّد</strong>، يكبر إغراء
+      "آخذ رقمه وأتصل مباشرة المرة الجاية" — فيخسر سيرف العميل والعمولة معاً.
+    </p>
+
+    <div class="mt-8 grid md:grid-cols-3 gap-4">
+      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-5">
+        <div class="font-bold">لماذا الإسناد محصّن؟</div>
+        <p class="text-sm text-white/85 mt-2">المنصات المُدارة (Uber / Urban Company) <strong>تخفي هوية المزوّد عمداً</strong> — لا اسم كامل، لا رقم، لا تواصل خارجي.</p>
+      </div>
+      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-5">
+        <div class="font-bold">لماذا التخيير معرّض؟</div>
+        <p class="text-sm text-white/85 mt-2">جوهر التخيير هو <strong>كشف الملف الكامل</strong> (اسم، أعمال، تقييمات) — وهذا بالضبط ما يُغري بالالتفاف.</p>
+      </div>
+      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-5">
+        <div class="font-bold">التكلفة الدفاعية</div>
+        <p class="text-sm text-white/85 mt-2">نموذج التخيير يستلزم <strong>استثماراً ضخماً</strong>: إخفاء الأرقام، مراسلة داخلية فقط، بنود مكافحة الالتفاف، جزاءات، كشف الأنماط.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== 7. VERDICT ================== -->
+<section id="verdict" class="doc-section max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+  <div class="text-[12px] font-bold text-brand tracking-widest uppercase">7 · توصية CBDO</div>
+  <h2 class="mt-2 text-2xl lg:text-3xl font-black text-ink-900">الهجين الذكي — لا تحوّل كامل</h2>
+
+  <div class="mt-6 rounded-2xl bg-ink-900 text-white p-6 lg:p-8 shadow-float">
+    <div class="text-lg lg:text-xl font-black leading-relaxed">
+      لا تحوّل سيرف بالكامل لتخيير العميل — ستفقد هويتها كـ <span class="text-brand-light">Managed Marketplace</span>
+      وتصبح <span class="text-gold-light">Mr. Carpenter (مجرد دليل)</span>.
+    </div>
+    <p class="mt-4 text-white/85">النموذج الأمثل: <strong>إسناد ذكي افتراضي + خيار اختياري</strong> ("اختر فنيك") كميزة مميّزة للخدمات المدروسة فقط.</p>
+  </div>
+
+  <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="rounded-2xl bg-brand-ghost p-5 border border-brand/30">
+      <div class="text-2xl">⚡</div>
+      <div class="font-bold mt-2 text-ink-900">إسناد افتراضي</div>
+      <p class="text-sm text-ink-600 mt-1">للطوارئ، الاشتراكات، B2B، الخدمات الموحّدة — حفاظاً على السرعة والـ Moat والضمان.</p>
+    </div>
+    <div class="rounded-2xl bg-gold-ghost p-5 border border-gold/30">
+      <div class="text-2xl">🎯</div>
+      <div class="font-bold mt-2 text-ink-900">تخيير اختياري (Premium)</div>
+      <p class="text-sm text-ink-600 mt-1">للخدمات عالية القيمة، المجدولة، المتخصصة، والعميل المتكرر — حيث يضيف التحكّم قيمة.</p>
+    </div>
+    <div class="rounded-2xl bg-ok-light p-5 border border-ok/30">
+      <div class="text-2xl">🔁</div>
+      <div class="font-bold mt-2 text-ink-900">"شوف خيارات أخرى"</div>
+      <p class="text-sm text-ink-600 mt-1">إسناد ذكي يقترح الأفضل + زر اختياري لعرض البدائل — أفضل العالمين دون التضحية بالسرعة.</p>
+    </div>
+  </div>
+
+  <!-- Strategic warning -->
+  <div class="mt-8 rounded-2xl bg-danger-light border-2 border-danger/40 p-6 lg:p-8">
+    <div class="text-xs font-bold text-danger tracking-widest uppercase">⚠️ التحذير الاستراتيجي</div>
+    <h3 class="mt-2 text-xl font-black text-ink-900">التحوّل الكامل للتخيير = التخلّي عن أطروحة "Urban Company السعودية"</h3>
+    <ul class="mt-4 grid md:grid-cols-2 gap-2 text-sm text-ink-700">
+      <li class="flex items-start gap-2"><span class="text-danger mt-0.5">✕</span> تخسر الـ <strong>Moat</strong> (Operating Excellence + Quality).</li>
+      <li class="flex items-start gap-2"><span class="text-danger mt-0.5">✕</span> تخسر <strong>قصة الضمان</strong> الحقيقي.</li>
+      <li class="flex items-start gap-2"><span class="text-danger mt-0.5">✕</span> تخسر <strong>قصة B2B / SLA / الاشتراكات</strong> (أكبر محرك قيمة).</li>
+      <li class="flex items-start gap-2"><span class="text-danger mt-0.5">✕</span> تخسر <strong>سرديّة المستثمر</strong> (Recurring + Managed).</li>
+      <li class="flex items-start gap-2"><span class="text-danger mt-0.5">✕</span> تدخل في <strong>حرب أسعار</strong> مع المنصات-الأدلة.</li>
+      <li class="flex items-start gap-2"><span class="text-danger mt-0.5">✕</span> تتعرّض لـ <strong>الالتفاف</strong> بشكل مكثّف.</li>
+    </ul>
+  </div>
+
+  <!-- One-liner -->
+  <div class="mt-8 rounded-2xl bg-gradient-to-l from-brand to-gold/80 text-white p-6 lg:p-8 shadow-float">
+    <div class="text-xs font-bold tracking-widest uppercase opacity-90">الخلاصة في سطر</div>
+    <p class="mt-2 text-lg lg:text-xl font-black leading-relaxed">
+      الإسناد = منصة مُدارة بـ Moat قوي (احتفظ به كأساس). التخيير = سوق/دليل بهامش أضعف (أضِفه كخيار مميّز لخدمات مختارة فقط).
+      <span class="block mt-2 text-gold-light">الهجين يجمع الأفضل — ولا يهدم الاستراتيجية.</span>
+    </p>
+  </div>
+
+  <!-- Cross-links to other comparisons -->
+  <div class="mt-10 rounded-2xl bg-paper border border-ink-300/40 p-5">
+    <div class="font-bold text-ink-900">مقارنات أخرى في المشروع</div>
+    <div class="mt-3 grid sm:grid-cols-2 gap-3 text-sm">
+      <a href="details.html#three-options-comparison" class="rounded-xl bg-white p-4 border border-ink-300/40 hover:shadow-card transition">
+        <div class="font-bold text-brand-dark">→ مقارنة باقات التسعير الثلاثة</div>
+        <div class="text-xs text-ink-500 mt-1">الأصلي · البديل · الهجين (في التفاصيل).</div>
+      </a>
+      <a href="details.html#critique" class="rounded-xl bg-white p-4 border border-ink-300/40 hover:shadow-card transition">
+        <div class="font-bold text-brand-dark">→ نقد أفكار التطوير + البدائل</div>
+        <div class="text-xs text-ink-500 mt-1">9 أفكار بحكم CBDO (في التفاصيل).</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ====================== FOOTER ====================== -->
+<footer class="bg-ink-900 text-white/75 no-print">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-10 grid md:grid-cols-3 gap-6 items-start">
+    <div>
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand to-gold grid place-items-center text-white font-extrabold">س</div>
+        <div class="font-extrabold text-white">سيرف · Serve</div>
+      </div>
+      <p class="mt-3 text-sm text-white/65">المقارنات الاستراتيجية · قرارات معمارية للمؤسسين وفريق المنتج.</p>
+    </div>
+    <div class="text-sm">
+      <div class="font-bold text-white">المحتوى</div>
+      <ul class="mt-2 space-y-1 text-white/75">
+        <li>• الإسناد مقابل التخيير (18 بُعداً)</li>
+        <li>• الأثر التقني + القانوني + التجاري</li>
+        <li>• خطر الالتفاف + التوصية الهجينة</li>
+      </ul>
+    </div>
+    <div class="text-sm">
+      <div class="font-bold text-white">روابط الموقع</div>
+      <ul class="mt-2 space-y-1 text-white/75">
+        <li><a class="hover:text-white" href="index.html">→ Presentation</a></li>
+        <li><a class="hover:text-white" href="details.html">→ التفاصيل الكاملة</a></li>
+        <li><a class="hover:text-white" href="roadmap.html">→ خارطة التنفيذ</a></li>
+        <li><a class="hover:text-white" href="legal.html">→ القانوني B2B</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-4 text-xs text-white/55 flex justify-between flex-wrap gap-2">
+      <div>© 2026 Serve — المقارنات الاستراتيجية.</div>
+      <div>Serve Strategic Comparisons v1.0</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

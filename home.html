@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>سيرف — لوحة المشروع الاستراتيجية | Project Hub</title>
+<meta name="description" content="اللوحة المركزية لمشروع سيرف الاستراتيجي — بوابة منظّمة لكل الوثائق: العرض التنفيذي، التفاصيل، خارطة التنفيذ، القانوني، والمقارنات." />
+<meta name="theme-color" content="#0A2540" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Tajawal', 'Inter', 'system-ui', 'sans-serif'],
+          latin: ['Inter', 'system-ui', 'sans-serif'],
+        },
+        colors: {
+          ink: { 900: '#0A2540', 800: '#11314F', 700: '#1B3F62', 500: '#3C5A78', 400: '#5C7896', 300: '#94A8BD' },
+          brand: { DEFAULT: '#0FA89C', dark: '#0A8378', light: '#1FC7B8', ghost: '#E6F7F5' },
+          gold: { DEFAULT: '#D4A017', dark: '#A77E0F', light: '#F0C04A', ghost: '#FBF3D9' },
+          danger: { DEFAULT: '#C0392B', light: '#FBE7E4' },
+          warn: { DEFAULT: '#D97706', light: '#FEF3E0' },
+          ok: { DEFAULT: '#0F8C5A', light: '#E2F4EB' },
+          paper: '#F7F8FB',
+        },
+        boxShadow: {
+          card: '0 1px 2px rgba(10,37,64,.04), 0 8px 24px rgba(10,37,64,.06)',
+          float: '0 4px 12px rgba(10,37,64,.08), 0 16px 40px rgba(10,37,64,.10)',
+        }
+      }
+    }
+  };
+</script>
+
+<style>
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body { font-family: 'Tajawal', 'Inter', system-ui, sans-serif; }
+  .num, .latin { font-family: 'Inter', system-ui, sans-serif; font-feature-settings: 'tnum' on, 'lnum' on; }
+  a:focus-visible, button:focus-visible { outline: 3px solid #0FA89C; outline-offset: 2px; border-radius: 8px; }
+  .hub-card { transition: transform .2s ease, box-shadow .2s ease; }
+  .hub-card:hover { transform: translateY(-4px); }
+  @media print { .no-print { display: none !important; } body { background:#fff; } }
+  ::-webkit-scrollbar { height: 8px; width: 8px; }
+  ::-webkit-scrollbar-thumb { background: #94A8BD; border-radius: 8px; }
+</style>
+</head>
+<body class="bg-paper text-ink-900 antialiased">
+
+<!-- ================== MODE BAR ================== -->
+<div class="no-print bg-ink-900 text-white text-xs">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 h-9 flex items-center justify-between">
+    <div class="flex items-center gap-2 flex-wrap">
+      <span class="text-white/60">عرض المحتوى:</span>
+      <span class="px-2.5 py-0.5 rounded-md bg-brand text-white font-bold ring-1 ring-brand-light">الرئيسية</span>
+      <a href="now.html" class="px-2.5 py-0.5 rounded-md bg-brand/25 hover:bg-brand/40 ring-1 ring-brand-light/40 transition"><span class="font-bold text-brand-light">📊 سيرف الآن</span></a>
+      <a href="index.html" class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 ring-white/15 transition"><span class="font-bold">Presentation</span></a>
+      <a href="details.html" class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 ring-white/15 transition"><span class="font-bold">التفاصيل</span></a>
+      <a href="roadmap.html" class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 ring-white/15 transition"><span class="font-bold">خارطة التنفيذ</span></a>
+      <a href="legal.html" class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 ring-white/15 transition"><span class="font-bold">القانوني B2B</span></a>
+      <a href="comparisons.html" class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 ring-white/15 transition"><span class="font-bold">المقارنات</span></a>
+      <a href="qa.html" class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 ring-white/15 transition"><span class="font-bold">سؤال وجواب</span></a>
+      <a href="final.html" class="px-2.5 py-0.5 rounded-md bg-gold/25 hover:bg-gold/40 ring-1 ring-gold-light/40 transition"><span class="font-bold text-gold-light">⭐ الترشيح الأخير</span></a>
+      <a href="blueprint.html" class="px-2.5 py-0.5 rounded-md bg-gold/25 hover:bg-gold/40 ring-1 ring-gold-light/40 transition"><span class="font-bold text-gold-light">📘 المنتج النهائي</span></a>
+      <a href="plan.html" class="px-2.5 py-0.5 rounded-md bg-gold/25 hover:bg-gold/40 ring-1 ring-gold-light/40 transition"><span class="font-bold text-gold-light">🎯 الخطة الشاملة</span></a>
+      <a href="providers.html" class="px-2.5 py-0.5 rounded-md bg-gold/25 hover:bg-gold/40 ring-1 ring-gold-light/40 transition"><span class="font-bold text-gold-light">🏅 مستويات المزوّدين</span></a>
+      <a href="pulse.html" class="px-2.5 py-0.5 rounded-md bg-brand/25 hover:bg-brand/40 ring-1 ring-brand-light/40 transition"><span class="font-bold text-brand-light">⚡ محاكاة Pulse</span></a>
+      <a href="sense.html" class="px-2.5 py-0.5 rounded-md bg-gold/25 hover:bg-gold/40 ring-1 ring-gold-light/40 transition"><span class="font-bold text-gold-light">🧠 محرّك Sense</span></a>
+      <a href="expansion.html" class="px-2.5 py-0.5 rounded-md bg-brand/25 hover:bg-brand/40 ring-1 ring-brand-light/40 transition"><span class="font-bold text-brand-light">🧩 التوسّع</span></a>
+    </div>
+    <div class="hidden sm:block text-white/60">لوحة المشروع · Strategic Project Hub</div>
+  </div>
+</div>
+
+<!-- ================== HERO ================== -->
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 -z-10 bg-gradient-to-bl from-ink-900 via-ink-800 to-ink-700"></div>
+  <div class="absolute -z-10 inset-0 opacity-30" style="background-image: radial-gradient(circle at 85% 10%, #0FA89C 0%, transparent 35%), radial-gradient(circle at 10% 90%, #D4A017 0%, transparent 30%);"></div>
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 pt-14 pb-12 lg:pt-20 lg:pb-16 text-white">
+    <div class="flex items-center gap-3">
+      <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand to-gold grid place-items-center text-white font-black text-2xl">س</div>
+      <div>
+        <div class="font-extrabold text-xl tracking-tight">سيرف · Serve</div>
+        <div class="text-[12px] text-white/65">لوحة المشروع الاستراتيجية · Strategic Project Hub</div>
+      </div>
+    </div>
+    <h1 class="mt-8 text-3xl md:text-5xl lg:text-6xl font-black leading-[1.15] max-w-4xl">
+      كل وثائق المشروع<br/>
+      <span class="text-gold">منظّمة</span> في <span class="text-brand-light">مكان واحد</span>.
+    </h1>
+    <p class="mt-5 text-lg md:text-xl text-white/85 max-w-3xl leading-relaxed">
+      7 وثائق تغطّي الاستراتيجية، التنفيذ، القانوني، المقارنات، وسؤال وجواب —
+      تتوّجها <strong class="text-gold-light">صفحة الترشيح الأخير</strong> بالمنتج النهائي.
+    </p>
+
+    <!-- Capstone CTA -->
+    <a href="final.html" class="mt-6 inline-flex items-center gap-3 rounded-2xl bg-gradient-to-l from-gold to-gold-dark text-ink-900 px-5 py-3 font-black shadow-float hover:opacity-95 transition">
+      ⭐ ابدأ بالترشيح الأخير — المنتج النهائي لسيرف
+      <span aria-hidden="true">←</span>
+    </a>
+
+    <!-- Quick stats -->
+    <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl">
+      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-4">
+        <div class="text-xs text-white/70">الوثائق الرئيسية</div>
+        <div class="num text-2xl font-extrabold mt-1">7</div>
+      </div>
+      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-4">
+        <div class="text-xs text-white/70">شرائح العرض التنفيذي</div>
+        <div class="num text-2xl font-extrabold mt-1">14</div>
+      </div>
+      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-4">
+        <div class="text-xs text-white/70">وثائق قانونية</div>
+        <div class="num text-2xl font-extrabold mt-1">13 + 7</div>
+        <div class="text-[11px] text-white/55 mt-0.5">وثيقة + ملاحق</div>
+      </div>
+      <div class="rounded-2xl bg-gradient-to-br from-brand/40 to-gold/30 ring-1 ring-white/20 p-4">
+        <div class="text-xs text-white/85">مراحل التنفيذ</div>
+        <div class="num text-2xl font-extrabold mt-1">10</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== START HERE · PATHS BY ROLE ================== -->
+<section class="max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-14">
+  <div class="text-[12px] font-bold text-brand tracking-widest uppercase">ابدأ من هنا · مسارات حسب الدور</div>
+  <h2 class="mt-2 text-2xl lg:text-3xl font-extrabold text-ink-900">ما الذي تريد فعله اليوم؟</h2>
+
+  <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <a href="index.html" class="hub-card rounded-2xl bg-white p-5 shadow-card border-r-4 border-brand block">
+      <div class="text-2xl">🎯</div>
+      <div class="font-bold mt-2 text-ink-900">أعرض على مستثمر</div>
+      <p class="text-xs text-ink-500 mt-1">العرض التنفيذي (14 شريحة) — قصة الاستثمار في 5 دقائق.</p>
+      <div class="mt-3 text-xs font-bold text-brand-dark">افتح Presentation ←</div>
+    </a>
+    <a href="details.html" class="hub-card rounded-2xl bg-white p-5 shadow-card border-r-4 border-gold block">
+      <div class="text-2xl">🔍</div>
+      <div class="font-bold mt-2 text-ink-900">أحلّل بعمق</div>
+      <p class="text-xs text-ink-500 mt-1">التفاصيل الكاملة — السوق، النموذج، الباقات، الاقتصاديات.</p>
+      <div class="mt-3 text-xs font-bold text-gold-dark">افتح التفاصيل ←</div>
+    </a>
+    <a href="roadmap.html" class="hub-card rounded-2xl bg-white p-5 shadow-card border-r-4 border-ok block">
+      <div class="text-2xl">🗺️</div>
+      <div class="font-bold mt-2 text-ink-900">أنفّذ الخطة</div>
+      <p class="text-xs text-ink-500 mt-1">خارطة التنفيذ — 10 مراحل + الفريق + شروط التوظيف.</p>
+      <div class="mt-3 text-xs font-bold text-ok">افتح خارطة التنفيذ ←</div>
+    </a>
+    <a href="legal.html" class="hub-card rounded-2xl bg-white p-5 shadow-card border-r-4 border-ink-700 block">
+      <div class="text-2xl">⚖️</div>
+      <div class="font-bold mt-2 text-ink-900">أراجع قانونياً</div>
+      <p class="text-xs text-ink-500 mt-1">الحزمة القانونية — عقود، SLA، سياسات، فئات وتوزيع.</p>
+      <div class="mt-3 text-xs font-bold text-ink-700">افتح القانوني ←</div>
+    </a>
+  </div>
+</section>
+
+<!-- ================== SITE MAP · 5 SECTIONS ================== -->
+<section class="bg-white border-y border-ink-300/30">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+    <div class="text-[12px] font-bold text-brand tracking-widest uppercase">خريطة الموقع · Site Map</div>
+    <h2 class="mt-2 text-2xl lg:text-3xl font-extrabold text-ink-900">الوثائق الخمس — وما بداخل كل وثيقة</h2>
+    <p class="mt-2 text-ink-600">كل بطاقة تعرض أهم الأقسام مع روابط مباشرة للقفز إليها.</p>
+
+    <div class="mt-8 space-y-5">
+
+      <!-- 1. Presentation -->
+      <article class="rounded-2xl bg-gradient-to-l from-brand-ghost to-white shadow-card border border-brand/20 overflow-hidden">
+        <div class="grid lg:grid-cols-[280px_1fr]">
+          <div class="bg-gradient-to-br from-brand to-brand-dark text-white p-6 flex flex-col justify-between">
+            <div>
+              <div class="num text-xs font-bold opacity-80">01</div>
+              <h3 class="text-2xl font-black mt-1">Presentation</h3>
+              <div class="text-sm opacity-90 mt-1">العرض التنفيذي</div>
+            </div>
+            <div class="mt-4">
+              <div class="text-[11px] opacity-80">الجمهور</div>
+              <div class="font-bold text-sm">مؤسسون · مستثمرون · مجلس</div>
+              <a href="index.html" class="mt-3 inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white text-brand-dark font-bold text-sm hover:bg-paper">افتح ←</a>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-sm text-ink-600">14 شريحة مركّزة — قصة الاستثمار من المشكلة حتى الطلب التمويلي.</p>
+            <div class="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-2 text-sm">
+              <a href="index.html#problem" class="rounded-lg bg-paper px-3 py-2 hover:bg-brand-ghost transition">المشكلة</a>
+              <a href="index.html#market" class="rounded-lg bg-paper px-3 py-2 hover:bg-brand-ghost transition">السوق</a>
+              <a href="index.html#pivot" class="rounded-lg bg-paper px-3 py-2 hover:bg-brand-ghost transition">التحوّل</a>
+              <a href="index.html#engines" class="rounded-lg bg-paper px-3 py-2 hover:bg-brand-ghost transition">المحرّكات (Pulse + Sense)</a>
+              <a href="index.html#moat" class="rounded-lg bg-paper px-3 py-2 hover:bg-brand-ghost transition">الخندق الدفاعي</a>
+              <a href="index.html#financials" class="rounded-lg bg-paper px-3 py-2 hover:bg-brand-ghost transition">المالية</a>
+              <a href="index.html#roadmap" class="rounded-lg bg-paper px-3 py-2 hover:bg-brand-ghost transition">خارطة الطريق</a>
+              <a href="index.html#ask" class="rounded-lg bg-paper px-3 py-2 hover:bg-brand-ghost transition">الطلب التمويلي</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2. Details -->
+      <article class="rounded-2xl bg-gradient-to-l from-gold-ghost to-white shadow-card border border-gold/20 overflow-hidden">
+        <div class="grid lg:grid-cols-[280px_1fr]">
+          <div class="bg-gradient-to-br from-gold to-gold-dark text-white p-6 flex flex-col justify-between">
+            <div>
+              <div class="num text-xs font-bold opacity-80">02</div>
+              <h3 class="text-2xl font-black mt-1">التفاصيل</h3>
+              <div class="text-sm opacity-90 mt-1">التحليل الاستراتيجي الكامل</div>
+            </div>
+            <div class="mt-4">
+              <div class="text-[11px] opacity-80">الجمهور</div>
+              <div class="font-bold text-sm">محلّلون · فرق · مشغّلون</div>
+              <a href="details.html" class="mt-3 inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white text-gold-dark font-bold text-sm hover:bg-paper">افتح ←</a>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-sm text-ink-600">المرجع الكامل — التشخيص، نقد الأفكار، الباقات الثلاث، الركائز، الاقتصاديات، التمويل.</p>
+            <div class="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-2 text-sm">
+              <a href="details.html#diagnosis" class="rounded-lg bg-paper px-3 py-2 hover:bg-gold-ghost transition">التشخيص والمنافسة</a>
+              <a href="details.html#critique" class="rounded-lg bg-paper px-3 py-2 hover:bg-gold-ghost transition">نقد الأفكار التسع</a>
+              <a href="details.html#hybrid-pricing" class="rounded-lg bg-paper px-3 py-2 hover:bg-gold-ghost transition">⭐ الباقات الهجينة</a>
+              <a href="details.html#three-options-comparison" class="rounded-lg bg-paper px-3 py-2 hover:bg-gold-ghost transition">مقارنة الباقات الثلاث</a>
+              <a href="details.html#pulse" class="rounded-lg bg-paper px-3 py-2 hover:bg-gold-ghost transition">Serve Pulse (FM)</a>
+              <a href="details.html#sense" class="rounded-lg bg-paper px-3 py-2 hover:bg-gold-ghost transition">Serve Sense (AI)</a>
+              <a href="details.html#economics" class="rounded-lg bg-paper px-3 py-2 hover:bg-gold-ghost transition">الاقتصاديات</a>
+              <a href="details.html#funding" class="rounded-lg bg-paper px-3 py-2 hover:bg-gold-ghost transition">التمويل (Series A)</a>
+              <a href="details.html#priority" class="rounded-lg bg-paper px-3 py-2 hover:bg-gold-ghost transition">أولويات 30 يوم</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3. Roadmap -->
+      <article class="rounded-2xl bg-gradient-to-l from-ok-light to-white shadow-card border border-ok/20 overflow-hidden">
+        <div class="grid lg:grid-cols-[280px_1fr]">
+          <div class="bg-gradient-to-br from-ok to-brand-dark text-white p-6 flex flex-col justify-between">
+            <div>
+              <div class="num text-xs font-bold opacity-80">03</div>
+              <h3 class="text-2xl font-black mt-1">خارطة التنفيذ</h3>
+              <div class="text-sm opacity-90 mt-1">10 مراحل + الفريق</div>
+            </div>
+            <div class="mt-4">
+              <div class="text-[11px] opacity-80">الجمهور</div>
+              <div class="font-bold text-sm">فريق التنفيذ · HR · العمليات</div>
+              <a href="roadmap.html" class="mt-3 inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white text-ok font-bold text-sm hover:bg-paper">افتح ←</a>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-sm text-ink-600">خطة مرحلية: كل مرحلة بمدة، فريق، شروط تعيين، مخرجات، وشرط انتقال.</p>
+            <div class="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-2 text-sm">
+              <a href="roadmap.html#timeline" class="rounded-lg bg-paper px-3 py-2 hover:bg-ok-light transition">الخارطة العامة</a>
+              <a href="roadmap.html#phase-1" class="rounded-lg bg-paper px-3 py-2 hover:bg-ok-light transition">المراحل العشر</a>
+              <a href="roadmap.html#summary-table" class="rounded-lg bg-paper px-3 py-2 hover:bg-ok-light transition">جدول المدد والفريق</a>
+              <a href="roadmap.html#hiring-pyramid" class="rounded-lg bg-paper px-3 py-2 hover:bg-ok-light transition">أولويات التوظيف</a>
+              <a href="roadmap.html#org" class="rounded-lg bg-paper px-3 py-2 hover:bg-ok-light transition">الهيكل التشغيلي</a>
+              <a href="roadmap.html#kpis" class="rounded-lg bg-paper px-3 py-2 hover:bg-ok-light transition">مؤشرات الأداء</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4. Legal -->
+      <article class="rounded-2xl bg-gradient-to-l from-paper to-white shadow-card border border-ink-300/40 overflow-hidden">
+        <div class="grid lg:grid-cols-[280px_1fr]">
+          <div class="bg-gradient-to-br from-ink-900 to-ink-700 text-white p-6 flex flex-col justify-between">
+            <div>
+              <div class="num text-xs font-bold opacity-80">04</div>
+              <h3 class="text-2xl font-black mt-1">القانوني B2B</h3>
+              <div class="text-sm opacity-90 mt-1">13 وثيقة + 7 ملاحق</div>
+            </div>
+            <div class="mt-4">
+              <div class="text-[11px] opacity-80">الجمهور</div>
+              <div class="font-bold text-sm">مستشار قانوني · عميل مؤسسي</div>
+              <a href="legal.html" class="mt-3 inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white text-ink-900 font-bold text-sm hover:bg-paper">افتح ←</a>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-sm text-ink-600">حزمة كاملة ثنائية اللغة وفق الأنظمة السعودية — اختصاص المحاكم التجارية بالرياض.</p>
+            <div class="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-2 text-sm">
+              <a href="legal.html#laws-map" class="rounded-lg bg-paper px-3 py-2 hover:bg-ink-300/20 transition">الأنظمة المرجعية</a>
+              <a href="legal.html#msa" class="rounded-lg bg-paper px-3 py-2 hover:bg-ink-300/20 transition">اتفاقية الخدمات (MSA)</a>
+              <a href="legal.html#sla" class="rounded-lg bg-paper px-3 py-2 hover:bg-ink-300/20 transition">مستوى الخدمة (SLA)</a>
+              <a href="legal.html#dpa" class="rounded-lg bg-paper px-3 py-2 hover:bg-ink-300/20 transition">معالجة البيانات (DPA)</a>
+              <a href="legal.html#tiers" class="rounded-lg bg-paper px-3 py-2 hover:bg-ink-300/20 transition">فئات المزوّدين</a>
+              <a href="legal.html#routing" class="rounded-lg bg-paper px-3 py-2 hover:bg-ink-300/20 transition">توزيع الطلبات</a>
+              <a href="legal.html#schedules" class="rounded-lg bg-paper px-3 py-2 hover:bg-ink-300/20 transition">الملاحق A-G</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5. Comparisons -->
+      <article class="rounded-2xl bg-gradient-to-l from-brand-ghost via-white to-gold-ghost shadow-card border border-brand/20 overflow-hidden">
+        <div class="grid lg:grid-cols-[280px_1fr]">
+          <div class="bg-gradient-to-br from-brand via-ink-800 to-gold-dark text-white p-6 flex flex-col justify-between">
+            <div>
+              <div class="num text-xs font-bold opacity-80">05</div>
+              <h3 class="text-2xl font-black mt-1">المقارنات</h3>
+              <div class="text-sm opacity-90 mt-1">قرارات معمارية</div>
+            </div>
+            <div class="mt-4">
+              <div class="text-[11px] opacity-80">الجمهور</div>
+              <div class="font-bold text-sm">مؤسسون · فريق المنتج</div>
+              <a href="comparisons.html" class="mt-3 inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white text-ink-900 font-bold text-sm hover:bg-paper">افتح ←</a>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-sm text-ink-600">المقارنات الاستراتيجية — الإسناد مقابل التخيير مقابل الهجين (18 بُعداً).</p>
+            <div class="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-2 text-sm">
+              <a href="comparisons.html#concept" class="rounded-lg bg-paper px-3 py-2 hover:bg-brand-ghost transition">الفرق الجوهري</a>
+              <a href="comparisons.html#matrix" class="rounded-lg bg-paper px-3 py-2 hover:bg-brand-ghost transition">الجدول الشامل (18 بُعداً)</a>
+              <a href="comparisons.html#byservice" class="rounded-lg bg-paper px-3 py-2 hover:bg-brand-ghost transition">أي نموذج لأي خدمة</a>
+              <a href="comparisons.html#impact" class="rounded-lg bg-paper px-3 py-2 hover:bg-brand-ghost transition">أثر التحوّل</a>
+              <a href="comparisons.html#disinter" class="rounded-lg bg-paper px-3 py-2 hover:bg-brand-ghost transition">خطر الالتفاف</a>
+              <a href="comparisons.html#verdict" class="rounded-lg bg-paper px-3 py-2 hover:bg-brand-ghost transition">⭐ التوصية (الهجين)</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6 + 7 : QA + Final (compact) -->
+      <div class="grid md:grid-cols-2 gap-5">
+        <a href="qa.html" class="hub-card rounded-2xl bg-white shadow-card border border-brand/20 p-6 block">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-brand to-brand-dark text-white grid place-items-center font-black">؟</div>
+            <div><div class="num text-xs font-bold text-ink-500">06</div><div class="font-black text-ink-900">سؤال وجواب</div></div>
+          </div>
+          <p class="text-sm text-ink-600 mt-3">بنك القرارات — يبدأ بتحليل خدمة المشروع الكامل (تشطيب شقة) وأثرها على الاشتراكات والنموذج والاتفاقيات (32 سؤالاً فرعياً).</p>
+          <div class="mt-3 text-xs font-bold text-brand-dark">افتح ←</div>
+        </a>
+        <a href="final.html" class="hub-card rounded-2xl bg-gradient-to-br from-gold-ghost to-white shadow-card border-2 border-gold/40 p-6 block relative overflow-hidden">
+          <span class="absolute -top-3 right-5 px-3 py-1 rounded-md bg-gold text-ink-900 text-xs font-black">⭐ التتويج</span>
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-gold to-ink-900 text-white grid place-items-center font-black">★</div>
+            <div><div class="num text-xs font-bold text-gold-dark">07</div><div class="font-black text-ink-900">الترشيح الأخير</div></div>
+          </div>
+          <p class="text-sm text-ink-600 mt-3">المنتج النهائي — تركيب كل القرارات في توليفة واحدة متماسكة: الهوية، المعمارية، التشغيل، التسعير، القانوني، والإطلاق.</p>
+          <div class="mt-3 text-xs font-bold text-gold-dark">افتح المنتج النهائي ←</div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================== RECOMMENDED FLOW ================== -->
+<section class="max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-14">
+  <div class="text-[12px] font-bold text-brand tracking-widest uppercase">المسار الموصى به · Recommended Flow</div>
+  <h2 class="mt-2 text-2xl lg:text-3xl font-extrabold text-ink-900">إذا كنت تقرأ المشروع لأول مرة</h2>
+
+  <div class="mt-6 overflow-x-auto">
+    <div class="min-w-[720px] flex items-stretch gap-2 text-center text-sm">
+      <a href="index.html" class="flex-1 rounded-xl bg-brand text-white p-4 shadow-card hover:bg-brand-dark transition">
+        <div class="num font-black text-lg">1</div><div class="font-bold mt-1">Presentation</div><div class="text-xs opacity-85 mt-1">الصورة الكبيرة</div>
+      </a>
+      <div class="self-center text-ink-300 font-bold">←</div>
+      <a href="details.html" class="flex-1 rounded-xl bg-white border border-ink-300/40 p-4 shadow-card hover:shadow-float transition">
+        <div class="num font-black text-lg text-gold-dark">2</div><div class="font-bold mt-1 text-ink-900">التفاصيل</div><div class="text-xs text-ink-500 mt-1">العمق الكامل</div>
+      </a>
+      <div class="self-center text-ink-300 font-bold">←</div>
+      <a href="comparisons.html" class="flex-1 rounded-xl bg-white border border-ink-300/40 p-4 shadow-card hover:shadow-float transition">
+        <div class="num font-black text-lg text-brand-dark">3</div><div class="font-bold mt-1 text-ink-900">المقارنات</div><div class="text-xs text-ink-500 mt-1">القرارات الحاسمة</div>
+      </a>
+      <div class="self-center text-ink-300 font-bold">←</div>
+      <a href="roadmap.html" class="flex-1 rounded-xl bg-white border border-ink-300/40 p-4 shadow-card hover:shadow-float transition">
+        <div class="num font-black text-lg text-ok">4</div><div class="font-bold mt-1 text-ink-900">خارطة التنفيذ</div><div class="text-xs text-ink-500 mt-1">كيف ننفّذ</div>
+      </a>
+      <div class="self-center text-ink-300 font-bold">←</div>
+      <a href="legal.html" class="flex-1 rounded-xl bg-white border border-ink-300/40 p-4 shadow-card hover:shadow-float transition">
+        <div class="num font-black text-lg text-ink-700">5</div><div class="font-bold mt-1 text-ink-900">القانوني</div><div class="text-xs text-ink-500 mt-1">قبل الإطلاق</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================== FOOTER ================== -->
+<footer class="bg-ink-900 text-white/75">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-10 grid md:grid-cols-3 gap-6 items-start">
+    <div>
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand to-gold grid place-items-center text-white font-extrabold">س</div>
+        <div class="font-extrabold text-white">سيرف · Serve</div>
+      </div>
+      <p class="mt-3 text-sm text-white/65">لوحة المشروع الاستراتيجية · بوابة منظّمة لكل الوثائق.</p>
+    </div>
+    <div class="text-sm">
+      <div class="font-bold text-white">الوثائق</div>
+      <ul class="mt-2 space-y-1 text-white/75">
+        <li><a class="hover:text-white" href="index.html">→ Presentation (العرض التنفيذي)</a></li>
+        <li><a class="hover:text-white" href="details.html">→ التفاصيل الكاملة</a></li>
+        <li><a class="hover:text-white" href="roadmap.html">→ خارطة التنفيذ</a></li>
+        <li><a class="hover:text-white" href="legal.html">→ القانوني B2B</a></li>
+        <li><a class="hover:text-white" href="comparisons.html">→ المقارنات</a></li>
+        <li><a class="hover:text-white" href="qa.html">→ سؤال وجواب</a></li>
+        <li><a class="hover:text-white" href="final.html">→ ⭐ الترشيح الأخير</a></li>
+      </ul>
+    </div>
+    <div class="text-sm">
+      <div class="font-bold text-white">عن اللوحة</div>
+      <ul class="mt-2 space-y-1 text-white/75">
+        <li>تحليل CBDO استراتيجي شامل.</li>
+        <li>عربي RTL · Tajawal + Inter.</li>
+        <li>قابل للطباعة PDF من كل صفحة.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-4 text-xs text-white/55 flex justify-between flex-wrap gap-2">
+      <div>© 2026 Serve — لوحة المشروع الاستراتيجية.</div>
+      <div>Serve Project Hub v1.0</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

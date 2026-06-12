@@ -1,0 +1,925 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>سيرف — العرض التنفيذي · Presentation</title>
+<meta name="description" content="عرض تنفيذي مختصر لمنصة سيرف الاستراتيجية — للمؤسسين والمستثمرين." />
+<meta name="theme-color" content="#0A2540" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Tajawal', 'Inter', 'system-ui', 'sans-serif'],
+          latin: ['Inter', 'system-ui', 'sans-serif'],
+        },
+        colors: {
+          ink: { 900: '#0A2540', 800: '#11314F', 700: '#1B3F62', 500: '#3C5A78', 400: '#5C7896', 300: '#94A8BD' },
+          brand: { DEFAULT: '#0FA89C', dark: '#0A8378', light: '#1FC7B8', ghost: '#E6F7F5' },
+          gold: { DEFAULT: '#D4A017', dark: '#A77E0F', light: '#F0C04A', ghost: '#FBF3D9' },
+          danger: { DEFAULT: '#C0392B', light: '#FBE7E4' },
+          warn: { DEFAULT: '#D97706', light: '#FEF3E0' },
+          ok: { DEFAULT: '#0F8C5A', light: '#E2F4EB' },
+          paper: '#F7F8FB',
+        }
+      }
+    }
+  };
+</script>
+
+<style>
+  html { scroll-behavior: smooth; scroll-padding-top: 0; }
+  body { font-family: 'Tajawal', 'Inter', system-ui, sans-serif; }
+  .num, .latin { font-family: 'Inter', system-ui, sans-serif; font-feature-settings: 'tnum' on, 'lnum' on; }
+  .slide {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6rem 1.5rem 4rem;
+    position: relative; scroll-snap-align: start;
+    page-break-after: always; break-after: page;
+  }
+  main { scroll-snap-type: y proximity; }
+  .slide-num {
+    position: absolute; top: 1.5rem; left: 1.5rem;
+    font-family: 'Inter', sans-serif; font-weight: 700; font-size: .8rem;
+    opacity: .5; letter-spacing: .1em;
+  }
+  .slide-tag {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    font-family: 'Tajawal', sans-serif; font-weight: 700; font-size: .7rem;
+    letter-spacing: .2em; text-transform: uppercase;
+  }
+  a:focus-visible, button:focus-visible {
+    outline: 3px solid #0FA89C; outline-offset: 4px; border-radius: 8px;
+  }
+  @media print {
+    .no-print { display: none !important; }
+    .slide { min-height: auto; padding: 2rem; }
+  }
+  ::-webkit-scrollbar { height: 8px; width: 8px; }
+  ::-webkit-scrollbar-thumb { background: #94A8BD; border-radius: 8px; }
+  /* progress bar */
+  #progressBar { position: fixed; top: 0; right: 0; left: 0; height: 3px; background: transparent; z-index: 60; }
+  #progressBar > span { display: block; height: 100%; background: linear-gradient(to left, #D4A017, #0FA89C); width: 0%; transition: width .15s; }
+</style>
+</head>
+<body class="bg-paper text-ink-900 antialiased">
+
+<div id="progressBar"><span></span></div>
+
+<!-- ================== MODE BAR ================== -->
+<div class="no-print bg-ink-900 text-white text-xs">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 h-9 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <span class="text-white/60">عرض المحتوى:</span>
+      <a href="home.html" class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 ring-white/15 transition"><span class="font-bold">الرئيسية</span></a>
+      <a href="now.html" class="px-2.5 py-0.5 rounded-md bg-brand/25 hover:bg-brand/40 ring-1 ring-brand-light/40 transition"><span class="font-bold text-brand-light">📊 سيرف الآن</span></a>
+      <span class="px-2.5 py-0.5 rounded-md bg-brand text-white font-bold ring-1 ring-brand-light">
+        Presentation
+      </span>
+      <a href="details.html" class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 ring-white/15 transition">
+        <span class="font-bold">التفاصيل</span>
+      </a>
+      <a href="roadmap.html" class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 ring-white/15 transition">
+        <span class="font-bold">خارطة التنفيذ</span>
+      </a>
+      <a href="legal.html" class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 ring-white/15 transition">
+        <span class="font-bold">القانوني B2B</span>
+      </a>
+      <a href="comparisons.html" class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 ring-white/15 transition">
+        <span class="font-bold">المقارنات</span>
+      </a>
+      <a href="qa.html" class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 ring-white/15 transition"><span class="font-bold">سؤال وجواب</span></a>
+      <a href="final.html" class="px-2.5 py-0.5 rounded-md bg-gold/25 hover:bg-gold/40 ring-1 ring-gold-light/40 transition"><span class="font-bold text-gold-light">⭐ الترشيح الأخير</span></a>
+      <a href="blueprint.html" class="px-2.5 py-0.5 rounded-md bg-gold/25 hover:bg-gold/40 ring-1 ring-gold-light/40 transition"><span class="font-bold text-gold-light">📘 المنتج النهائي</span></a>
+      <a href="plan.html" class="px-2.5 py-0.5 rounded-md bg-gold/25 hover:bg-gold/40 ring-1 ring-gold-light/40 transition"><span class="font-bold text-gold-light">🎯 الخطة الشاملة</span></a>
+      <a href="providers.html" class="px-2.5 py-0.5 rounded-md bg-gold/25 hover:bg-gold/40 ring-1 ring-gold-light/40 transition"><span class="font-bold text-gold-light">🏅 مستويات المزوّدين</span></a>
+      <a href="pulse.html" class="px-2.5 py-0.5 rounded-md bg-brand/25 hover:bg-brand/40 ring-1 ring-brand-light/40 transition"><span class="font-bold text-brand-light">⚡ محاكاة Pulse</span></a>
+      <a href="sense.html" class="px-2.5 py-0.5 rounded-md bg-gold/25 hover:bg-gold/40 ring-1 ring-gold-light/40 transition"><span class="font-bold text-gold-light">🧠 محرّك Sense</span></a>
+      <a href="expansion.html" class="px-2.5 py-0.5 rounded-md bg-brand/25 hover:bg-brand/40 ring-1 ring-brand-light/40 transition"><span class="font-bold text-brand-light">🧩 التوسّع</span></a>
+    </div>
+    <div class="hidden sm:block text-white/60">جمهور: مؤسسون · مستثمرون · مجلس إدارة</div>
+  </div>
+</div>
+
+<!-- ================== TOP NAV ================== -->
+<header class="no-print sticky top-9 z-40 backdrop-blur bg-white/85 border-b border-ink-300/30">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 h-14 flex items-center gap-6">
+    <a href="#cover" class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand to-ink-900 grid place-items-center text-white font-extrabold">س</div>
+      <div class="leading-tight">
+        <div class="font-extrabold text-ink-900 tracking-tight">سيرف · Serve</div>
+        <div class="text-[11px] text-ink-500">Executive Presentation · عرض جولة التمويل أ</div>
+      </div>
+    </a>
+    <nav class="hidden lg:flex items-center gap-1 text-xs font-medium text-ink-700 mr-auto">
+      <a href="#problem" class="px-2.5 py-1.5 rounded-lg hover:bg-paper">المشكلة</a>
+      <a href="#market"  class="px-2.5 py-1.5 rounded-lg hover:bg-paper">السوق</a>
+      <a href="#pivot"   class="px-2.5 py-1.5 rounded-lg hover:bg-paper">التحوّل</a>
+      <a href="#engines" class="px-2.5 py-1.5 rounded-lg hover:bg-paper">المحرّكات</a>
+      <a href="#model"   class="px-2.5 py-1.5 rounded-lg hover:bg-paper">النموذج</a>
+      <a href="#moat"    class="px-2.5 py-1.5 rounded-lg hover:bg-paper">الموات</a>
+      <a href="#financials" class="px-2.5 py-1.5 rounded-lg hover:bg-paper">المالية</a>
+      <a href="#roadmap" class="px-2.5 py-1.5 rounded-lg hover:bg-paper">الطريق</a>
+      <a href="#ask"     class="px-2.5 py-1.5 rounded-lg hover:bg-paper">الطلب</a>
+    </nav>
+    <div class="flex items-center gap-2 mr-auto lg:mr-0">
+      <button onclick="window.print()" class="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-ink-800 bg-paper hover:bg-ink-300/20 border border-ink-300/40">
+        طباعة / PDF
+      </button>
+      <a href="details.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-ink-900 hover:bg-ink-800">
+        التفاصيل الكاملة ←
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ====================== SLIDE 1 · COVER ====================== -->
+<section id="cover" class="slide bg-gradient-to-bl from-ink-900 via-ink-800 to-ink-700 text-white relative overflow-hidden">
+  <div class="absolute -z-0 inset-0 opacity-30"
+       style="background-image: radial-gradient(circle at 85% 15%, #0FA89C 0%, transparent 35%), radial-gradient(circle at 15% 85%, #D4A017 0%, transparent 35%);"></div>
+  <div class="slide-num text-white/60 latin">01 / 14</div>
+  <div class="slide-tag text-brand-light">غلاف</div>
+
+  <div class="relative max-w-6xl mx-auto w-full">
+    <div class="inline-flex items-center gap-2 text-[12px] font-bold tracking-widest uppercase bg-white/10 px-3 py-1 rounded-full ring-1 ring-white/15">
+      <span class="w-2 h-2 rounded-full bg-brand animate-pulse"></span>
+      عرض جولة التمويل أ · سيرف
+    </div>
+    <h1 class="mt-8 text-5xl md:text-7xl lg:text-8xl font-black leading-[1.05]">
+      نُعيد تشكيل<br/>
+      <span class="text-gold">الصيانة</span>
+      <span class="text-brand-light">والمنشآت</span><br/>
+      في السعودية.
+    </h1>
+    <p class="mt-8 text-xl md:text-2xl text-white/85 max-w-3xl leading-relaxed">
+      سيرف — منصة إدارة الصيانة الرسمية للأفراد والشركات.
+      <span class="text-brand-light font-bold">اطلب · اطمئن · ادفع · مضمون.</span>
+    </p>
+
+    <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl">
+      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-4">
+        <div class="text-xs text-white/70">سوق سعودي</div>
+        <div class="num text-2xl font-extrabold mt-1">~61 <span class="text-base font-bold">مليار ر</span></div>
+        <div class="text-[11px] text-white/55 mt-1">صيانة + إدارة المرافق (FM)</div>
+      </div>
+      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-4">
+        <div class="text-xs text-white/70">رقمي اليوم</div>
+        <div class="num text-2xl font-extrabold mt-1">&lt; 15%</div>
+        <div class="text-[11px] text-white/55 mt-1">فجوة هائلة</div>
+      </div>
+      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-4">
+        <div class="text-xs text-white/70">إجمالي قيمة المعاملات (GMV) 2030</div>
+        <div class="num text-2xl font-extrabold mt-1">220 <span class="text-base font-bold">M ر</span></div>
+      </div>
+      <div class="rounded-2xl bg-gradient-to-br from-brand/40 to-gold/30 ring-1 ring-white/20 p-4">
+        <div class="text-xs text-white/85">Pulse الإيراد السنوي المتكرر (ARR) 2030</div>
+        <div class="num text-2xl font-extrabold mt-1">51 <span class="text-base font-bold">M ر</span></div>
+      </div>
+    </div>
+
+    <div class="mt-14 text-sm text-white/55">
+      Hamdan · مدير تطوير الأعمال (CBDO) · مايو 2026
+    </div>
+  </div>
+</section>
+
+<!-- ====================== SLIDE 2 · THE PROBLEM ====================== -->
+<section id="problem" class="slide bg-paper relative">
+  <div class="slide-num latin">02 / 14</div>
+  <div class="slide-tag text-danger">The Problem</div>
+
+  <div class="max-w-6xl mx-auto w-full">
+    <div class="text-[12px] font-bold text-danger tracking-widest uppercase">المشكلة</div>
+    <h2 class="mt-3 text-4xl md:text-6xl font-black leading-tight text-ink-900">
+      قطاع الصيانة في السعودية<br/>
+      <span class="text-danger">عشوائي وغير موثوق.</span>
+    </h2>
+
+    <div class="mt-12 grid md:grid-cols-3 gap-5">
+      <div class="rounded-2xl bg-white p-6 shadow-lg border-r-4 border-danger">
+        <div class="num text-5xl font-black text-danger">70%</div>
+        <div class="font-bold mt-2 text-ink-900 text-lg">عبر واتساب والمعارف</div>
+        <p class="text-sm text-ink-500 mt-2">سوق رمادي بلا ضمانات ولا تتبع ولا فواتير.</p>
+      </div>
+      <div class="rounded-2xl bg-white p-6 shadow-lg border-r-4 border-warn">
+        <div class="num text-5xl font-black text-warn">60%</div>
+        <div class="font-bold mt-2 text-ink-900 text-lg">يهيمن "الفني الفلتي"</div>
+        <p class="text-sm text-ink-500 mt-2">جودة متذبذبة، أسعار عشوائية، لا مساءلة.</p>
+      </div>
+      <div class="rounded-2xl bg-white p-6 shadow-lg border-r-4 border-ink-700">
+        <div class="num text-5xl font-black text-ink-900">85%</div>
+        <div class="font-bold mt-2 text-ink-900 text-lg">غير رقمي</div>
+        <p class="text-sm text-ink-500 mt-2">لا منصة سعودية أصيلة تقود التحوّل الرقمي.</p>
+      </div>
+    </div>
+
+    <div class="mt-12 rounded-2xl bg-ink-900 text-white p-6 lg:p-8">
+      <div class="text-xs font-bold text-brand-light tracking-widest uppercase">الواقع المؤسسي</div>
+      <p class="mt-2 text-lg md:text-xl leading-relaxed">
+        المطعم بـ 10 فروع، المستشفى، المدرسة، المجمع السكني، الجهة الحكومية —
+        <strong>لا أحد يقدّم لهم شريك إدارة المرافق (FM) رقمي + شبكة تنفيذ مع اتفاقية مستوى الخدمة (SLA) ملزم في مكان واحد.</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== SLIDE 3 · THE MARKET ====================== -->
+<section id="market" class="slide bg-white relative">
+  <div class="slide-num latin">03 / 14</div>
+  <div class="slide-tag text-brand">Market</div>
+
+  <div class="max-w-6xl mx-auto w-full">
+    <div class="text-[12px] font-bold text-brand tracking-widest uppercase">السوق</div>
+    <h2 class="mt-3 text-4xl md:text-6xl font-black leading-tight text-ink-900">
+      سوق بـ <span class="text-brand">61 مليار ريال</span><br/>
+      ينتظر منصة سعودية.
+    </h2>
+
+    <div class="mt-12 grid md:grid-cols-2 gap-6">
+      <div class="rounded-2xl bg-gradient-to-br from-brand to-brand-dark text-white p-6 lg:p-8 shadow-lg">
+        <div class="text-xs font-bold opacity-80 tracking-widest uppercase">قطاع الصيانة</div>
+        <div class="num mt-2 text-5xl md:text-6xl font-black">28-35 <span class="text-2xl">مليار ر</span></div>
+        <div class="text-sm opacity-90 mt-3">منزلية + تجارية مجتمعة، 2025.</div>
+        <div class="mt-4 pt-4 border-t border-white/20 grid grid-cols-2 gap-2 text-sm">
+          <div><span class="opacity-70">النمو السنوي:</span> <strong>8-12%</strong></div>
+          <div><span class="opacity-70">رقمي:</span> <strong>&lt; 15%</strong></div>
+        </div>
+      </div>
+      <div class="rounded-2xl bg-gradient-to-br from-gold to-gold-dark text-white p-6 lg:p-8 shadow-lg">
+        <div class="text-xs font-bold opacity-80 tracking-widest uppercase">سوق Facility Management</div>
+        <div class="num mt-2 text-5xl md:text-6xl font-black">~26 <span class="text-2xl">مليار ر</span></div>
+        <div class="text-sm opacity-90 mt-3">الشركات (B2B) + الحكومة (B2G)، 2025.</div>
+        <div class="mt-4 pt-4 border-t border-white/20 grid grid-cols-2 gap-2 text-sm">
+          <div><span class="opacity-70">النمو السنوي:</span> <strong>9-11%</strong></div>
+          <div><span class="opacity-70">نظام إدارة المرافق بالحاسوب (CAFM)/نظام إدارة الصيانة المحوسب (CMMS):</span> <strong>&lt; 20%</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 rounded-2xl bg-ink-900 text-white p-6 lg:p-8 grid md:grid-cols-3 gap-6 items-center">
+      <div class="md:col-span-2">
+        <div class="text-xs font-bold text-brand-light tracking-widest uppercase">القابل للالتقاط رقمياً</div>
+        <div class="num mt-2 text-4xl md:text-5xl font-black">~10 مليار ريال</div>
+        <p class="mt-3 text-white/80 text-lg">سوق رقمي ناشئ، لا منافس محلي يمسك بجميع الأطراف.</p>
+      </div>
+      <div class="text-xs text-white/55 leading-relaxed">
+        محرّكات النمو: رؤية 2030 · نيوم · القدية · روشن · إلزام الصيانة الوقائية في المنشآت التجارية.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== SLIDE 4 · CBDO VERDICT + PIVOT ====================== -->
+<section id="pivot" class="slide bg-gradient-to-bl from-ink-900 to-ink-700 text-white relative">
+  <div class="slide-num text-white/50 latin">04 / 14</div>
+  <div class="slide-tag text-gold">Verdict · Pivot</div>
+
+  <div class="max-w-6xl mx-auto w-full">
+    <div class="text-[12px] font-bold text-gold tracking-widest uppercase">حكم مدير تطوير الأعمال (CBDO)</div>
+    <h2 class="mt-3 text-4xl md:text-6xl font-black leading-tight">
+      نعم للفكرة.<br/>
+      <span class="text-danger line-through opacity-80">لا</span>
+      <span class="text-gold">للصياغة الحالية.</span>
+    </h2>
+
+    <div class="mt-10 grid md:grid-cols-2 gap-6">
+      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
+        <div class="text-xs font-bold text-danger tracking-widest uppercase">القديم</div>
+        <div class="mt-3 text-xl font-bold">Pure المنصة السوقية (Marketplace)</div>
+        <ul class="mt-4 space-y-2 text-white/80 text-sm">
+          <li class="flex items-start gap-2"><span class="text-danger mt-1">✕</span> جودة غير مضمونة</li>
+          <li class="flex items-start gap-2"><span class="text-danger mt-1">✕</span> عمولة قابلة للتآكل</li>
+          <li class="flex items-start gap-2"><span class="text-danger mt-1">✕</span> لا خندق دفاعي</li>
+          <li class="flex items-start gap-2"><span class="text-danger mt-1">✕</span> ستُسحق خلال 18-24 شهر</li>
+        </ul>
+        <div class="mt-5 num text-4xl font-black text-danger">6/10</div>
+      </div>
+      <div class="rounded-2xl bg-gradient-to-br from-brand/30 to-gold/20 ring-1 ring-brand-light/30 p-6">
+        <div class="text-xs font-bold text-brand-light tracking-widest uppercase">الجديد</div>
+        <div class="mt-3 text-xl font-bold">المنصة السوقية المُدارة (Managed المنصة السوقية (Marketplace) + البرمجيات كخدمة (SaaS) + الذكاء الاصطناعي</div>
+        <ul class="mt-4 space-y-2 text-white/90 text-sm">
+          <li class="flex items-start gap-2"><span class="text-brand-light mt-1">✓</span> Recurring Revenue (الإيراد الشهري المتكرر (MRR) + الإيراد السنوي المتكرر (ARR)</li>
+          <li class="flex items-start gap-2"><span class="text-brand-light mt-1">✓</span> عقود الشركات (B2B) + الحكومة (B2G) مُقفلة</li>
+          <li class="flex items-start gap-2"><span class="text-brand-light mt-1">✓</span> Moat على 6 طبقات</li>
+          <li class="flex items-start gap-2"><span class="text-brand-light mt-1">✓</span> مضاعفات تقييم 3× → 12×</li>
+        </ul>
+        <div class="mt-5 text-xl font-black text-brand-light">قابل للدفاع 12-18 شهر</div>
+      </div>
+    </div>
+
+    <div class="mt-8 text-center text-lg text-white/85">
+      التحوّل المطلوب الآن: <strong class="text-brand-light">3 Pillars + 2 Engines</strong>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== SLIDE 5 · 3 PILLARS + 2 ENGINES ====================== -->
+<section id="strategy" class="slide bg-white relative">
+  <div class="slide-num latin">05 / 14</div>
+  <div class="slide-tag text-brand">Strategy</div>
+
+  <div class="max-w-6xl mx-auto w-full">
+    <div class="text-[12px] font-bold text-brand tracking-widest uppercase">الاستراتيجية</div>
+    <h2 class="mt-3 text-4xl md:text-6xl font-black leading-tight text-ink-900">
+      ثلاث ركائز.<br/><span class="text-brand">محرّكان تقنيان.</span>
+    </h2>
+
+    <!-- 3 Pillars -->
+    <div class="mt-10 grid md:grid-cols-3 gap-5">
+      <div class="rounded-2xl bg-paper p-6 border-r-4 border-ink-700">
+        <div class="num text-xs font-bold text-ink-500">Pillar 1</div>
+        <div class="text-2xl font-black mt-1 text-ink-900">Serve On-Demand</div>
+        <p class="text-sm text-ink-600 mt-2">الطلب السريع للأفراد.</p>
+        <div class="num text-3xl font-black text-ink-900 mt-4">35%</div>
+        <div class="text-xs text-ink-500">من الإيراد 2028</div>
+      </div>
+      <div class="rounded-2xl bg-brand-ghost p-6 border-r-4 border-brand relative">
+        <span class="absolute -top-3 right-4 px-2 py-0.5 rounded-md bg-brand text-white text-xs font-bold">المحرّك</span>
+        <div class="num text-xs font-bold text-brand">Pillar 2</div>
+        <div class="text-2xl font-black mt-1 text-ink-900">Serve Care</div>
+        <p class="text-sm text-ink-600 mt-2">اشتراكات الصيانة الوقائية.</p>
+        <div class="num text-3xl font-black text-brand-dark mt-4">40%</div>
+        <div class="text-xs text-ink-500">من الإيراد 2028</div>
+      </div>
+      <div class="rounded-2xl bg-gold-ghost p-6 border-r-4 border-gold">
+        <div class="num text-xs font-bold text-gold-dark">Pillar 3</div>
+        <div class="text-2xl font-black mt-1 text-ink-900">Serve Business</div>
+        <p class="text-sm text-ink-600 mt-2">الشركات (B2B) + الحكومة (B2G) + إدارة عقارات.</p>
+        <div class="num text-3xl font-black text-gold-dark mt-4">25%</div>
+        <div class="text-xs text-ink-500">من الإيراد 2028</div>
+      </div>
+    </div>
+
+    <!-- 2 Engines -->
+    <div id="engines" class="mt-8 grid md:grid-cols-2 gap-5">
+      <div class="rounded-2xl bg-gradient-to-br from-brand to-brand-dark text-white p-6">
+        <div class="text-xs font-bold opacity-80 tracking-widest uppercase">Engine 1</div>
+        <div class="text-3xl font-black mt-2">Serve Pulse</div>
+        <div class="text-brand-light font-bold mt-1">إدارة المرافق (FM) البرمجيات كخدمة (SaaS) Platform</div>
+        <p class="text-sm opacity-90 mt-3">منصة سحابية لإدارة المرافق — نظام إدارة الصيانة المحوسب (CMMS) + اتفاقية مستوى الخدمة (SLA) + Compliance + شبكة تنفيذ.</p>
+      </div>
+      <div class="rounded-2xl bg-gradient-to-br from-gold to-gold-dark text-ink-900 p-6">
+        <div class="text-xs font-bold opacity-80 tracking-widest uppercase">Engine 2</div>
+        <div class="text-3xl font-black mt-2">Serve Sense</div>
+        <div class="font-bold mt-1">التشخيص البصري بالذكاء الاصطناعي</div>
+        <p class="text-sm opacity-90 mt-3">صورة → تشخيص → سعر → فني، في 60 ثانية بالعربية السعودية.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== SLIDE 6 · PULSE ====================== -->
+<section id="pulse" class="slide bg-gradient-to-bl from-brand-ghost to-white relative">
+  <div class="slide-num latin">06 / 14</div>
+  <div class="slide-tag text-brand">Engine 1 · Pulse</div>
+
+  <div class="max-w-6xl mx-auto w-full">
+    <div class="text-[12px] font-bold text-brand tracking-widest uppercase">Engine 1</div>
+    <h2 class="mt-3 text-4xl md:text-6xl font-black leading-tight text-ink-900">
+      Serve Pulse — <span class="text-brand">منصة المنشآت.</span>
+    </h2>
+    <p class="mt-4 text-lg md:text-xl text-ink-700 max-w-3xl">
+      تحوّل سيرف من <strong>مزود خدمة</strong> إلى <strong>مزود بنية تحتية</strong>.
+      مضاعفات تقييم تقفز من 3-5× Revenue إلى <strong class="text-brand">8-15× الإيراد السنوي المتكرر (ARR)</strong>.
+    </p>
+
+    <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="rounded-2xl bg-white p-5 shadow-lg">
+        <div class="text-xs text-ink-500">حجم سوق إدارة المرافق (FM)</div>
+        <div class="num mt-1 text-2xl font-black">26 مليار</div>
+        <div class="text-[11px] text-ink-500">ريال 2025</div>
+      </div>
+      <div class="rounded-2xl bg-white p-5 shadow-lg">
+        <div class="text-xs text-ink-500">باقات</div>
+        <div class="text-2xl font-black mt-1">5 طبقات</div>
+        <div class="text-[11px] text-ink-500">Starter → Government</div>
+      </div>
+      <div class="rounded-2xl bg-white p-5 shadow-lg">
+        <div class="text-xs text-ink-500">الإيراد السنوي المتكرر (ARR) 2028</div>
+        <div class="num mt-1 text-2xl font-black text-brand-dark">30M ر</div>
+      </div>
+      <div class="rounded-2xl bg-gradient-to-br from-brand to-brand-dark text-white p-5 shadow-lg">
+        <div class="text-xs opacity-80">الإيراد السنوي المتكرر (ARR) 2030</div>
+        <div class="num mt-1 text-2xl font-black">51M ر</div>
+        <div class="text-[11px] opacity-70">ذروة الإيراد المتكرر</div>
+      </div>
+    </div>
+
+    <div class="mt-8 grid md:grid-cols-2 gap-4 text-sm">
+      <div class="rounded-2xl bg-white p-5 shadow">
+        <div class="font-bold text-ink-900">12 Core Modules</div>
+        <p class="text-ink-600 mt-2">سجل الأصول · نظام إدارة الصيانة المحوسب (CMMS) · مدير المنتج (PM) Scheduler · اتفاقية مستوى الخدمة (SLA) · Vendor Mgmt · Inventory · Budget+هيئة الزكاة والضريبة والجمارك (ZATCA) · Energy Monitor · بوابة الساكن · Audit · ذكاء الأعمال (BI) · Tech Mobile.</p>
+      </div>
+      <div class="rounded-2xl bg-ink-900 text-white p-5">
+        <div class="font-bold text-brand-light">الميزة الفريدة</div>
+        <p class="text-white/85 mt-2">المنصة الوحيدة في السوق التي <strong>تربط البرمجيات بشبكة تنفيذ فعلية</strong> — العميل لا يحتاج وسيطاً ثالثاً.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== SLIDE 7 · SENSE ====================== -->
+<section id="sense" class="slide bg-gradient-to-bl from-ink-900 to-ink-700 text-white relative overflow-hidden">
+  <div class="absolute -z-0 inset-0 opacity-30"
+       style="background-image: radial-gradient(circle at 90% 20%, #D4A017 0%, transparent 35%), radial-gradient(circle at 10% 80%, #0FA89C 0%, transparent 35%);"></div>
+  <div class="slide-num text-white/50 latin">07 / 14</div>
+  <div class="slide-tag text-gold">Engine 2 · Sense</div>
+
+  <div class="relative max-w-6xl mx-auto w-full">
+    <div class="text-[12px] font-bold text-gold tracking-widest uppercase">Engine 2</div>
+    <h2 class="mt-3 text-4xl md:text-6xl font-black leading-tight">
+      Serve Sense — <span class="text-gold">"iPhone Moment" لسيرف.</span>
+    </h2>
+    <p class="mt-4 text-lg md:text-xl text-white/85 max-w-3xl">
+      أول مساعد ذكاء اصطناعي للتشخيص البصري في الصيانة بالعربية السعودية.
+      <strong>ميزة قاتلة (Killer Feature) لا يقدّمها أي منافس محلي.</strong>
+    </p>
+
+    <div class="mt-10 grid grid-cols-2 md:grid-cols-5 gap-3">
+      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-4 text-center">
+        <div class="num font-black text-2xl text-brand-light">−25%</div>
+        <div class="text-[11px] text-white/70 mt-1">خفض تكلفة اكتساب العميل (CAC)</div>
+      </div>
+      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-4 text-center">
+        <div class="num font-black text-2xl text-brand-light">−40%</div>
+        <div class="text-[11px] text-white/70 mt-1">خفض الإلغاء</div>
+      </div>
+      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-4 text-center">
+        <div class="num font-black text-2xl text-gold">+15%</div>
+        <div class="text-[11px] text-white/70 mt-1">رفع متوسط قيمة الطلب (AOV)</div>
+      </div>
+      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-4 text-center">
+        <div class="num font-black text-2xl text-brand-light">&lt; 60ث</div>
+        <div class="text-[11px] text-white/70 mt-1">سرعة الحجز</div>
+      </div>
+      <div class="rounded-2xl bg-gradient-to-br from-gold/30 to-brand/30 ring-1 ring-gold-light/40 p-4 text-center">
+        <div class="font-black text-xs text-gold-light mt-1">Data Moat</div>
+        <div class="text-[11px] text-white/85 mt-1">كل صورة تدريب</div>
+      </div>
+    </div>
+
+    <div class="mt-8 rounded-2xl bg-gradient-to-l from-gold to-gold-dark text-ink-900 p-6 lg:p-8">
+      <div class="text-xs font-bold tracking-widest uppercase opacity-80">رحلة المستخدم</div>
+      <div class="mt-3 text-lg leading-relaxed">
+        <strong>صورة العطل</strong> ← الذكاء الاصطناعي البصري (AI Vision) ← <strong>التشخيص + السبب + الخطورة</strong> ← تقدير السعر ← اقتراح افعلها بنفسك (DIY) إذا ممكن ← <strong>حجز فني بنقرة</strong> ← الفني يصل بالقطع الصحيحة.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== SLIDE 8 · BUSINESS MODEL ====================== -->
+<section id="model" class="slide bg-white relative">
+  <div class="slide-num latin">08 / 14</div>
+  <div class="slide-tag text-brand">Business Model</div>
+
+  <div class="max-w-6xl mx-auto w-full">
+    <div class="text-[12px] font-bold text-brand tracking-widest uppercase">نموذج العمل</div>
+    <h2 class="mt-3 text-4xl md:text-6xl font-black leading-tight text-ink-900">
+      Funnel ذكي:<br/>
+      <span class="text-ok">مجاني</span> → <span class="text-brand">اشتراك</span> → <span class="text-gold">عقد سنوي</span>.
+    </h2>
+
+    <!-- Funnel visualization -->
+    <div class="mt-10 grid md:grid-cols-4 gap-3">
+      <div class="rounded-2xl border-2 border-dashed border-ink-300/60 p-5 bg-paper relative">
+        <span class="absolute -top-3 right-4 px-2 py-0.5 rounded-md bg-ok text-white text-xs font-bold">مجاناً</span>
+        <div class="num text-3xl font-black text-ok">0 ر</div>
+        <div class="font-bold mt-1 text-ink-900">Home Free</div>
+        <ul class="mt-2 text-xs text-ink-600 space-y-1">
+          <li>• ضمان 30 يوم</li>
+        </ul>
+      </div>
+      <div class="rounded-2xl border border-ink-300/40 p-5">
+        <div class="num text-3xl font-black text-ink-900">39 <span class="text-base">ر/شهر</span></div>
+        <div class="font-bold mt-1">Home Smart</div>
+        <ul class="mt-2 text-xs text-ink-600 space-y-1">
+          <li>• زيارة وقائية</li>
+          <li>• خصم 7% + كاش باك 3%</li>
+          <li>• ضمان 30 يوم</li>
+        </ul>
+      </div>
+      <div class="rounded-2xl border-2 border-brand p-5 bg-brand-ghost/40 relative">
+        <span class="absolute -top-3 right-4 px-2 py-0.5 rounded-md bg-brand text-white text-xs font-bold">الأكثر</span>
+        <div class="num text-3xl font-black">119 <span class="text-base">ر/شهر</span></div>
+        <div class="font-bold mt-1">Home Plus</div>
+        <ul class="mt-2 text-xs text-ink-600 space-y-1">
+          <li>• زيارتان وقائيتان</li>
+          <li>• خصم 12% + كاش باك 5%</li>
+          <li>• ضمان 60 يوم</li>
+        </ul>
+      </div>
+      <div class="rounded-2xl border border-ink-300/40 p-5">
+        <div class="num text-3xl font-black">249 <span class="text-base">ر/شهر</span></div>
+        <div class="font-bold mt-1">Home Elite</div>
+        <ul class="mt-2 text-xs text-ink-600 space-y-1">
+          <li>• 4 زيارات + مدير حساب 24/7</li>
+          <li>• خصم 15% + كاش باك 7%</li>
+          <li>• ضمان 90 يوم</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Funnel stats -->
+    <div class="mt-8 rounded-2xl bg-gradient-to-l from-ok/10 to-brand-ghost p-6 grid md:grid-cols-3 gap-4">
+      <div>
+        <div class="text-xs text-ok font-bold">التحويل (Conversion) Free → Basic</div>
+        <div class="num text-3xl font-black text-ink-900 mt-1">18-22%</div>
+        <div class="text-xs text-ink-500">خلال 90 يوم</div>
+      </div>
+      <div>
+        <div class="text-xs text-brand-dark font-bold">تكلفة اكتساب العميل (CAC) للـ Free</div>
+        <div class="num text-3xl font-black text-ink-900 mt-1">15-25 ر</div>
+        <div class="text-xs text-ink-500">vs 60 ر للـ Basic مباشرة</div>
+      </div>
+      <div>
+        <div class="text-xs text-gold-dark font-bold">القيمة المتوقعة للعميل (LTV) uplift</div>
+        <div class="num text-3xl font-black text-ink-900 mt-1">2.4 سنة</div>
+        <div class="text-xs text-ink-500">vs 1.8 سنة بدون Free</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== SLIDE 9 · COMPETITION ====================== -->
+<section id="competition" class="slide bg-paper relative">
+  <div class="slide-num latin">09 / 14</div>
+  <div class="slide-tag text-ink-700">Competition</div>
+
+  <div class="max-w-6xl mx-auto w-full">
+    <div class="text-[12px] font-bold text-ink-700 tracking-widest uppercase">المنافسة</div>
+    <h2 class="mt-3 text-4xl md:text-6xl font-black leading-tight text-ink-900">
+      لا منافس محلي يجمع<br/>
+      <span class="text-brand">المنصة + التنفيذ + الضمان.</span>
+    </h2>
+
+    <div class="mt-10 overflow-x-auto rounded-2xl bg-white shadow-lg">
+      <table class="w-full text-sm">
+        <thead class="bg-ink-900 text-white">
+          <tr>
+            <th class="text-right p-4 font-bold">اللاعب</th>
+            <th class="text-center p-4 font-bold">المنصة السوقية (Marketplace)</th>
+            <th class="text-center p-4 font-bold">إدارة المرافق (FM) البرمجيات كخدمة (SaaS)</th>
+            <th class="text-center p-4 font-bold">الشركات (B2B)/الحكومة (B2G)</th>
+            <th class="text-center p-4 font-bold">الذكاء الاصطناعي</th>
+            <th class="text-center p-4 font-bold">ضمان حقيقي</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-ink-300/30">
+          <tr><td class="p-4 font-bold">Mr. Carpenter</td><td class="text-center">✓</td><td class="text-center text-danger">✕</td><td class="text-center text-danger">✕</td><td class="text-center text-danger">✕</td><td class="text-center text-danger">✕</td></tr>
+          <tr><td class="p-4 font-bold">خدمة Khedmah</td><td class="text-center">✓</td><td class="text-center text-warn">~</td><td class="text-center text-warn">~</td><td class="text-center text-danger">✕</td><td class="text-center text-danger">✕</td></tr>
+          <tr><td class="p-4 font-bold">Bayut Services</td><td class="text-center">✓</td><td class="text-center text-danger">✕</td><td class="text-center text-danger">✕</td><td class="text-center text-danger">✕</td><td class="text-center text-danger">✕</td></tr>
+          <tr><td class="p-4 font-bold">Urban Company</td><td class="text-center">✓</td><td class="text-center text-danger">✕</td><td class="text-center text-danger">✕</td><td class="text-center text-warn">~</td><td class="text-center">✓</td></tr>
+          <tr class="bg-gradient-to-l from-brand-ghost to-gold-ghost">
+            <td class="p-4 font-black text-ink-900">سيرف</td>
+            <td class="text-center font-bold text-ok">✓</td>
+            <td class="text-center font-bold text-ok">✓</td>
+            <td class="text-center font-bold text-ok">✓</td>
+            <td class="text-center font-bold text-ok">✓</td>
+            <td class="text-center font-bold text-ok">✓</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="mt-6 text-center text-ink-600">
+      Urban Company (الهند، $2.4B) — <strong>دخل السوق عبر نون (مايو 2025)</strong>؛ نتعامل معه عبر استراتيجية التعاون التنافسي (Coopetition) (تفاصيل في details).
+    </p>
+  </div>
+</section>
+
+<!-- ====================== SLIDE 10 · MOAT ====================== -->
+<section id="moat" class="slide bg-gradient-to-bl from-ink-900 to-ink-800 text-white relative">
+  <div class="slide-num text-white/50 latin">10 / 14</div>
+  <div class="slide-tag text-brand-light">Moat</div>
+
+  <div class="max-w-6xl mx-auto w-full">
+    <div class="text-[12px] font-bold text-brand-light tracking-widest uppercase">الخندق الدفاعي</div>
+    <h2 class="mt-3 text-4xl md:text-6xl font-black leading-tight">
+      ستة جدران لا تُكرَّر<br/><span class="text-gold">خلال 24 شهر.</span>
+    </h2>
+
+    <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5"><div class="num text-3xl font-black text-brand-light">01</div><div class="font-bold mt-2">Network Effect مؤسسي</div><p class="text-xs text-white/65 mt-1">عقود الشركات (B2B) تُغلق العميل أمام المنافس.</p></div>
+      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5"><div class="num text-3xl font-black text-brand-light">02</div><div class="font-bold mt-2">Quality Data Asset</div><p class="text-xs text-white/65 mt-1">100k+ طلب + صور الذكاء الاصطناعي = بيانات لا تُكرَّر.</p></div>
+      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5"><div class="num text-3xl font-black text-brand-light">03</div><div class="font-bold mt-2">Operating Excellence</div><p class="text-xs text-white/65 mt-1">Routing + Pricing + Quality = 12-18 شهر للمحاكاة.</p></div>
+      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5"><div class="num text-3xl font-black text-gold">04</div><div class="font-bold mt-2">Brand Trust</div><p class="text-xs text-white/65 mt-1">Serve Guarantee + Insurance Partnership.</p></div>
+      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5"><div class="num text-3xl font-black text-gold">05</div><div class="font-bold mt-2">Regulatory Moat</div><p class="text-xs text-white/65 mt-1">نظام حماية البيانات الشخصية (PDPL) + وزارة الموارد البشرية والتنمية الاجتماعية (MHRSD) + هيئة المنشآت + اعتماد (Etimad).</p></div>
+      <div class="rounded-2xl bg-gradient-to-br from-brand/30 to-gold/20 ring-1 ring-gold-light/30 p-5"><div class="num text-3xl font-black text-gold-light">06</div><div class="font-bold mt-2">الشراكات الاستراتيجية</div><p class="text-xs text-white/80 mt-1">حصرية مع 3-5 شركات إدارة عقارات كبرى.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== SLIDE 11 · FINANCIALS ====================== -->
+<section id="financials" class="slide bg-white relative">
+  <div class="slide-num latin">11 / 14</div>
+  <div class="slide-tag text-gold">Financials</div>
+
+  <div class="max-w-6xl mx-auto w-full">
+    <div class="text-[12px] font-bold text-gold-dark tracking-widest uppercase">المسار المالي</div>
+    <h2 class="mt-3 text-4xl md:text-6xl font-black leading-tight text-ink-900">
+      <span class="text-brand">إجمالي قيمة المعاملات (GMV) 220M</span> · <span class="text-gold-dark">الإيراد السنوي المتكرر (ARR) 51M</span> بحلول 2030.
+    </h2>
+
+    <div class="mt-10 grid lg:grid-cols-3 gap-5">
+      <div class="lg:col-span-2 rounded-2xl bg-paper p-5 shadow-lg">
+        <div class="font-bold text-ink-900 mb-2">المسار المتوقع</div>
+        <canvas id="fChart" height="200"></canvas>
+      </div>
+      <div class="space-y-3">
+        <div class="rounded-2xl bg-gradient-to-br from-brand to-brand-dark text-white p-5">
+          <div class="text-xs opacity-80">القيمة المتوقعة للعميل (LTV)/تكلفة اكتساب العميل (CAC) السنة 3</div>
+          <div class="num text-4xl font-black mt-1">15×</div>
+        </div>
+        <div class="rounded-2xl bg-gradient-to-br from-gold to-gold-dark text-white p-5">
+          <div class="text-xs opacity-80">Net Rev 2028 Combined</div>
+          <div class="num text-4xl font-black mt-1">89M ر</div>
+        </div>
+        <div class="rounded-2xl bg-ink-900 text-white p-5">
+          <div class="text-xs text-white/70">EBITDA Breakeven</div>
+          <div class="text-2xl font-black mt-1">السنة 3</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 grid md:grid-cols-4 gap-3 text-sm">
+      <div class="rounded-xl bg-paper p-3"><div class="text-xs text-ink-500">السنة 1</div><div class="num font-black mt-1">إجمالي قيمة المعاملات (GMV) 12M · الإيراد السنوي المتكرر (ARR) 2.2M</div></div>
+      <div class="rounded-xl bg-paper p-3"><div class="text-xs text-ink-500">السنة 2</div><div class="num font-black mt-1">إجمالي قيمة المعاملات (GMV) 65M · الإيراد السنوي المتكرر (ARR) 13.5M</div></div>
+      <div class="rounded-xl bg-brand-ghost p-3"><div class="text-xs text-brand-dark">السنة 3</div><div class="num font-black mt-1">إجمالي قيمة المعاملات (GMV) 120M · الإيراد السنوي المتكرر (ARR) 30M</div></div>
+      <div class="rounded-xl bg-gold-ghost p-3"><div class="text-xs text-gold-dark">السنة 5</div><div class="num font-black mt-1">إجمالي قيمة المعاملات (GMV) 220M · الإيراد السنوي المتكرر (ARR) 51M</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== SLIDE 12 · ROADMAP ====================== -->
+<section id="roadmap" class="slide bg-paper relative">
+  <div class="slide-num latin">12 / 14</div>
+  <div class="slide-tag text-brand">Roadmap</div>
+
+  <div class="max-w-6xl mx-auto w-full">
+    <div class="text-[12px] font-bold text-brand tracking-widest uppercase">خارطة الطريق</div>
+    <h2 class="mt-3 text-4xl md:text-6xl font-black leading-tight text-ink-900">
+      من التشخيص إلى<br/><span class="text-brand">خيارات الخروج الاستثماري</span> في 36 شهراً.
+    </h2>
+
+    <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="rounded-2xl bg-white p-5 shadow border-r-4 border-brand">
+        <div class="text-xs font-bold text-brand">Q1 2026</div>
+        <div class="font-bold text-ink-900 mt-1">Foundation Reset</div>
+        <ul class="mt-2 text-xs text-ink-600 space-y-1">
+          <li>• نائب الرئيس الشركات (B2B) + Head Ops</li>
+          <li>• Serve Guarantee</li>
+          <li>• Sense النسخة الأولى (MVP)</li>
+        </ul>
+      </div>
+      <div class="rounded-2xl bg-white p-5 shadow border-r-4 border-brand">
+        <div class="text-xs font-bold text-brand">Q2 2026</div>
+        <div class="font-bold text-ink-900 mt-1">إطلاق الاشتراكات</div>
+        <ul class="mt-2 text-xs text-ink-600 space-y-1">
+          <li>• Care Free + Paid</li>
+          <li>• Sense Public</li>
+          <li>• Pulse v1</li>
+        </ul>
+      </div>
+      <div class="rounded-2xl bg-white p-5 shadow border-r-4 border-gold">
+        <div class="text-xs font-bold text-gold-dark">Q3 2026</div>
+        <div class="font-bold text-ink-900 mt-1">تسريع نمو الشركات (B2B)</div>
+        <ul class="mt-2 text-xs text-ink-600 space-y-1">
+          <li>• Pulse Enterprise</li>
+          <li>• 3-5 شراكات عقارية</li>
+          <li>• توسع جدة + الدمام</li>
+        </ul>
+      </div>
+      <div class="rounded-2xl bg-white p-5 shadow border-r-4 border-gold">
+        <div class="text-xs font-bold text-gold-dark">Q4 2026</div>
+        <div class="font-bold text-ink-900 mt-1">Scale + Optimize</div>
+        <ul class="mt-2 text-xs text-ink-600 space-y-1">
+          <li>• E-commerce قطع غيار</li>
+          <li>• اشتر الآن وادفع لاحقاً (BNPL) تابي/تمارا (Tabby/Tamara)</li>
+          <li>• فريق التدقيق الميداني</li>
+        </ul>
+      </div>
+      <div class="rounded-2xl bg-ink-900 text-white p-5 shadow">
+        <div class="text-xs font-bold text-brand-light">2027</div>
+        <div class="font-bold mt-1">Geographic + جولة التمويل (السلسلة A)</div>
+        <ul class="mt-2 text-xs text-white/75 space-y-1">
+          <li>• 8 مدن سعودية</li>
+          <li>• جولة التمويل (السلسلة A) 25-40M ر</li>
+        </ul>
+      </div>
+      <div class="rounded-2xl bg-gradient-to-br from-gold to-gold-dark text-ink-900 p-5 shadow">
+        <div class="text-xs font-bold">2028</div>
+        <div class="font-bold mt-1">Regional + الخروج الاستثماري (Exit)</div>
+        <ul class="mt-2 text-xs space-y-1">
+          <li>• الإمارات + الكويت</li>
+          <li>• استحواذ / جولة التمويل (السلسلة B)</li>
+          <li>• تعادل الأرباح قبل الفوائد والضرائب والإهلاك (EBITDA breakeven)</li>
+          <li>• إجمالي قيمة المعاملات (GMV) 220M · الإيراد السنوي المتكرر (ARR) 51M</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== SLIDE 13 · THE ASK ====================== -->
+<section id="ask" class="slide bg-gradient-to-bl from-brand to-brand-dark text-white relative">
+  <div class="absolute -z-0 inset-0 opacity-25"
+       style="background-image: radial-gradient(circle at 80% 20%, #D4A017 0%, transparent 35%);"></div>
+  <div class="slide-num text-white/50 latin">13 / 14</div>
+  <div class="slide-tag text-gold-light">The Ask</div>
+
+  <div class="relative max-w-6xl mx-auto w-full">
+    <div class="text-[12px] font-bold text-gold-light tracking-widest uppercase">جولة التمويل (السلسلة A)</div>
+    <h2 class="mt-3 text-4xl md:text-7xl font-black leading-tight">
+      <span class="text-gold-light">25-40M ريال</span><br/>
+      لبناء الخندق الذي لا يُكرَّر.
+    </h2>
+
+    <div class="mt-10 grid md:grid-cols-2 gap-5">
+      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-6">
+        <div class="text-xs font-bold text-gold-light tracking-widest uppercase">استخدامات الأموال</div>
+        <ul class="mt-4 space-y-2 text-white/90">
+          <li class="flex justify-between"><span>Engineering + Product (Moat)</span><span class="num font-bold text-gold-light">40%</span></li>
+          <li class="flex justify-between"><span>Sales & Marketing (الشركات (B2B) + الأفراد (B2C)</span><span class="num font-bold text-gold-light">25%</span></li>
+          <li class="flex justify-between"><span>Operations & Quality</span><span class="num font-bold text-gold-light">20%</span></li>
+          <li class="flex justify-between"><span>Geographic Expansion</span><span class="num font-bold text-gold-light">10%</span></li>
+          <li class="flex justify-between"><span>Working Capital / Reserves</span><span class="num font-bold text-gold-light">5%</span></li>
+        </ul>
+      </div>
+      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-6">
+        <div class="text-xs font-bold text-gold-light tracking-widest uppercase">المستثمرون المستهدفون</div>
+        <ul class="mt-4 space-y-2 text-white/90">
+          <li>• <strong>STV · Raed VC · Vision Ventures</strong></li>
+          <li>• <strong>Sanabil Investments</strong> (PIF)</li>
+          <li>• <strong>MNT-Halan · Global Ventures</strong></li>
+          <li>• استراتيجياً: <strong>Bayut Group · STC Ventures</strong></li>
+        </ul>
+        <div class="mt-5 pt-5 border-t border-white/20">
+          <div class="text-xs text-white/70">التقييم المستهدف</div>
+          <div class="num text-3xl font-black mt-1">100-150M ريال</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 rounded-2xl bg-ink-900 ring-1 ring-white/15 p-6 lg:p-8">
+      <div class="text-xs font-bold text-gold-light tracking-widest uppercase">خيارات الخروج الاستثماري 2028+</div>
+      <div class="mt-2 grid md:grid-cols-3 gap-4 items-center">
+        <div class="md:col-span-2 text-lg leading-relaxed">
+          استحواذ من <strong>Bayut Group / Property Finder</strong> أو
+          <strong>الطرح العام الأولي (IPO) على تداول</strong> ضمن قصة رؤية 2030 PropTech.
+        </div>
+        <div class="text-right">
+          <div class="text-xs text-white/70">تقييم محتمل</div>
+          <div class="num text-3xl font-black text-gold-light">$100-200M</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== SLIDE 14 · CLOSING / CTA ====================== -->
+<section id="close" class="slide bg-gradient-to-bl from-ink-900 via-ink-800 to-ink-700 text-white relative overflow-hidden">
+  <div class="absolute -z-0 inset-0 opacity-30"
+       style="background-image: radial-gradient(circle at 50% 50%, #0FA89C 0%, transparent 50%);"></div>
+  <div class="slide-num text-white/50 latin">14 / 14</div>
+  <div class="slide-tag text-brand-light">Closing</div>
+
+  <div class="relative max-w-6xl mx-auto w-full text-center">
+    <div class="inline-flex items-center gap-2 text-[12px] font-bold tracking-widest uppercase bg-white/10 px-3 py-1 rounded-full ring-1 ring-white/15">
+      <span class="w-2 h-2 rounded-full bg-brand animate-pulse"></span>
+      الخلاصة
+    </div>
+    <h2 class="mt-8 text-4xl md:text-7xl font-black leading-tight">
+      سيرف تستطيع أن تكون<br/>
+      <span class="text-gold">Urban Company</span> <span class="text-brand-light">السعودية.</span>
+    </h2>
+    <p class="mt-8 text-xl md:text-2xl text-white/85 max-w-4xl mx-auto leading-relaxed">
+      السوق موجود · الفجوة حقيقية · التوقيت مثالي.<br/>
+      بـ جولة التمويل (السلسلة A) + الفريق الصحيح + الـ Moat السداسي،
+      <strong class="text-brand-light">سيرف تكتب فصلاً جديداً في PropTech السعودي.</strong>
+    </p>
+
+    <div class="mt-12 grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-5 text-center">
+        <div class="text-xs text-brand-light font-bold">القرار 1</div>
+        <div class="font-bold mt-1 text-white">نائب الرئيس لقطاع الشركات</div>
+        <div class="text-xs text-white/70 mt-1">ضرورة وجودية</div>
+      </div>
+      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-5 text-center">
+        <div class="text-xs text-gold-light font-bold">القرار 2</div>
+        <div class="font-bold mt-1 text-white">جولة التمويل (السلسلة A) خلال 9-12 شهر</div>
+        <div class="text-xs text-white/70 mt-1">قبل ترسّخ المنافس المموَّل (دخل عبر نون)</div>
+      </div>
+      <div class="rounded-2xl bg-gradient-to-br from-brand/30 to-gold/30 ring-1 ring-brand-light/30 p-5 text-center">
+        <div class="text-xs text-white font-bold">القرار 3</div>
+        <div class="font-bold mt-1 text-white">Moat فوراً</div>
+        <div class="text-xs text-white/80 mt-1">Pulse + Sense + الشركات (B2B)</div>
+      </div>
+    </div>
+
+    <div class="mt-12 flex flex-wrap justify-center gap-3">
+      <a href="details.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-ink-900 font-bold hover:bg-paper">
+        التفاصيل الكاملة ←
+      </a>
+      <a href="details.html#priority" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand text-white font-bold hover:bg-brand-dark">
+        خطة 30 يوم
+      </a>
+      <a href="details.html#funding" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/10 text-white font-bold ring-1 ring-white/20 hover:bg-white/15">
+        قصة التمويل
+      </a>
+    </div>
+
+    <div class="mt-14 text-sm text-white/55">
+      Hamdan · مدير تطوير الأعمال (CBDO) · 2026
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ====================== FOOTER ====================== -->
+<footer class="bg-ink-900 text-white/75 no-print">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-8 flex flex-wrap items-center justify-between gap-4 text-sm">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand to-gold grid place-items-center text-white font-extrabold">س</div>
+      <div>
+        <div class="font-bold text-white">سيرف · Serve</div>
+        <div class="text-[11px] text-white/55">Executive Presentation · 14 شريحة</div>
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="details.html" class="px-3 py-1.5 rounded-md bg-white/10 hover:bg-white/20 font-bold text-white text-xs">التفاصيل الكاملة ←</a>
+      <button onclick="window.print()" class="px-3 py-1.5 rounded-md bg-brand text-white font-bold text-xs">طباعة PDF</button>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Progress bar
+  (function () {
+    const bar = document.querySelector('#progressBar > span');
+    if (!bar) return;
+    const onScroll = () => {
+      const h = document.documentElement;
+      const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      bar.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+
+  // Financial chart
+  (function () {
+    const ctx = document.getElementById('fChart');
+    if (!ctx) return;
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['2026','2027','2028','2029','2030'],
+        datasets: [
+          { label: 'إجمالي قيمة المعاملات (GMV) (M ر)', data: [12,65,120,170,220], borderColor: '#0FA89C', backgroundColor: 'rgba(15,168,156,.15)', tension: .35, fill: true, pointRadius: 4 },
+          { label: 'Pulse الإيراد السنوي المتكرر (ARR) (M ر)', data: [2.2,13.5,30,40,51], borderColor: '#D4A017', backgroundColor: 'rgba(212,160,23,.15)', tension: .35, fill: true, pointRadius: 4 },
+          { label: 'Net Rev Combined (M ر)', data: [4.4,25.5,50,68,89], borderColor: '#0A2540', backgroundColor: 'rgba(10,37,64,.10)', tension: .35, fill: true, pointRadius: 4, borderDash: [5,5] },
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { font: { family: 'Tajawal', weight: '700' } } }
+        },
+        scales: {
+          y: { beginAtZero: true, ticks: { font: { family: 'Inter' } } },
+          x: { ticks: { font: { family: 'Tajawal' } } }
+        }
+      }
+    });
+  })();
+
+  // Keyboard nav (← → for slides)
+  document.addEventListener('keydown', (e) => {
+    const slides = Array.from(document.querySelectorAll('section.slide'));
+    if (!slides.length) return;
+    const curr = slides.findIndex(s => s.getBoundingClientRect().top >= -100);
+    if (e.key === 'ArrowDown' || e.key === 'ArrowLeft' || e.key === 'PageDown') {
+      const next = slides[Math.min(slides.length - 1, curr + 1)];
+      if (next) { e.preventDefault(); next.scrollIntoView({ behavior: 'smooth' }); }
+    } else if (e.key === 'ArrowUp' || e.key === 'ArrowRight' || e.key === 'PageUp') {
+      const prev = slides[Math.max(0, curr - 1)];
+      if (prev) { e.preventDefault(); prev.scrollIntoView({ behavior: 'smooth' }); }
+    }
+  });
+</script>
+
+</body>
+</html>

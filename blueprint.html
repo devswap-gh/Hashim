@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>سيرف — المنتج النهائي · المخطط الشامل (عصارة المشروع)</title>
+<meta name="description" content="الوثيقة النهائية الشاملة لمشروع سيرف — تعرض المشروع كاملاً بالتوصيات النهائية لصنّاع القرار والملّاك والتقنيين، مع شرح كل مصطلح بالعربية." />
+<meta name="theme-color" content="#0A2540" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+  tailwind.config = {
+    theme: { extend: {
+      fontFamily: { sans: ['Tajawal','Inter','system-ui','sans-serif'], latin: ['Inter','system-ui','sans-serif'] },
+      colors: {
+        ink: { 900:'#0A2540',800:'#11314F',700:'#1B3F62',500:'#3C5A78',400:'#5C7896',300:'#94A8BD' },
+        brand: { DEFAULT:'#0FA89C',dark:'#0A8378',light:'#1FC7B8',ghost:'#E6F7F5' },
+        gold: { DEFAULT:'#D4A017',dark:'#A77E0F',light:'#F0C04A',ghost:'#FBF3D9' },
+        danger:{DEFAULT:'#C0392B',light:'#FBE7E4'}, warn:{DEFAULT:'#D97706',light:'#FEF3E0'},
+        ok:{DEFAULT:'#0F8C5A',light:'#E2F4EB'}, paper:'#F7F8FB',
+      },
+      boxShadow:{ card:'0 1px 2px rgba(10,37,64,.04), 0 8px 24px rgba(10,37,64,.06)', float:'0 4px 12px rgba(10,37,64,.08), 0 16px 40px rgba(10,37,64,.10)' }
+    }}
+  };
+</script>
+
+<style>
+  html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+  body { font-family: 'Tajawal','Inter',system-ui,sans-serif; }
+  .num,.latin{ font-family:'Inter',system-ui,sans-serif; font-feature-settings:'tnum' on,'lnum' on; }
+  .term{ color:#0A8378; font-weight:700; }
+  .en{ font-family:'Inter',sans-serif; direction:ltr; unicode-bidi:isolate; }
+  .doc-section{ scroll-margin-top:96px; }
+  .sec-num{ font-family:'Inter',sans-serif; font-weight:800; }
+  a:focus-visible,button:focus-visible{ outline:3px solid #D4A017; outline-offset:2px; border-radius:8px; }
+  @media print{ .no-print{display:none!important;} body{background:#fff;font-size:11pt;} .doc-section{break-inside:avoid;} h2,h3{break-after:avoid;} }
+  ::-webkit-scrollbar{ height:8px; width:8px; } ::-webkit-scrollbar-thumb{ background:#94A8BD; border-radius:8px; }
+</style>
+</head>
+<body class="bg-paper text-ink-900 antialiased">
+
+<!-- ================== MODE BAR ================== -->
+<div class="no-print bg-ink-900 text-white text-xs">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 h-9 flex items-center justify-between">
+    <div class="flex items-center gap-2 flex-wrap">
+      <span class="text-white/60">عرض المحتوى:</span>
+      <a href="home.html" class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 ring-white/15 transition"><span class="font-bold">الرئيسية</span></a>
+      <a href="now.html" class="px-2.5 py-0.5 rounded-md bg-brand/25 hover:bg-brand/40 ring-1 ring-brand-light/40 transition"><span class="font-bold text-brand-light">📊 سيرف الآن</span></a>
+      <a href="index.html" class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 ring-white/15 transition"><span class="font-bold">العرض التنفيذي</span></a>
+      <a href="details.html" class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 ring-white/15 transition"><span class="font-bold">التفاصيل</span></a>
+      <a href="roadmap.html" class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 ring-white/15 transition"><span class="font-bold">خارطة التنفيذ</span></a>
+      <a href="legal.html" class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 ring-white/15 transition"><span class="font-bold">القانوني</span></a>
+      <a href="comparisons.html" class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 ring-white/15 transition"><span class="font-bold">المقارنات</span></a>
+      <a href="qa.html" class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 ring-white/15 transition"><span class="font-bold">سؤال وجواب</span></a>
+      <a href="final.html" class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 ring-white/15 transition"><span class="font-bold">الترشيح الأخير</span></a>
+      <span class="px-2.5 py-0.5 rounded-md bg-gold text-ink-900 font-bold ring-1 ring-gold-light">📘 المنتج النهائي</span>
+      <a href="plan.html" class="px-2.5 py-0.5 rounded-md bg-gold/25 hover:bg-gold/40 ring-1 ring-gold-light/40 transition"><span class="font-bold text-gold-light">🎯 الخطة الشاملة</span></a>
+      <a href="providers.html" class="px-2.5 py-0.5 rounded-md bg-gold/25 hover:bg-gold/40 ring-1 ring-gold-light/40 transition"><span class="font-bold text-gold-light">🏅 مستويات المزوّدين</span></a>
+      <a href="pulse.html" class="px-2.5 py-0.5 rounded-md bg-brand/25 hover:bg-brand/40 ring-1 ring-brand-light/40 transition"><span class="font-bold text-brand-light">⚡ محاكاة Pulse</span></a>
+      <a href="sense.html" class="px-2.5 py-0.5 rounded-md bg-gold/25 hover:bg-gold/40 ring-1 ring-gold-light/40 transition"><span class="font-bold text-gold-light">🧠 محرّك Sense</span></a>
+      <a href="expansion.html" class="px-2.5 py-0.5 rounded-md bg-brand/25 hover:bg-brand/40 ring-1 ring-brand-light/40 transition"><span class="font-bold text-brand-light">🧩 التوسّع</span></a>
+    </div>
+    <div class="hidden sm:block text-white/60">المخطط الشامل · للملّاك وصنّاع القرار والتقنيين</div>
+  </div>
+</div>
+
+<!-- ================== HEADER ================== -->
+<header class="no-print sticky top-9 z-40 backdrop-blur bg-white/90 border-b border-ink-300/30">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 h-16 flex items-center gap-4">
+    <a href="#top" class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-gold to-ink-900 grid place-items-center text-white font-extrabold">س</div>
+      <div class="leading-tight">
+        <div class="font-extrabold text-ink-900 tracking-tight">سيرف · Serve</div>
+        <div class="text-[11px] text-gold-dark font-bold">المنتج النهائي · المخطط الشامل</div>
+      </div>
+    </a>
+    <nav class="hidden lg:flex items-center gap-1 text-xs font-medium text-ink-700 mr-auto overflow-x-auto">
+      <a href="#summary" class="px-2 py-1.5 rounded-lg hover:bg-paper">الملخص</a>
+      <a href="#problem" class="px-2 py-1.5 rounded-lg hover:bg-paper">المشكلة والسوق</a>
+      <a href="#identity" class="px-2 py-1.5 rounded-lg hover:bg-paper">الهوية</a>
+      <a href="#product" class="px-2 py-1.5 rounded-lg hover:bg-paper">المنتج</a>
+      <a href="#tech" class="px-2 py-1.5 rounded-lg hover:bg-paper">التقنية</a>
+      <a href="#money" class="px-2 py-1.5 rounded-lg hover:bg-paper">المال</a>
+      <a href="#legalsec" class="px-2 py-1.5 rounded-lg hover:bg-paper">القانوني</a>
+      <a href="#roadmap" class="px-2 py-1.5 rounded-lg hover:bg-paper">الطريق</a>
+      <a href="#recommendations" class="px-2 py-1.5 rounded-lg hover:bg-paper text-gold-dark font-bold">التوصيات</a>
+      <a href="#glossary" class="px-2 py-1.5 rounded-lg hover:bg-paper">المسرد</a>
+    </nav>
+    <div class="flex items-center gap-2 mr-auto lg:mr-0">
+      <button onclick="window.print()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-ink-900 hover:bg-ink-800">طباعة / PDF</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ================== HERO ================== -->
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 -z-10 bg-gradient-to-bl from-ink-900 via-ink-800 to-ink-900"></div>
+  <div class="absolute -z-10 inset-0 opacity-40" style="background-image: radial-gradient(circle at 80% 12%, #D4A017 0%, transparent 40%), radial-gradient(circle at 12% 88%, #0FA89C 0%, transparent 36%);"></div>
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 pt-16 pb-16 lg:pt-24 lg:pb-20 text-white">
+    <div class="inline-flex items-center gap-2 text-[12px] font-bold tracking-wider uppercase bg-gold/20 px-3 py-1 rounded-full ring-1 ring-gold-light/30 text-gold-light">
+      <span class="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
+      الوثيقة النهائية · عصارة المشروع كاملاً
+    </div>
+    <h1 class="mt-6 text-3xl md:text-5xl lg:text-7xl font-black leading-[1.1]">
+      المنتج النهائي<br/>لمنصة <span class="text-gold">سيرف</span>
+    </h1>
+    <p class="mt-6 text-lg md:text-2xl text-white/85 max-w-3xl leading-relaxed">
+      وثيقة واحدة شاملة تجمع المشروع كاملاً — الرؤية، المنتج، التقنية، النموذج المالي، القانون، وخطة التنفيذ —
+      بصياغة تخدم <strong class="text-gold-light">الملّاك وصنّاع القرار والفِرَق التقنية</strong> معاً.
+      كل مصطلح مكتوب بمعناه العربي بجانبه.
+    </p>
+
+    <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl">
+      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-4"><div class="text-xs text-white/70">حجم السوق المستهدف</div><div class="num text-2xl font-extrabold mt-1">~61 <span class="text-base">مليار ريال</span></div><div class="text-[11px] text-white/55 mt-1">صيانة + إدارة مرافق</div></div>
+      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-4"><div class="text-xs text-white/70">إجمالي قيمة المعاملات 2030</div><div class="num text-2xl font-extrabold mt-1">220 <span class="text-base">مليون ر</span></div></div>
+      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-4"><div class="text-xs text-white/70">الإيراد السنوي المتكرر 2030</div><div class="num text-2xl font-extrabold mt-1">51 <span class="text-base">مليون ر</span></div></div>
+      <div class="rounded-2xl bg-gradient-to-br from-gold/40 to-brand/30 ring-1 ring-gold-light/30 p-4"><div class="text-xs text-white/85">التمويل المطلوب</div><div class="num text-2xl font-extrabold mt-1">25-40 <span class="text-base">مليون ر</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== READING GUIDE ================== -->
+<section class="max-w-7xl mx-auto px-5 lg:px-8 py-10">
+  <div class="rounded-2xl bg-white shadow-card border border-ink-300/40 p-6">
+    <div class="text-xs font-bold text-brand tracking-widest uppercase">كيف تقرأ هذه الوثيقة؟</div>
+    <div class="mt-4 grid md:grid-cols-3 gap-4">
+      <div class="rounded-xl bg-paper p-4 border-r-4 border-gold">
+        <div class="font-bold text-ink-900">👔 المالك / صانع القرار</div>
+        <p class="text-sm text-ink-600 mt-1">ابدأ بـ <a href="#summary" class="text-brand-dark font-bold">الملخص التنفيذي</a> ثم <a href="#money" class="text-brand-dark font-bold">المال</a> و<a href="#recommendations" class="text-brand-dark font-bold">التوصيات</a>.</p>
+      </div>
+      <div class="rounded-xl bg-paper p-4 border-r-4 border-brand">
+        <div class="font-bold text-ink-900">💼 المستثمر</div>
+        <p class="text-sm text-ink-600 mt-1">ركّز على <a href="#problem" class="text-brand-dark font-bold">السوق</a> و<a href="#money" class="text-brand-dark font-bold">الاقتصاديات</a> و<a href="#roadmap" class="text-brand-dark font-bold">خطة الإطلاق</a>.</p>
+      </div>
+      <div class="rounded-xl bg-paper p-4 border-r-4 border-ink-700">
+        <div class="font-bold text-ink-900">⚙️ الفريق التقني</div>
+        <p class="text-sm text-ink-600 mt-1">اذهب إلى <a href="#product" class="text-brand-dark font-bold">معمارية المنتج</a> و<a href="#tech" class="text-brand-dark font-bold">البنية التقنية</a> و<a href="#glossary" class="text-brand-dark font-bold">المسرد</a>.</p>
+      </div>
+    </div>
+    <p class="mt-4 text-xs text-ink-500">📘 <strong>ملاحظة:</strong> كل اختصار إنجليزي مكتوب بمعناه العربي الكامل ثم الاختصار بين قوسين. ويوجد <a href="#glossary" class="text-gold-dark font-bold">مسرد مصطلحات كامل</a> في نهاية الوثيقة.</p>
+  </div>
+</section>
+
+<!-- ================== 1. EXECUTIVE SUMMARY ================== -->
+<section id="summary" class="doc-section bg-white border-y border-ink-300/30">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+    <div class="text-[12px] font-bold text-gold-dark tracking-widest uppercase"><span class="sec-num">1</span> · الملخص التنفيذي</div>
+    <h2 class="mt-2 text-2xl lg:text-3xl font-black text-ink-900">سيرف في فقرة واحدة</h2>
+    <p class="mt-4 text-lg text-ink-700 leading-relaxed max-w-4xl">
+      <strong>سيرف</strong> منصة سعودية لإدارة الصيانة والمنشآت، تتحوّل من مجرد "تطبيق طلب فنّي" إلى
+      <span class="term">منصة سوقية مُدارة</span> (Managed Marketplace — أي سوق رقمي تتحكّم فيه المنصة بالجودة والأسعار والالتزام، لا مجرد دليل أسماء)،
+      مدعومة بـ<span class="term">منصة برمجيات لإدارة المرافق</span> (Software as a Service — SaaS) و<span class="term">ذكاء اصطناعي للتشخيص</span> (Artificial Intelligence — AI).
+      تجمع بين <strong>الإيراد التشغيلي</strong> (عمولة كل طلب) و<strong>الإيراد المتكرر</strong> (اشتراكات وعقود) — وهو ما يرفع تقييمها ويبني خندقاً دفاعياً (ميزة يصعب على المنافس تقليدها).
+    </p>
+
+    <div class="mt-8 grid md:grid-cols-3 gap-4">
+      <div class="rounded-2xl bg-ok-light p-5 border border-ok/30">
+        <div class="text-xs font-bold text-ok tracking-widest uppercase">القرار الجوهري</div>
+        <div class="mt-1 font-bold text-ink-900">نعم للفكرة — لا لصياغتها القديمة</div>
+        <p class="text-sm text-ink-600 mt-2">التحوّل من سوق مفتوح هشّ إلى منصة مُدارة + اشتراكات + قطاع أعمال + ذكاء اصطناعي.</p>
+      </div>
+      <div class="rounded-2xl bg-brand-ghost p-5 border border-brand/30">
+        <div class="text-xs font-bold text-brand-dark tracking-widest uppercase">القيمة المميّزة</div>
+        <div class="mt-1 font-bold text-ink-900">ضمان حقيقي + جودة موحّدة + شفافية</div>
+        <p class="text-sm text-ink-600 mt-2">لا منافس محلي يقدّمها مجتمعة اليوم — هذه فجوة السوق الذهبية.</p>
+      </div>
+      <div class="rounded-2xl bg-gold-ghost p-5 border border-gold/30">
+        <div class="text-xs font-bold text-gold-dark tracking-widest uppercase">الطموح</div>
+        <div class="mt-1 font-bold text-ink-900">«Urban Company» السعودية</div>
+        <p class="text-sm text-ink-600 mt-2">(يوربن كومباني — أكبر منصة خدمات منزلية مُدارة في آسيا بتقييم 2.4 مليار دولار).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== 2. PROBLEM & MARKET ================== -->
+<section id="problem" class="doc-section max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+  <div class="text-[12px] font-bold text-gold-dark tracking-widest uppercase"><span class="sec-num">2</span> · المشكلة والسوق</div>
+  <h2 class="mt-2 text-2xl lg:text-3xl font-black text-ink-900">سوق ضخم وغير منظّم</h2>
+
+  <div class="mt-6 grid md:grid-cols-3 gap-4">
+    <div class="rounded-2xl bg-white p-5 shadow-card border-r-4 border-danger"><div class="num text-4xl font-black text-danger">70%</div><div class="font-bold mt-1 text-ink-900">عبر الواتساب والمعارف</div><p class="text-xs text-ink-500 mt-1">سوق رمادي بلا ضمان ولا متابعة ولا فاتورة رسمية.</p></div>
+    <div class="rounded-2xl bg-white p-5 shadow-card border-r-4 border-warn"><div class="num text-4xl font-black text-warn">&lt; 15%</div><div class="font-bold mt-1 text-ink-900">نسبة الرقمنة</div><p class="text-xs text-ink-500 mt-1">القطاع لا يزال يعتمد على التواصل التقليدي العشوائي.</p></div>
+    <div class="rounded-2xl bg-white p-5 shadow-card border-r-4 border-ink-700"><div class="num text-4xl font-black text-ink-900">جودة</div><div class="font-bold mt-1 text-ink-900">غير مضمونة</div><p class="text-xs text-ink-500 mt-1">لا معايير، لا تقييم موحّد، لا مساءلة عند الفشل.</p></div>
+  </div>
+
+  <h3 class="mt-8 text-lg font-extrabold text-ink-900">حجم السوق (تقديرات قطاعية 2025)</h3>
+  <div class="mt-3 overflow-x-auto rounded-2xl bg-white shadow-card border border-ink-300/40">
+    <table class="w-full text-sm">
+      <thead class="bg-ink-900 text-white"><tr><th class="text-right p-3">القطاع</th><th class="text-right p-3">الحجم السنوي</th><th class="text-right p-3">النمو السنوي</th><th class="text-right p-3">القابل للالتقاط رقمياً</th></tr></thead>
+      <tbody class="divide-y divide-ink-300/30">
+        <tr><td class="p-3 font-bold">قطاع الصيانة (منزلية + تجارية)</td><td class="p-3 num">28 – 35 مليار ريال</td><td class="p-3 num">8 – 12%</td><td class="p-3 num">~5 مليار ريال</td></tr>
+        <tr><td class="p-3 font-bold">إدارة المرافق <span class="en">(Facility Management — FM)</span></td><td class="p-3 num">~26 مليار ريال</td><td class="p-3 num">9 – 11%</td><td class="p-3 num">~5 مليار ريال</td></tr>
+        <tr class="bg-gold-ghost/40"><td class="p-3 font-bold">الإجمالي المستهدف</td><td class="p-3 num font-black">~61 مليار ريال</td><td class="p-3">—</td><td class="p-3 num font-black">~10 مليار ريال</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="mt-2 text-xs text-ink-500">محرّكات النمو: رؤية السعودية 2030 · مشاريع نيوم والقدية وروشن · الإلزام التنظيمي بالصيانة الوقائية في المنشآت التجارية.</p>
+
+  <h3 class="mt-8 text-lg font-extrabold text-ink-900">المنافسة والفجوة</h3>
+  <p class="mt-2 text-ink-700 max-w-3xl">المنافسون الحاليون (مثل: مستر كاربنتر، خدمة، بيوت سيرفِسز) جميعهم <strong>أسواق مفتوحة غير مُدارة</strong> — لا أحد يجمع <strong>الجودة الموحّدة + الضمان الحقيقي + تجربة قطاع الأعمال الاحترافية</strong>. أخطر منافس مباشر: <strong>يوربن كومباني</strong> (Urban Company) الهندي — <strong>دخل السوق السعودي عبر نون في مايو 2025</strong>؛ ما يجعل تسريع بناء الخندق الدفاعي أولوية قصوى الآن.</p>
+</section>
+
+<!-- ================== 3. IDENTITY ================== -->
+<section id="identity" class="doc-section bg-white border-y border-ink-300/30">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+    <div class="text-[12px] font-bold text-gold-dark tracking-widest uppercase"><span class="sec-num">3</span> · هوية المنتج والتموضع</div>
+    <h2 class="mt-2 text-2xl lg:text-3xl font-black text-ink-900">ماذا تكون سيرف — وماذا لا تكون</h2>
+
+    <div class="mt-6 grid lg:grid-cols-2 gap-6">
+      <div class="rounded-2xl bg-ok-light border border-ok/30 p-6">
+        <div class="text-xs font-bold text-ok tracking-widest uppercase">✅ سيرف هي</div>
+        <ul class="mt-3 space-y-2 text-sm text-ink-700">
+          <li class="flex items-start gap-2"><span class="text-ok mt-0.5">✓</span> <strong>منصة سوقية مُدارة</strong> (Managed Marketplace) — تتحكّم بالجودة والأسعار والالتزام.</li>
+          <li class="flex items-start gap-2"><span class="text-ok mt-0.5">✓</span> <strong>منصة برمجيات لإدارة المرافق</strong> (البرمجيات كخدمة — Software as a Service — SaaS).</li>
+          <li class="flex items-start gap-2"><span class="text-ok mt-0.5">✓</span> <strong>مدعومة بالذكاء الاصطناعي</strong> (Artificial Intelligence — AI) للتشخيص البصري.</li>
+          <li class="flex items-start gap-2"><span class="text-ok mt-0.5">✓</span> <strong>مزدوجة الإيراد</strong> — معاملات فورية + إيراد متكرر (اشتراكات وعقود).</li>
+          <li class="flex items-start gap-2"><span class="text-ok mt-0.5">✓</span> <strong>سعودية أصيلة</strong> بتموضع رسمي مدفوع بالثقة المؤسسية.</li>
+        </ul>
+      </div>
+      <div class="rounded-2xl bg-danger-light border border-danger/30 p-6">
+        <div class="text-xs font-bold text-danger tracking-widest uppercase">❌ سيرف ليست</div>
+        <ul class="mt-3 space-y-2 text-sm text-ink-700">
+          <li class="flex items-start gap-2"><span class="text-danger mt-0.5">✕</span> <strong>دليل أسماء مفتوح</strong> (Listing) — حيث العميل يبحث ويختار بلا ضمان.</li>
+          <li class="flex items-start gap-2"><span class="text-danger mt-0.5">✕</span> <strong>سوق هشّ بلا إدارة</strong> (Pure Marketplace) — جودة غير مضمونة.</li>
+          <li class="flex items-start gap-2"><span class="text-danger mt-0.5">✕</span> <strong>شركة مقاولات</strong> ثقيلة الأصول والمسؤولية.</li>
+          <li class="flex items-start gap-2"><span class="text-danger mt-0.5">✕</span> <strong>تطبيق طلب فنّي</strong> فقط.</li>
+          <li class="flex items-start gap-2"><span class="text-danger mt-0.5">✕</span> منافِسة بالسعر — بل بالقيمة والثقة.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-6 rounded-2xl bg-ink-900 text-white p-6 lg:p-8 text-center">
+      <div class="text-xs font-bold text-gold-light tracking-widest uppercase">الشعار النهائي</div>
+      <p class="mt-2 text-2xl lg:text-3xl font-black text-gold-light">اطلب · اطمئن · ادفع · مضمون</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================== 4. PRODUCT ARCHITECTURE ================== -->
+<section id="product" class="doc-section max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+  <div class="text-[12px] font-bold text-gold-dark tracking-widest uppercase"><span class="sec-num">4</span> · معمارية المنتج الكاملة</div>
+  <h2 class="mt-2 text-2xl lg:text-3xl font-black text-ink-900">ثلاث ركائز · محرّكان · مسار مستقبلي</h2>
+  <p class="mt-2 text-ink-600">الركائز تولّد الإيراد، والمحرّكان يبنيان الخندق الدفاعي.</p>
+
+  <!-- 3 pillars -->
+  <h3 class="mt-8 text-lg font-extrabold text-ink-900">الركائز الثلاث (مصادر الإيراد)</h3>
+  <div class="mt-3 grid md:grid-cols-3 gap-4">
+    <div class="rounded-2xl bg-paper p-5 border-r-4 border-ink-700">
+      <div class="sec-num text-xs text-ink-500">الركيزة 1</div>
+      <div class="text-xl font-black mt-1 text-ink-900">سيرف عند الطلب <span class="en text-sm text-ink-500">(Serve On-Demand)</span></div>
+      <p class="text-sm text-ink-600 mt-1">الطلب السريع للأفراد — تكييف، كهرباء، سباكة، دهان...</p>
+      <div class="num text-2xl font-black text-ink-900 mt-3">35%</div><div class="text-xs text-ink-500">من الإيراد المتوقّع 2028</div>
+    </div>
+    <div class="rounded-2xl bg-brand-ghost p-5 border-r-4 border-brand relative">
+      <span class="absolute -top-3 right-4 px-2 py-0.5 rounded-md bg-brand text-white text-xs font-bold">المحرّك الأكبر</span>
+      <div class="sec-num text-xs text-brand">الركيزة 2</div>
+      <div class="text-xl font-black mt-1 text-ink-900">سيرف كير <span class="en text-sm text-ink-500">(Serve Care)</span></div>
+      <p class="text-sm text-ink-600 mt-1">اشتراكات الصيانة الوقائية (زيارات دورية + ضمان + خصومات + أولوية).</p>
+      <div class="num text-2xl font-black text-brand-dark mt-3">40%</div><div class="text-xs text-ink-500">من الإيراد المتوقّع 2028</div>
+    </div>
+    <div class="rounded-2xl bg-gold-ghost p-5 border-r-4 border-gold">
+      <div class="sec-num text-xs text-gold-dark">الركيزة 3</div>
+      <div class="text-xl font-black mt-1 text-ink-900">سيرف بزنس <span class="en text-sm text-ink-500">(Serve Business)</span></div>
+      <p class="text-sm text-ink-600 mt-1">قطاع الأعمال + القطاع الحكومي (Business-to-Government — B2G) + إدارة العقارات.</p>
+      <div class="num text-2xl font-black text-gold-dark mt-3">25%</div><div class="text-xs text-ink-500">من الإيراد المتوقّع 2028</div>
+    </div>
+  </div>
+
+  <!-- 2 engines -->
+  <h3 class="mt-8 text-lg font-extrabold text-ink-900">المحرّكان التقنيان (الخندق الدفاعي)</h3>
+  <div class="mt-3 grid md:grid-cols-2 gap-4">
+    <div class="rounded-2xl bg-gradient-to-br from-brand to-brand-dark text-white p-6">
+      <div class="text-xs font-bold opacity-80 tracking-widest uppercase">المحرّك 1</div>
+      <div class="text-2xl font-black mt-2">سيرف بَلْس <span class="en text-base opacity-80">(Serve Pulse)</span></div>
+      <div class="text-brand-light font-bold mt-1">منصة إدارة المرافق (Facility Management — FM)</div>
+      <p class="text-sm opacity-90 mt-3">برمجيات سحابية لإدارة الأصول وأوامر العمل والصيانة الوقائية، تشمل <strong>نظام إدارة الصيانة المحوسب</strong> (Computerized Maintenance Management System — CMMS) و<strong>اتفاقية مستوى الخدمة</strong> (Service Level Agreement — SLA). ترفع التقييم وتفتح القطاع الحكومي.</p>
+    </div>
+    <div class="rounded-2xl bg-gradient-to-br from-gold to-gold-dark text-ink-900 p-6">
+      <div class="text-xs font-bold opacity-80 tracking-widest uppercase">المحرّك 2</div>
+      <div class="text-2xl font-black mt-2">سيرف سِنس <span class="en text-base opacity-80">(Serve Sense)</span></div>
+      <div class="font-bold mt-1">التشخيص البصري بالذكاء الاصطناعي</div>
+      <p class="text-sm opacity-90 mt-3">العميل يصوّر العطل → الذكاء الاصطناعي يحلّل ويقترح ويقدّر السعر ويربط بالفني — في 60 ثانية. يخفض <strong>تكلفة اكتساب العميل</strong> (Customer Acquisition Cost — CAC) ويبني <strong>أصل بيانات</strong> (Data Moat — ميزة تتراكم مع كل صورة).</p>
+    </div>
+  </div>
+
+  <!-- Future vertical -->
+  <h3 class="mt-8 text-lg font-extrabold text-ink-900">المسار المستقبلي (المرحلة الثانية)</h3>
+  <div class="mt-3 rounded-2xl bg-gradient-to-l from-ink-900 to-ink-700 text-white p-6 relative overflow-hidden">
+    <span class="absolute -top-3 right-6 px-3 py-1 rounded-md bg-gold text-ink-900 text-xs font-black">جديد · مدروس بحذر</span>
+    <div class="text-2xl font-black">سيرف بروجكتس <span class="en text-base opacity-80">(Serve Projects)</span> · المشاريع المُدارة</div>
+    <p class="mt-2 text-white/85 max-w-3xl">خدمة "طلب مشروع كامل" (تشطيب/تجديد) كـ<strong> نموذج إدارة مشروع منسّقة</strong> — لا مقاول كامل. أعلى <strong>متوسط قيمة طلب</strong> (Average Order Value — AOV)، وبوابة اكتساب لاشتراك الصيانة بعد التسليم.</p>
+    <div class="mt-3 inline-flex items-center gap-2 text-xs bg-warn/20 text-gold-light px-3 py-1 rounded-md ring-1 ring-gold-light/30">⚠️ يبدأ كنسخة أولى محدودة (Minimum Viable Product — MVP) في المرحلة 2 بعد إغلاق الحواجز القانونية. <a href="qa.html#q1" class="underline font-bold mr-1">التحليل الكامل ←</a></div>
+  </div>
+</section>
+
+<!-- ================== 5. OPERATING MODEL ================== -->
+<section id="operating" class="doc-section bg-white border-y border-ink-300/30">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+    <div class="text-[12px] font-bold text-gold-dark tracking-widest uppercase"><span class="sec-num">5</span> · نموذج التشغيل النهائي</div>
+    <h2 class="mt-2 text-2xl lg:text-3xl font-black text-ink-900">كيف تعمل سيرف داخلياً</h2>
+
+    <div class="mt-6 grid md:grid-cols-3 gap-4">
+      <div class="rounded-2xl bg-paper p-5 border-r-4 border-brand">
+        <div class="text-2xl">🧭</div>
+        <div class="font-bold mt-2 text-ink-900">الإسناد الهجين</div>
+        <p class="text-sm text-ink-600 mt-1"><strong>إسناد ذكي افتراضي</strong> (النظام يختار أفضل فني تلقائياً) — يحفظ السرعة والضمان وعقود الأعمال. <strong>+ "اختر فنيك" اختياري</strong> للخدمات المدروسة العالية القيمة. <a href="comparisons.html#verdict" class="text-brand-dark font-bold underline">المقارنة الكاملة ←</a></p>
+      </div>
+      <div class="rounded-2xl bg-paper p-5 border-r-4 border-gold">
+        <div class="text-2xl">🏅</div>
+        <div class="font-bold mt-2 text-ink-900">فئات المزوّدين</div>
+        <p class="text-sm text-ink-600 mt-1">برونزي → فضي → ذهبي → بلاتيني (Bronze → Silver → Gold → Platinum) — حسب الأداء لا الحجم. الترقية بالمعايير + حوافز + عمولة متدرّجة (من 20% إلى 7%). <a href="legal.html#tiers" class="text-gold-dark font-bold underline">السياسة ←</a></p>
+      </div>
+      <div class="rounded-2xl bg-paper p-5 border-r-4 border-ok">
+        <div class="text-2xl">⚖️</div>
+        <div class="font-bold mt-2 text-ink-900">توزيع عادل</div>
+        <p class="text-sm text-ink-600 mt-1">محرّك مطابقة (Match Score — درجة تحسب القرب والتقييم والتخصص) + أولوية وصول حسب الفئة + <strong>حصص مضمونة</strong> تحمي سُلّم الترقية. <a href="legal.html#routing" class="text-ok font-bold underline">المحرّك ←</a></p>
+      </div>
+    </div>
+
+    <h3 class="mt-8 text-lg font-extrabold text-ink-900">طبقة الثقة — الخندق الدفاعي الحقيقي</h3>
+    <div class="mt-3 grid sm:grid-cols-2 lg:grid-cols-4 gap-3 text-sm">
+      <div class="rounded-xl bg-paper p-4 border border-ink-300/40"><strong>ضمان سيرف</strong> <span class="en text-xs text-ink-500">(Serve Guarantee)</span><div class="text-ink-500 text-xs mt-1">إصلاح مجاني عند فشل الخدمة + محاسبة المزوّد.</div></div>
+      <div class="rounded-xl bg-paper p-4 border border-ink-300/40"><strong>ضمان الموعد</strong> <span class="en text-xs text-ink-500">(On-Time Guarantee)</span><div class="text-ink-500 text-xs mt-1">تأخّر أكثر من 30 دقيقة → خصم تلقائي للعميل.</div></div>
+      <div class="rounded-xl bg-paper p-4 border border-ink-300/40"><strong>تأمين شامل</strong><div class="text-ink-500 text-xs mt-1">شراكة تأمين تغطّي الأضرار حتى 50 ألف ريال للحادثة.</div></div>
+      <div class="rounded-xl bg-paper p-4 border border-ink-300/40"><strong>تحقّق رسمي</strong><div class="text-ink-500 text-xs mt-1">عبر "نفاذ" + خلوّ السوابق + شارة "موثوق".</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== 6. TECHNICAL ARCHITECTURE ================== -->
+<section id="tech" class="doc-section max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+  <div class="text-[12px] font-bold text-gold-dark tracking-widest uppercase"><span class="sec-num">6</span> · البنية التقنية (للفريق التقني)</div>
+  <h2 class="mt-2 text-2xl lg:text-3xl font-black text-ink-900">الأنظمة والمحرّكات والتكاملات والأمن</h2>
+
+  <!-- Core engines -->
+  <h3 class="mt-6 text-lg font-extrabold text-ink-900">المحرّكات الأساسية (Core Engines)</h3>
+  <div class="mt-3 grid md:grid-cols-2 lg:grid-cols-3 gap-3 text-sm">
+    <div class="rounded-xl bg-white p-4 shadow-card border border-ink-300/40"><strong>محرّك التسعير</strong> <span class="en text-xs text-ink-500">(Pricing Engine)</span><div class="text-ink-500 text-xs mt-1">تسعير موحّد مركزي — لا يُترك للمزوّد، يمنع التفاوت.</div></div>
+    <div class="rounded-xl bg-white p-4 shadow-card border border-ink-300/40"><strong>محرّك التوزيع الذكي</strong> <span class="en text-xs text-ink-500">(Smart Routing)</span><div class="text-ink-500 text-xs mt-1">إسناد آلي لأفضل مزوّد في أقل من 30 ثانية.</div></div>
+    <div class="rounded-xl bg-white p-4 shadow-card border border-ink-300/40"><strong>محرّك تقييم الجودة</strong> <span class="en text-xs text-ink-500">(Quality Score)</span><div class="text-ink-500 text-xs mt-1">حساب لحظي لكل مزوّد يربط بالفئة والتوزيع.</div></div>
+    <div class="rounded-xl bg-white p-4 shadow-card border border-ink-300/40"><strong>محرّك الاشتراكات</strong> <span class="en text-xs text-ink-500">(Subscription Engine)</span><div class="text-ink-500 text-xs mt-1">إدارة التجديد، الإلغاء، الترقية، الفوترة الدورية.</div></div>
+    <div class="rounded-xl bg-white p-4 shadow-card border border-ink-300/40"><strong>محرّك استرجاع العملاء</strong> <span class="en text-xs text-ink-500">(Win-Back Engine)</span><div class="text-ink-500 text-xs mt-1">أتمتة لإعادة جذب العميل الغائب 90 يوماً.</div></div>
+    <div class="rounded-xl bg-white p-4 shadow-card border border-ink-300/40"><strong>تطبيق الفني الميداني</strong><div class="text-ink-500 text-xs mt-1">فاتورة + تتبّع موقع + صور قبل/بعد + توقيع رقمي.</div></div>
+  </div>
+
+  <!-- AI stack -->
+  <h3 class="mt-8 text-lg font-extrabold text-ink-900">حزمة الذكاء الاصطناعي (لمحرّك سيرف سِنس)</h3>
+  <div class="mt-3 overflow-x-auto rounded-2xl bg-white shadow-card border border-ink-300/40">
+    <table class="w-full text-sm">
+      <thead class="bg-paper text-ink-700"><tr><th class="text-right p-3">الطبقة</th><th class="text-right p-3">التقنية المقترحة</th><th class="text-right p-3">السبب</th></tr></thead>
+      <tbody class="divide-y divide-ink-300/30">
+        <tr><td class="p-3 font-bold">نموذج الرؤية</td><td class="p-3 en">Claude Vision</td><td class="p-3">الأفضل في فهم العربية + دقة الوصف البصري.</td></tr>
+        <tr><td class="p-3 font-bold">تحويل الصوت لنص</td><td class="p-3 en">Whisper Large v3 (Arabic)</td><td class="p-3">دقة عربية عالية لاستقبال الطلب صوتياً.</td></tr>
+        <tr><td class="p-3 font-bold">قاعدة المعرفة</td><td class="p-3 en">Pinecone / Qdrant</td><td class="p-3">قاعدة متّجهة للأعطال والقطع والأسعار (Vector Database).</td></tr>
+        <tr><td class="p-3 font-bold">التخزين</td><td class="p-3">خوادم داخل السعودية</td><td class="p-3">امتثال نظام حماية البيانات الشخصية (PDPL).</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Integrations -->
+  <h3 class="mt-8 text-lg font-extrabold text-ink-900">التكاملات الحكومية والمالية الإلزامية</h3>
+  <div class="mt-3 grid sm:grid-cols-2 lg:grid-cols-4 gap-3 text-sm">
+    <div class="rounded-xl bg-gold-ghost p-4 border border-gold/30"><strong>الفوترة الإلكترونية</strong><div class="text-ink-500 text-xs mt-1">هيئة الزكاة والضريبة والجمارك (ZATCA) — إلزامية لكل فاتورة.</div></div>
+    <div class="rounded-xl bg-gold-ghost p-4 border border-gold/30"><strong>التحقّق من الهوية</strong><div class="text-ink-500 text-xs mt-1">"نفاذ" — للتحقق من المزوّدين والعملاء المؤسسيين.</div></div>
+    <div class="rounded-xl bg-gold-ghost p-4 border border-gold/30"><strong>المدفوعات والمحافظ</strong><div class="text-ink-500 text-xs mt-1">عبر مزوّد مرخّص من البنك المركزي السعودي (SAMA).</div></div>
+    <div class="rounded-xl bg-gold-ghost p-4 border border-gold/30"><strong>الاستضافة السحابية</strong><div class="text-ink-500 text-xs mt-1">داخل المملكة وفق إطار هيئة الاتصالات والفضاء والتقنية (CST).</div></div>
+  </div>
+
+  <!-- Security -->
+  <h3 class="mt-8 text-lg font-extrabold text-ink-900">الأمن وحماية البيانات</h3>
+  <div class="mt-3 grid sm:grid-cols-2 lg:grid-cols-4 gap-3 text-sm">
+    <div class="rounded-xl bg-paper p-4 border border-ink-300/40"><strong>التشفير</strong><div class="text-ink-500 text-xs mt-1">أثناء النقل (TLS 1.3) وأثناء التخزين (AES-256).</div></div>
+    <div class="rounded-xl bg-paper p-4 border border-ink-300/40"><strong>إدارة الصلاحيات</strong><div class="text-ink-500 text-xs mt-1">صلاحيات حسب الدور (Role-Based Access Control — RBAC).</div></div>
+    <div class="rounded-xl bg-paper p-4 border border-ink-300/40"><strong>سجلات التدقيق</strong><div class="text-ink-500 text-xs mt-1">تتبّع كل وصول وتعديل (Audit Logs).</div></div>
+    <div class="rounded-xl bg-paper p-4 border border-ink-300/40"><strong>اختبار الاختراق</strong><div class="text-ink-500 text-xs mt-1">فحص أمني دوري سنوي + خطة استرداد كوارث.</div></div>
+  </div>
+</section>
+
+<!-- ================== 7. BUSINESS MODEL ================== -->
+<section id="money" class="doc-section bg-white border-y border-ink-300/30">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+    <div class="text-[12px] font-bold text-gold-dark tracking-widest uppercase"><span class="sec-num">7</span> · النموذج التجاري والتسعير والاقتصاديات</div>
+    <h2 class="mt-2 text-2xl lg:text-3xl font-black text-ink-900">من أين يأتي المال</h2>
+
+    <!-- Revenue stack -->
+    <h3 class="mt-6 text-lg font-extrabold text-ink-900">مصادر الإيراد (Revenue Stack)</h3>
+    <div class="mt-3 grid sm:grid-cols-2 lg:grid-cols-4 gap-2 text-sm">
+      <div class="rounded-lg bg-paper p-3 border border-ink-300/40">عمولة المعاملات (لكل طلب)</div>
+      <div class="rounded-lg bg-brand-ghost p-3 border border-brand/30">اشتراكات الأفراد والشركات ⭐</div>
+      <div class="rounded-lg bg-gold-ghost p-3 border border-gold/30">منصة سيرف بَلْس (برمجيات كخدمة) ⭐</div>
+      <div class="rounded-lg bg-paper p-3 border border-ink-300/40">تقارير وواجهات سيرف سِنس الذكية</div>
+      <div class="rounded-lg bg-paper p-3 border border-ink-300/40">متجر قطع الغيار (تجارة إلكترونية)</div>
+      <div class="rounded-lg bg-paper p-3 border border-ink-300/40">اشتر الآن وادفع لاحقاً (BNPL) + تأمين</div>
+      <div class="rounded-lg bg-paper p-3 border border-ink-300/40">العلامة الخاصة لشركات إدارة المرافق (White-label)</div>
+      <div class="rounded-lg bg-paper p-3 border border-ink-300/40">سيرف بروجكتس (رسوم إدارة مشروع) — مستقبلاً</div>
+    </div>
+
+    <!-- Pricing -->
+    <h3 class="mt-8 text-lg font-extrabold text-ink-900">التسعير النهائي المعتمد — الباقات الهجينة</h3>
+    <p class="mt-1 text-sm text-ink-600">الاشتراك بـ 3 / 6 / 12 شهراً (لا شهري) · خصم 5% لستة أشهر · خصم 10% للسنة · + باقة عائلية (منزل إضافي بنصف السعر).</p>
+
+    <div class="mt-3 font-bold text-ink-800 text-sm">🏠 للأفراد · سيرف كير</div>
+    <div class="mt-2 grid md:grid-cols-2 lg:grid-cols-4 gap-3">
+      <div class="rounded-2xl bg-paper border-2 border-dashed border-ok/40 p-4"><div class="num text-2xl font-black text-ok">0 ر</div><div class="font-bold mt-1">Home Free</div><div class="text-xs text-ink-500 mt-1">ضمان 30 يوم + تشخيص ذكي</div></div>
+      <div class="rounded-2xl bg-paper border border-ink-300/40 p-4"><div class="num text-2xl font-black">39 <span class="text-sm">ر/شهر</span></div><div class="font-bold mt-1">Home Smart</div><div class="text-xs text-ink-500 mt-1">معاينة + خصم 7% + أسعار ثابتة</div></div>
+      <div class="rounded-2xl bg-brand-ghost border-2 border-brand p-4 relative"><span class="absolute -top-3 right-4 px-2 py-0.5 rounded-md bg-brand text-white text-xs font-bold">الأكثر قيمة</span><div class="num text-2xl font-black">119 <span class="text-sm">ر/شهر</span></div><div class="font-bold mt-1">Home Plus</div><div class="text-xs text-ink-500 mt-1">زيارتان + خصم 12% + كاش باك 5%</div></div>
+      <div class="rounded-2xl bg-gold-ghost border-2 border-gold p-4"><div class="num text-2xl font-black">249 <span class="text-sm">ر/شهر</span></div><div class="font-bold mt-1">Home Elite</div><div class="text-xs text-ink-500 mt-1">4 زيارات + خصم 15% + مدير حساب</div></div>
+    </div>
+
+    <div class="mt-4 font-bold text-ink-800 text-sm">🏢 للشركات · سيرف بزنس</div>
+    <div class="mt-2 grid md:grid-cols-2 lg:grid-cols-5 gap-3 text-sm">
+      <div class="rounded-2xl bg-paper border-2 border-dashed border-ok/40 p-4"><div class="font-bold text-ok">Starter</div><div class="num font-black mt-1">مجاناً</div></div>
+      <div class="rounded-2xl bg-paper border border-ink-300/40 p-4"><div class="font-bold">Lite</div><div class="num font-black mt-1">799 <span class="text-xs">ر/شهر</span></div></div>
+      <div class="rounded-2xl bg-brand-ghost border-2 border-brand p-4"><div class="font-bold">Pro</div><div class="num font-black mt-1">1,999 <span class="text-xs">ر/شهر</span></div></div>
+      <div class="rounded-2xl bg-gold-ghost border-2 border-gold p-4"><div class="font-bold">Multi-branch</div><div class="num font-black mt-1">5,499 <span class="text-xs">ر/شهر</span></div></div>
+      <div class="rounded-2xl bg-ink-900 text-white p-4"><div class="font-bold text-brand-light">Enterprise</div><div class="font-black mt-1">من 50 ألف/سنة</div></div>
+    </div>
+
+    <!-- Unit economics -->
+    <h3 class="mt-8 text-lg font-extrabold text-ink-900">الاقتصاديات والأرقام المستهدفة</h3>
+    <div class="mt-3 overflow-x-auto rounded-2xl bg-white shadow-card border border-ink-300/40">
+      <table class="w-full text-sm">
+        <thead class="bg-ink-900 text-white"><tr><th class="text-right p-3">المؤشر (بالعربي ثم المختصر)</th><th class="text-right p-3 num">السنة 1</th><th class="text-right p-3 num">السنة 3</th><th class="text-right p-3 num">السنة 5</th></tr></thead>
+        <tbody class="divide-y divide-ink-300/30">
+          <tr><td class="p-3 font-bold">إجمالي قيمة المعاملات <span class="en text-xs text-ink-500">(GMV)</span></td><td class="p-3 num">12 مليون</td><td class="p-3 num">65 مليون</td><td class="p-3 num font-black">220 مليون</td></tr>
+          <tr class="bg-brand-ghost/40"><td class="p-3 font-bold">الإيراد السنوي المتكرر لِـ Pulse <span class="en text-xs text-ink-500">(ARR)</span></td><td class="p-3 num">2.2 مليون</td><td class="p-3 num">30 مليون</td><td class="p-3 num font-black">51 مليون</td></tr>
+          <tr><td class="p-3 font-bold">صافي الإيراد المجمّع</td><td class="p-3 num">4.4 مليون</td><td class="p-3 num">50 مليون</td><td class="p-3 num font-black">89 مليون</td></tr>
+          <tr><td class="p-3 font-bold">نسبة القيمة للتكلفة <span class="en text-xs text-ink-500">(LTV / CAC)</span></td><td class="p-3 num">5.8×</td><td class="p-3 num">15×</td><td class="p-3 num">15×+</td></tr>
+          <tr><td class="p-3 font-bold">نقطة التعادل التشغيلي <span class="en text-xs text-ink-500">(EBITDA)</span></td><td class="p-3" colspan="3">السنة الثالثة</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-2 text-xs text-ink-500">المختصرات: إجمالي قيمة المعاملات (Gross Merchandise Value — GMV) · الإيراد السنوي المتكرر (Annual Recurring Revenue — ARR) · القيمة الدائمة للعميل مقابل تكلفة اكتسابه (Lifetime Value / Customer Acquisition Cost) · الأرباح قبل الفوائد والضرائب والإهلاك (Earnings Before Interest, Taxes, Depreciation and Amortization — EBITDA).</p>
+  </div>
+</section>
+
+<!-- ================== 8. LEGAL ================== -->
+<section id="legalsec" class="doc-section max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+  <div class="text-[12px] font-bold text-gold-dark tracking-widest uppercase"><span class="sec-num">8</span> · الإطار القانوني والامتثال</div>
+  <h2 class="mt-2 text-2xl lg:text-3xl font-black text-ink-900">جاهز ومتوافق مع الأنظمة السعودية</h2>
+
+  <div class="mt-6 grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="rounded-2xl bg-paper p-5 border border-ink-300/40"><div class="num text-3xl font-black text-ink-900">13</div><div class="font-bold text-ink-900 mt-1">وثيقة قانونية</div><div class="text-xs text-ink-500 mt-1">ثنائية اللغة (عربي/إنجليزي).</div></div>
+    <div class="rounded-2xl bg-paper p-5 border border-ink-300/40"><div class="num text-3xl font-black text-ink-900">7</div><div class="font-bold text-ink-900 mt-1">ملاحق تفصيلية</div><div class="text-xs text-ink-500 mt-1">مواقع، أسعار، معالجي بيانات، معايير فنيين...</div></div>
+    <div class="rounded-2xl bg-paper p-5 border border-ink-300/40"><div class="num text-3xl font-black text-ink-900">15+</div><div class="font-bold text-ink-900 mt-1">نظام سعودي مرجعي</div><div class="text-xs text-ink-500 mt-1">حماية البيانات · الضريبة · العمل · المقاولات...</div></div>
+    <div class="rounded-2xl bg-gold-ghost p-5 border-2 border-gold"><div class="text-lg font-black text-gold-dark">الرياض</div><div class="font-bold text-ink-900 mt-1">جهة الاختصاص</div><div class="text-xs text-ink-500 mt-1">المحاكم التجارية.</div></div>
+  </div>
+
+  <h3 class="mt-8 text-lg font-extrabold text-ink-900">أهم الأنظمة المرجعية (بمعناها الكامل)</h3>
+  <div class="mt-3 grid sm:grid-cols-2 gap-2 text-sm">
+    <div class="rounded-lg bg-white p-3 border border-ink-300/40">نظام حماية البيانات الشخصية <span class="en text-xs text-ink-500">(Personal Data Protection Law — PDPL)</span></div>
+    <div class="rounded-lg bg-white p-3 border border-ink-300/40">هيئة الزكاة والضريبة والجمارك <span class="en text-xs text-ink-500">(ZATCA)</span> — الفوترة الإلكترونية</div>
+    <div class="rounded-lg bg-white p-3 border border-ink-300/40">هيئة الاتصالات والفضاء والتقنية <span class="en text-xs text-ink-500">(CST)</span> — الحوسبة السحابية</div>
+    <div class="rounded-lg bg-white p-3 border border-ink-300/40">البنك المركزي السعودي <span class="en text-xs text-ink-500">(SAMA)</span> — المدفوعات والأمانة</div>
+    <div class="rounded-lg bg-white p-3 border border-ink-300/40">نظام العمل + وزارة الموارد البشرية <span class="en text-xs text-ink-500">(MHRSD)</span></div>
+    <div class="rounded-lg bg-white p-3 border border-ink-300/40">نظام المحاكم التجارية + التحكيم <span class="en text-xs text-ink-500">(SCCA)</span></div>
+  </div>
+  <div class="mt-4">
+    <a href="legal.html" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-ink-900 text-white font-bold hover:bg-ink-800">افتح الحزمة القانونية الكاملة ←</a>
+  </div>
+</section>
+
+<!-- ================== 9. ROADMAP ================== -->
+<section id="roadmap" class="doc-section bg-white border-y border-ink-300/30">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+    <div class="text-[12px] font-bold text-gold-dark tracking-widest uppercase"><span class="sec-num">9</span> · خارطة التنفيذ النهائية</div>
+    <h2 class="mt-2 text-2xl lg:text-3xl font-black text-ink-900">الترتيب الصحيح — الجودة قبل التوسّع</h2>
+
+    <div class="mt-6 overflow-x-auto">
+      <div class="min-w-[820px] flex items-stretch gap-2 text-center text-sm">
+        <div class="flex-1 rounded-xl bg-ink-900 text-white p-4"><div class="num font-black text-lg">1</div><div class="font-bold mt-1">التشغيل والجودة</div><div class="text-xs opacity-75 mt-1">الفئات + محرّك التسعير + الضمان</div></div>
+        <div class="self-center text-ink-300">←</div>
+        <div class="flex-1 rounded-xl bg-ink-800 text-white p-4"><div class="num font-black text-lg">2</div><div class="font-bold mt-1">تجربة العميل</div><div class="text-xs opacity-75 mt-1">واجهة الطلب + الدعم + النسخة الأولى من سِنس</div></div>
+        <div class="self-center text-ink-300">←</div>
+        <div class="flex-1 rounded-xl bg-brand text-white p-4"><div class="num font-black text-lg">3</div><div class="font-bold mt-1">الاشتراكات</div><div class="text-xs opacity-90 mt-1">سيرف كير + الباقة المجانية</div></div>
+        <div class="self-center text-ink-300">←</div>
+        <div class="flex-1 rounded-xl bg-brand-dark text-white p-4"><div class="num font-black text-lg">4</div><div class="font-bold mt-1">قطاع الأعمال</div><div class="text-xs opacity-90 mt-1">عقود الشركات + النسخة الأولى من بَلْس</div></div>
+        <div class="self-center text-ink-300">←</div>
+        <div class="flex-1 rounded-xl bg-gold text-ink-900 p-4"><div class="num font-black text-lg">5</div><div class="font-bold mt-1">التوسّع والتمويل</div><div class="text-xs opacity-80 mt-1">جولة التمويل + جغرافي + المشاريع</div></div>
+      </div>
+    </div>
+    <div class="mt-4"><a href="roadmap.html" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-paper text-ink-900 font-bold hover:bg-ink-300/20 border border-ink-300/40">افتح خارطة التنفيذ التفصيلية (10 مراحل + الفريق + التوظيف) ←</a></div>
+  </div>
+</section>
+
+<!-- ================== 10. RISKS ================== -->
+<section id="risks" class="doc-section max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+  <div class="text-[12px] font-bold text-gold-dark tracking-widest uppercase"><span class="sec-num">10</span> · المخاطر وخطط التخفيف</div>
+  <h2 class="mt-2 text-2xl lg:text-3xl font-black text-ink-900">أكبر المخاطر — وكيف نواجهها</h2>
+  <div class="mt-6 overflow-x-auto rounded-2xl bg-white shadow-card border border-ink-300/40">
+    <table class="w-full text-sm">
+      <thead class="bg-ink-900 text-white"><tr><th class="text-right p-3">المخاطرة</th><th class="text-right p-3">الأثر</th><th class="text-right p-3">خطة التخفيف</th></tr></thead>
+      <tbody class="divide-y divide-ink-300/30">
+        <tr><td class="p-3 font-bold">دخول منافس مموَّل (يوربن كومباني)</td><td class="p-3 text-danger font-bold">كارثي</td><td class="p-3">بناء الخندق الدفاعي قبله: اشتراكات + عقود أعمال مُقفلة.</td></tr>
+        <tr><td class="p-3 font-bold">هجرة المزوّدين المميّزين للمنافس</td><td class="p-3 text-warn font-bold">كبير</td><td class="p-3">عقود حصرية + مزايا الفئات العليا + حوافز أداء.</td></tr>
+        <tr><td class="p-3 font-bold">حادث يطعن الثقة</td><td class="p-3 text-danger font-bold">كارثي</td><td class="p-3">تأمين شامل + خطة اتصال أزمات + علاقات عامة.</td></tr>
+        <tr><td class="p-3 font-bold">معدّل الإنفاق يفوق التمويل</td><td class="p-3 text-danger font-bold">كارثي</td><td class="p-3">إغلاق جولة التمويل قبل نفاد المدى التمويلي بـ 6 أشهر.</td></tr>
+        <tr><td class="p-3 font-bold">تشتيت التركيز عند إطلاق المشاريع</td><td class="p-3 text-warn font-bold">كبير</td><td class="p-3">نسخة أولى محدودة جداً + فصلها عن جوهر الصيانة.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ================== 11. FUNDING ================== -->
+<section id="funding" class="doc-section bg-gradient-to-bl from-ink-900 to-ink-700 text-white">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+    <div class="text-[12px] font-bold text-gold-light tracking-widest uppercase"><span class="sec-num">11</span> · التمويل المطلوب</div>
+    <h2 class="mt-2 text-2xl lg:text-3xl font-black">جولة التمويل الأولى <span class="en text-xl opacity-80">(Series A)</span></h2>
+    <p class="mt-2 text-white/80">«جولة التمويل الأولى» هي أول جولة استثمارية مؤسسية كبيرة بعد التأسيس، لتمويل النمو والتوسّع.</p>
+
+    <div class="mt-6 grid md:grid-cols-3 gap-4">
+      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-5"><div class="text-xs text-white/70">المبلغ</div><div class="num text-3xl font-black mt-1">25-40 <span class="text-base">مليون ر</span></div><div class="text-xs text-white/60 mt-1">~ 6-10 مليون دولار</div></div>
+      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-5"><div class="text-xs text-white/70">التقييم المستهدف</div><div class="num text-3xl font-black mt-1">100-150 <span class="text-base">مليون ر</span></div></div>
+      <div class="rounded-2xl bg-gradient-to-br from-gold/40 to-brand/30 ring-1 ring-gold-light/30 p-5"><div class="text-xs text-white/85">خيارات الخروج 2028+</div><div class="num text-3xl font-black mt-1">100-200 <span class="text-base">مليون $</span></div></div>
+    </div>
+    <div class="mt-6 grid md:grid-cols-2 gap-4 text-sm">
+      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5">
+        <div class="font-bold text-gold-light">استخدامات الأموال</div>
+        <ul class="mt-2 space-y-1 text-white/85">
+          <li class="flex justify-between"><span>الهندسة والمنتج (بناء الخندق)</span><span class="num font-bold">40%</span></li>
+          <li class="flex justify-between"><span>المبيعات والتسويق</span><span class="num font-bold">25%</span></li>
+          <li class="flex justify-between"><span>العمليات والجودة</span><span class="num font-bold">20%</span></li>
+          <li class="flex justify-between"><span>التوسّع الجغرافي</span><span class="num font-bold">10%</span></li>
+          <li class="flex justify-between"><span>رأس مال عامل واحتياطي</span><span class="num font-bold">5%</span></li>
+        </ul>
+      </div>
+      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5">
+        <div class="font-bold text-gold-light">مستثمرون محتملون</div>
+        <ul class="mt-2 space-y-1 text-white/85">
+          <li>• صناديق إقليمية (STV · Raed · Vision Ventures)</li>
+          <li>• استثمارات سنابل (التابعة لصندوق الاستثمارات العامة)</li>
+          <li>• استراتيجياً: مجموعة بيوت · صندوق الاتصالات السعودية</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== 12. FINAL RECOMMENDATIONS ================== -->
+<section id="recommendations" class="doc-section max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+  <div class="text-[12px] font-bold text-gold-dark tracking-widest uppercase"><span class="sec-num">12</span> · التوصيات النهائية الحاسمة</div>
+  <h2 class="mt-2 text-2xl lg:text-3xl font-black text-ink-900">القرارات الثلاثة على طاولة المالك الآن</h2>
+
+  <div class="mt-6 grid md:grid-cols-3 gap-4">
+    <div class="rounded-2xl bg-gradient-to-br from-ink-900 to-ink-700 text-white p-6"><div class="num text-4xl font-black text-gold-light">1</div><div class="font-bold text-lg mt-2">تعيين نائب رئيس لقطاع الأعمال</div><p class="text-sm text-white/80 mt-1">(VP of Business) — ضرورة وجودية، محرّك النمو والدفاعية.</p></div>
+    <div class="rounded-2xl bg-gradient-to-br from-brand to-brand-dark text-white p-6"><div class="num text-4xl font-black text-gold-light">2</div><div class="font-bold text-lg mt-2">إغلاق جولة التمويل خلال 9-12 شهراً</div><p class="text-sm text-white/90 mt-1">قبل أن يترسّخ المنافس المموَّل الذي دخل السوق (Urban Company عبر نون).</p></div>
+    <div class="rounded-2xl bg-gradient-to-br from-gold to-gold-dark text-ink-900 p-6"><div class="num text-4xl font-black text-ink-900/40">3</div><div class="font-bold text-lg mt-2">بناء الخندق الدفاعي فوراً</div><p class="text-sm text-ink-900/80 mt-1">اشتراكات + قطاع أعمال/بَلْس + محرّك جودة + سِنس.</p></div>
+  </div>
+
+  <div class="mt-8 rounded-2xl bg-white shadow-card border border-ink-300/40 p-6">
+    <div class="font-bold text-ink-900">خلاصة المنتج النهائي في 6 نقاط</div>
+    <ol class="mt-3 grid md:grid-cols-2 gap-2 text-sm list-decimal pr-5 text-ink-700">
+      <li><strong>التموضع:</strong> منصة صيانة ومنشآت مُدارة رسمية — لا سوق مفتوح ولا مقاول.</li>
+      <li><strong>المنتج:</strong> 3 ركائز (طلب فوري + اشتراكات + أعمال) + محرّكان (بَلْس + سِنس).</li>
+      <li><strong>التشغيل:</strong> إسناد ذكي هجين + فئات مزوّدين بالأداء + توزيع عادل.</li>
+      <li><strong>المال:</strong> مزدوج الإيراد (معاملات + متكرر) + تسعير هجين محمي الهامش.</li>
+      <li><strong>القانون:</strong> حزمة كاملة متوافقة سعودياً + اختصاص الرياض.</li>
+      <li><strong>الطريق:</strong> الجودة → الاشتراكات → الأعمال → بَلْس → التمويل والتوسّع.</li>
+    </ol>
+  </div>
+
+  <div class="mt-8 rounded-2xl bg-gradient-to-l from-ink-900 via-ink-800 to-ink-900 text-white p-8 lg:p-10 text-center">
+    <div class="text-xs font-bold text-gold-light tracking-widest uppercase">الكلمة الأخيرة</div>
+    <h3 class="mt-3 text-3xl md:text-5xl font-black leading-tight">سيرف يمكن أن تكون<br/><span class="text-gold">«يوربن كومباني»</span> <span class="text-brand-light">السعودية.</span></h3>
+    <p class="mt-5 text-lg text-white/85 max-w-3xl mx-auto leading-relaxed">السوق موجود · الفجوة حقيقية · التوقيت مثالي. المنتج النهائي جاهز كمخطّط متكامل — يُبنى بالترتيب الصحيح، ويُموَّل في الوقت الصحيح.</p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a href="index.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-ink-900 font-bold hover:bg-paper">العرض التنفيذي ←</a>
+      <a href="roadmap.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand text-white font-bold hover:bg-brand-dark">خارطة التنفيذ</a>
+      <a href="home.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/10 text-white font-bold ring-1 ring-white/20 hover:bg-white/15">اللوحة المركزية</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================== 13. GLOSSARY ================== -->
+<section id="glossary" class="doc-section bg-white border-t border-ink-300/30">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+    <div class="text-[12px] font-bold text-gold-dark tracking-widest uppercase"><span class="sec-num">13</span> · مسرد المصطلحات</div>
+    <h2 class="mt-2 text-2xl lg:text-3xl font-black text-ink-900">كل اختصار بمعناه الكامل</h2>
+    <p class="mt-2 text-ink-600">مرجع سريع لكل مصطلح ورد في الوثيقة.</p>
+
+    <div class="mt-6 grid md:grid-cols-2 lg:grid-cols-3 gap-3 text-sm">
+      <div class="rounded-xl bg-paper p-3 border border-ink-300/40"><span class="en font-bold">Managed Marketplace</span><div class="text-ink-600 mt-0.5">منصة سوقية مُدارة — سوق رقمي تتحكّم فيه المنصة بالجودة والأسعار، لا مجرد دليل.</div></div>
+      <div class="rounded-xl bg-paper p-3 border border-ink-300/40"><span class="en font-bold">SaaS</span><div class="text-ink-600 mt-0.5">البرمجيات كخدمة (Software as a Service) — برنامج يُشترك فيه شهرياً عبر الإنترنت.</div></div>
+      <div class="rounded-xl bg-paper p-3 border border-ink-300/40"><span class="en font-bold">FM</span><div class="text-ink-600 mt-0.5">إدارة المرافق (Facility Management) — تشغيل وصيانة المباني والأصول.</div></div>
+      <div class="rounded-xl bg-paper p-3 border border-ink-300/40"><span class="en font-bold">CMMS</span><div class="text-ink-600 mt-0.5">نظام إدارة الصيانة المحوسب (Computerized Maintenance Management System).</div></div>
+      <div class="rounded-xl bg-paper p-3 border border-ink-300/40"><span class="en font-bold">SLA</span><div class="text-ink-600 mt-0.5">اتفاقية مستوى الخدمة (Service Level Agreement) — تحدّد سرعة الاستجابة والحل.</div></div>
+      <div class="rounded-xl bg-paper p-3 border border-ink-300/40"><span class="en font-bold">AI</span><div class="text-ink-600 mt-0.5">الذكاء الاصطناعي (Artificial Intelligence).</div></div>
+      <div class="rounded-xl bg-paper p-3 border border-ink-300/40"><span class="en font-bold">GMV</span><div class="text-ink-600 mt-0.5">إجمالي قيمة المعاملات (Gross Merchandise Value) — قيمة كل الطلبات عبر المنصة.</div></div>
+      <div class="rounded-xl bg-paper p-3 border border-ink-300/40"><span class="en font-bold">MRR / ARR</span><div class="text-ink-600 mt-0.5">الإيراد المتكرر الشهري / السنوي (Monthly / Annual Recurring Revenue).</div></div>
+      <div class="rounded-xl bg-paper p-3 border border-ink-300/40"><span class="en font-bold">CAC</span><div class="text-ink-600 mt-0.5">تكلفة اكتساب العميل (Customer Acquisition Cost).</div></div>
+      <div class="rounded-xl bg-paper p-3 border border-ink-300/40"><span class="en font-bold">LTV</span><div class="text-ink-600 mt-0.5">القيمة الدائمة للعميل (Lifetime Value) — إجمالي ما ينفقه طوال علاقته بالمنصة.</div></div>
+      <div class="rounded-xl bg-paper p-3 border border-ink-300/40"><span class="en font-bold">AOV</span><div class="text-ink-600 mt-0.5">متوسط قيمة الطلب (Average Order Value).</div></div>
+      <div class="rounded-xl bg-paper p-3 border border-ink-300/40"><span class="en font-bold">EBITDA</span><div class="text-ink-600 mt-0.5">الأرباح قبل الفوائد والضرائب والإهلاك — مقياس الربحية التشغيلية.</div></div>
+      <div class="rounded-xl bg-paper p-3 border border-ink-300/40"><span class="en font-bold">B2B / B2G</span><div class="text-ink-600 mt-0.5">التعامل مع الشركات / الجهات الحكومية (Business-to-Business / Government).</div></div>
+      <div class="rounded-xl bg-paper p-3 border border-ink-300/40"><span class="en font-bold">BNPL</span><div class="text-ink-600 mt-0.5">اشتر الآن وادفع لاحقاً (Buy Now, Pay Later) — تقسيط الدفع.</div></div>
+      <div class="rounded-xl bg-paper p-3 border border-ink-300/40"><span class="en font-bold">MVP</span><div class="text-ink-600 mt-0.5">النسخة الأولى الصالحة للإطلاق (Minimum Viable Product) — أبسط نسخة تختبر الفكرة.</div></div>
+      <div class="rounded-xl bg-paper p-3 border border-ink-300/40"><span class="en font-bold">PDPL</span><div class="text-ink-600 mt-0.5">نظام حماية البيانات الشخصية (Personal Data Protection Law) السعودي.</div></div>
+      <div class="rounded-xl bg-paper p-3 border border-ink-300/40"><span class="en font-bold">ZATCA</span><div class="text-ink-600 mt-0.5">هيئة الزكاة والضريبة والجمارك — تنظّم الفوترة الإلكترونية.</div></div>
+      <div class="rounded-xl bg-paper p-3 border border-ink-300/40"><span class="en font-bold">SAMA</span><div class="text-ink-600 mt-0.5">البنك المركزي السعودي — ينظّم المدفوعات والأمانة المالية.</div></div>
+      <div class="rounded-xl bg-paper p-3 border border-ink-300/40"><span class="en font-bold">CST</span><div class="text-ink-600 mt-0.5">هيئة الاتصالات والفضاء والتقنية — تنظّم الحوسبة السحابية.</div></div>
+      <div class="rounded-xl bg-paper p-3 border border-ink-300/40"><span class="en font-bold">RBAC</span><div class="text-ink-600 mt-0.5">إدارة الصلاحيات حسب الدور (Role-Based Access Control).</div></div>
+      <div class="rounded-xl bg-paper p-3 border border-ink-300/40"><span class="en font-bold">BOQ</span><div class="text-ink-600 mt-0.5">جدول الكميات (Bill of Quantities) — حصر تفصيلي لأعمال ومواد المشروع.</div></div>
+      <div class="rounded-xl bg-paper p-3 border border-ink-300/40"><span class="en font-bold">Escrow</span><div class="text-ink-600 mt-0.5">حساب أمانة — طرف محايد يحتجز المال ويُفرج عنه عند إنجاز المرحلة.</div></div>
+      <div class="rounded-xl bg-paper p-3 border border-ink-300/40"><span class="en font-bold">White-label</span><div class="text-ink-600 mt-0.5">العلامة الخاصة — تقديم منتج سيرف لشركة أخرى تحت علامتها التجارية.</div></div>
+      <div class="rounded-xl bg-paper p-3 border border-ink-300/40"><span class="en font-bold">Series A</span><div class="text-ink-600 mt-0.5">جولة التمويل الأولى المؤسسية الكبيرة بعد التأسيس.</div></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================== FOOTER ================== -->
+<footer class="bg-ink-900 text-white/75 no-print">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-10 grid md:grid-cols-3 gap-6 items-start">
+    <div>
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-gold to-brand grid place-items-center text-white font-extrabold">س</div>
+        <div class="font-extrabold text-white">سيرف · Serve</div>
+      </div>
+      <p class="mt-3 text-sm text-white/65">المنتج النهائي · المخطط الشامل — عصارة المشروع كاملاً للملّاك وصنّاع القرار والتقنيين.</p>
+    </div>
+    <div class="text-sm">
+      <div class="font-bold text-white">محتوى الوثيقة</div>
+      <ul class="mt-2 space-y-1 text-white/75">
+        <li>الملخص · المشكلة · الهوية · المنتج</li>
+        <li>التقنية · المال · القانون · الطريق</li>
+        <li>المخاطر · التمويل · التوصيات · المسرد</li>
+      </ul>
+    </div>
+    <div class="text-sm">
+      <div class="font-bold text-white">روابط</div>
+      <ul class="mt-2 space-y-1 text-white/75">
+        <li><a class="hover:text-white" href="home.html">→ اللوحة المركزية</a></li>
+        <li><a class="hover:text-white" href="final.html">→ الترشيح الأخير</a></li>
+        <li><a class="hover:text-white" href="legal.html">→ القانوني الكامل</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-4 text-xs text-white/55 flex justify-between flex-wrap gap-2">
+      <div>© 2026 Serve — المنتج النهائي · المخطط الشامل.</div>
+      <div>Serve Final Blueprint v1.0</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
