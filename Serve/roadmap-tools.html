@@ -186,37 +186,180 @@
         <div class="rounded-2xl bg-brand-ghost border-r-4 border-brand p-4 text-[13.5px]">
           <strong class="text-brand-dark">القيمة:</strong> لا تُقدّر تكلفةً ولا مدّةً ولا تُسند مسؤوليةً بدقّة قبل أن تكتمل التجزئة — فالهيكل هو الأساس الذي تُبنى عليه الجدولة والميزانية.
         </div>
+        <!-- summary stats -->
+        <div class="grid grid-cols-3 gap-2 pt-1">
+          <div class="rounded-xl bg-paper border border-ink-300/40 p-3 text-center"><div class="num text-2xl font-black text-brand-dark">3</div><div class="text-[11px] text-ink-500">مسارات رئيسية</div></div>
+          <div class="rounded-xl bg-paper border border-ink-300/40 p-3 text-center"><div class="num text-2xl font-black text-gold-dark">15</div><div class="text-[11px] text-ink-500">حزمة عمل <span class="en">(WP)</span></div></div>
+          <div class="rounded-xl bg-paper border border-ink-300/40 p-3 text-center"><div class="num text-2xl font-black text-ok">62</div><div class="text-[11px] text-ink-500">مهمة قابلة للإسناد</div></div>
+        </div>
       </div>
 
       <!-- WBS tree visual -->
       <div class="rounded-2xl bg-paper border border-ink-300/40 shadow-card p-5">
-        <div class="text-xs font-bold text-ink-500 tracking-widest uppercase mb-3">مثال مبسّط · شجرة التجزئة</div>
-        <div class="rounded-xl bg-ink-900 text-white text-center font-black py-2.5">منصّة سيرف</div>
+        <div class="text-xs font-bold text-ink-500 tracking-widest uppercase mb-3">شجرة التجزئة — المستويات الثلاثة الأولى</div>
+        <div class="rounded-xl bg-ink-900 text-white text-center font-black py-2.5"><span class="num">0</span> · منصّة سيرف</div>
         <div class="mt-2 grid grid-cols-3 gap-2 text-center text-[13px] font-bold">
-          <div class="rounded-lg bg-brand text-white py-2">المسار التقني</div>
-          <div class="rounded-lg bg-gold text-ink-900 py-2">المسار القانوني</div>
-          <div class="rounded-lg bg-ok text-white py-2">المسار التشغيلي</div>
+          <div class="rounded-lg bg-brand text-white py-2"><span class="num">1</span> التقني</div>
+          <div class="rounded-lg bg-gold text-ink-900 py-2"><span class="num">2</span> القانوني</div>
+          <div class="rounded-lg bg-ok text-white py-2"><span class="num">3</span> التشغيلي</div>
         </div>
-        <div class="mt-2 grid grid-cols-3 gap-2 text-[11.5px] text-ink-700">
+        <div class="mt-2 grid grid-cols-3 gap-2 text-[11px] text-ink-700">
           <ul class="space-y-1.5">
-            <li class="rounded-md bg-white border border-brand/20 px-2 py-1.5">محرّك <span class="en">Sense</span></li>
-            <li class="rounded-md bg-white border border-brand/20 px-2 py-1.5">منصّة <span class="en">Pulse</span></li>
-            <li class="rounded-md bg-white border border-brand/20 px-2 py-1.5">واجهة الشركاء <span class="en">(API)</span></li>
-            <li class="rounded-md bg-white border border-brand/20 px-2 py-1.5">تطبيقا العميل والمزوّد</li>
+            <li class="rounded-md bg-white border border-brand/20 px-2 py-1.5"><span class="num text-brand-dark font-bold">1.1</span> محرّك <span class="en">Sense</span></li>
+            <li class="rounded-md bg-white border border-brand/20 px-2 py-1.5"><span class="num text-brand-dark font-bold">1.2</span> منصّة <span class="en">Pulse</span></li>
+            <li class="rounded-md bg-white border border-brand/20 px-2 py-1.5"><span class="num text-brand-dark font-bold">1.3</span> <span class="en">API</span> + سوق القطع</li>
+            <li class="rounded-md bg-white border border-brand/20 px-2 py-1.5"><span class="num text-brand-dark font-bold">1.4</span> تطبيقا العميل والمزوّد</li>
+            <li class="rounded-md bg-white border border-brand/20 px-2 py-1.5"><span class="num text-brand-dark font-bold">1.5</span> البنية التحتية والبيانات</li>
           </ul>
           <ul class="space-y-1.5">
-            <li class="rounded-md bg-white border border-gold/20 px-2 py-1.5">العقود والاتفاقيات</li>
-            <li class="rounded-md bg-white border border-gold/20 px-2 py-1.5">الفوترة الإلكترونية</li>
-            <li class="rounded-md bg-white border border-gold/20 px-2 py-1.5">حماية المستهلك</li>
-            <li class="rounded-md bg-white border border-gold/20 px-2 py-1.5">سياسة الفئات</li>
+            <li class="rounded-md bg-white border border-gold/20 px-2 py-1.5"><span class="num text-gold-dark font-bold">2.1</span> حزمة العقود</li>
+            <li class="rounded-md bg-white border border-gold/20 px-2 py-1.5"><span class="num text-gold-dark font-bold">2.2</span> الفوترة <span class="en">(ZATCA)</span></li>
+            <li class="rounded-md bg-white border border-gold/20 px-2 py-1.5"><span class="num text-gold-dark font-bold">2.3</span> حماية المستهلك</li>
+            <li class="rounded-md bg-white border border-gold/20 px-2 py-1.5"><span class="num text-gold-dark font-bold">2.4</span> التراخيص الحكومية</li>
+            <li class="rounded-md bg-white border border-gold/20 px-2 py-1.5"><span class="num text-gold-dark font-bold">2.5</span> سياسة الفئات</li>
           </ul>
           <ul class="space-y-1.5">
-            <li class="rounded-md bg-white border border-ok/20 px-2 py-1.5">شبكة المزوّدين</li>
-            <li class="rounded-md bg-white border border-ok/20 px-2 py-1.5">الجودة و<span class="en">SLA</span></li>
-            <li class="rounded-md bg-white border border-ok/20 px-2 py-1.5">سوق القطع</li>
-            <li class="rounded-md bg-white border border-ok/20 px-2 py-1.5">الدعم والعمليات</li>
+            <li class="rounded-md bg-white border border-ok/20 px-2 py-1.5"><span class="num text-ok font-bold">3.1</span> شبكة المزوّدين</li>
+            <li class="rounded-md bg-white border border-ok/20 px-2 py-1.5"><span class="num text-ok font-bold">3.2</span> المستويات + التوزيع</li>
+            <li class="rounded-md bg-white border border-ok/20 px-2 py-1.5"><span class="num text-ok font-bold">3.3</span> الجودة و<span class="en">SLA</span></li>
+            <li class="rounded-md bg-white border border-ok/20 px-2 py-1.5"><span class="num text-ok font-bold">3.4</span> سوق القطع (تشغيل)</li>
+            <li class="rounded-md bg-white border border-ok/20 px-2 py-1.5"><span class="num text-ok font-bold">3.5</span> الدعم والعمليات</li>
+            <li class="rounded-md bg-white border border-ok/20 px-2 py-1.5"><span class="num text-ok font-bold">3.6</span> الإطلاق التحفيزي</li>
           </ul>
         </div>
+        <div class="mt-3 text-[11px] text-ink-500 text-center">المستوى الرابع (المهام) مفصّل في القاموس أدناه ↓</div>
+      </div>
+    </div>
+
+    <!-- FULL WBS dictionary -->
+    <div class="mt-8">
+      <div class="text-xs font-bold text-ink-500 tracking-widest uppercase mb-3">قاموس التجزئة الكامل — حِزم العمل والمهام (المستوى الرابع)</div>
+      <div class="grid lg:grid-cols-3 gap-4">
+
+        <!-- Track 1: Technical -->
+        <div class="rounded-2xl bg-white shadow-card border-t-4 border-brand overflow-hidden">
+          <div class="bg-brand text-white px-4 py-2.5 font-black flex items-center justify-between"><span><span class="num">1</span> · المسار التقني</span><span class="text-[11px] font-bold bg-white/20 px-2 py-0.5 rounded-full">CTO</span></div>
+          <div class="p-3 space-y-3 text-[12.5px]">
+            <div><div class="font-bold text-brand-dark"><span class="num">1.1</span> محرّك Serve Sense</div>
+              <ul class="mt-1 space-y-1 text-ink-700">
+                <li><span class="num text-ink-400">1.1.1</span> الموجّه + سُلّم الخطورة (لهجة سعودية)</li>
+                <li><span class="num text-ink-400">1.1.2</span> عقل التسعير + الإرساء <span class="en">(RAG)</span></li>
+                <li><span class="num text-ink-400">1.1.3</span> قاعدة الأسعار المتجهة <span class="en">price_items</span></li>
+                <li><span class="num text-ink-400">1.1.4</span> وحدة الصيانة الذاتية <span class="en">(DIY)</span> الآمنة</li>
+                <li><span class="num text-ink-400">1.1.5</span> الحوكمة والتخزين المؤقت</li>
+              </ul></div>
+            <div><div class="font-bold text-brand-dark"><span class="num">1.2</span> منصّة Serve Pulse</div>
+              <ul class="mt-1 space-y-1 text-ink-700">
+                <li><span class="num text-ink-400">1.2.1</span> سجل الأصول + <span class="en">CMMS</span></li>
+                <li><span class="num text-ink-400">1.2.2</span> أوامر العمل والجدولة</li>
+                <li><span class="num text-ink-400">1.2.3</span> اتفاقيات <span class="en">SLA</span> والامتثال</li>
+                <li><span class="num text-ink-400">1.2.4</span> بوّابة الساكن + <span class="en">BI</span></li>
+              </ul></div>
+            <div><div class="font-bold text-brand-dark"><span class="num">1.3</span> واجهة الشركاء وسوق القطع</div>
+              <ul class="mt-1 space-y-1 text-ink-700">
+                <li><span class="num text-ink-400">1.3.1</span> واجهة التكامل <span class="en">(API)</span></li>
+                <li><span class="num text-ink-400">1.3.2</span> كتالوج القطع + المخزون</li>
+                <li><span class="num text-ink-400">1.3.3</span> ربط الموردين</li>
+              </ul></div>
+            <div><div class="font-bold text-brand-dark"><span class="num">1.4</span> تطبيقا العميل والمزوّد</div>
+              <ul class="mt-1 space-y-1 text-ink-700">
+                <li><span class="num text-ink-400">1.4.1</span> تطبيق العميل (حجز/تتبّع)</li>
+                <li><span class="num text-ink-400">1.4.2</span> تطبيق المزوّد (إسناد/مسارات)</li>
+                <li><span class="num text-ink-400">1.4.3</span> بوّابة الدفع + المحفظة</li>
+              </ul></div>
+            <div><div class="font-bold text-brand-dark"><span class="num">1.5</span> البنية التحتية والبيانات</div>
+              <ul class="mt-1 space-y-1 text-ink-700">
+                <li><span class="num text-ink-400">1.5.1</span> السحابة والأمن <span class="en">(PDPL)</span></li>
+                <li><span class="num text-ink-400">1.5.2</span> محرّك الإسناد والتسعير المركزي</li>
+                <li><span class="num text-ink-400">1.5.3</span> لوحات <span class="en">BI</span> والتقارير</li>
+              </ul></div>
+          </div>
+        </div>
+
+        <!-- Track 2: Legal -->
+        <div class="rounded-2xl bg-white shadow-card border-t-4 border-gold overflow-hidden">
+          <div class="bg-gold text-ink-900 px-4 py-2.5 font-black flex items-center justify-between"><span><span class="num">2</span> · المسار القانوني والتنظيمي</span><span class="text-[11px] font-bold bg-ink-900/15 px-2 py-0.5 rounded-full">مستشار قانوني</span></div>
+          <div class="p-3 space-y-3 text-[12.5px]">
+            <div><div class="font-bold text-gold-dark"><span class="num">2.1</span> حزمة العقود والاتفاقيات</div>
+              <ul class="mt-1 space-y-1 text-ink-700">
+                <li><span class="num text-ink-400">2.1.1</span> اتفاقية الخدمات الرئيسية <span class="en">(MSA)</span></li>
+                <li><span class="num text-ink-400">2.1.2</span> اتفاقية مستوى الخدمة <span class="en">(SLA)</span></li>
+                <li><span class="num text-ink-400">2.1.3</span> معالجة البيانات <span class="en">(DPA)</span> + الملاحق</li>
+                <li><span class="num text-ink-400">2.1.4</span> عقد المزوّد ومدوّنة السلوك</li>
+              </ul></div>
+            <div><div class="font-bold text-gold-dark"><span class="num">2.2</span> الفوترة الإلكترونية</div>
+              <ul class="mt-1 space-y-1 text-ink-700">
+                <li><span class="num text-ink-400">2.2.1</span> تكامل <span class="en">ZATCA</span> (المرحلة 1 — الإصدار)</li>
+                <li><span class="num text-ink-400">2.2.2</span> الربط (المرحلة 2 — التكامل)</li>
+                <li><span class="num text-ink-400">2.2.3</span> ضريبة القيمة المضافة والتقارير</li>
+              </ul></div>
+            <div><div class="font-bold text-gold-dark"><span class="num">2.3</span> حماية المستهلك والخصوصية</div>
+              <ul class="mt-1 space-y-1 text-ink-700">
+                <li><span class="num text-ink-400">2.3.1</span> الشروط والأحكام <span class="en">(ToS)</span></li>
+                <li><span class="num text-ink-400">2.3.2</span> سياسة الخصوصية + الاستخدام المقبول</li>
+                <li><span class="num text-ink-400">2.3.3</span> سياسة الاسترجاع والضمان</li>
+              </ul></div>
+            <div><div class="font-bold text-gold-dark"><span class="num">2.4</span> التراخيص والتكاملات الحكومية</div>
+              <ul class="mt-1 space-y-1 text-ink-700">
+                <li><span class="num text-ink-400">2.4.1</span> اعتماد + هيئة المنشآت</li>
+                <li><span class="num text-ink-400">2.4.2</span> توثيق العمالة <span class="en">(MHRSD)</span></li>
+                <li><span class="num text-ink-400">2.4.3</span> مكافحة الرشوة وغسل الأموال</li>
+              </ul></div>
+            <div><div class="font-bold text-gold-dark"><span class="num">2.5</span> سياسة الفئات والمستويات</div>
+              <ul class="mt-1 space-y-1 text-ink-700">
+                <li><span class="num text-ink-400">2.5.1</span> معايير التصنيف القانونية</li>
+                <li><span class="num text-ink-400">2.5.2</span> شروط الترقية والتخفيض</li>
+              </ul></div>
+          </div>
+        </div>
+
+        <!-- Track 3: Operational -->
+        <div class="rounded-2xl bg-white shadow-card border-t-4 border-ok overflow-hidden">
+          <div class="bg-ok text-white px-4 py-2.5 font-black flex items-center justify-between"><span><span class="num">3</span> · المسار التشغيلي</span><span class="text-[11px] font-bold bg-white/20 px-2 py-0.5 rounded-full">COO</span></div>
+          <div class="p-3 space-y-3 text-[12.5px]">
+            <div><div class="font-bold text-ok"><span class="num">3.1</span> شبكة المزوّدين</div>
+              <ul class="mt-1 space-y-1 text-ink-700">
+                <li><span class="num text-ink-400">3.1.1</span> معايير التأهيل والفحص</li>
+                <li><span class="num text-ink-400">3.1.2</span> التعاقد والإعداد <span class="en">(Onboarding)</span></li>
+                <li><span class="num text-ink-400">3.1.3</span> التدريب والاعتماد المهني</li>
+              </ul></div>
+            <div><div class="font-bold text-ok"><span class="num">3.2</span> برنامج المستويات الستة</div>
+              <ul class="mt-1 space-y-1 text-ink-700">
+                <li><span class="num text-ink-400">3.2.1</span> مصفوفة المستويات ومؤشّراتها</li>
+                <li><span class="num text-ink-400">3.2.2</span> محرّك أولوية توزيع الطلبات</li>
+                <li><span class="num text-ink-400">3.2.3</span> أتمتة الإنذار والتخفيض <span class="en">(Cron)</span></li>
+              </ul></div>
+            <div><div class="font-bold text-ok"><span class="num">3.3</span> الجودة و<span class="en">SLA</span> والتدقيق</div>
+              <ul class="mt-1 space-y-1 text-ink-700">
+                <li><span class="num text-ink-400">3.3.1</span> إطار <span class="en">Serve Guarantee</span></li>
+                <li><span class="num text-ink-400">3.3.2</span> التدقيق الميداني وجودة التنفيذ</li>
+                <li><span class="num text-ink-400">3.3.3</span> معالجة الشكاوى والتصعيد</li>
+              </ul></div>
+            <div><div class="font-bold text-ok"><span class="num">3.4</span> سوق القطع والعمالة (تشغيل)</div>
+              <ul class="mt-1 space-y-1 text-ink-700">
+                <li><span class="num text-ink-400">3.4.1</span> سلسلة الإمداد والمخزون</li>
+                <li><span class="num text-ink-400">3.4.2</span> التسعير واللوجستيات</li>
+              </ul></div>
+            <div><div class="font-bold text-ok"><span class="num">3.5</span> الدعم ومركز العمليات</div>
+              <ul class="mt-1 space-y-1 text-ink-700">
+                <li><span class="num text-ink-400">3.5.1</span> مركز الاتصال والدعم</li>
+                <li><span class="num text-ink-400">3.5.2</span> لوحات المراقبة التشغيلية</li>
+              </ul></div>
+            <div><div class="font-bold text-ok"><span class="num">3.6</span> الإطلاق التحفيزي والتسويق</div>
+              <ul class="mt-1 space-y-1 text-ink-700">
+                <li><span class="num text-ink-400">3.6.1</span> آلية الإطلاق التحفيزي</li>
+                <li><span class="num text-ink-400">3.6.2</span> اكتساب أوّل دفعة عملاء</li>
+                <li><span class="num text-ink-400">3.6.3</span> قياس الأثر والتحويل</li>
+              </ul></div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-3 rounded-xl bg-paper border border-ink-300/40 p-3 text-[12px] text-ink-600 flex flex-wrap items-center gap-x-5 gap-y-1">
+        <span class="font-bold text-ink-700">دليل الترميز:</span>
+        <span><span class="num font-bold">0</span> الهدف ·</span>
+        <span><span class="num font-bold">س</span> المسار ·</span>
+        <span><span class="num font-bold">س.ص</span> حزمة عمل <span class="en">(WP)</span> ·</span>
+        <span><span class="num font-bold">س.ص.ع</span> مهمة قابلة للإسناد — لكلٍّ مسؤولٌ ومخرجٌ واحد.</span>
       </div>
     </div>
 
@@ -259,20 +402,77 @@
       <p class="text-[13px] text-ink-500">ملاحظة سيرف: نُبقي الجدولة <strong>مربوطةً ببوّابات الإنجاز لا بتواريخ صارمة</strong> — فالانتقال بين المراحل يُكتسب بالإنجاز، والمسار الحرج يُدار بالأولوية والاعتمادية.</p>
     </div>
 
-    <!-- mini gantt visual -->
+    <!-- full gantt visual -->
     <div class="rounded-2xl bg-paper border border-ink-300/40 shadow-card p-5">
-      <div class="text-xs font-bold text-ink-500 tracking-widest uppercase mb-3">مثال مبسّط · أشرطة جانت + المسار الحرج</div>
-      <div class="space-y-2.5 text-[12px]">
-        <div class="grid grid-cols-[120px_1fr] items-center gap-2"><span class="font-bold">التأسيس</span><div class="h-5 rounded bg-brand" style="width:30%"></div></div>
-        <div class="grid grid-cols-[120px_1fr] items-center gap-2"><span class="font-bold">التشغيل والجودة</span><div class="h-5 rounded bg-brand ring-2 ring-danger" style="width:45%;margin-inline-start:22%"></div></div>
-        <div class="grid grid-cols-[120px_1fr] items-center gap-2"><span class="font-bold">الإطلاق التحفيزي</span><div class="h-5 rounded bg-gold ring-2 ring-danger" style="width:38%;margin-inline-start:55%"></div></div>
-        <div class="grid grid-cols-[120px_1fr] items-center gap-2"><span class="font-bold">الاشتراكات</span><div class="h-5 rounded bg-ok ring-2 ring-danger" style="width:35%;margin-inline-start:72%"></div></div>
-        <div class="grid grid-cols-[120px_1fr] items-center gap-2"><span class="text-ink-500">سوق القطع (متوازٍ)</span><div class="h-5 rounded bg-ink-300" style="width:28%;margin-inline-start:50%"></div></div>
+      <div class="flex items-center justify-between mb-3">
+        <div class="text-xs font-bold text-ink-500 tracking-widest uppercase">مخطط جانت — أنشطة المشروع العشرة</div>
+        <div class="text-[11px] text-ink-500">المقياس: <span class="num font-bold">20</span> وحدة جهد (مربوطة ببوّابات)</div>
       </div>
-      <div class="mt-4 flex items-center gap-4 text-[11px] text-ink-600">
-        <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm ring-2 ring-danger bg-white"></span> المسار الحرج</span>
-        <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-ink-300"></span> مسار متوازٍ غير حرج</span>
+      <!-- scale header -->
+      <div class="grid grid-cols-[150px_1fr] items-center gap-2 text-[10px] text-ink-400 mb-1">
+        <span></span>
+        <div class="grid grid-cols-4 text-center"><span>بوّابة ١</span><span>بوّابة ٢</span><span>بوّابة ٣</span><span>بوّابة ٤</span></div>
       </div>
+      <div class="space-y-1.5 text-[11.5px]">
+        <div class="grid grid-cols-[150px_1fr] items-center gap-2"><span class="font-bold"><span class="num text-ink-400">T1</span> البنية والأمن</span><div class="h-4 rounded bg-brand ring-2 ring-danger" style="width:20%"></div></div>
+        <div class="grid grid-cols-[150px_1fr] items-center gap-2"><span class="text-gold-dark"><span class="num text-ink-400">L1</span> الحزمة القانونية</span><div class="h-4 rounded bg-gold" style="width:25%"></div></div>
+        <div class="grid grid-cols-[150px_1fr] items-center gap-2"><span class="font-bold"><span class="num text-ink-400">T2</span> الإسناد والتسعير</span><div class="h-4 rounded bg-brand ring-2 ring-danger" style="width:15%;margin-inline-start:20%"></div></div>
+        <div class="grid grid-cols-[150px_1fr] items-center gap-2"><span><span class="num text-ink-400">T4</span> منصّة Pulse</span><div class="h-4 rounded bg-brand/70" style="width:35%;margin-inline-start:20%"></div></div>
+        <div class="grid grid-cols-[150px_1fr] items-center gap-2"><span><span class="num text-ink-400">T5</span> API + سوق القطع</span><div class="h-4 rounded bg-brand/70" style="width:25%;margin-inline-start:20%"></div></div>
+        <div class="grid grid-cols-[150px_1fr] items-center gap-2"><span class="text-ok"><span class="num text-ink-400">O1</span> المزوّدون + المستويات</span><div class="h-4 rounded bg-ok/80" style="width:25%;margin-inline-start:25%"></div></div>
+        <div class="grid grid-cols-[150px_1fr] items-center gap-2"><span><span class="num text-ink-400">T3</span> محرّك Sense</span><div class="h-4 rounded bg-brand/70" style="width:40%;margin-inline-start:35%"></div></div>
+        <div class="grid grid-cols-[150px_1fr] items-center gap-2"><span class="font-bold"><span class="num text-ink-400">T6</span> تطبيقا العميل/المزوّد</span><div class="h-4 rounded bg-brand ring-2 ring-danger" style="width:30%;margin-inline-start:35%"></div></div>
+        <div class="grid grid-cols-[150px_1fr] items-center gap-2"><span class="font-bold text-ok"><span class="num text-ink-400">O2</span> الجودة وSLA</span><div class="h-4 rounded bg-ok ring-2 ring-danger" style="width:15%;margin-inline-start:65%"></div></div>
+        <div class="grid grid-cols-[150px_1fr] items-center gap-2"><span class="font-bold text-gold-dark"><span class="num text-ink-400">O3</span> الإطلاق التحفيزي</span><div class="h-4 rounded bg-gold ring-2 ring-danger" style="width:20%;margin-inline-start:80%"></div></div>
+      </div>
+      <div class="mt-4 flex items-center flex-wrap gap-x-4 gap-y-1.5 text-[11px] text-ink-600">
+        <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm ring-2 ring-danger bg-white"></span> على المسار الحرج</span>
+        <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-brand"></span> تقني</span>
+        <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-gold"></span> قانوني</span>
+        <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-ok"></span> تشغيلي</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FULL CPM table -->
+  <div class="mt-8">
+    <div class="text-xs font-bold text-ink-500 tracking-widest uppercase mb-3">جدول المسار الحرج <span class="en">(CPM)</span> — حساب البداية/النهاية المبكّرة والمتأخّرة والطفو</div>
+    <div class="overflow-x-auto rounded-2xl bg-white shadow-card border border-ink-300/30">
+      <table class="w-full text-[12.5px] min-w-[760px]">
+        <thead class="bg-ink-900 text-white text-[11.5px]">
+          <tr>
+            <th class="text-right p-3 font-bold">النشاط</th>
+            <th class="text-center p-2 font-bold">المدّة</th>
+            <th class="text-center p-2 font-bold">يعتمد على</th>
+            <th class="text-center p-2 font-bold" title="Early Start">ES</th>
+            <th class="text-center p-2 font-bold" title="Early Finish">EF</th>
+            <th class="text-center p-2 font-bold" title="Late Start">LS</th>
+            <th class="text-center p-2 font-bold" title="Late Finish">LF</th>
+            <th class="text-center p-2 font-bold" title="Slack">الطفو</th>
+            <th class="text-center p-2 font-bold">حرج؟</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-ink-300/30 num">
+          <tr class="bg-danger-light/60"><td class="p-3 text-right sans"><span class="text-ink-400">T1</span> البنية التحتية والأمن <span class="text-ink-400">(1.5.1)</span></td><td class="text-center">4</td><td class="text-center sans text-ink-500">—</td><td class="text-center">0</td><td class="text-center">4</td><td class="text-center">0</td><td class="text-center">4</td><td class="text-center font-black text-danger">0</td><td class="text-center">✓</td></tr>
+          <tr><td class="p-3 text-right sans"><span class="text-ink-400">L1</span> الحزمة القانونية + ZATCA <span class="text-ink-400">(2.1/2.2)</span></td><td class="text-center">5</td><td class="text-center sans text-ink-500">—</td><td class="text-center">0</td><td class="text-center">5</td><td class="text-center">3</td><td class="text-center">8</td><td class="text-center text-ink-600">3</td><td class="text-center text-ink-300">—</td></tr>
+          <tr class="bg-danger-light/60"><td class="p-3 text-right sans"><span class="text-ink-400">T2</span> الإسناد والتسعير المركزي <span class="text-ink-400">(1.5.2)</span></td><td class="text-center">3</td><td class="text-center sans">T1</td><td class="text-center">4</td><td class="text-center">7</td><td class="text-center">4</td><td class="text-center">7</td><td class="text-center font-black text-danger">0</td><td class="text-center">✓</td></tr>
+          <tr><td class="p-3 text-right sans"><span class="text-ink-400">T4</span> منصّة Pulse <span class="text-ink-400">(1.2)</span></td><td class="text-center">7</td><td class="text-center sans">T1</td><td class="text-center">4</td><td class="text-center">11</td><td class="text-center">9</td><td class="text-center">16</td><td class="text-center text-ink-600">5</td><td class="text-center text-ink-300">—</td></tr>
+          <tr><td class="p-3 text-right sans"><span class="text-ink-400">T5</span> API + سوق القطع <span class="text-ink-400">(1.3)</span></td><td class="text-center">5</td><td class="text-center sans">T1</td><td class="text-center">4</td><td class="text-center">9</td><td class="text-center">11</td><td class="text-center">16</td><td class="text-center text-ink-600">7</td><td class="text-center text-ink-300">—</td></tr>
+          <tr><td class="p-3 text-right sans"><span class="text-ink-400">O1</span> شبكة المزوّدين + المستويات <span class="text-ink-400">(3.1/3.2)</span></td><td class="text-center">5</td><td class="text-center sans">L1</td><td class="text-center">5</td><td class="text-center">10</td><td class="text-center">8</td><td class="text-center">13</td><td class="text-center text-ink-600">3</td><td class="text-center text-ink-300">—</td></tr>
+          <tr><td class="p-3 text-right sans"><span class="text-ink-400">T3</span> محرّك Sense <span class="text-ink-400">(1.1)</span></td><td class="text-center">8</td><td class="text-center sans">T2</td><td class="text-center">7</td><td class="text-center">15</td><td class="text-center">8</td><td class="text-center">16</td><td class="text-center text-ink-600">1</td><td class="text-center text-ink-300">—</td></tr>
+          <tr class="bg-danger-light/60"><td class="p-3 text-right sans"><span class="text-ink-400">T6</span> تطبيقا العميل والمزوّد + الدفع <span class="text-ink-400">(1.4)</span></td><td class="text-center">6</td><td class="text-center sans">T2</td><td class="text-center">7</td><td class="text-center">13</td><td class="text-center">7</td><td class="text-center">13</td><td class="text-center font-black text-danger">0</td><td class="text-center">✓</td></tr>
+          <tr class="bg-danger-light/60"><td class="p-3 text-right sans"><span class="text-ink-400">O2</span> الجودة وSLA والتدقيق <span class="text-ink-400">(3.3)</span></td><td class="text-center">3</td><td class="text-center sans">O1, T6</td><td class="text-center">13</td><td class="text-center">16</td><td class="text-center">13</td><td class="text-center">16</td><td class="text-center font-black text-danger">0</td><td class="text-center">✓</td></tr>
+          <tr class="bg-danger-light/60"><td class="p-3 text-right sans"><span class="text-ink-400">O3</span> الإطلاق التحفيزي والتسويق <span class="text-ink-400">(3.6)</span></td><td class="text-center">4</td><td class="text-center sans">O2, T3, T4, T5</td><td class="text-center">16</td><td class="text-center">20</td><td class="text-center">16</td><td class="text-center">20</td><td class="text-center font-black text-danger">0</td><td class="text-center">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mt-4 rounded-2xl bg-ink-900 text-white p-5 flex flex-wrap items-center gap-x-6 gap-y-3">
+      <div class="flex items-center gap-2 text-[13px]">
+        <span class="text-danger-light font-black">المسار الحرج:</span>
+        <span class="font-bold sans">T1 ← T2 ← T6 ← O2 ← O3</span>
+      </div>
+      <div class="text-[13px]"><span class="text-white/60">المدّة الكلّية:</span> <span class="num font-black text-gold-light">20</span> وحدة جهد</div>
+      <div class="text-[12px] text-white/70 leading-relaxed flex-1 min-w-[260px]">أي تأخّرٍ في نشاطٍ على هذا المسار يُؤخّر استيفاء بوّابة الإطلاق بأكمله — بينما تملك الأنشطة غير الحرجة طفواً يُتيح إعادة ترتيب الموارد دون أثرٍ على الموعد النهائي.</div>
     </div>
   </div>
 
@@ -314,33 +514,106 @@
         </div>
       </div>
 
-      <!-- mini kanban board -->
+      <!-- WIP principle card -->
       <div class="rounded-2xl bg-paper border border-ink-300/40 shadow-card p-5">
-        <div class="text-xs font-bold text-ink-500 tracking-widest uppercase mb-3">مثال مبسّط · لوحة كانبان</div>
-        <div class="grid grid-cols-3 gap-2 text-[11.5px]">
-          <div>
-            <div class="rounded-t-lg bg-ink-700 text-white text-center font-bold py-1.5">للتنفيذ</div>
-            <div class="space-y-1.5 mt-1.5">
-              <div class="rounded-md bg-white border border-ink-300/40 px-2 py-1.5 shadow-card">ربط بوّابة الدفع</div>
-              <div class="rounded-md bg-white border border-ink-300/40 px-2 py-1.5 shadow-card">اعتماد مورّد قطع</div>
+        <div class="text-xs font-bold text-ink-500 tracking-widest uppercase mb-3">المبدأ الأقوى · سقف العمل الجاري <span class="en">(WIP)</span></div>
+        <div class="flex items-center gap-3">
+          <div class="num text-5xl font-black text-ok">3</div>
+          <p class="text-[13px] text-ink-700 leading-relaxed">حدٌّ أقصى للبطاقات في عمود «قيد التنفيذ» لكل مسار. تجاوزه ممنوع — لا تبدأ مهمّةً جديدة قبل إنهاء أخرى. هذا ما يمنع تكدّس «نصف المنجز».</p>
+        </div>
+        <div class="mt-4 space-y-2 text-[12px]">
+          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-brand"></span> مسار تقني <span class="text-ink-400 mr-auto en">CTO</span></div>
+          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-gold"></span> مسار قانوني <span class="text-ink-400 mr-auto">مستشار قانوني</span></div>
+          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-ok"></span> مسار تشغيلي <span class="text-ink-400 mr-auto en">COO</span></div>
+        </div>
+        <div class="mt-4 rounded-xl bg-white border border-ink-300/40 p-3 text-[12px] text-ink-600">
+          <strong class="text-ink-800">اجتماع الوقوف اليومي:</strong> ١٥ دقيقة أمام اللوحة — ماذا أنجزتُ؟ ماذا سأنجز؟ ما العائق؟
+        </div>
+      </div>
+    </div>
+
+    <!-- FULL kanban board with swimlanes -->
+    <div class="mt-8">
+      <div class="text-xs font-bold text-ink-500 tracking-widest uppercase mb-3">لوحة كانبان الكاملة — بمسارات السباحة <span class="en">(Swimlanes)</span> وحدود <span class="en">WIP</span></div>
+      <div class="overflow-x-auto rounded-2xl bg-paper border border-ink-300/30 shadow-card p-4">
+        <div class="min-w-[860px]">
+          <!-- column headers -->
+          <div class="grid grid-cols-[110px_repeat(5,1fr)] gap-2 text-[11.5px] font-bold text-center mb-2">
+            <div></div>
+            <div class="rounded-lg bg-ink-300/40 text-ink-700 py-1.5">المتراكمة <span class="text-ink-500 font-normal">(Backlog)</span></div>
+            <div class="rounded-lg bg-ink-700 text-white py-1.5">للتنفيذ <span class="opacity-70 font-normal">· WIP 4</span></div>
+            <div class="rounded-lg bg-gold text-ink-900 py-1.5">قيد التنفيذ <span class="opacity-70 font-normal">· WIP 3</span></div>
+            <div class="rounded-lg bg-brand text-white py-1.5">مراجعة <span class="opacity-70 font-normal">· WIP 2</span></div>
+            <div class="rounded-lg bg-ok text-white py-1.5">منجز <span class="opacity-80 font-normal">(Done)</span></div>
+          </div>
+
+          <!-- swimlane: technical -->
+          <div class="grid grid-cols-[110px_repeat(5,1fr)] gap-2 mb-2">
+            <div class="rounded-lg bg-brand/10 ring-1 ring-brand/30 grid place-items-center text-center text-[11px] font-bold text-brand-dark px-1">تقني<br/><span class="text-ink-400 font-normal en text-[10px]">Technical</span></div>
+            <div class="space-y-1.5">
+              <div class="rounded-md bg-white border-r-[3px] border-brand px-2 py-1.5 shadow-card text-[11px]">بوّابة الساكن + BI <span class="num text-ink-400 block text-[10px]">1.2.4 · م.ع</span></div>
+              <div class="rounded-md bg-white border-r-[3px] border-brand px-2 py-1.5 shadow-card text-[11px]">لوحات BI والتقارير <span class="num text-ink-400 block text-[10px]">1.5.3 · م.ع</span></div>
+            </div>
+            <div class="space-y-1.5">
+              <div class="rounded-md bg-white border-r-[3px] border-brand px-2 py-1.5 shadow-card text-[11px]">واجهة الشركاء (API) <span class="num text-ink-400 block text-[10px]">1.3.1 · ك.ر</span></div>
+              <div class="rounded-md bg-white border-r-[3px] border-brand px-2 py-1.5 shadow-card text-[11px]">ربط بوّابة الدفع <span class="num text-ink-400 block text-[10px]">1.4.3 · ب.ط</span></div>
+            </div>
+            <div class="space-y-1.5">
+              <div class="rounded-md bg-white border-r-[3px] border-brand px-2 py-1.5 shadow-card text-[11px]">عقل التسعير + RAG <span class="num text-ink-400 block text-[10px]">1.1.2 · س.ن</span></div>
+              <div class="rounded-md bg-white border-r-[3px] border-brand px-2 py-1.5 shadow-card text-[11px]">الموجّه + سُلّم الخطورة <span class="num text-ink-400 block text-[10px]">1.1.1 · س.ن</span></div>
+            </div>
+            <div class="space-y-1.5">
+              <div class="rounded-md bg-white border-r-[3px] border-brand px-2 py-1.5 shadow-card text-[11px]">التسعير المركزي <span class="num text-ink-400 block text-[10px]">1.5.2 · م.ع</span></div>
+            </div>
+            <div class="space-y-1.5">
+              <div class="rounded-md bg-white border-r-[3px] border-ok px-2 py-1.5 shadow-card text-[11px] opacity-80">البنية التحتية والأمن <span class="num text-ink-400 block text-[10px]">1.5.1 · م.ع</span></div>
+              <div class="rounded-md bg-white border-r-[3px] border-ok px-2 py-1.5 shadow-card text-[11px] opacity-80">قاعدة price_items <span class="num text-ink-400 block text-[10px]">1.1.3 · س.ن</span></div>
             </div>
           </div>
-          <div>
-            <div class="rounded-t-lg bg-gold text-ink-900 text-center font-bold py-1.5">قيد التنفيذ</div>
-            <div class="space-y-1.5 mt-1.5">
-              <div class="rounded-md bg-white border border-gold/40 px-2 py-1.5 shadow-card">واجهة الشركاء <span class="en">(API)</span></div>
-              <div class="rounded-md bg-white border border-gold/40 px-2 py-1.5 shadow-card">سكربت التشخيص</div>
+
+          <!-- swimlane: legal -->
+          <div class="grid grid-cols-[110px_repeat(5,1fr)] gap-2 mb-2">
+            <div class="rounded-lg bg-gold/15 ring-1 ring-gold/40 grid place-items-center text-center text-[11px] font-bold text-gold-dark px-1">قانوني<br/><span class="text-ink-400 font-normal en text-[10px]">Legal</span></div>
+            <div class="space-y-1.5">
+              <div class="rounded-md bg-white border-r-[3px] border-gold px-2 py-1.5 shadow-card text-[11px]">تكامل اعتماد الحكومي <span class="num text-ink-400 block text-[10px]">2.4.1 · ل.ح</span></div>
+            </div>
+            <div class="space-y-1.5">
+              <div class="rounded-md bg-white border-r-[3px] border-gold px-2 py-1.5 shadow-card text-[11px]">الفوترة ZATCA — مرحلة 2 <span class="num text-ink-400 block text-[10px]">2.2.2 · ل.ح</span></div>
+            </div>
+            <div class="space-y-1.5">
+              <div class="rounded-md bg-white border-r-[3px] border-gold px-2 py-1.5 shadow-card text-[11px]">حزمة العقود MSA/SLA <span class="num text-ink-400 block text-[10px]">2.1.1 · ل.ح</span></div>
+            </div>
+            <div class="space-y-1.5"></div>
+            <div class="space-y-1.5">
+              <div class="rounded-md bg-white border-r-[3px] border-ok px-2 py-1.5 shadow-card text-[11px] opacity-80">حماية المستهلك والخصوصية <span class="num text-ink-400 block text-[10px]">2.3.1 · ل.ح</span></div>
             </div>
           </div>
-          <div>
-            <div class="rounded-t-lg bg-ok text-white text-center font-bold py-1.5">منجز</div>
-            <div class="space-y-1.5 mt-1.5">
-              <div class="rounded-md bg-white border border-ok/40 px-2 py-1.5 shadow-card">التسعير المركزي</div>
-              <div class="rounded-md bg-white border border-ok/40 px-2 py-1.5 shadow-card">نظام الفئات</div>
+
+          <!-- swimlane: operational -->
+          <div class="grid grid-cols-[110px_repeat(5,1fr)] gap-2">
+            <div class="rounded-lg bg-ok/12 ring-1 ring-ok/40 grid place-items-center text-center text-[11px] font-bold text-ok px-1">تشغيلي<br/><span class="text-ink-400 font-normal en text-[10px]">Operational</span></div>
+            <div class="space-y-1.5">
+              <div class="rounded-md bg-white border-r-[3px] border-ok px-2 py-1.5 shadow-card text-[11px]">تشغيل سوق القطع <span class="num text-ink-400 block text-[10px]">3.4.1 · أ.س</span></div>
+            </div>
+            <div class="space-y-1.5">
+              <div class="rounded-md bg-white border-r-[3px] border-ok px-2 py-1.5 shadow-card text-[11px]">تأهيل دفعة مزوّدين <span class="num text-ink-400 block text-[10px]">3.1.1 · ن.ع</span></div>
+            </div>
+            <div class="space-y-1.5">
+              <div class="rounded-md bg-white border-r-[3px] border-ok px-2 py-1.5 shadow-card text-[11px]">محرّك توزيع الطلبات <span class="num text-ink-400 block text-[10px]">3.2.2 · ن.ع</span></div>
+            </div>
+            <div class="space-y-1.5"></div>
+            <div class="space-y-1.5">
+              <div class="rounded-md bg-white border-r-[3px] border-ok px-2 py-1.5 shadow-card text-[11px] opacity-80">إطار الجودة وSLA <span class="num text-ink-400 block text-[10px]">3.3.1 · أ.س</span></div>
             </div>
           </div>
         </div>
-        <div class="mt-3 text-[11px] text-ink-500 text-center">سقف العمل الجاري <span class="en">(WIP)</span> = ٣ بطاقات لكل عمود — يمنع التشتّت.</div>
+      </div>
+      <!-- one thread connecting the 3 layers -->
+      <div class="mt-4 rounded-2xl bg-gradient-to-l from-brand-ghost to-gold-ghost ring-1 ring-brand/20 p-4 text-[13px] text-ink-700">
+        <strong class="text-ink-900">الخيط الواحد يربط الطبقات الثلاث:</strong>
+        مهمّة <span class="num font-bold text-brand-dark">1.1.2</span> (عقل التسعير) في القاموس ←
+        تظهر كنشاط <span class="num font-bold">T3</span> على المسار الزمني (طفو ١ — قرب الحرج) ←
+        وتُتابَع يومياً كبطاقة في عمود «قيد التنفيذ» بمسار «تقني». هكذا لا تنفصل الرؤية عن التنفيذ.
       </div>
     </div>
 
