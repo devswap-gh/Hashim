@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>خارطة الطريق والمنهجيات والأدوات — سيرف | Roadmap & PM Tools</title>
+<meta name="description" content="خارطة طريق سيرف: تحويل الرؤية الاستراتيجية الكلّية إلى تنفيذ يومي دقيق عبر أنظمة بصرية — هيكل تجزئة العمل (WBS)، مخطط جانت والمسار الحرج (CPM)، ولوحات كانبان — مع الأدوات المرشّحة." />
+<meta name="theme-color" content="#0A2540" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Tajawal', 'Inter', 'system-ui', 'sans-serif'],
+          latin: ['Inter', 'system-ui', 'sans-serif'],
+        },
+        colors: {
+          ink: { 900: '#0A2540', 800: '#11314F', 700: '#1B3F62', 500: '#3C5A78', 400: '#5C7896', 300: '#94A8BD' },
+          brand: { DEFAULT: '#0FA89C', dark: '#0A8378', light: '#1FC7B8', ghost: '#E6F7F5' },
+          gold: { DEFAULT: '#D4A017', dark: '#A77E0F', light: '#F0C04A', ghost: '#FBF3D9' },
+          danger: { DEFAULT: '#C0392B', light: '#FBE7E4' },
+          warn: { DEFAULT: '#D97706', light: '#FEF3E0' },
+          ok: { DEFAULT: '#0F8C5A', light: '#E2F4EB' },
+          paper: '#F7F8FB',
+        },
+        boxShadow: {
+          card: '0 1px 2px rgba(10,37,64,.04), 0 8px 24px rgba(10,37,64,.06)',
+          float: '0 4px 12px rgba(10,37,64,.08), 0 16px 40px rgba(10,37,64,.10)',
+        }
+      }
+    }
+  };
+</script>
+
+<style>
+  html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+  body { font-family: 'Tajawal', 'Inter', system-ui, sans-serif; }
+  .num, .latin { font-family: 'Inter', system-ui, sans-serif; font-feature-settings: 'tnum' on, 'lnum' on; }
+  .en { font-family: 'Inter', sans-serif; direction: ltr; unicode-bidi: isolate; }
+  a:focus-visible, button:focus-visible { outline: 3px solid #0FA89C; outline-offset: 2px; border-radius: 8px; }
+  .hub-card { transition: transform .2s ease, box-shadow .2s ease; }
+  .hub-card:hover { transform: translateY(-4px); }
+  .doc-section { scroll-margin-top: 96px; }
+  @media print { .no-print { display: none !important; } body { background:#fff; } .doc-section{break-inside:avoid;} }
+  ::-webkit-scrollbar { height: 8px; width: 8px; }
+  ::-webkit-scrollbar-thumb { background: #94A8BD; border-radius: 8px; }
+  /* grouped dropdown nav */
+  .navgrp{position:relative;display:inline-block}
+  .navgrp>summary{list-style:none;cursor:pointer;user-select:none}
+  .navgrp>summary::-webkit-details-marker{display:none}
+  .navgrp[open]>summary{background:rgba(255,255,255,.22)}
+  .navmenu{position:absolute;top:calc(100% + 6px);inset-inline-end:0;z-index:60;min-width:200px;background:#0A2540;border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:6px;box-shadow:0 12px 34px rgba(0,0,0,.4);display:flex;flex-direction:column;gap:2px}
+  .navmenu a{display:block;padding:7px 10px;border-radius:8px;white-space:nowrap;color:#fff;font-weight:700;text-align:right}
+  .navmenu a:hover{background:rgba(255,255,255,.12)}
+  .navmenu a[aria-current="page"]{background:#0FA89C;color:#fff}
+</style>
+</head>
+<body class="bg-paper text-ink-900 antialiased">
+
+<!-- ================== MODE BAR ================== -->
+<div class="no-print bg-ink-900 text-white text-xs">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 h-9 flex items-center justify-between">
+    <div class="flex items-center gap-2 flex-wrap">
+      <span class="text-white/60">عرض المحتوى:</span>
+      <a href="present.html" class="px-2.5 py-0.5 rounded-md bg-gold/25 hover:bg-gold/40 ring-1 ring-gold-light/40 transition font-bold text-gold-light">🎤 مسار العرض</a>
+      <a href="home.html" class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 ring-white/15 transition font-bold">🏠 الرئيسية</a>
+      <details class="navgrp"><summary class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 transition font-bold ring-white/15">العرض والتحليل ▾</summary><div class="navmenu"><a href="now.html">📊 سيرف الآن</a><a href="index.html">🎯 العرض التنفيذي</a><a href="details.html">📋 التفاصيل</a></div></details>
+      <details class="navgrp"><summary class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 transition font-bold text-gold-light ring-gold-light/50">الخطط والقرار ▾</summary><div class="navmenu"><a href="plan.html">🧭 الخطة الشاملة</a><a href="launch-plan.html">🗺️ خطة التدشين</a><a href="blueprint.html">📘 المنتج النهائي</a><a href="roadmap-tools.html" aria-current="page">🧰 أدوات الإدارة</a></div></details>
+      <details class="navgrp"><summary class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 transition font-bold ring-white/15">المحرّكات والتوسّع ▾</summary><div class="navmenu"><a href="pulse.html">⚡ محاكاة Pulse</a><a href="sense.html">🧠 محرّك Sense</a><a href="expansion.html">🧩 التوسّع</a></div></details>
+      <details class="navgrp"><summary class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 transition font-bold ring-white/15">المرجع ▾</summary><div class="navmenu"><a href="qa.html">❓ سؤال وجواب</a><a href="legal.html">⚖️ القانوني</a></div></details>
+    </div>
+    <div class="hidden sm:block text-white/60">أدوات إدارة المشروع · Project Management Tools</div>
+  </div>
+</div>
+
+<!-- ================== HEADER (sticky) ================== -->
+<header class="no-print sticky top-9 z-40 backdrop-blur bg-white/90 border-b border-ink-300/30">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 h-14 flex items-center gap-6">
+    <a href="#top" class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand to-ink-900 grid place-items-center text-white font-extrabold">🧰</div>
+      <div class="leading-tight">
+        <div class="font-extrabold text-ink-900 tracking-tight">أدوات إدارة المشروع</div>
+        <div class="text-[11px] text-ink-500">خارطة الطريق · المنهجيات · الأدوات البصرية</div>
+      </div>
+    </a>
+    <nav class="hidden lg:flex items-center gap-1 text-xs font-medium text-ink-700 mr-auto">
+      <a href="#system" class="px-2.5 py-1.5 rounded-lg hover:bg-paper">المنظومة الثلاثية</a>
+      <a href="#wbs" class="px-2.5 py-1.5 rounded-lg hover:bg-paper">التفكيك (WBS)</a>
+      <a href="#gantt" class="px-2.5 py-1.5 rounded-lg hover:bg-paper">جانت والمسار الحرج</a>
+      <a href="#kanban" class="px-2.5 py-1.5 rounded-lg hover:bg-paper">كانبان</a>
+      <a href="#advice" class="px-2.5 py-1.5 rounded-lg hover:bg-paper text-gold-dark font-bold">نصيحة استراتيجية</a>
+    </nav>
+  </div>
+</header>
+
+<span id="top"></span>
+
+<!-- ================== HERO ================== -->
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 -z-10 bg-gradient-to-bl from-ink-900 via-ink-800 to-ink-700"></div>
+  <div class="absolute -z-10 inset-0 opacity-30" style="background-image: radial-gradient(circle at 85% 12%, #0FA89C 0%, transparent 34%), radial-gradient(circle at 10% 90%, #D4A017 0%, transparent 32%);"></div>
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 pt-14 pb-14 lg:pt-20 lg:pb-16 text-white">
+    <div class="inline-flex items-center gap-2 text-[12px] font-bold tracking-wider uppercase bg-white/10 px-3 py-1 rounded-full ring-1 ring-white/15">
+      <span class="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
+      من الرؤية إلى التنفيذ · منظومة إدارة بصرية
+    </div>
+    <h1 class="mt-6 text-3xl md:text-5xl lg:text-6xl font-black leading-[1.15] max-w-4xl">
+      خارطة طريق سيرف:<br/>
+      <span class="text-brand-light">الرؤية</span>، <span class="text-gold">المنهجية</span>، والأدوات.
+    </h1>
+    <p class="mt-5 text-lg md:text-xl text-white/85 max-w-3xl leading-relaxed">
+      المشروع الضخم لا يُدار بالنوايا. تحويل سيرف من <strong class="text-white">رؤيةٍ استراتيجية كلّية</strong> <span class="en">(Macro)</span> إلى <strong class="text-white">تنفيذٍ يوميٍّ دقيق</strong> <span class="en">(Micro)</span> يقوم على ثلاثة أنظمة بصرية تفاعلية: تُفكّك التعقيد، تربط المهام بمواعيدها واعتمادياتها، وتتابع الإنجاز لحظةً بلحظة — فلا تضيع الرؤية في الزحام، ولا يضيع التنفيذ في الغموض.
+    </p>
+
+    <!-- Macro → Micro strip -->
+    <div class="mt-9 grid sm:grid-cols-3 gap-3 max-w-4xl">
+      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-5">
+        <div class="text-2xl">🛰️</div>
+        <div class="font-black mt-2">المستوى الكلّي <span class="en text-xs text-white/55">(Macro)</span></div>
+        <p class="text-[13px] text-white/70 mt-1">الرؤية، المراحل الكبرى، وبوّابات الإنجاز — تُعرض للمستثمرين والشركاء.</p>
+      </div>
+      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-5">
+        <div class="text-2xl">🧭</div>
+        <div class="font-black mt-2">المستوى المرحلي</div>
+        <p class="text-[13px] text-white/70 mt-1">تفكيك كل مرحلة إلى حِزم عمل مترابطة بمواعيد واعتماديات.</p>
+      </div>
+      <div class="rounded-2xl bg-gradient-to-br from-brand/40 to-gold/25 ring-1 ring-gold-light/30 p-5">
+        <div class="text-2xl">⚙️</div>
+        <div class="font-black mt-2">المستوى اليومي <span class="en text-xs text-white/70">(Micro)</span></div>
+        <p class="text-[13px] text-white/80 mt-1">مهامٌ تُنفَّذ وتُتابَع يومياً على لوحات مرئية — يملكها مدراء الأقسام.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== THE 3-LAYER SYSTEM ================== -->
+<section id="system" class="doc-section max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+  <div class="text-[12px] font-bold text-brand tracking-widest uppercase">المنظومة البصرية الثلاثية</div>
+  <h2 class="mt-2 text-2xl lg:text-3xl font-black text-ink-900">ثلاث طبقاتٍ متّصلة — كل طبقة تُغذّي التي تليها</h2>
+  <p class="mt-2 text-ink-600 max-w-3xl">لا أداة واحدة تكفي. التفكيك يُنتج المهام، والجدولة تربطها زمنياً، والتنفيذ اليومي يُحرّكها — وهكذا تنزل الرؤية الكلّية إلى الأرض دون أن تفقد اتجاهها.</p>
+
+  <div class="mt-7 grid lg:grid-cols-3 gap-4">
+    <a href="#wbs" class="hub-card block rounded-2xl bg-white shadow-card border-r-4 border-brand p-6">
+      <div class="flex items-center gap-3"><div class="text-3xl">🌳</div><div class="num text-2xl font-black text-brand-dark">01</div></div>
+      <div class="font-black text-ink-900 mt-3 text-lg">التفكيك — ماذا سنبني؟</div>
+      <p class="text-sm text-ink-600 mt-1">هيكل تجزئة العمل <span class="en">(WBS)</span> والخرائط الذهنية: نُحوّل المشروع الضخم إلى حِزم عملٍ قابلة للإسناد.</p>
+      <div class="mt-3 inline-flex items-center gap-1 text-xs font-bold text-brand-dark group-hover:gap-2">التفصيل والأدوات <span aria-hidden="true">←</span></div>
+    </a>
+    <a href="#gantt" class="hub-card block rounded-2xl bg-white shadow-card border-r-4 border-gold p-6">
+      <div class="flex items-center gap-3"><div class="text-3xl">📊</div><div class="num text-2xl font-black text-gold-dark">02</div></div>
+      <div class="font-black text-ink-900 mt-3 text-lg">التسلسل — متى وبأي ترتيب؟</div>
+      <p class="text-sm text-ink-600 mt-1">مخطط جانت <span class="en">(Gantt)</span> والمسار الحرج <span class="en">(CPM)</span>: نربط المهام بمواعيدها ونكشف الاعتماديات والاختناقات.</p>
+      <div class="mt-3 inline-flex items-center gap-1 text-xs font-bold text-gold-dark">التفصيل والأدوات <span aria-hidden="true">←</span></div>
+    </a>
+    <a href="#kanban" class="hub-card block rounded-2xl bg-white shadow-card border-r-4 border-ok p-6">
+      <div class="flex items-center gap-3"><div class="text-3xl">📋</div><div class="num text-2xl font-black text-ok">03</div></div>
+      <div class="font-black text-ink-900 mt-3 text-lg">التنفيذ — ماذا يجري اليوم؟</div>
+      <p class="text-sm text-ink-600 mt-1">لوحات كانبان <span class="en">(Kanban)</span>: نتابع الإنجاز اليومي بصرياً ونمنع تكدّس المهام.</p>
+      <div class="mt-3 inline-flex items-center gap-1 text-xs font-bold text-ok">التفصيل والأدوات <span aria-hidden="true">←</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- ================== 1) WBS ================== -->
+<section id="wbs" class="doc-section bg-white border-y border-ink-300/30">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+    <div class="flex items-center gap-3">
+      <span class="num text-brand text-3xl font-black">01</span>
+      <div>
+        <h2 class="text-2xl lg:text-3xl font-black text-ink-900">التفكيك — هيكل تجزئة العمل <span class="en">(Work Breakdown Structure — WBS)</span> والخرائط الذهنية</h2>
+        <p class="text-ink-500 text-sm">نُجزّئ المشروع من الأعلى إلى الأسفل حتى تصبح كل حزمة عملٍ واضحةً قابلةً للإسناد والقياس.</p>
+      </div>
+    </div>
+
+    <div class="mt-7 grid lg:grid-cols-2 gap-6 items-start">
+      <div class="text-[15px] text-ink-700 leading-relaxed space-y-3">
+        <p><strong class="text-ink-900">هيكل تجزئة العمل</strong> أسلوبٌ يُفكّك المشروع الكبير إلى مكوّناتٍ هرمية متناقصة الحجم — من الهدف الاستراتيجي، إلى المسارات الكبرى، إلى حِزم العمل، إلى المهام الدقيقة. القاعدة الذهبية: <strong>كل عنصرٍ يُسلَّم لمسؤولٍ واحد، ويُقاس بمخرجٍ ملموس</strong>.</p>
+        <p>في سيرف، نُفكّك المشروع إلى ثلاثة مسارات رئيسية متوازية — <span class="font-bold text-brand-dark">التقنية</span>، و<span class="font-bold text-gold-dark">القانونية والتنظيمية</span>، و<span class="font-bold text-ok">التشغيلية</span> — ثم نُفصّل كلاً منها. الخرائط الذهنية <span class="en">(Mind Maps)</span> تُكمّل ذلك في مرحلة العصف وربط الأفكار قبل تثبيتها في الهيكل.</p>
+        <div class="rounded-2xl bg-brand-ghost border-r-4 border-brand p-4 text-[13.5px]">
+          <strong class="text-brand-dark">القيمة:</strong> لا تُقدّر تكلفةً ولا مدّةً ولا تُسند مسؤوليةً بدقّة قبل أن تكتمل التجزئة — فالهيكل هو الأساس الذي تُبنى عليه الجدولة والميزانية.
+        </div>
+      </div>
+
+      <!-- WBS tree visual -->
+      <div class="rounded-2xl bg-paper border border-ink-300/40 shadow-card p-5">
+        <div class="text-xs font-bold text-ink-500 tracking-widest uppercase mb-3">مثال مبسّط · شجرة التجزئة</div>
+        <div class="rounded-xl bg-ink-900 text-white text-center font-black py-2.5">منصّة سيرف</div>
+        <div class="mt-2 grid grid-cols-3 gap-2 text-center text-[13px] font-bold">
+          <div class="rounded-lg bg-brand text-white py-2">المسار التقني</div>
+          <div class="rounded-lg bg-gold text-ink-900 py-2">المسار القانوني</div>
+          <div class="rounded-lg bg-ok text-white py-2">المسار التشغيلي</div>
+        </div>
+        <div class="mt-2 grid grid-cols-3 gap-2 text-[11.5px] text-ink-700">
+          <ul class="space-y-1.5">
+            <li class="rounded-md bg-white border border-brand/20 px-2 py-1.5">محرّك <span class="en">Sense</span></li>
+            <li class="rounded-md bg-white border border-brand/20 px-2 py-1.5">منصّة <span class="en">Pulse</span></li>
+            <li class="rounded-md bg-white border border-brand/20 px-2 py-1.5">واجهة الشركاء <span class="en">(API)</span></li>
+            <li class="rounded-md bg-white border border-brand/20 px-2 py-1.5">تطبيقا العميل والمزوّد</li>
+          </ul>
+          <ul class="space-y-1.5">
+            <li class="rounded-md bg-white border border-gold/20 px-2 py-1.5">العقود والاتفاقيات</li>
+            <li class="rounded-md bg-white border border-gold/20 px-2 py-1.5">الفوترة الإلكترونية</li>
+            <li class="rounded-md bg-white border border-gold/20 px-2 py-1.5">حماية المستهلك</li>
+            <li class="rounded-md bg-white border border-gold/20 px-2 py-1.5">سياسة الفئات</li>
+          </ul>
+          <ul class="space-y-1.5">
+            <li class="rounded-md bg-white border border-ok/20 px-2 py-1.5">شبكة المزوّدين</li>
+            <li class="rounded-md bg-white border border-ok/20 px-2 py-1.5">الجودة و<span class="en">SLA</span></li>
+            <li class="rounded-md bg-white border border-ok/20 px-2 py-1.5">سوق القطع</li>
+            <li class="rounded-md bg-white border border-ok/20 px-2 py-1.5">الدعم والعمليات</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- tools -->
+    <div class="mt-7">
+      <div class="text-xs font-bold text-ink-500 tracking-widest uppercase">الأدوات المرشّحة لهذه الطبقة</div>
+      <div class="mt-3 grid sm:grid-cols-2 gap-4">
+        <article class="rounded-2xl bg-white shadow-card border-r-4 border-brand p-5">
+          <div class="flex items-center gap-3"><div class="text-2xl">🟨</div><div class="font-black text-ink-900 text-lg"><span class="en">Miro</span> · ميرو</div></div>
+          <p class="text-sm text-ink-600 mt-2">لوحة بيضاء تعاونية لا نهائية — الأفضل لجلسات العصف الذهني، الخرائط الذهنية، وبناء شجرة التجزئة بصرياً مع الفريق في الوقت الحقيقي.</p>
+          <div class="mt-3 text-[12px] text-ink-500"><strong class="text-brand-dark">الأنسب لـ:</strong> التفكير الجماعي البصري والمراحل المبكّرة من التفكيك.</div>
+        </article>
+        <article class="rounded-2xl bg-white shadow-card border-r-4 border-gold p-5">
+          <div class="flex items-center gap-3"><div class="text-2xl">🔷</div><div class="font-black text-ink-900 text-lg"><span class="en">Lucidchart</span> · لوسيدشارت</div></div>
+          <p class="text-sm text-ink-600 mt-2">أداة رسم مخطّطات احترافية — الأفضل لإخراج هيكل تجزئة العمل ومخطّطات العمليات بشكلٍ منظّمٍ ودقيقٍ قابلٍ للمشاركة الرسمية والتوثيق.</p>
+          <div class="mt-3 text-[12px] text-ink-500"><strong class="text-gold-dark">الأنسب لـ:</strong> التوثيق الرسمي للهياكل والعمليات بعد تثبيتها.</div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== 2) GANTT & CPM ================== -->
+<section id="gantt" class="doc-section max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+  <div class="flex items-center gap-3">
+    <span class="num text-gold text-3xl font-black">02</span>
+    <div>
+      <h2 class="text-2xl lg:text-3xl font-black text-ink-900">التسلسل الزمني والاعتماديات — مخطط جانت <span class="en">(Gantt)</span> والمسار الحرج <span class="en">(Critical Path Method — CPM)</span></h2>
+      <p class="text-ink-500 text-sm">بعد أن عرفنا «ماذا»، نُحدّد «بأي ترتيب» — ونكشف المهام التي يتوقّف عليها المشروع كله.</p>
+    </div>
+  </div>
+
+  <div class="mt-7 grid lg:grid-cols-2 gap-6 items-start">
+    <div class="text-[15px] text-ink-700 leading-relaxed space-y-3">
+      <p><strong class="text-ink-900">مخطط جانت</strong> يعرض حِزم العمل كأشرطةٍ أفقية مرتّبة تُظهر تتابعها وتداخلها وروابط الاعتمادية بينها (هذه المهمة لا تبدأ قبل اكتمال تلك).</p>
+      <p><strong class="text-ink-900">المسار الحرج</strong> هو أطول سلسلةٍ من المهام المترابطة التي يتحدّد بها أقصر زمنٍ ممكن لإنجاز المشروع — <strong>أي تأخّرٍ في مهمةٍ على هذا المسار يُؤخّر المشروع بأكمله</strong>. تحديده يُركّز الانتباه والموارد على ما يهمّ فعلاً.</p>
+      <div class="rounded-2xl bg-gold-ghost border-r-4 border-gold p-4 text-[13.5px]">
+        <strong class="text-gold-dark">القيمة:</strong> يمنع الاعتماديات المخفيّة من مفاجأتنا، ويُحوّل «الخطة في الرأس» إلى التزامٍ مرئيٍّ قابلٍ للمتابعة والمساءلة.
+      </div>
+      <p class="text-[13px] text-ink-500">ملاحظة سيرف: نُبقي الجدولة <strong>مربوطةً ببوّابات الإنجاز لا بتواريخ صارمة</strong> — فالانتقال بين المراحل يُكتسب بالإنجاز، والمسار الحرج يُدار بالأولوية والاعتمادية.</p>
+    </div>
+
+    <!-- mini gantt visual -->
+    <div class="rounded-2xl bg-paper border border-ink-300/40 shadow-card p-5">
+      <div class="text-xs font-bold text-ink-500 tracking-widest uppercase mb-3">مثال مبسّط · أشرطة جانت + المسار الحرج</div>
+      <div class="space-y-2.5 text-[12px]">
+        <div class="grid grid-cols-[120px_1fr] items-center gap-2"><span class="font-bold">التأسيس</span><div class="h-5 rounded bg-brand" style="width:30%"></div></div>
+        <div class="grid grid-cols-[120px_1fr] items-center gap-2"><span class="font-bold">التشغيل والجودة</span><div class="h-5 rounded bg-brand ring-2 ring-danger" style="width:45%;margin-inline-start:22%"></div></div>
+        <div class="grid grid-cols-[120px_1fr] items-center gap-2"><span class="font-bold">الإطلاق التحفيزي</span><div class="h-5 rounded bg-gold ring-2 ring-danger" style="width:38%;margin-inline-start:55%"></div></div>
+        <div class="grid grid-cols-[120px_1fr] items-center gap-2"><span class="font-bold">الاشتراكات</span><div class="h-5 rounded bg-ok ring-2 ring-danger" style="width:35%;margin-inline-start:72%"></div></div>
+        <div class="grid grid-cols-[120px_1fr] items-center gap-2"><span class="text-ink-500">سوق القطع (متوازٍ)</span><div class="h-5 rounded bg-ink-300" style="width:28%;margin-inline-start:50%"></div></div>
+      </div>
+      <div class="mt-4 flex items-center gap-4 text-[11px] text-ink-600">
+        <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm ring-2 ring-danger bg-white"></span> المسار الحرج</span>
+        <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-ink-300"></span> مسار متوازٍ غير حرج</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- tools -->
+  <div class="mt-7">
+    <div class="text-xs font-bold text-ink-500 tracking-widest uppercase">الأدوات المرشّحة لهذه الطبقة</div>
+    <div class="mt-3 grid sm:grid-cols-2 gap-4">
+      <article class="rounded-2xl bg-white shadow-card border-r-4 border-gold p-5">
+        <div class="flex items-center gap-3"><div class="text-2xl">🟣</div><div class="font-black text-ink-900 text-lg"><span class="en">ClickUp</span> · كليك أب</div></div>
+        <p class="text-sm text-ink-600 mt-2">منصّة إدارة عملٍ مرنة تجمع مخطّطات جانت والاعتماديات ولوحات المهام في مكانٍ واحد — مرونةٌ عالية في التخصيص تناسب فريقاً ينمو.</p>
+        <div class="mt-3 text-[12px] text-ink-500"><strong class="text-gold-dark">الأنسب لـ:</strong> ربط الجدولة بالاعتماديات مع تتبّع تفصيلي قابل للتخصيص.</div>
+      </article>
+      <article class="rounded-2xl bg-white shadow-card border-r-4 border-brand p-5">
+        <div class="flex items-center gap-3"><div class="text-2xl">🟥</div><div class="font-black text-ink-900 text-lg"><span class="en">Monday.com</span> · مَنداي</div></div>
+        <p class="text-sm text-ink-600 mt-2">منصّة بصرية سهلة التبنّي على مستوى المؤسسة — جداول زمنية وخرائط طريقٍ واضحة، ممتازة لإطلاع الإدارة العليا على الحالة بنظرةٍ واحدة.</p>
+        <div class="mt-3 text-[12px] text-ink-500"><strong class="text-brand-dark">الأنسب لـ:</strong> الوضوح الإداري وخرائط الطريق عبر الفِرق المتعدّدة.</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================== 3) KANBAN ================== -->
+<section id="kanban" class="doc-section bg-white border-y border-ink-300/30">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+    <div class="flex items-center gap-3">
+      <span class="num text-ok text-3xl font-black">03</span>
+      <div>
+        <h2 class="text-2xl lg:text-3xl font-black text-ink-900">العمليات اليومية — لوحات كانبان <span class="en">(Kanban)</span></h2>
+        <p class="text-ink-500 text-sm">هنا ينزل التخطيط إلى الأرض — تتبّعٌ يوميٌّ بصريٌّ لما يجري الآن، ومن يفعله، وأين تتكدّس المهام.</p>
+      </div>
+    </div>
+
+    <div class="mt-7 grid lg:grid-cols-2 gap-6 items-start">
+      <div class="text-[15px] text-ink-700 leading-relaxed space-y-3">
+        <p><strong class="text-ink-900">لوحة كانبان</strong> تُقسّم العمل إلى أعمدةٍ تمثّل حالة المهمة (للتنفيذ ← قيد التنفيذ ← مراجعة ← منجز)، وتنتقل البطاقات بينها. مبدؤها الأقوى: <strong>تحديد سقفٍ للعمل الجاري</strong> <span class="en">(WIP Limit)</span> حتى لا يبدأ الفريق أكثر مما يُنهي.</p>
+        <p>هي الطبقة الأقرب للتنفيذ اليومي: اجتماعٌ يوميٌّ قصير أمام اللوحة يكشف العوائق فوراً، ويُبقي الإيقاع ثابتاً دون اجتماعاتٍ مطوّلة.</p>
+        <div class="rounded-2xl bg-ok-light border-r-4 border-ok p-4 text-[13.5px]">
+          <strong class="text-ok">القيمة:</strong> شفافيةٌ لحظية في التنفيذ، وكشفٌ مبكّر للاختناقات، وإيقاع إنجازٍ منتظم يملكه الفريق نفسه.
+        </div>
+      </div>
+
+      <!-- mini kanban board -->
+      <div class="rounded-2xl bg-paper border border-ink-300/40 shadow-card p-5">
+        <div class="text-xs font-bold text-ink-500 tracking-widest uppercase mb-3">مثال مبسّط · لوحة كانبان</div>
+        <div class="grid grid-cols-3 gap-2 text-[11.5px]">
+          <div>
+            <div class="rounded-t-lg bg-ink-700 text-white text-center font-bold py-1.5">للتنفيذ</div>
+            <div class="space-y-1.5 mt-1.5">
+              <div class="rounded-md bg-white border border-ink-300/40 px-2 py-1.5 shadow-card">ربط بوّابة الدفع</div>
+              <div class="rounded-md bg-white border border-ink-300/40 px-2 py-1.5 shadow-card">اعتماد مورّد قطع</div>
+            </div>
+          </div>
+          <div>
+            <div class="rounded-t-lg bg-gold text-ink-900 text-center font-bold py-1.5">قيد التنفيذ</div>
+            <div class="space-y-1.5 mt-1.5">
+              <div class="rounded-md bg-white border border-gold/40 px-2 py-1.5 shadow-card">واجهة الشركاء <span class="en">(API)</span></div>
+              <div class="rounded-md bg-white border border-gold/40 px-2 py-1.5 shadow-card">سكربت التشخيص</div>
+            </div>
+          </div>
+          <div>
+            <div class="rounded-t-lg bg-ok text-white text-center font-bold py-1.5">منجز</div>
+            <div class="space-y-1.5 mt-1.5">
+              <div class="rounded-md bg-white border border-ok/40 px-2 py-1.5 shadow-card">التسعير المركزي</div>
+              <div class="rounded-md bg-white border border-ok/40 px-2 py-1.5 shadow-card">نظام الفئات</div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-3 text-[11px] text-ink-500 text-center">سقف العمل الجاري <span class="en">(WIP)</span> = ٣ بطاقات لكل عمود — يمنع التشتّت.</div>
+      </div>
+    </div>
+
+    <!-- tool -->
+    <div class="mt-7">
+      <div class="text-xs font-bold text-ink-500 tracking-widest uppercase">الأداة المرشّحة لهذه الطبقة</div>
+      <div class="mt-3 grid sm:grid-cols-2 gap-4">
+        <article class="rounded-2xl bg-white shadow-card border-r-4 border-ok p-5">
+          <div class="flex items-center gap-3"><div class="text-2xl">🟦</div><div class="font-black text-ink-900 text-lg"><span class="en">Jira</span> · جيرا</div></div>
+          <p class="text-sm text-ink-600 mt-2">المعيار الصناعي لإدارة تنفيذ فِرق التطوير — لوحات كانبان وسكرَم متقدّمة، تتبّع دقيق للمهام والأخطاء، وتكاملٌ عميق مع أدوات البرمجة.</p>
+          <div class="mt-3 text-[12px] text-ink-500"><strong class="text-ok">الأنسب لـ:</strong> التنفيذ اليومي للفريق التقني بدقّةٍ وانضباط.</div>
+        </article>
+        <div class="rounded-2xl bg-paper border border-dashed border-ink-300 p-5 flex items-center text-[13px] text-ink-600">
+          💡 <span class="mr-2">القاعدة: أداةٌ واحدة لكل طبقة تكفي. الإفراط في الأدوات يُشتّت الفريق أكثر مما يُنظّمه — اختر الأبسط الذي يفي بالغرض.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== STRATEGIC ADVICE ================== -->
+<section id="advice" class="doc-section">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+    <div class="rounded-3xl bg-gradient-to-bl from-ink-900 via-ink-800 to-ink-700 text-white p-7 lg:p-10 shadow-float relative overflow-hidden">
+      <div class="absolute -z-0 inset-0 opacity-25" style="background-image: radial-gradient(circle at 88% 15%, #D4A017 0%, transparent 38%);"></div>
+      <div class="relative">
+        <div class="inline-flex items-center gap-2 text-[12px] font-bold tracking-widest uppercase bg-gold/20 text-gold-light px-3 py-1 rounded-full ring-1 ring-gold-light/30">⭐ نصيحة إدارية استراتيجية</div>
+        <h2 class="mt-4 text-2xl lg:text-4xl font-black leading-tight max-w-4xl">افصِل بين <span class="text-gold">الخارطة الاستراتيجية</span> و<span class="text-brand-light">خطة المشروع التنفيذية</span>.</h2>
+        <p class="mt-4 text-white/85 text-[15px] lg:text-lg max-w-3xl leading-relaxed">
+          الخلط بينهما أكثر أخطاء إدارة المشاريع الكبرى كلفةً: فإمّا أن يغرق المستثمر في تفاصيلٍ تشغيلية لا تعنيه فيفقد الصورة، أو يبقى مدير القسم بلا تفصيلٍ كافٍ فيضيع التنفيذ. الحل: <strong class="text-white">خارطتان منفصلتان، لكلٍّ جمهورها ومستوى تفصيلها</strong>.
+        </p>
+
+        <div class="mt-8 grid lg:grid-cols-2 gap-5">
+          <div class="rounded-2xl bg-white/10 ring-1 ring-gold-light/25 p-6">
+            <div class="flex items-center gap-2 text-gold-light font-black">🗺️ الخارطة الاستراتيجية</div>
+            <div class="text-[12px] text-white/60 mt-1">الجمهور: المستثمرون · الشركاء · مجلس الإدارة</div>
+            <ul class="mt-4 space-y-2 text-[14px] text-white/85">
+              <li class="flex gap-2"><span class="text-gold-light mt-0.5">•</span> الرؤية، المراحل الكبرى، وبوّابات الإنجاز — لا تواريخ صارمة.</li>
+              <li class="flex gap-2"><span class="text-gold-light mt-0.5">•</span> القيمة والأرقام والخندق الدفاعي والعائد.</li>
+              <li class="flex gap-2"><span class="text-gold-light mt-0.5">•</span> لغةٌ تنفيذية موجزة تُلهم الثقة دون إغراقٍ في التفاصيل.</li>
+              <li class="flex gap-2"><span class="text-gold-light mt-0.5">•</span> مكانها في سيرف: <a href="present.html" class="underline text-gold-light font-bold">مسار العرض</a> و<a href="launch-plan.html" class="underline text-gold-light font-bold">خطة التدشين</a>.</li>
+            </ul>
+          </div>
+          <div class="rounded-2xl bg-white/10 ring-1 ring-brand-light/25 p-6">
+            <div class="flex items-center gap-2 text-brand-light font-black">🛠️ خطة المشروع التنفيذية</div>
+            <div class="text-[12px] text-white/60 mt-1">الجمهور: مدراء الأقسام · فِرق التنفيذ</div>
+            <ul class="mt-4 space-y-2 text-[14px] text-white/85">
+              <li class="flex gap-2"><span class="text-brand-light mt-0.5">•</span> حِزم العمل، المهام الدقيقة، والاعتماديات والمواعيد الداخلية.</li>
+              <li class="flex gap-2"><span class="text-brand-light mt-0.5">•</span> المسؤول لكل مهمة، والمسار الحرج، وسقف العمل الجاري.</li>
+              <li class="flex gap-2"><span class="text-brand-light mt-0.5">•</span> تُدار يومياً على الأدوات الثلاث أعلاه — لا تُعرض للمستثمر.</li>
+              <li class="flex gap-2"><span class="text-brand-light mt-0.5">•</span> تُشتقّ من الخارطة الاستراتيجية، فلا تتعارض معها.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-6 rounded-2xl bg-gold/15 ring-1 ring-gold-light/30 p-5 text-[14px] text-white/90 leading-relaxed">
+          <strong class="text-gold-light">القاعدة الحاكمة:</strong> الخارطة الاستراتيجية تُلهِم وتُقنع، وخطة التنفيذ تُنجِز وتُحاسِب. اربطهما بخيطٍ واحد (كل مهمةٍ تنفيذية تخدم بوّابة إنجازٍ استراتيجية)، واحفظ لكلٍّ جمهورها — تكسب وضوح المستثمر وانضباط الفريق معاً.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== FOOTER ================== -->
+<footer class="bg-ink-900 text-white/75 no-print">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-8 flex flex-wrap items-center justify-between gap-4 text-sm">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand to-gold grid place-items-center text-white font-extrabold">🧰</div>
+      <div><div class="font-bold text-white">أدوات إدارة المشروع · سيرف</div><div class="text-[11px] text-white/55">من الرؤية الكلّية إلى التنفيذ اليومي · WBS · Gantt/CPM · Kanban</div></div>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="home.html" class="px-3 py-1.5 rounded-md bg-white/10 hover:bg-white/20 font-bold text-white text-xs">الرئيسية</a>
+      <button onclick="window.print()" class="px-3 py-1.5 rounded-md bg-gold text-ink-900 font-bold text-xs">طباعة PDF</button>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-4 text-xs text-white/55 flex justify-between flex-wrap gap-2">
+      <div>© 2026 Serve — لوحة المشروع الاستراتيجية.</div>
+      <div>Serve Project Hub · Roadmap &amp; Tools</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){var ds=document.querySelectorAll('.navgrp');
+ds.forEach(function(d){d.addEventListener('toggle',function(){if(d.open)ds.forEach(function(o){if(o!==d)o.open=false;});});});
+document.addEventListener('click',function(e){ds.forEach(function(d){if(d.open&&!d.contains(e.target))d.open=false;});});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')ds.forEach(function(d){d.open=false;});});})();
+</script>
+</body>
+</html>

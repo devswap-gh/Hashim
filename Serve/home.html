@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>سيرف — لوحة المشروع الاستراتيجية | Project Hub</title>
+<meta name="description" content="اللوحة المركزية لمشروع سيرف الاستراتيجي — بوابة منظّمة لكل الوثائق: العرض التنفيذي، التفاصيل، خارطة التنفيذ، القانوني، والمقارنات." />
+<meta name="theme-color" content="#0A2540" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Tajawal', 'Inter', 'system-ui', 'sans-serif'],
+          latin: ['Inter', 'system-ui', 'sans-serif'],
+        },
+        colors: {
+          ink: { 900: '#0A2540', 800: '#11314F', 700: '#1B3F62', 500: '#3C5A78', 400: '#5C7896', 300: '#94A8BD' },
+          brand: { DEFAULT: '#0FA89C', dark: '#0A8378', light: '#1FC7B8', ghost: '#E6F7F5' },
+          gold: { DEFAULT: '#D4A017', dark: '#A77E0F', light: '#F0C04A', ghost: '#FBF3D9' },
+          danger: { DEFAULT: '#C0392B', light: '#FBE7E4' },
+          warn: { DEFAULT: '#D97706', light: '#FEF3E0' },
+          ok: { DEFAULT: '#0F8C5A', light: '#E2F4EB' },
+          paper: '#F7F8FB',
+        },
+        boxShadow: {
+          card: '0 1px 2px rgba(10,37,64,.04), 0 8px 24px rgba(10,37,64,.06)',
+          float: '0 4px 12px rgba(10,37,64,.08), 0 16px 40px rgba(10,37,64,.10)',
+        }
+      }
+    }
+  };
+</script>
+
+<style>
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body { font-family: 'Tajawal', 'Inter', system-ui, sans-serif; }
+  .num, .latin { font-family: 'Inter', system-ui, sans-serif; font-feature-settings: 'tnum' on, 'lnum' on; }
+  a:focus-visible, button:focus-visible { outline: 3px solid #0FA89C; outline-offset: 2px; border-radius: 8px; }
+  .hub-card { transition: transform .2s ease, box-shadow .2s ease; }
+  .hub-card:hover { transform: translateY(-4px); }
+  @media print { .no-print { display: none !important; } body { background:#fff; } }
+  ::-webkit-scrollbar { height: 8px; width: 8px; }
+  ::-webkit-scrollbar-thumb { background: #94A8BD; border-radius: 8px; }
+  /* grouped dropdown nav */
+  .navgrp{position:relative;display:inline-block}
+  .navgrp>summary{list-style:none;cursor:pointer;user-select:none}
+  .navgrp>summary::-webkit-details-marker{display:none}
+  .navgrp[open]>summary{background:rgba(255,255,255,.22)}
+  .navmenu{position:absolute;top:calc(100% + 6px);inset-inline-end:0;z-index:60;min-width:200px;background:#0A2540;border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:6px;box-shadow:0 12px 34px rgba(0,0,0,.4);display:flex;flex-direction:column;gap:2px}
+  .navmenu a{display:block;padding:7px 10px;border-radius:8px;white-space:nowrap;color:#fff;font-weight:700;text-align:right}
+  .navmenu a:hover{background:rgba(255,255,255,.12)}
+  .navmenu a[aria-current="page"]{background:#0FA89C;color:#fff}
+</style>
+</head>
+<body class="bg-paper text-ink-900 antialiased">
+
+<!-- ================== MODE BAR ================== -->
+<div class="no-print bg-ink-900 text-white text-xs">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 h-9 flex items-center justify-between">
+    <div class="flex items-center gap-2 flex-wrap">
+      <span class="text-white/60">عرض المحتوى:</span>
+      <a href="present.html" class="px-2.5 py-0.5 rounded-md bg-gold/25 hover:bg-gold/40 ring-1 ring-gold-light/40 transition font-bold text-gold-light">🎤 مسار العرض</a>
+      <span class="px-2.5 py-0.5 rounded-md bg-brand text-white font-bold ring-1 ring-brand-light">🏠 الرئيسية</span>
+      <details class="navgrp"><summary class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 transition font-bold ring-white/15">العرض والتحليل ▾</summary><div class="navmenu"><a href="now.html">📊 سيرف الآن</a><a href="index.html">🎯 العرض التنفيذي</a><a href="details.html">📋 التفاصيل</a></div></details>
+      <details class="navgrp"><summary class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 transition font-bold ring-white/15">الخطط والقرار ▾</summary><div class="navmenu"><a href="plan.html">🧭 الخطة الشاملة</a><a href="launch-plan.html">🗺️ خطة التدشين</a><a href="blueprint.html">📘 المنتج النهائي</a><a href="roadmap-tools.html">🧰 أدوات الإدارة</a></div></details>
+      <details class="navgrp"><summary class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 transition font-bold ring-white/15">المحرّكات والتوسّع ▾</summary><div class="navmenu"><a href="pulse.html">⚡ محاكاة Pulse</a><a href="sense.html">🧠 محرّك Sense</a><a href="expansion.html">🧩 التوسّع</a></div></details>
+      <details class="navgrp"><summary class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 transition font-bold ring-white/15">المرجع ▾</summary><div class="navmenu"><a href="qa.html">❓ سؤال وجواب</a><a href="legal.html">⚖️ القانوني</a></div></details>
+    </div>
+    <div class="hidden sm:block text-white/60">لوحة المشروع · Strategic Project Hub</div>
+  </div>
+</div>
+
+<!-- ================== HERO ================== -->
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 -z-10 bg-gradient-to-bl from-ink-900 via-ink-800 to-ink-700"></div>
+  <div class="absolute -z-10 inset-0 opacity-30" style="background-image: radial-gradient(circle at 85% 10%, #0FA89C 0%, transparent 35%), radial-gradient(circle at 10% 90%, #D4A017 0%, transparent 30%);"></div>
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 pt-14 pb-12 lg:pt-20 lg:pb-16 text-white">
+    <div class="flex items-center gap-3">
+      <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand to-gold grid place-items-center text-white font-black text-2xl">س</div>
+      <div>
+        <div class="font-extrabold text-xl tracking-tight">سيرف · Serve</div>
+        <div class="text-[12px] text-white/65">لوحة المشروع الاستراتيجية · Strategic Project Hub</div>
+      </div>
+    </div>
+    <h1 class="mt-8 text-3xl md:text-5xl lg:text-6xl font-black leading-[1.15] max-w-4xl">
+      كل وثائق المشروع<br/>
+      <span class="text-gold">منظّمة</span> في <span class="text-brand-light">مكان واحد</span>.
+    </h1>
+    <p class="mt-5 text-lg md:text-xl text-white/85 max-w-3xl leading-relaxed">
+      7 وثائق تغطّي الاستراتيجية، التنفيذ، القانوني، المقارنات، وسؤال وجواب —
+      تتوّجها <strong class="text-gold-light">صفحة الترشيح الأخير</strong> بالمنتج النهائي.
+    </p>
+
+    <!-- Capstone CTA -->
+    <a href="blueprint.html#final-pick" class="mt-6 inline-flex items-center gap-3 rounded-2xl bg-gradient-to-l from-gold to-gold-dark text-ink-900 px-5 py-3 font-black shadow-float hover:opacity-95 transition">
+      ⭐ ابدأ بالترشيح الأخير — المنتج النهائي لسيرف
+      <span aria-hidden="true">←</span>
+    </a>
+
+    <!-- Quick stats -->
+    <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl">
+      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-4">
+        <div class="text-xs text-white/70">الوثائق الرئيسية</div>
+        <div class="num text-2xl font-extrabold mt-1">7</div>
+      </div>
+      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-4">
+        <div class="text-xs text-white/70">شرائح العرض التنفيذي</div>
+        <div class="num text-2xl font-extrabold mt-1">14</div>
+      </div>
+      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-4">
+        <div class="text-xs text-white/70">وثائق قانونية</div>
+        <div class="num text-2xl font-extrabold mt-1">13 + 7</div>
+        <div class="text-[11px] text-white/55 mt-0.5">وثيقة + ملاحق</div>
+      </div>
+      <div class="rounded-2xl bg-gradient-to-br from-brand/40 to-gold/30 ring-1 ring-white/20 p-4">
+        <div class="text-xs text-white/85">مراحل التنفيذ</div>
+        <div class="num text-2xl font-extrabold mt-1">10</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== START HERE · PATHS BY ROLE ================== -->
+<section class="max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-14">
+  <div class="text-[12px] font-bold text-brand tracking-widest uppercase">ابدأ من هنا · مسارات حسب الدور</div>
+  <h2 class="mt-2 text-2xl lg:text-3xl font-extrabold text-ink-900">ما الذي تريد فعله اليوم؟</h2>
+
+  <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <a href="index.html" class="hub-card rounded-2xl bg-white p-5 shadow-card border-r-4 border-brand block">
+      <div class="text-2xl">🎯</div>
+      <div class="font-bold mt-2 text-ink-900">أعرض على مستثمر</div>
+      <p class="text-xs text-ink-500 mt-1">العرض التنفيذي (14 شريحة) — قصة الاستثمار في 5 دقائق.</p>
+      <div class="mt-3 text-xs font-bold text-brand-dark">افتح Presentation ←</div>
+    </a>
+    <a href="details.html" class="hub-card rounded-2xl bg-white p-5 shadow-card border-r-4 border-gold block">
+      <div class="text-2xl">🔍</div>
+      <div class="font-bold mt-2 text-ink-900">أحلّل بعمق</div>
+      <p class="text-xs text-ink-500 mt-1">التفاصيل الكاملة — السوق، النموذج، الباقات، الاقتصاديات.</p>
+      <div class="mt-3 text-xs font-bold text-gold-dark">افتح التفاصيل ←</div>
+    </a>
+    <a href="launch-plan.html" class="hub-card rounded-2xl bg-white p-5 shadow-card border-r-4 border-ok block">
+      <div class="text-2xl">🗺️</div>
+      <div class="font-bold mt-2 text-ink-900">أنفّذ الخطة</div>
+      <p class="text-xs text-ink-500 mt-1">خطة التدشين — 7 مراحل ببوّابات + التحفيز + التوظيف.</p>
+      <div class="mt-3 text-xs font-bold text-ok">افتح خطة التدشين ←</div>
+    </a>
+    <a href="legal.html" class="hub-card rounded-2xl bg-white p-5 shadow-card border-r-4 border-ink-700 block">
+      <div class="text-2xl">⚖️</div>
+      <div class="font-bold mt-2 text-ink-900">أراجع قانونياً</div>
+      <p class="text-xs text-ink-500 mt-1">الحزمة القانونية — عقود، SLA، سياسات، فئات وتوزيع.</p>
+      <div class="mt-3 text-xs font-bold text-ink-700">افتح القانوني ←</div>
+    </a>
+  </div>
+</section>
+
+<!-- ================== SITE MAP ================== -->
+<section class="bg-white border-y border-ink-300/30">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+    <div class="text-[12px] font-bold text-brand tracking-widest uppercase">خريطة الموقع · Site Map</div>
+    <h2 class="mt-2 text-2xl lg:text-3xl font-extrabold text-ink-900">كل الوثائق — منظّمة في ثلاث عائلات</h2>
+    <p class="mt-2 text-ink-600">13 صفحة مترابطة بشريط تنقّل موحّد. كل بطاقة تفتح وثيقتها مباشرةً.</p>
+
+    <div class="mt-8 text-sm font-black text-brand-dark">① العرض والتحليل</div>
+    <div class="mt-3 grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+      <a href="present.html" class="hub-card rounded-2xl bg-white p-5 shadow-card border-r-4 border-gold block">
+        <div class="text-2xl">🎤</div>
+        <div class="font-bold mt-2 text-ink-900">مسار العرض</div>
+        <p class="text-xs text-ink-500 mt-1">كيف تقدّم الخطة للملّاك + خطة التمويل (أ/ب/ج/الطرح العام).</p>
+        <div class="mt-3 text-xs font-bold text-gold-dark">افتح ←</div>
+      </a>
+      <a href="index.html" class="hub-card rounded-2xl bg-white p-5 shadow-card border-r-4 border-brand block">
+        <div class="text-2xl">🎯</div>
+        <div class="font-bold mt-2 text-ink-900">العرض التنفيذي</div>
+        <p class="text-xs text-ink-500 mt-1">قصة الاستثمار في 14 شريحة مركّزة.</p>
+        <div class="mt-3 text-xs font-bold text-brand-dark">افتح ←</div>
+      </a>
+      <a href="now.html" class="hub-card rounded-2xl bg-white p-5 shadow-card border-r-4 border-brand block">
+        <div class="text-2xl">📊</div>
+        <div class="font-bold mt-2 text-ink-900">سيرف الآن</div>
+        <p class="text-xs text-ink-500 mt-1">الوضع الحالي بالأرقام الحقيقية.</p>
+        <div class="mt-3 text-xs font-bold text-brand-dark">افتح ←</div>
+      </a>
+      <a href="details.html" class="hub-card rounded-2xl bg-white p-5 shadow-card border-r-4 border-gold block">
+        <div class="text-2xl">📋</div>
+        <div class="font-bold mt-2 text-ink-900">التفاصيل</div>
+        <p class="text-xs text-ink-500 mt-1">المرجع الكامل: السوق، النموذج، الباقات، ونموذج الإسناد.</p>
+        <div class="mt-3 text-xs font-bold text-gold-dark">افتح ←</div>
+      </a>
+    </div>
+
+    <div class="mt-8 text-sm font-black text-gold-dark">② الخطط والقرار</div>
+    <div class="mt-3 grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+      <a href="plan.html" class="hub-card rounded-2xl bg-white p-5 shadow-card border-r-4 border-gold block">
+        <div class="text-2xl">🧭</div>
+        <div class="font-bold mt-2 text-ink-900">الخطة الشاملة</div>
+        <p class="text-xs text-ink-500 mt-1">الاتجاه الاستراتيجي من التطبيق إلى المنصّة.</p>
+        <div class="mt-3 text-xs font-bold text-gold-dark">افتح ←</div>
+      </a>
+      <a href="launch-plan.html" class="hub-card rounded-2xl bg-white p-5 shadow-card border-r-4 border-ok block">
+        <div class="text-2xl">🗺️</div>
+        <div class="font-bold mt-2 text-ink-900">خطة التدشين</div>
+        <p class="text-xs text-ink-500 mt-1">7 مراحل ببوّابات + سوق القطع + التحفيز + التوظيف.</p>
+        <div class="mt-3 text-xs font-bold text-ok">افتح ←</div>
+      </a>
+      <a href="blueprint.html" class="hub-card rounded-2xl bg-white p-5 shadow-card border-r-4 border-gold block">
+        <div class="text-2xl">📘</div>
+        <div class="font-bold mt-2 text-ink-900">المنتج النهائي</div>
+        <p class="text-xs text-ink-500 mt-1">المخطط الشامل + الترشيح الأخير (الخلاصة).</p>
+        <div class="mt-3 text-xs font-bold text-gold-dark">افتح ←</div>
+      </a>
+    </div>
+
+    <div class="mt-8 text-sm font-black text-ok">③ المحرّكات والتوسّع والمرجع</div>
+    <div class="mt-3 grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+      <a href="pulse.html" class="hub-card rounded-2xl bg-white p-5 shadow-card border-r-4 border-brand block">
+        <div class="text-2xl">⚡</div>
+        <div class="font-bold mt-2 text-ink-900">محاكاة Pulse</div>
+        <p class="text-xs text-ink-500 mt-1">منصّة إدارة المرافق — محرّك الإيراد المتكرر.</p>
+        <div class="mt-3 text-xs font-bold text-brand-dark">افتح ←</div>
+      </a>
+      <a href="sense.html" class="hub-card rounded-2xl bg-white p-5 shadow-card border-r-4 border-brand block">
+        <div class="text-2xl">🧠</div>
+        <div class="font-bold mt-2 text-ink-900">محرّك Sense</div>
+        <p class="text-xs text-ink-500 mt-1">التشخيص الذكي — المعمارية الكاملة.</p>
+        <div class="mt-3 text-xs font-bold text-brand-dark">افتح ←</div>
+      </a>
+      <a href="expansion.html" class="hub-card rounded-2xl bg-white p-5 shadow-card border-r-4 border-brand block">
+        <div class="text-2xl">🧩</div>
+        <div class="font-bold mt-2 text-ink-900">التوسّع</div>
+        <p class="text-xs text-ink-500 mt-1">قنوات التأمين/التجزئة + خطوط الخدمة الجديدة.</p>
+        <div class="mt-3 text-xs font-bold text-brand-dark">افتح ←</div>
+      </a>
+      <a href="qa.html" class="hub-card rounded-2xl bg-white p-5 shadow-card border-r-4 border-ink-700 block">
+        <div class="text-2xl">❓</div>
+        <div class="font-bold mt-2 text-ink-900">سؤال وجواب</div>
+        <p class="text-xs text-ink-500 mt-1">بنك القرارات الاستراتيجية.</p>
+        <div class="mt-3 text-xs font-bold text-ink-700">افتح ←</div>
+      </a>
+      <a href="legal.html" class="hub-card rounded-2xl bg-white p-5 shadow-card border-r-4 border-ink-700 block">
+        <div class="text-2xl">⚖️</div>
+        <div class="font-bold mt-2 text-ink-900">القانوني</div>
+        <p class="text-xs text-ink-500 mt-1">الحزمة القانونية الكاملة وفق الأنظمة السعودية.</p>
+        <div class="mt-3 text-xs font-bold text-ink-700">افتح ←</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================== RECOMMENDED FLOW ================== -->
+<section class="max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-14">
+  <div class="text-[12px] font-bold text-brand tracking-widest uppercase">المسار الموصى به · Recommended Flow</div>
+  <h2 class="mt-2 text-2xl lg:text-3xl font-extrabold text-ink-900">إذا كنت تقرأ المشروع لأول مرة</h2>
+
+  <div class="mt-6 overflow-x-auto">
+    <div class="min-w-[720px] flex items-stretch gap-2 text-center text-sm">
+      <a href="index.html" class="flex-1 rounded-xl bg-brand text-white p-4 shadow-card hover:bg-brand-dark transition">
+        <div class="num font-black text-lg">1</div><div class="font-bold mt-1">Presentation</div><div class="text-xs opacity-85 mt-1">الصورة الكبيرة</div>
+      </a>
+      <div class="self-center text-ink-300 font-bold">←</div>
+      <a href="details.html" class="flex-1 rounded-xl bg-white border border-ink-300/40 p-4 shadow-card hover:shadow-float transition">
+        <div class="num font-black text-lg text-gold-dark">2</div><div class="font-bold mt-1 text-ink-900">التفاصيل</div><div class="text-xs text-ink-500 mt-1">العمق الكامل</div>
+      </a>
+      <div class="self-center text-ink-300 font-bold">←</div>
+      <a href="plan.html" class="flex-1 rounded-xl bg-white border border-ink-300/40 p-4 shadow-card hover:shadow-float transition">
+        <div class="num font-black text-lg text-brand-dark">3</div><div class="font-bold mt-1 text-ink-900">الخطة الشاملة</div><div class="text-xs text-ink-500 mt-1">الاتجاه الاستراتيجي</div>
+      </a>
+      <div class="self-center text-ink-300 font-bold">←</div>
+      <a href="launch-plan.html" class="flex-1 rounded-xl bg-white border border-ink-300/40 p-4 shadow-card hover:shadow-float transition">
+        <div class="num font-black text-lg text-ok">4</div><div class="font-bold mt-1 text-ink-900">خطة التدشين</div><div class="text-xs text-ink-500 mt-1">كيف ننفّذ</div>
+      </a>
+      <div class="self-center text-ink-300 font-bold">←</div>
+      <a href="legal.html" class="flex-1 rounded-xl bg-white border border-ink-300/40 p-4 shadow-card hover:shadow-float transition">
+        <div class="num font-black text-lg text-ink-700">5</div><div class="font-bold mt-1 text-ink-900">القانوني</div><div class="text-xs text-ink-500 mt-1">قبل الإطلاق</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================== FOOTER ================== -->
+<footer class="bg-ink-900 text-white/75">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-10 grid md:grid-cols-3 gap-6 items-start">
+    <div>
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand to-gold grid place-items-center text-white font-extrabold">س</div>
+        <div class="font-extrabold text-white">سيرف · Serve</div>
+      </div>
+      <p class="mt-3 text-sm text-white/65">لوحة المشروع الاستراتيجية · بوابة منظّمة لكل الوثائق.</p>
+    </div>
+    <div class="text-sm">
+      <div class="font-bold text-white">الوثائق</div>
+      <ul class="mt-2 space-y-1 text-white/75">
+        <li><a class="hover:text-white" href="index.html">→ Presentation (العرض التنفيذي)</a></li>
+        <li><a class="hover:text-white" href="details.html">→ التفاصيل الكاملة</a></li>
+        <li><a class="hover:text-white" href="launch-plan.html#hiring-execution">→ خارطة التنفيذ</a></li>
+        <li><a class="hover:text-white" href="legal.html">→ القانوني B2B</a></li>
+        <li><a class="hover:text-white" href="details.html#assignment-model">→ المقارنات</a></li>
+        <li><a class="hover:text-white" href="qa.html">→ سؤال وجواب</a></li>
+        <li><a class="hover:text-white" href="blueprint.html#final-pick">→ ⭐ الترشيح الأخير</a></li>
+      </ul>
+    </div>
+    <div class="text-sm">
+      <div class="font-bold text-white">عن اللوحة</div>
+      <ul class="mt-2 space-y-1 text-white/75">
+        <li>تحليل CBDO استراتيجي شامل.</li>
+        <li>عربي RTL · Tajawal + Inter.</li>
+        <li>قابل للطباعة PDF من كل صفحة.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-4 text-xs text-white/55 flex justify-between flex-wrap gap-2">
+      <div>© 2026 Serve — لوحة المشروع الاستراتيجية.</div>
+      <div>Serve Project Hub v1.0</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){var ds=document.querySelectorAll('.navgrp');
+ds.forEach(function(d){d.addEventListener('toggle',function(){if(d.open)ds.forEach(function(o){if(o!==d)o.open=false;});});});
+document.addEventListener('click',function(e){ds.forEach(function(d){if(d.open&&!d.contains(e.target))d.open=false;});});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')ds.forEach(function(d){d.open=false;});});})();
+</script>
+</body>
+</html>
