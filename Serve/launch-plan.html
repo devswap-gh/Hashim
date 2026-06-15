@@ -1,0 +1,944 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>خطة التدشين الشاملة — من الوضع الحالي إلى الاكتمال | سيرف</title>
+<meta name="description" content="خطة تدشين سيرف الكاملة: من الوضع الحالي حتى الاكتمال الشامل، عبر مراحل متتالية ببوّابات إنجاز (بلا تواريخ) — تشمل التأسيس، التشغيل، الإطلاق، الاشتراكات، المحرّكات (Pulse/Sense)، التوسّع، والنضج." />
+<meta name="theme-color" content="#0A2540" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+  tailwind.config = {
+    theme: { extend: {
+      fontFamily: { sans: ['Tajawal','Inter','system-ui','sans-serif'], latin: ['Inter','system-ui','sans-serif'] },
+      colors: {
+        ink: { 900:'#0A2540',800:'#11314F',700:'#1B3F62',600:'#2A4A6B',500:'#3C5A78',400:'#5C7896',300:'#94A8BD' },
+        brand: { DEFAULT:'#0FA89C',dark:'#0A8378',light:'#1FC7B8',ghost:'#E6F7F5' },
+        gold: { DEFAULT:'#D4A017',dark:'#A77E0F',light:'#F0C04A',ghost:'#FBF3D9' },
+        danger:{DEFAULT:'#C0392B',light:'#FBE7E4'}, warn:{DEFAULT:'#D97706',light:'#FEF3E0'},
+        ok:{DEFAULT:'#0F8C5A',light:'#E2F4EB'}, paper:'#F7F8FB',
+      },
+      boxShadow:{ card:'0 1px 2px rgba(10,37,64,.04), 0 8px 24px rgba(10,37,64,.06)', float:'0 4px 12px rgba(10,37,64,.08), 0 16px 40px rgba(10,37,64,.10)' }
+    }}
+  };
+</script>
+
+<style>
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+  body { font-family: 'Tajawal','Inter',system-ui,sans-serif; }
+  .num,.latin{ font-family:'Inter',system-ui,sans-serif; font-feature-settings:'tnum' on,'lnum' on; }
+  .en{ font-family:'Inter',sans-serif; direction:ltr; unicode-bidi:isolate; }
+  .doc-section{ scroll-margin-top:90px; }
+  .sec-num{ font-family:'Inter',sans-serif; font-weight:800; }
+  a:focus-visible,button:focus-visible{ outline:3px solid #0FA89C; outline-offset:2px; border-radius:8px; }
+  @media print{ .no-print{display:none!important;} body{background:#fff;} .doc-section{break-inside:avoid;} table{font-size:10px;} }
+  ::-webkit-scrollbar{ height:8px; width:8px; } ::-webkit-scrollbar-thumb{ background:#94A8BD; border-radius:8px; }
+  /* grouped dropdown nav */
+  .navgrp{position:relative;display:inline-block}
+  .navgrp>summary{list-style:none;cursor:pointer;user-select:none}
+  .navgrp>summary::-webkit-details-marker{display:none}
+  .navgrp[open]>summary{background:rgba(255,255,255,.22)}
+  .navmenu{position:absolute;top:calc(100% + 6px);inset-inline-end:0;z-index:60;min-width:200px;background:#0A2540;border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:6px;box-shadow:0 12px 34px rgba(0,0,0,.4);display:flex;flex-direction:column;gap:2px}
+  .navmenu a{display:block;padding:7px 10px;border-radius:8px;white-space:nowrap;color:#fff;font-weight:700;text-align:right}
+  .navmenu a:hover{background:rgba(255,255,255,.12)}
+  .navmenu a[aria-current="page"]{background:#0FA89C;color:#fff}
+</style>
+</head>
+<body class="bg-paper text-ink-900 antialiased">
+
+<!-- ================== MODE BAR ================== -->
+<div class="no-print bg-ink-900 text-white text-xs">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 h-9 flex items-center justify-between">
+    <div class="flex items-center gap-2 flex-wrap">
+      <span class="text-white/60">عرض المحتوى:</span>
+      <a href="present.html" class="px-2.5 py-0.5 rounded-md bg-gold/25 hover:bg-gold/40 ring-1 ring-gold-light/40 transition font-bold text-gold-light">🎤 مسار العرض</a>
+      <a href="home.html" class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 ring-white/15 transition font-bold">🏠 الرئيسية</a>
+      <details class="navgrp"><summary class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 transition font-bold ring-white/15">العرض والتحليل ▾</summary><div class="navmenu"><a href="now.html">📊 سيرف الآن</a><a href="index.html">🎯 العرض التنفيذي</a><a href="details.html">📋 التفاصيل</a></div></details>
+      <details class="navgrp"><summary class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 transition font-bold text-gold-light ring-gold-light/50">الخطط والقرار ▾</summary><div class="navmenu"><a href="plan.html">🧭 الخطة الشاملة</a><a href="launch-plan.html" aria-current="page">🗺️ خطة التدشين</a><a href="blueprint.html">📘 المنتج النهائي</a><a href="roadmap-tools.html">🧰 أدوات الإدارة</a></div></details>
+      <details class="navgrp"><summary class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 transition font-bold ring-white/15">المحرّكات والتوسّع ▾</summary><div class="navmenu"><a href="pulse.html">⚡ محاكاة Pulse</a><a href="sense.html">🧠 محرّك Sense</a><a href="expansion.html">🧩 التوسّع</a></div></details>
+      <details class="navgrp"><summary class="px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-white/20 ring-1 transition font-bold ring-white/15">المرجع ▾</summary><div class="navmenu"><a href="qa.html">❓ سؤال وجواب</a><a href="legal.html">⚖️ القانوني</a></div></details>
+    </div>
+    <div class="hidden sm:block text-white/60">من الوضع الحالي إلى الاكتمال · مراحل بلا تواريخ</div>
+  </div>
+</div>
+
+<!-- ================== HEADER ================== -->
+<header class="no-print sticky top-0 z-40 backdrop-blur bg-white/90 border-b border-ink-300/30">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 h-16 flex items-center gap-4">
+    <a href="#top" class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-gold to-ink-900 grid place-items-center text-white font-extrabold">🗺️</div>
+      <div class="leading-tight">
+        <div class="font-extrabold text-ink-900 tracking-tight">خطة التدشين</div>
+        <div class="text-[11px] text-ink-500">من الوضع الحالي إلى الاكتمال الشامل</div>
+      </div>
+    </a>
+    <nav class="hidden lg:flex items-center gap-1 text-xs font-medium text-ink-700 mr-auto overflow-x-auto">
+      <a href="#start" class="px-2 py-1.5 rounded-lg hover:bg-paper text-gold-dark font-bold">نقطة البداية</a>
+      <a href="#stages" class="px-2 py-1.5 rounded-lg hover:bg-paper">المراحل السبع</a>
+      <a href="#workstreams" class="px-2 py-1.5 rounded-lg hover:bg-paper">المسارات المتوازية</a>
+      <a href="#marketplace" class="px-2 py-1.5 rounded-lg hover:bg-paper">سوق القطع (API)</a>
+      <a href="#gates" class="px-2 py-1.5 rounded-lg hover:bg-paper">بوّابات الانتقال</a>
+      <a href="#end" class="px-2 py-1.5 rounded-lg hover:bg-paper text-brand-dark font-bold">الاكتمال</a>
+    </nav>
+  </div>
+</header>
+
+<span id="top"></span>
+
+<!-- ================== HERO ================== -->
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 -z-10 bg-gradient-to-bl from-ink-900 via-ink-800 to-ink-700"></div>
+  <div class="absolute -z-10 inset-0 opacity-30" style="background-image: radial-gradient(circle at 85% 12%, #D4A017 0%, transparent 34%), radial-gradient(circle at 10% 90%, #0FA89C 0%, transparent 32%);"></div>
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 pt-12 pb-12 lg:pt-16 lg:pb-14 text-white">
+    <div class="inline-flex items-center gap-2 text-[12px] font-bold tracking-wider uppercase bg-white/10 px-3 py-1 rounded-full ring-1 ring-white/15">
+      <span class="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
+      خطة تدشين كاملة · بوّابات إنجاز لا تواريخ
+    </div>
+    <h1 class="mt-6 text-3xl md:text-5xl lg:text-6xl font-black leading-[1.15] max-w-4xl">
+      من <span class="text-brand-light">الوضع الحالي</span> إلى <span class="text-gold">الاكتمال الشامل</span> — مرحلةً مرحلة.
+    </h1>
+    <p class="mt-4 text-base md:text-lg text-white/80 max-w-3xl leading-relaxed">
+      مسار تدشين واحد يجمع كل ما بُني: ضبط الأساس، تشغيل الجودة، الإطلاق التحفيزي، الاشتراكات، محرّكا <span class="en">Pulse</span> و<span class="en">Sense</span>، التوسّع، حتى النضج. <strong>الانتقال بين المراحل ببوّابة إنجاز — لا بتاريخ.</strong>
+    </p>
+    <!-- stage rail -->
+    <div class="mt-8 flex flex-wrap items-center gap-2 text-xs">
+      <span class="px-3 py-1 rounded-full bg-white/10 ring-1 ring-white/15">0 · التأسيس</span><span class="text-white/30">←</span>
+      <span class="px-3 py-1 rounded-full bg-white/10 ring-1 ring-white/15">1 · التشغيل والجودة</span><span class="text-white/30">←</span>
+      <span class="px-3 py-1 rounded-full bg-white/10 ring-1 ring-white/15">2 · الإطلاق التحفيزي</span><span class="text-white/30">←</span>
+      <span class="px-3 py-1 rounded-full bg-white/10 ring-1 ring-white/15">3 · الاشتراكات</span><span class="text-white/30">←</span>
+      <span class="px-3 py-1 rounded-full bg-white/10 ring-1 ring-white/15">4 · المحرّكات</span><span class="text-white/30">←</span>
+      <span class="px-3 py-1 rounded-full bg-white/10 ring-1 ring-white/15">5 · المؤسسي والتوسّع</span><span class="text-white/30">←</span>
+      <span class="px-3 py-1 rounded-full bg-gold text-ink-900 font-bold">6 · النضج</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================== START POINT ================== -->
+<section id="start" class="doc-section max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-14">
+  <div class="rounded-3xl bg-gradient-to-bl from-gold-ghost to-white border-2 border-gold/40 p-6 lg:p-8 shadow-card">
+    <div class="text-xs font-bold text-gold-dark tracking-widest uppercase">🚩 نقطة البداية — الوضع الحالي</div>
+    <h2 class="mt-2 text-2xl lg:text-3xl font-black text-ink-900">نبدأ من قوّة مُثبتة وخطر داهم في آنٍ واحد.</h2>
+    <div class="mt-5 grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+      <div class="rounded-2xl bg-white shadow-card border border-ink-300/40 p-4"><div class="text-xs text-ink-500">القيمة للتكلفة</div><div class="num text-2xl font-black text-ok mt-1">25.4 : 1</div><div class="text-[11px] text-ink-500">محرّك اكتساب نادر</div></div>
+      <div class="rounded-2xl bg-white shadow-card border border-ink-300/40 p-4"><div class="text-xs text-ink-500">معدل الإتمام</div><div class="num text-2xl font-black text-danger mt-1">39.1%</div><div class="text-[11px] text-ink-500">فجوة تنفيذ تُسرّب القيمة</div></div>
+      <div class="rounded-2xl bg-white shadow-card border border-ink-300/40 p-4"><div class="text-xs text-ink-500">فترة الأمان</div><div class="num text-2xl font-black text-warn mt-1">4 أشهر</div><div class="text-[11px] text-ink-500">التمويل ضرورة لا خيار</div></div>
+      <div class="rounded-2xl bg-white shadow-card border border-ink-300/40 p-4"><div class="text-xs text-ink-500">المنافس</div><div class="text-base font-black text-ink-900 mt-1.5 leading-tight">دخل عبر نون</div><div class="text-[11px] text-ink-500">ساعة على نافذة التمايز</div></div>
+    </div>
+    <p class="mt-4 text-sm text-ink-700">الخلاصة: لا نبدأ ببناء ميزات جديدة، بل بـ<strong>إمساك ما نملكه</strong> — إحكام الربحية، إغلاق فجوة التنفيذ، وتأمين السيولة. تفاصيل الأرقام في <a href="now.html" class="text-brand-dark font-bold underline">سيرف الآن</a>.</p>
+  </div>
+</section>
+
+<!-- ================== THE 7 STAGES ================== -->
+<section id="stages" class="doc-section bg-ink-900 text-white">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+    <div class="flex items-center gap-3">
+      <span class="sec-num text-gold text-3xl">01</span>
+      <div>
+        <h2 class="text-2xl lg:text-3xl font-black text-white">مراحل التدشين السبع</h2>
+        <p class="text-white/55 text-sm">كل مرحلة: الهدف · أبرز التنفيذ · بوّابة الانتقال · المرجع · تفصيل التنفيذ.</p>
+      </div>
+    </div>
+
+    <!-- HOW TO READ -->
+    <div class="mt-7 rounded-2xl bg-white/5 ring-1 ring-white/10 p-5">
+      <div class="text-xs font-bold text-gold tracking-widest uppercase">كيف تُقرأ كل بطاقة مرحلة</div>
+      <div class="mt-3 grid sm:grid-cols-2 lg:grid-cols-5 gap-2.5 text-[13px]">
+        <div class="rounded-xl bg-white/5 p-3"><div class="font-black text-white">🎯 الهدف</div><div class="text-white/65 mt-1">لماذا توجد المرحلة — التحوّل الذي تحدثه قبل الانتقال.</div></div>
+        <div class="rounded-xl bg-white/5 p-3"><div class="font-black text-white">⚙️ التنفيذ</div><div class="text-white/65 mt-1">أبرز ما يُبنى أو يُضبط في هذه المرحلة.</div></div>
+        <div class="rounded-xl bg-white/5 p-3"><div class="font-black text-white">🚪 بوّابة الانتقال</div><div class="text-white/65 mt-1">شرط القبول الذي يجب تحقّقه للمرور للتالية — لا تاريخ.</div></div>
+        <div class="rounded-xl bg-white/5 p-3"><div class="font-black text-white">🔗 المرجع</div><div class="text-white/65 mt-1">أين تُقرأ التفاصيل الكاملة في صفحات الخطة.</div></div>
+        <div class="rounded-xl bg-white/5 p-3"><div class="font-black text-white">📋 تفصيل التنفيذ</div><div class="text-white/65 mt-1">المهام + المخرجات + المخاطر والتخفيف + مؤشر القياس.</div></div>
+      </div>
+      <p class="mt-3 text-[13px] text-white/55 leading-relaxed">القاعدة الحاكمة: <strong class="text-white">الانتقال يُكتسب بإنجاز معيار، لا بمرور وقت</strong> — قد تُقصَّر مرحلة أو تطول حسب نضج الأرقام، والمراحل قد تتداخل (راجع <a href="#workstreams" class="text-gold underline">المسارات المتوازية</a>).</p>
+    </div>
+
+    <div class="mt-6 space-y-4">
+
+      <!-- STAGE 0 -->
+      <article class="rounded-3xl bg-white text-ink-900 shadow-float p-5 lg:p-7">
+        <div class="flex flex-wrap items-start justify-between gap-3">
+          <div class="flex items-center gap-4"><div class="num w-12 h-12 rounded-2xl bg-ink-900 text-white grid place-items-center text-xl font-black shrink-0">0</div><div><h3 class="text-lg font-black">التأسيس وإعادة الضبط</h3><div class="en text-xs text-ink-400 font-bold">Foundation Reset</div></div></div>
+        </div>
+        <p class="mt-3 text-[15px] font-bold">الهدف: تحويل الزخم من «نمو هشّ» إلى «نمو قابل للدفاع عنه» قبل أي بناء جديد.</p>
+        <div class="mt-3 grid md:grid-cols-3 gap-2 text-[13px]">
+          <div class="rounded-xl bg-paper border border-ink-300/40 p-3">⚙️ <strong>التنفيذ:</strong> احتساب رسوم قطع الغيار خارج العمولة (هامش 15.9%→18%+)، إغلاق ثغرات التحصيل، تأمين السيولة، وحوكمة قرار واحدة بمالك لكل مسار.</div>
+          <div class="rounded-xl bg-ink-900/5 p-3">🚪 <strong>بوّابة الانتقال:</strong> ربحية وحدة موجبة على كل بند + معدل إتمام في صعود مستقر + عمق سيولة يتجاوز حدّ الخطر.</div>
+          <div class="rounded-xl bg-brand-ghost p-3">🔗 <strong>المرجع:</strong> <a href="plan.html#phases" class="text-brand-dark font-bold underline">الخطة الشاملة P0</a> · <a href="now.html" class="text-brand-dark font-bold underline">الأرقام الحالية</a></div>
+        </div>
+        <div class="mt-3 rounded-2xl bg-paper border border-ink-300/40 p-4">
+          <div class="text-xs font-bold text-ink-500 tracking-widest uppercase">تفصيل التنفيذ</div>
+          <div class="mt-2 grid lg:grid-cols-2 gap-3 text-[13px]">
+            <div><div class="font-bold text-ink-900">📋 المهام التنفيذية</div><ul class="mt-1 space-y-1 text-ink-700"><li class="flex gap-2"><span class="text-brand mt-0.5">•</span> تطبيق رسوم قطع الغيار <strong>5-10% خارج العمولة</strong> ومراجعة كل بند تسعير لضمان هامش موجب.</li><li class="flex gap-2"><span class="text-brand mt-0.5">•</span> ضبط دورة التحصيل: تحويل جزء من القاعدة للدفع المسبق/المحفظة (تحصيل فوري بدل 14 يوماً).</li><li class="flex gap-2"><span class="text-brand mt-0.5">•</span> خفض الحرق التشغيلي (أتمتة الإسناد + تأجيل التوظيف غير الحرج).</li><li class="flex gap-2"><span class="text-brand mt-0.5">•</span> تثبيت حوكمة القرار: مالك واحد لكل مسار + مصفوفة RACI (مصفوفة المسؤوليات: مسؤول/محاسَب/مُستشار/مُطّلع) + اجتماع أسبوعي بمؤشّر واحد.</li></ul></div>
+            <div class="space-y-2">
+              <div class="rounded-lg bg-white border border-ink-300/30 p-2.5"><span class="font-bold text-brand-dark">📦 المخرجات:</span> جدول هامش لكل خدمة، سياسة سيولة مكتوبة، ولوحة حوكمة أسبوعية.</div>
+              <div class="rounded-lg bg-white border border-ink-300/30 p-2.5"><span class="font-bold text-danger">⚠️ المخاطر والتخفيف:</span> مقاومة الفنيين لرسوم القطع ← تواصل واضح بالقيمة وتدرّج التطبيق.</div>
+              <div class="rounded-lg bg-white border border-ink-300/30 p-2.5"><span class="font-bold text-ok">📊 مؤشر القياس:</span> الهامش التشغيلي 15.9%→18%+ وفترة الأمان تخرج من المنطقة الحرجة (4 أشهر).</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- STAGE 1 -->
+      <article class="rounded-3xl bg-white text-ink-900 shadow-float p-5 lg:p-7">
+        <div class="flex items-center gap-4"><div class="num w-12 h-12 rounded-2xl bg-brand text-white grid place-items-center text-xl font-black shrink-0">1</div><div><h3 class="text-lg font-black">التشغيل والجودة — تجهيز الشبكة</h3><div class="en text-xs text-ink-400 font-bold">Operations &amp; Quality</div></div></div>
+        <p class="mt-3 text-[15px] font-bold">الهدف: جعل الجودة نتيجة نظام لا اجتهاد فرد، وتجهيز الشبكة للإطلاق.</p>
+        <div class="mt-3 grid md:grid-cols-3 gap-2 text-[13px]">
+          <div class="rounded-xl bg-paper border border-ink-300/40 p-3">⚙️ <strong>التنفيذ:</strong> تفعيل <strong>نظام تصنيف المزوّدين</strong> (الفئات الأربع برونزي→بلاتيني وفق سياسة الفئات + محرّك توزيع + أتمتة الإنذار)، تسعير مركزي منضبط، وإعادة تصميم مسار الطلب لرفع الإتمام.</div>
+          <div class="rounded-xl bg-ink-900/5 p-3">🚪 <strong>بوّابة الانتقال:</strong> نظام التصنيف يعمل ويُنتج فرقاً ملموساً، ومعدل إتمام مستهدف ≥ 45% في مسار صعود.</div>
+          <div class="rounded-xl bg-brand-ghost p-3">🔗 <strong>المرجع:</strong> <a href="legal.html#tiers" class="text-brand-dark font-bold underline">سُلّم الفئات</a> · <a href="launch-plan.html#launch-incentives" class="text-brand-dark font-bold underline">تحفيز الإطلاق</a></div>
+        </div>
+        <div class="mt-3 rounded-2xl bg-paper border border-ink-300/40 p-4">
+          <div class="text-xs font-bold text-ink-500 tracking-widest uppercase">تفصيل التنفيذ</div>
+          <div class="mt-2 grid lg:grid-cols-2 gap-3 text-[13px]">
+            <div><div class="font-bold text-ink-900">📋 المهام التنفيذية</div><ul class="mt-1 space-y-1 text-ink-700"><li class="flex gap-2"><span class="text-brand mt-0.5">•</span> إطلاق نظام تصنيف وتوزيع المزوّدين + محرّك التوزيع التدريجي + أتمتة الإنذار (دورة 30 يوماً).</li><li class="flex gap-2"><span class="text-brand mt-0.5">•</span> تثبيت التسعير المركزي الموحّد لكل خدمة×نطاق (يُلغي التفاوض الميداني).</li><li class="flex gap-2"><span class="text-brand mt-0.5">•</span> سكربت «تشخيص + 3 حلول مسعّرة» لتحويل الكشف المجاني إلى خدمة مدفوعة.</li><li class="flex gap-2"><span class="text-brand mt-0.5">•</span> تشديد معايير القبول والمتابعة وتدريب الفنيين على معيار جودة موحّد.</li></ul></div>
+            <div class="space-y-2">
+              <div class="rounded-lg bg-white border border-ink-300/30 p-2.5"><span class="font-bold text-brand-dark">📦 المخرجات:</span> نظام تصنيف حيّ، لوحة أداء المزوّد، جدول أسعار موحّد.</div>
+              <div class="rounded-lg bg-white border border-ink-300/30 p-2.5"><span class="font-bold text-danger">⚠️ المخاطر والتخفيف:</span> تذبذب الجودة عند التوسّع ← اتفاقية مستوى خدمة (SLA) صارمة؛ التلاعب ← كاشف الربح يوقف الحساب.</div>
+              <div class="rounded-lg bg-white border border-ink-300/30 p-2.5"><span class="font-bold text-ok">📊 مؤشر القياس:</span> معدل الإتمام 39.1%→45%+ والتزام الموعد في صعود مستقر.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- STAGE 2 -->
+      <article class="rounded-3xl bg-white text-ink-900 shadow-float p-5 lg:p-7 ring-2 ring-gold/40">
+        <div class="bg-gold/10 -mx-5 lg:-mx-7 -mt-5 lg:-mt-7 mb-4 px-5 lg:px-7 py-2 text-xs font-bold text-gold-dark rounded-t-3xl">★ هنا يبدأ التدشين العلني والتفاعل</div>
+        <div class="flex items-center gap-4"><div class="num w-12 h-12 rounded-2xl bg-gold text-ink-900 grid place-items-center text-xl font-black shrink-0">2</div><div><h3 class="text-lg font-black">الإطلاق التحفيزي — النهوض بالتفاعل</h3><div class="en text-xs text-ink-400 font-bold">Incentivized Launch</div></div></div>
+        <p class="mt-3 text-[15px] font-bold">الهدف: كثافة الشبكة في أحياء الطلب الأعلى + أول قاعدة تفاعل، بمحفّزات محكومة.</p>
+        <div class="mt-3 grid md:grid-cols-3 gap-2 text-[13px]">
+          <div class="rounded-xl bg-paper border border-ink-300/40 p-3">⚙️ <strong>التنفيذ:</strong> «المزوّد/العميل المؤسِّس»، تخفيض عمولة مؤقّت مقابل تنفيذات، خصم اشتراك مقابل طلبات، محرّك إحالة، وكاش باك الدفع الأونلاين.</div>
+          <div class="rounded-xl bg-ink-900/5 p-3">🚪 <strong>بوّابة الانتقال:</strong> ارتفاع مثبت في تحويل الكشف (54%→62%) والدفع الأونلاين (41%→52%) والتفعيل — ضمن سقف الميزانية وبهامش موجب.</div>
+          <div class="rounded-xl bg-gold-ghost p-3">🔗 <strong>المرجع:</strong> <a href="launch-plan.html#launch-incentives" class="text-gold-dark font-bold underline">خطة تحفيز الإطلاق</a></div>
+        </div>
+        <div class="mt-3 rounded-2xl bg-paper border border-ink-300/40 p-4">
+          <div class="text-xs font-bold text-ink-500 tracking-widest uppercase">تفصيل التنفيذ</div>
+          <div class="mt-2 grid lg:grid-cols-2 gap-3 text-[13px]">
+            <div><div class="font-bold text-ink-900">📋 المهام التنفيذية</div><ul class="mt-1 space-y-1 text-ink-700"><li class="flex gap-2"><span class="text-brand mt-0.5">•</span> تفعيل «المزوّد/العميل المؤسِّس» + سلّم تخفيض العمولة المؤقّت مقابل تنفيذات.</li><li class="flex gap-2"><span class="text-brand mt-0.5">•</span> إطلاق «اكسب اشتراكك» (خصم مقابل طلبات) + كاش باك الدفع الأونلاين.</li><li class="flex gap-2"><span class="text-brand mt-0.5">•</span> تشغيل محرّك الإحالة (مكافأة بعد أول طلب للمُحال) + حملات الحيّ والكمباوند.</li><li class="flex gap-2"><span class="text-brand mt-0.5">•</span> ضبط سقف ميزانية شهري وقياس «العائد لكل ريال تحفيز» لكل عرض.</li></ul></div>
+            <div class="space-y-2">
+              <div class="rounded-lg bg-white border border-ink-300/30 p-2.5"><span class="font-bold text-brand-dark">📦 المخرجات:</span> برنامج حوافز محكوم بسقف، لوحة تتبّع العائد، خطة فطام مكتوبة.</div>
+              <div class="rounded-lg bg-white border border-ink-300/30 p-2.5"><span class="font-bold text-danger">⚠️ المخاطر والتخفيف:</span> حرق النقد ← سقف ميزانية لا يمسّ الأمان؛ ترسّخ عادة الخصم ← تناقص تدريجي ثم انطفاء.</div>
+              <div class="rounded-lg bg-white border border-ink-300/30 p-2.5"><span class="font-bold text-ok">📊 مؤشر القياس:</span> تحويل الكشف 54→62%، الأونلاين 41→52%، تفعيل المزوّدين 66→75% — بهامش موجب.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- STAGE 3 -->
+      <article class="rounded-3xl bg-white text-ink-900 shadow-float p-5 lg:p-7">
+        <div class="flex items-center gap-4"><div class="num w-12 h-12 rounded-2xl bg-brand text-white grid place-items-center text-xl font-black shrink-0">3</div><div><h3 class="text-lg font-black">الاشتراكات — محرّك الإيراد المتكرر</h3><div class="en text-xs text-ink-400 font-bold">Recurring Revenue</div></div></div>
+        <p class="mt-3 text-[15px] font-bold">الهدف: تحويل العميل العائد إلى مشترك ملتزم، وفكّ الاعتماد على إيراد المعاملة الواحدة.</p>
+        <div class="mt-3 grid md:grid-cols-3 gap-2 text-[13px]">
+          <div class="rounded-xl bg-paper border border-ink-300/40 p-3">⚙️ <strong>التنفيذ:</strong> إطلاق الباقات المعتمدة (Smart 39 / Plus 119 / Elite 249)، طبقة إدارة الاشتراك والتجديد، ووظيفة نجاح العميل لتقليل الإلغاء — بعد فطام الحوافز تدريجياً.</div>
+          <div class="rounded-xl bg-ink-900/5 p-3">🚪 <strong>بوّابة الانتقال:</strong> قاعدة مشتركين بمعدل بقاء صحّي + أول تدفّق إيراد متكرر مثبت + تكلفة خدمة أقل من إيرادها.</div>
+          <div class="rounded-xl bg-brand-ghost p-3">🔗 <strong>المرجع:</strong> <a href="details.html#pricing" class="text-brand-dark font-bold underline">الباقات</a> · <a href="qa.html#q2" class="text-brand-dark font-bold underline">قرار التسعير</a></div>
+        </div>
+        <div class="mt-3 rounded-2xl bg-paper border border-ink-300/40 p-4">
+          <div class="text-xs font-bold text-ink-500 tracking-widest uppercase">تفصيل التنفيذ</div>
+          <div class="mt-2 grid lg:grid-cols-2 gap-3 text-[13px]">
+            <div><div class="font-bold text-ink-900">📋 المهام التنفيذية</div><ul class="mt-1 space-y-1 text-ink-700"><li class="flex gap-2"><span class="text-brand mt-0.5">•</span> إطلاق الباقات المعتمدة (Smart 39 / Plus 119 / Elite 249) بمزاياها وضماناتها.</li><li class="flex gap-2"><span class="text-brand mt-0.5">•</span> بناء طبقة إدارة الاشتراك والتجديد والفوترة الدورية المرتبطة بتجربة العميل.</li><li class="flex gap-2"><span class="text-brand mt-0.5">•</span> تأسيس وظيفة «نجاح العميل» لتقليل الإلغاء وتعميق العلاقة.</li><li class="flex gap-2"><span class="text-brand mt-0.5">•</span> تنفيذ مصفوفة تحويل القاعدة الحالية (22,767) إلى مشتركين بأقل تكلفة، مع فطام الحوافز.</li></ul></div>
+            <div class="space-y-2">
+              <div class="rounded-lg bg-white border border-ink-300/30 p-2.5"><span class="font-bold text-brand-dark">📦 المخرجات:</span> قاعدة مشتركين، لوحة الاحتفاظ/الإلغاء، أول تقرير إيراد متكرر.</div>
+              <div class="rounded-lg bg-white border border-ink-300/30 p-2.5"><span class="font-bold text-danger">⚠️ المخاطر والتخفيف:</span> إلغاء مبكر ← ربط الاشتراك بقيمة متكرّرة لا بخصم؛ تمييع القيمة ← تدرّج الباقات.</div>
+              <div class="rounded-lg bg-white border border-ink-300/30 p-2.5"><span class="font-bold text-ok">📊 مؤشر القياس:</span> عدد المشتركين، معدّل البقاء الصحّي، وأول تدفّق إيراد متكرر مثبت.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- STAGE 4 -->
+      <article class="rounded-3xl bg-white text-ink-900 shadow-float p-5 lg:p-7 ring-2 ring-gold/40">
+        <div class="bg-gold/10 -mx-5 lg:-mx-7 -mt-5 lg:-mt-7 mb-4 px-5 lg:px-7 py-2 text-xs font-bold text-gold-dark rounded-t-3xl">★ المرحلة المفصلية — هنا يصبح التفوّق بنيوياً</div>
+        <div class="flex items-center gap-4"><div class="num w-12 h-12 rounded-2xl bg-gold text-ink-900 grid place-items-center text-xl font-black shrink-0">4</div><div><h3 class="text-lg font-black">المحرّكان الدفاعيان — <span class="en">Pulse</span> + <span class="en">Sense</span></h3><div class="en text-xs text-ink-400 font-bold">Defensive Engines</div></div></div>
+        <p class="mt-3 text-[15px] font-bold">الهدف: بناء الخندق التقني — منصّة إدارة المرافق + التشخيص بالذكاء الاصطناعي.</p>
+        <div class="mt-3 grid md:grid-cols-3 gap-2 text-[13px]">
+          <div class="rounded-xl bg-paper border border-ink-300/40 p-3">⚙️ <strong>التنفيذ:</strong> نسخة عاملة من <strong>Pulse</strong> يستخدمها عملاء يدفعون، و<strong>Sense</strong> (بوّابة Haiku 4.5 + عقل Sonnet 4.6 مُرسىً على قاعدة أسعار) يخفض الكلفة ويبني خندق بيانات.</div>
+          <div class="rounded-xl bg-ink-900/5 p-3">🚪 <strong>بوّابة الانتقال:</strong> Pulse بإيراد مؤسسي مثبت + Sense يُثبت أثره في خفض الإلغاء ودقّة التسعير → أصلان مدرّان لا تكلفة بحث.</div>
+          <div class="rounded-xl bg-gold-ghost p-3">🔗 <strong>المرجع:</strong> <a href="pulse.html" class="text-gold-dark font-bold underline">محاكاة Pulse</a> · <a href="sense.html" class="text-gold-dark font-bold underline">معمارية Sense</a></div>
+        </div>
+        <div class="mt-3 rounded-2xl bg-paper border border-ink-300/40 p-4">
+          <div class="text-xs font-bold text-ink-500 tracking-widest uppercase">تفصيل التنفيذ</div>
+          <div class="mt-2 grid lg:grid-cols-2 gap-3 text-[13px]">
+            <div><div class="font-bold text-ink-900">📋 المهام التنفيذية</div><ul class="mt-1 space-y-1 text-ink-700"><li class="flex gap-2"><span class="text-brand mt-0.5">•</span> بناء <strong>Pulse</strong>: سجلّ أصول + أوامر عمل + اتفاقيات مستوى خدمة، لعملاء يدفعون فعلاً.</li><li class="flex gap-2"><span class="text-brand mt-0.5">•</span> بناء <strong>Sense</strong>: بوّابة Haiku 4.5 + عقل Sonnet 4.6 مُرسىً على قاعدة أسعار + وحدة صيانة ذاتية آمنة.</li><li class="flex gap-2"><span class="text-brand mt-0.5">•</span> ربط المحرّكين بالشبكة الميدانية (دولاب البيانات: كل زيارة تغذّي Sense وتحسّن التشخيص).</li><li class="flex gap-2"><span class="text-brand mt-0.5">•</span> تعيين قيادات الأعمال/المنتج مبكراً (المنتج بلا قناة بيع = منتج بلا قيمة).</li></ul></div>
+            <div class="space-y-2">
+              <div class="rounded-lg bg-white border border-ink-300/30 p-2.5"><span class="font-bold text-brand-dark">📦 المخرجات:</span> نسخة Pulse عاملة بإيراد، Sense ينتج تشخيصاً مُسعّراً، قاعدة بيانات أسعار متنامية.</div>
+              <div class="rounded-lg bg-white border border-ink-300/30 p-2.5"><span class="font-bold text-danger">⚠️ المخاطر والتخفيف:</span> بناء بلا قناة بيع ← تعيين قيادة مبكراً؛ هلوسة السعر ← الإرساء ثلاثي الطبقات.</div>
+              <div class="rounded-lg bg-white border border-ink-300/30 p-2.5"><span class="font-bold text-ok">📊 مؤشر القياس:</span> عملاء Pulse يدفعون، خفض الإلغاء عبر Sense، وبدء الإيراد السنوي المتكرر (ARR).</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- STAGE 5 -->
+      <article class="rounded-3xl bg-white text-ink-900 shadow-float p-5 lg:p-7">
+        <div class="flex items-center gap-4"><div class="num w-12 h-12 rounded-2xl bg-brand text-white grid place-items-center text-xl font-black shrink-0">5</div><div><h3 class="text-lg font-black">التوسّع — المؤسسي والحكومي والجغرافي والقنوات</h3><div class="en text-xs text-ink-400 font-bold">Enterprise · Government · Geo · Channels</div></div></div>
+        <p class="mt-3 text-[15px] font-bold">الهدف: تحويل القدرات المؤسسية لعقود كبيرة، وتكرار النموذج على مدن جديدة وقنوات شراكة.</p>
+        <div class="mt-3 grid md:grid-cols-3 gap-2 text-[13px]">
+          <div class="rounded-xl bg-paper border border-ink-300/40 p-3">⚙️ <strong>التنفيذ:</strong> عقود الأعمال/الحكومة عبر Pulse، قناة شراكات التأمين والتجزئة (B2B2C)، خطوط الخدمات الجديدة (تقييم/هندسة/ضمان ممتد)، ثم التوسّع لمدن المملكة بعد نضج محرّك الرياض.</div>
+          <div class="rounded-xl bg-ink-900/5 p-3">🚪 <strong>بوّابة الانتقال:</strong> محفظة عقود مؤسسية بإيراد متعاقد + نجاح ربحي مثبت في أكثر من سوق بنفس المعايير.</div>
+          <div class="rounded-xl bg-brand-ghost p-3">🔗 <strong>المرجع:</strong> <a href="expansion.html" class="text-brand-dark font-bold underline">التوسّع</a> · <a href="plan.html#phases" class="text-brand-dark font-bold underline">P4–P5</a></div>
+        </div>
+        <div class="mt-3 rounded-2xl bg-paper border border-ink-300/40 p-4">
+          <div class="text-xs font-bold text-ink-500 tracking-widest uppercase">تفصيل التنفيذ</div>
+          <div class="mt-2 grid lg:grid-cols-2 gap-3 text-[13px]">
+            <div><div class="font-bold text-ink-900">📋 المهام التنفيذية</div><ul class="mt-1 space-y-1 text-ink-700"><li class="flex gap-2"><span class="text-brand mt-0.5">•</span> كسب عقود الأعمال والقطاع الحكومي عبر Pulse (اتفاقيات إطارية + مستوى خدمة).</li><li class="flex gap-2"><span class="text-brand mt-0.5">•</span> توقيع شراكات التأمين والتجزئة (B2B2C) كقنوات اكتساب منخفضة التكلفة.</li><li class="flex gap-2"><span class="text-brand mt-0.5">•</span> إطلاق خطوط الخدمات الجديدة تدريجياً (فحص/تقييم/ضمان ممتد) حسب الأولوية.</li><li class="flex gap-2"><span class="text-brand mt-0.5">•</span> فتح مدينة ثانية فقط باستيفاء بوّابة الجاهزية (طلب + شبكة + إشراف + جودة).</li></ul></div>
+            <div class="space-y-2">
+              <div class="rounded-lg bg-white border border-ink-300/30 p-2.5"><span class="font-bold text-brand-dark">📦 المخرجات:</span> محفظة عقود مؤسسية، اتفاقيات قنوات موقّعة، حضور متعدّد المدن.</div>
+              <div class="rounded-lg bg-white border border-ink-300/30 p-2.5"><span class="font-bold text-danger">⚠️ المخاطر والتخفيف:</span> توسّع قبل النضج ← بوّابة جودة إلزامية لكل مدينة؛ تشتّت الفرق ← عدم تحميل التوسّع على فرق المحرّكات.</div>
+              <div class="rounded-lg bg-white border border-ink-300/30 p-2.5"><span class="font-bold text-ok">📊 مؤشر القياس:</span> إيراد متعاقد متكرر ونجاح ربحي مثبت في أكثر من سوق بنفس المعايير.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- STAGE 6 -->
+      <article class="rounded-3xl bg-gradient-to-bl from-ink-900 to-ink-700 text-white shadow-float p-5 lg:p-7 ring-2 ring-gold/50">
+        <div class="flex items-center gap-4"><div class="num w-12 h-12 rounded-2xl bg-gold text-ink-900 grid place-items-center text-xl font-black shrink-0">6</div><div><h3 class="text-lg font-black text-white">النضج والاكتمال الشامل — الخيارات الاستراتيجية</h3><div class="en text-xs text-white/50 font-bold">Maturity &amp; Completion</div></div></div>
+        <p class="mt-3 text-[15px] font-bold text-white">الهدف: بلوغ الجاهزية التي تفتح أوسع الخيارات الكبرى من موقع قوة لا حاجة.</p>
+        <div class="mt-3 grid md:grid-cols-3 gap-2 text-[13px]">
+          <div class="rounded-xl bg-white/10 ring-1 ring-white/15 p-3">⚙️ <strong>التنفيذ:</strong> كيان مزدوج الإيراد (معاملة + متكرر) بخندق ثلاثي (ثقة + بيانات + علاقة مؤسسية)، حوكمة وتقارير بمستوى يصمد أمام العناية الواجبة.</div>
+          <div class="rounded-xl bg-white/10 ring-1 ring-white/15 p-3">🚪 <strong>بوّابة الاكتمال:</strong> نموذج مُثبت متعدّد مصادر الإيراد بربحية ونمو واضحين، وقصة استثمارية بأرقام حقيقية.</div>
+          <div class="rounded-xl bg-gold/20 ring-1 ring-gold-light/30 p-3">🔗 <strong>المرجع:</strong> <a href="plan.html#phases" class="text-gold-light font-bold underline">P6</a> · <a href="blueprint.html#final-pick" class="text-gold-light font-bold underline">الترشيح الأخير</a></div>
+        </div>
+        <div class="mt-3 rounded-2xl bg-white/10 ring-1 ring-white/15 p-4">
+          <div class="text-xs font-bold text-gold-light tracking-widest uppercase">تفصيل التنفيذ</div>
+          <div class="mt-2 grid lg:grid-cols-2 gap-3 text-[13px]">
+            <div><div class="font-bold text-white">📋 المهام التنفيذية</div><ul class="mt-1 space-y-1 text-white/85"><li class="flex gap-2"><span class="text-gold-light mt-0.5">•</span> إنضاج الحوكمة والتقارير والعمليات لمستوى يصمد أمام العناية الواجبة (Due Diligence).</li><li class="flex gap-2"><span class="text-gold-light mt-0.5">•</span> تجهيز غرفة بيانات محكومة وتقليل الاعتماد على أي فرد واحد.</li><li class="flex gap-2"><span class="text-gold-light mt-0.5">•</span> حزم المحرّكات الثلاثة (الخدمة + Pulse + Sense) في سردية قيمة موحّدة ترفع المضاعِف.</li><li class="flex gap-2"><span class="text-gold-light mt-0.5">•</span> تقييم الخيارات الكبرى وتوقيتها: جولة تمويل نوعية / شراكة استراتيجية / استحواذ.</li></ul></div>
+            <div class="space-y-2">
+              <div class="rounded-lg bg-white/10 ring-1 ring-white/15 text-white/85 p-2.5"><span class="font-bold text-brand-light">📦 المخرجات:</span> نموذج مالي مُثبت متعدّد مصادر الإيراد، وملف عناية واجبة جاهز.</div>
+              <div class="rounded-lg bg-white/10 ring-1 ring-white/15 text-white/85 p-2.5"><span class="font-bold text-danger">⚠️ المخاطر والتخفيف:</span> الاعتماد الفردي ← حوكمة مؤسسية مستقلة قبل أي صفقة.</div>
+              <div class="rounded-lg bg-white/10 ring-1 ring-white/15 text-white/85 p-2.5"><span class="font-bold text-ok">📊 مؤشر القياس:</span> مضاعف التقييم وجاهزية الخيارات الكبرى من موقع قوة لا حاجة.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================== PARALLEL WORKSTREAMS ================== -->
+<section id="workstreams" class="doc-section max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+  <div class="flex items-center gap-3">
+    <span class="sec-num text-gold text-3xl">02</span>
+    <div>
+      <h2 class="text-2xl lg:text-3xl font-black text-ink-900">المسارات الأربعة المتوازية</h2>
+      <p class="text-ink-500 text-sm">كل مرحلة تتقدّم عبر هذه المسارات معاً — لا تسير واحداً وتُهمل البقية.</p>
+    </div>
+  </div>
+  <div class="mt-6 overflow-x-auto rounded-2xl border border-ink-300/40 shadow-card bg-white">
+    <table class="min-w-[820px] w-full text-[12px] text-right">
+      <thead class="bg-ink-900 text-white text-xs"><tr><th class="p-3 font-bold">المسار</th><th class="p-3 font-bold">0 تأسيس</th><th class="p-3 font-bold">1 تشغيل</th><th class="p-3 font-bold">2 إطلاق</th><th class="p-3 font-bold">3 اشتراك</th><th class="p-3 font-bold">4 محرّكات</th><th class="p-3 font-bold">5 توسّع</th><th class="p-3 font-bold">6 نضج</th></tr></thead>
+      <tbody class="divide-y divide-ink-300/30">
+        <tr><td class="p-3 font-bold text-brand-dark">🛠️ المنتج/التقني</td><td class="p-3">إصلاح الثغرات</td><td class="p-3">تسعير مركزي</td><td class="p-3">عروض داخل التطبيق</td><td class="p-3">إدارة اشتراك</td><td class="p-3 font-bold">Pulse + Sense</td><td class="p-3">متعدّد المدن</td><td class="p-3">جاهزية تدقيق</td></tr>
+        <tr class="bg-paper/60"><td class="p-3 font-bold text-gold-dark">⚙️ التشغيل</td><td class="p-3">حوكمة القرار</td><td class="p-3 font-bold">تصنيف المزوّدين</td><td class="p-3">كثافة الشبكة</td><td class="p-3">نجاح العميل</td><td class="p-3">تكامل ميداني</td><td class="p-3">فرق مؤسسية</td><td class="p-3">حوكمة ناضجة</td></tr>
+        <tr><td class="p-3 font-bold text-ok">📈 النمو/التسويق</td><td class="p-3">إيقاف الهدر</td><td class="p-3">جاهزية الإطلاق</td><td class="p-3 font-bold">التحفيز + الإحالة</td><td class="p-3">تحويل لمشترك</td><td class="p-3">قصة البيانات</td><td class="p-3">قنوات الشراكة</td><td class="p-3">سردية التقييم</td></tr>
+        <tr class="bg-paper/60"><td class="p-3 font-bold text-danger">💰 المالية/التمويل</td><td class="p-3 font-bold">تأمين السيولة</td><td class="p-3">ربحية الوحدة</td><td class="p-3">سقف التحفيز</td><td class="p-3">تدفّق متكرر</td><td class="p-3">جولة التمويل</td><td class="p-3">إيراد متعاقد</td><td class="p-3 font-bold">الخيارات الكبرى</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ================== PARTS & LABOR MARKETPLACE + PARTNER API ================== -->
+<section id="marketplace" class="doc-section bg-paper border-y border-ink-300/30">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+    <div class="flex items-center gap-3">
+      <span class="sec-num text-gold text-3xl">03</span>
+      <div>
+        <h2 class="text-2xl lg:text-3xl font-black text-ink-900">سوق القطع والعمالة + واجهة الشركاء <span class="en">(API)</span></h2>
+        <p class="text-ink-500 text-sm">ربط متاجر القطع بالتطبيق لخلق تنافسية سعرية حيّة — مع حماية العميل من التضخيم، وتنظيم العمل بين أنواع المتاجر الثلاثة والعامل الحر.</p>
+      </div>
+    </div>
+
+    <!-- governing principle -->
+    <div class="mt-6 rounded-3xl bg-gradient-to-bl from-ink-900 to-ink-700 text-white p-6 lg:p-7 shadow-float">
+      <div class="text-xs font-bold text-gold-light tracking-widest uppercase">المبدأ الحاكم</div>
+      <h3 class="mt-2 text-lg lg:text-xl font-black leading-snug">نفصل <span class="text-gold-light">سعر القطعة</span> عن <span class="text-brand-light">منفّذ العمل</span> — فالتضخيم يحدث حين يكون مَن يركّب هو نفسه مَن يبيع القطعة (كلّما رفع السعر ربح أكثر).</h3>
+      <p class="mt-3 text-white/80 text-[14px] leading-relaxed">سيرف <strong>منسّق (Orchestrator)</strong> لا بائع طرف: العامل الحر يستلم القطعة من مورّد معتمد <strong>اختاره المحرّك</strong> (لا اختاره العامل)، وربح القطعة يذهب للمورّد لا للعامل. هكذا يتحوّل التسعير من «ثقة بالفرد» إلى <strong>منافسة سوق شفّافة</strong> تحت سقف تفرضه المنصّة. مساران متوازيان — توجيه العمالة + الشراء التنافسي للقطع — يدمجهما <span class="en">Bundle Optimizer</span> (مُحسِّن الحزمة).</p>
+    </div>
+
+    <!-- HARD CONSTRAINT -->
+    <div class="mt-5 rounded-2xl bg-danger-light border-2 border-danger/40 p-5">
+      <div class="flex items-center gap-2 text-sm font-black text-danger">🔒 القيد الصلب: القطعة من مورّد معتمد فقط — يُنفَّذ على ثلاث طبقات متراكبة</div>
+      <div class="mt-3 grid md:grid-cols-3 gap-3 text-[13px]">
+        <div class="rounded-xl bg-white border border-danger/20 p-3"><div class="font-bold text-ink-900">① طبقة البيانات</div><div class="text-ink-700 mt-1">بند الطلب لقطعة <span class="en">(order_line)</span> يتطلّب <span class="en">part_listing_id</span> يعود لمورّد حالته «معتمد» — لا يوجد أصلاً حقل لإدخال قطعة من خارج المنظومة.</div></div>
+        <div class="rounded-xl bg-white border border-danger/20 p-3"><div class="font-bold text-ink-900">② واجهة الفني</div><div class="text-ink-700 mt-1">لا حقل سعر يدوي ولا خيار «قطعة من عندي» — السعر يأتي حصراً من كتالوج المورّد المعتمد عبر الواجهة البرمجية.</div></div>
+        <div class="rounded-xl bg-white border border-danger/20 p-3"><div class="font-bold text-ink-900">③ إثبات فيزيائي</div><div class="text-ink-700 mt-1">صورة القطعة المركّبة + الرقم التسلسلي/الباركود تُطابَق آلياً مع القطعة الفائزة، ومسح رمز <span class="en">QR</span> لإثبات سلسلة العهدة (مورّد ← فني ← عميل) قبل إغلاق الطلب.</div></div>
+      </div>
+      <p class="mt-3 text-[12.5px] text-ink-700 bg-white/70 rounded-lg p-2.5"><strong>قلب الحافز ضد الالتفاف:</strong> الضمان والكاش-باك (٣٪/٥٪/٧٪ ومدد ٣٠/٦٠/٩٠ يوماً حسب الباقة) مرتبطان <strong>حصرياً</strong> بقطعة مُفوترة داخل المنصّة. قطعة غير معتمدة = صفر ضمان وصفر كاش-باك — فيصبح الالتفاف خسارة للعميل لا توفيراً.</p>
+    </div>
+
+    <!-- 1) CAPABILITY MATRIX -->
+    <h3 class="mt-8 text-xl font-extrabold text-ink-900">١) مصفوفة قدرات الأطراف الأربعة</h3>
+    <p class="text-ink-500 text-sm mt-1">مَن يقدّم ماذا، وما يحتاجه من غيره — وحالة مصدر القطعة لكلٍّ.</p>
+    <div class="mt-3 overflow-x-auto rounded-2xl border border-ink-300/40 shadow-card bg-white">
+      <table class="min-w-[860px] w-full text-[12.5px] text-right">
+        <thead class="bg-ink-900 text-white text-xs"><tr><th class="p-3 font-bold">الطرف</th><th class="p-3 font-bold">يُقدّم</th><th class="p-3 font-bold">يحتاج من غيره</th><th class="p-3 font-bold">يضمن</th><th class="p-3 font-bold">مصدر القطعة</th></tr></thead>
+        <tbody class="divide-y divide-ink-300/30">
+          <tr><td class="p-3 font-bold text-brand-dark">A — قطع + عمال</td><td class="p-3">قطعة غيار + عمالة (حلّ ذاتي كامل)</td><td class="p-3">تدفّق طلبات من سيرف فقط</td><td class="p-3">القطعة + العمل معاً</td><td class="p-3 font-bold text-ok">مصدر معتمد ✔</td></tr>
+          <tr class="bg-paper/60"><td class="p-3 font-bold text-brand-dark">B — عمال فقط</td><td class="p-3">عمالة منظّمة (فِرق + إشراف + ضمان مؤسسي)</td><td class="p-3">قطعة من A أو C عبر الواجهة (إلزامي)</td><td class="p-3">العمل فقط</td><td class="p-3">يستهلك قطعة معتمدة</td></tr>
+          <tr><td class="p-3 font-bold text-brand-dark">C — قطع فقط</td><td class="p-3">قطعة بأفضل سعر + كتالوج موصول بالواجهة</td><td class="p-3">منفّذ (عامل حر / A / B) للتركيب</td><td class="p-3">القطعة فقط</td><td class="p-3 font-bold text-ok">مصدر معتمد ✔ (العمود الفقري للتنافسية)</td></tr>
+          <tr class="bg-paper/60"><td class="p-3 font-bold text-gold-dark">العامل الحر / الفني</td><td class="p-3">مهارة تنفيذ يدوي فقط</td><td class="p-3">قطعة من مورّد معتمد (إلزامي) + توجيه سيرف</td><td class="p-3">جودة التركيب فقط</td><td class="p-3 font-bold text-danger">ممنوع أن يكون مصدر قطعة ✘</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 2) PARTNER API -->
+    <h3 class="mt-8 text-xl font-extrabold text-ink-900">٢) واجهة الشركاء <span class="en">(Partner API)</span> — كيف يربط المتجر كتالوجه</h3>
+    <p class="text-ink-500 text-sm mt-1">المتجر يربط قطعه وأسعاره ومخزونه بالتطبيق، فتتنافس عدّة متاجر على <strong>نفس القطعة الموحّدة</strong> <span class="en">(SKU — رمز القطعة الموحّد)</span>. كل سعر يمرّ بـ«حارس السعر» قبل أن يُعرض على العميل.</p>
+    <div class="mt-3 grid lg:grid-cols-2 gap-3">
+      <div class="rounded-2xl bg-white shadow-card border border-ink-300/40 p-4">
+        <div class="font-bold text-ink-900 text-[14px]">الانضمام والاعتماد <span class="en">(Onboarding + KYB)</span></div>
+        <ul class="mt-2 space-y-1.5 text-[12.5px] text-ink-700">
+          <li class="flex gap-2"><span class="text-brand mt-0.5">•</span> معرفة العميل التجاري <span class="en">(KYB — معرفة الكيان)</span>: سجل تجاري ساري من المركز السعودي للأعمال + الرقم الضريبي (١٥ خانة) + عنوان وطني + آيبان مُتحقَّق + هوية المفوّض عبر «نفاذ».</li>
+          <li class="flex gap-2"><span class="text-brand mt-0.5">•</span> دورة حالة: <span class="en latin">pending → docs_review → tech_review → approved</span> — لا تُعرض أي قطعة قبل «معتمد».</li>
+          <li class="flex gap-2"><span class="text-brand mt-0.5">•</span> تحقّق دوري من سريان السجل والرقم الضريبي؛ أي انتهاء/تعليق = تجميد آلي للإدراجات دون حذفها.</li>
+        </ul>
+      </div>
+      <div class="rounded-2xl bg-white shadow-card border border-ink-300/40 p-4">
+        <div class="font-bold text-ink-900 text-[14px]">خط الأساس الأمني</div>
+        <ul class="mt-2 space-y-1.5 text-[12.5px] text-ink-700">
+          <li class="flex gap-2"><span class="text-danger mt-0.5">•</span> مصادقة مزدوجة: نطاقات صلاحيات <span class="en">OAuth2</span> (تفويض مفتوح) حسب نوع المورّد + توقيع طلب <span class="en">HMAC-SHA256</span> (رمز مصادقة الرسالة) بنافذة ٥ دقائق تمنع إعادة الإرسال.</li>
+          <li class="flex gap-2"><span class="text-danger mt-0.5">•</span> مفتاح عدم تكرار <span class="en">(Idempotency-Key)</span> على كل كتابة + حدود معدّل + تدوير/إبطال فوري للمفاتيح عند التسريب.</li>
+          <li class="flex gap-2"><span class="text-danger mt-0.5">•</span> تحقّق ملكية القطعة (لا يُدرج المورّد قطعة منافسه لإفساد مرجعه) + كشف «حشو الكتالوج» (لا تُحتسب الإدراجات حديثة العهد في الوسيط).</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-3 overflow-x-auto rounded-2xl border border-ink-300/40 shadow-card bg-white">
+      <table class="min-w-[760px] w-full text-[12px] text-right">
+        <thead class="bg-ink-800 text-white text-xs"><tr><th class="p-3 font-bold">الطريقة والمسار</th><th class="p-3 font-bold">النطاق <span class="en">(Scope)</span></th><th class="p-3 font-bold">الوظيفة</th></tr></thead>
+        <tbody class="divide-y divide-ink-300/30 latin-cells">
+          <tr><td class="p-3 en font-bold">POST /v1/oauth/token</td><td class="p-3">—</td><td class="p-3" dir="rtl">رمز وصول قصير العمر محدّد بالنطاقات</td></tr>
+          <tr class="bg-paper/60"><td class="p-3 en font-bold">POST /v1/catalog/skus</td><td class="p-3 en">catalog:write</td><td class="p-3" dir="rtl">ربط قطع المورّد بالقطعة المركزية الموحّدة</td></tr>
+          <tr><td class="p-3 en font-bold">PATCH /v1/listings/{id}/price</td><td class="p-3 en">pricing:write</td><td class="p-3" dir="rtl">تحديث سعر بند → يمرّ بحارس السعر</td></tr>
+          <tr class="bg-paper/60"><td class="p-3 en font-bold">POST /v1/listings/bulk-price</td><td class="p-3 en">pricing:write</td><td class="p-3" dir="rtl">تحديث أسعار دفعي (حارس السعر لكل بند)</td></tr>
+          <tr><td class="p-3 en font-bold">PATCH /v1/listings/{id}/inventory</td><td class="p-3 en">inventory:write</td><td class="p-3" dir="rtl">تحديث المخزون</td></tr>
+          <tr class="bg-paper/60"><td class="p-3 en font-bold">POST /v1/orders/{id}/confirm</td><td class="p-3 en">orders:write</td><td class="p-3" dir="rtl">تأكيد التوفّر وزمن التسليم (بالسعر المُجمّد)</td></tr>
+          <tr><td class="p-3 en font-bold">GET /v1/invoices</td><td class="p-3 en">invoices:read</td><td class="p-3" dir="rtl">فواتير متوافقة مع «فاتورة» (هيئة الزكاة والضريبة)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-2 text-[12px] text-ink-500">التحديث اللحظي عبر <span class="en">Webhooks</span> (خطافات الويب) موقّعة: <span class="en latin">listing.price.changed</span> الواردة من نقطة بيع الشريك تمرّ بحارس السعر، و<span class="en latin">order.created / payout.settled / listing.suspended</span> الصادرة من سيرف بإعادة محاولة أُسّية حتى ٢٤ ساعة.</p>
+
+    <!-- 3) ALGORITHM -->
+    <h3 class="mt-8 text-xl font-extrabold text-ink-900">٣) الخوارزمية المناسبة — التوجيه والتركيب التنافسي</h3>
+    <p class="text-ink-500 text-sm mt-1">خوارزمية متعددة الأهداف بقيود صلبة: تفكيك الطلب (عمالة + قطع) عبر محرّك <span class="en">Sense</span> → مزايدة عكسية على القطع + إسناد العمالة → تركيب أفضل حزمة صحيحة → عرضها على العميل مع البدائل.</p>
+    <pre dir="ltr" class="mt-3 rounded-2xl bg-ink-900 text-white/90 p-4 lg:p-5 overflow-x-auto text-left text-[12px] leading-relaxed" style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace">function routeAndCompose(order):
+    parts = Sense.decompose(order)        # part_cost_range منفصل عن labor_cost_range (شرط مسبق)
+    skill = order.required_skill
+
+    # ── PartsTrack: مزايدة عكسية على كل قطعة — مورّد معتمد فقط ──
+    for sku in parts:
+        offers = []
+        for L in activeListings(sku):
+            if L.supplier.status != "approved":      continue   # قيد صلب
+            if (L.stock_qty - L.reserved_qty) <= 0:  continue
+            if not PriceGuard.accept(sku, L.price):  continue   # داخل [floor, ceiling]
+            if distance(L.store, order.geo) > RADIUS: continue
+            L.score = 0.45*priceNorm + 0.20*etaNorm + 0.15*proxNorm
+                    + 0.12*ratingNorm + 0.08*genuineFlag         # كلما قلّ = أفضل
+            offers.append(L)
+        bestParts[sku] = sortAsc(offers)            # العميل يرى أرخص 3 شفافةً
+        if empty(offers): return CRITICAL_SHORTAGE(sku)  # بروتوكول النقص الحرج
+
+    # ── LaborTrack: إسناد العمالة بأوزان legal.html المعتمدة ──
+    techs = [t for t in available(skill) if t.supplier.status=="approved"
+                 and distance(t,order.geo)<=RADIUS and t.free_at(order.window)]
+    for t in techs:
+        t.score = 0.25*Proximity + 0.20*Tier + 0.15*Rating + 0.15*Special
+                + 0.10*Availability + 0.08*Acceptance + 0.07*Fairness - Penalties
+    bestTech = sortDesc(techs)[0]
+
+    # ── تركيب + تجميد العرض الفائز (price-lock + soft-reserve) ──
+    plan = { tech: bestTech, parts: [] }
+    for sku in parts:
+        win = bestParts[sku][0]
+        lockPrice(win); softReserve(win)            # الفائز مُلزِم — لا رفع في confirm
+        plan.parts.append(win)
+    return present(plan, alternatives=bestParts)    # القرار للعميل ضمن المعتمد</pre>
+    <div class="mt-4 grid lg:grid-cols-2 gap-3">
+      <div class="overflow-x-auto rounded-2xl border border-ink-300/40 shadow-card bg-white">
+        <table class="w-full text-[12px] text-right">
+          <caption class="text-[12px] font-bold text-ink-700 p-2 bg-paper">أوزان إسناد العمالة <span class="en">(LaborMatchScore)</span> — كما في <a href="legal.html#routing" class="text-brand-dark underline">legal.html</a> المعتمد</caption>
+          <thead class="bg-ink-800 text-white text-xs"><tr><th class="p-2.5 font-bold">العامل</th><th class="p-2.5 font-bold">الوزن</th><th class="p-2.5 font-bold">الغرض</th></tr></thead>
+          <tbody class="divide-y divide-ink-300/30">
+            <tr><td class="p-2.5">القرب</td><td class="p-2.5 num font-bold">0.25</td><td class="p-2.5">تقليل زمن وصول الفني</td></tr>
+            <tr class="bg-paper/60"><td class="p-2.5">الفئة</td><td class="p-2.5 num font-bold">0.20</td><td class="p-2.5">أفضلية محسوبة لا احتكار</td></tr>
+            <tr><td class="p-2.5">التقييم</td><td class="p-2.5 num font-bold">0.15</td><td class="p-2.5">جودة التجربة</td></tr>
+            <tr class="bg-paper/60"><td class="p-2.5">التخصّص</td><td class="p-2.5 num font-bold">0.15</td><td class="p-2.5">الكفاءة للعطل المحدّد</td></tr>
+            <tr><td class="p-2.5">التوفّر</td><td class="p-2.5 num font-bold">0.10</td><td class="p-2.5">قبول سريع</td></tr>
+            <tr class="bg-paper/60"><td class="p-2.5">القبول</td><td class="p-2.5 num font-bold">0.08</td><td class="p-2.5">موثوقية الاستجابة</td></tr>
+            <tr><td class="p-2.5">العدالة</td><td class="p-2.5 num font-bold">0.07</td><td class="p-2.5">حماية سُلّم الترقية والحصص</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="overflow-x-auto rounded-2xl border border-ink-300/40 shadow-card bg-white">
+        <table class="w-full text-[12px] text-right">
+          <caption class="text-[12px] font-bold text-ink-700 p-2 bg-paper">أوزان ترتيب عرض القطعة <span class="en">(PartScore)</span> — التسعير منفصل تماماً عن العامل</caption>
+          <thead class="bg-ink-800 text-white text-xs"><tr><th class="p-2.5 font-bold">العامل</th><th class="p-2.5 font-bold">الوزن</th><th class="p-2.5 font-bold">الغرض</th></tr></thead>
+          <tbody class="divide-y divide-ink-300/30">
+            <tr><td class="p-2.5">السعر</td><td class="p-2.5 num font-bold text-brand-dark">0.45</td><td class="p-2.5">المحرّك الأساسي للتنافسية وحماية العميل</td></tr>
+            <tr class="bg-paper/60"><td class="p-2.5">زمن التوصيل</td><td class="p-2.5 num font-bold">0.20</td><td class="p-2.5">تقليل زمن إنجاز الطلب</td></tr>
+            <tr><td class="p-2.5">القرب</td><td class="p-2.5 num font-bold">0.15</td><td class="p-2.5">توصيل أسرع وأرخص</td></tr>
+            <tr class="bg-paper/60"><td class="p-2.5">تقييم المورّد</td><td class="p-2.5 num font-bold">0.12</td><td class="p-2.5">موثوقية القطعة</td></tr>
+            <tr><td class="p-2.5">الأصلي/التجاري</td><td class="p-2.5 num font-bold">0.08</td><td class="p-2.5">يميّز دون إلغاء خيار الأرخص</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- bundle optimizer 3 types + fallback -->
+    <div class="mt-4 overflow-x-auto rounded-2xl border border-ink-300/40 shadow-card bg-white">
+      <table class="min-w-[820px] w-full text-[12px] text-right">
+        <caption class="text-[12px] font-bold text-ink-700 p-2 bg-paper">مُحسِّن الحزمة — معالجة الأنواع الثلاثة + العامل الحر</caption>
+        <thead class="bg-ink-900 text-white text-xs"><tr><th class="p-3 font-bold">النوع</th><th class="p-3 font-bold">مساره</th><th class="p-3 font-bold">الاقتران الإلزامي</th><th class="p-3 font-bold">القيد الصلب</th></tr></thead>
+        <tbody class="divide-y divide-ink-300/30">
+          <tr><td class="p-3 font-bold">A قطع+عمال</td><td class="p-3">حزمة موحّدة + بند قطعته يُفصل ويخضع للسقف منفصلاً</td><td class="p-3">ذاتي، أو يُستخدم كمورّد قطعة لعامل آخر</td><td class="p-3">تفصيل البنود إجباري — لا حزمة مبهمة</td></tr>
+          <tr class="bg-paper/60"><td class="p-3 font-bold">B عمال فقط</td><td class="p-3">مسار العمالة <span class="en">(LaborMatchScore)</span></td><td class="p-3">قطعة من C أو A معتمد</td><td class="p-3">لا يجلب قطعته — تُسند له القطعة الفائزة</td></tr>
+          <tr><td class="p-3 font-bold">C قطع فقط</td><td class="p-3">مسار القطع (مزايدة عكسية)</td><td class="p-3">عامل من B أو عامل حر</td><td class="p-3">مورّد معتمد ⇐ مؤهّل لتزويد العامل الحر</td></tr>
+          <tr class="bg-paper/60"><td class="p-3 font-bold text-gold-dark">العامل الحر</td><td class="p-3">مسار العمالة كمزوّد فردي</td><td class="p-3">قطعة من مورّد معتمد (C/A) إلزاماً</td><td class="p-3 font-bold text-danger">ممنوع جلب قطعة خاصة مطلقاً</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mt-3 grid md:grid-cols-2 gap-3 text-[13px]">
+      <div class="rounded-2xl bg-white shadow-card border-r-4 border-warn p-4"><div class="font-bold text-ink-900">⚡ المسار المزدوج حسب الإلحاح</div><p class="text-ink-600 mt-1">الطلب العادي: نافذة طلب تسعير <span class="en">(RFQ)</span> كاملة + مزايدة عكسية. الطوارئ <span class="en latin">(emergency/hazard</span> من <span class="en">Sense)</span>: سقف مرجعي <strong>مسبق فوري</strong> على أقرب مورّد معتمد + <strong>تسوية لاحقة</strong> تسترد أي فرق — فلا تُكسر الحماية ولا زمن الطوارئ.</p></div>
+      <div class="rounded-2xl bg-white shadow-card border-r-4 border-danger p-4"><div class="font-bold text-ink-900">🚫 العرض الفائز مُلزِم</div><p class="text-ink-600 mt-1">سعر ومخزون المزايدة يُجمّدان فور الفوز. أي رفع في التأكيد = إلغاء تلقائي + انتقال للعرض التالي + خفض موثوقية المورّد مستقبلاً — يُغلق ثغرة «الرفع بعد الفوز».</p></div>
+    </div>
+
+    <!-- 4) ANTI-GOUGING -->
+    <h3 class="mt-8 text-xl font-extrabold text-ink-900">٤) حماية العميل من تضخيم أسعار القطع — طبقات متراكبة</h3>
+    <p class="text-ink-500 text-sm mt-1">المرجع السلطة = جدول الأسعار المُتحقَّق <span class="en">(price_items)</span> في <a href="sense.html" class="text-brand-dark underline">Serve Sense</a> (بمعرّف مصدر <span class="en">source_row_id</span> + تاريخ تحقّق + حجم عيّنة)؛ ووسيط أسعار الموردين إشارة شذوذ <strong>ثانوية</strong> فقط — لمنع رفع المرجع جماعياً (التلوّث الذاتي).</p>
+    <div class="mt-3 overflow-x-auto rounded-2xl border border-ink-300/40 shadow-card bg-white">
+      <table class="min-w-[840px] w-full text-[12px] text-right">
+        <thead class="bg-ink-900 text-white text-xs"><tr><th class="p-3 font-bold">#</th><th class="p-3 font-bold">طبقة الحماية</th><th class="p-3 font-bold">آليتها</th><th class="p-3 font-bold">المرجع النظامي الموثّق</th></tr></thead>
+        <tbody class="divide-y divide-ink-300/30">
+          <tr><td class="p-3 num font-bold">1</td><td class="p-3 font-bold">مصدر القطعة المعتمد</td><td class="p-3">سعر منشور مسبقاً من كتالوج مورّد معتمد؛ لا سعر يدوي للفني</td><td class="p-3">نظام حماية المستهلك (إعلان السعر)</td></tr>
+          <tr class="bg-paper/60"><td class="p-3 num font-bold">2</td><td class="p-3 font-bold">السعر المرجعي + سقف الهامش</td><td class="p-3">سقف صلب يمنع الإدراج تلقائياً عند تجاوزه (مثال قابل للضبط: ≤ المرجع ×1.30)</td><td class="p-3">نظام المنافسة + إسناد <span class="en">source_row_id</span></td></tr>
+          <tr><td class="p-3 num font-bold">3</td><td class="p-3 font-bold">كشف الشذوذ</td><td class="p-3">تجميد أي قفزة سعر مفاجئة وتحويلها لمراجعة بشرية</td><td class="p-3">نظام المنافسة (مكافحة الاحتكار)</td></tr>
+          <tr class="bg-paper/60"><td class="p-3 num font-bold">4</td><td class="p-3 font-bold">العرض المُفصّل الشفّاف</td><td class="p-3">فصل القطعة/العمالة/الرسوم/الضريبة + إظهار الفارق عن المرجع</td><td class="p-3">نظام حماية المستهلك (الشفافية)</td></tr>
+          <tr><td class="p-3 num font-bold">5</td><td class="p-3 font-bold">تمييز الأصلي عن التجاري</td><td class="p-3">وسم <span class="en">OEM</span> (أصلي) مقابل التجاري المتوافق + تحذير من المقلّد</td><td class="p-3">نظام مكافحة الغش التجاري</td></tr>
+          <tr class="bg-paper/60"><td class="p-3 num font-bold">6</td><td class="p-3 font-bold">التنافسية متعددة المورّدين</td><td class="p-3">عرض ≥٣ أسعار لنفس القطعة مرتّبة بقيمة العميل لا بعمولة المنصّة</td><td class="p-3">نظام المنافسة (تشجيع المنافسة)</td></tr>
+          <tr><td class="p-3 num font-bold">7</td><td class="p-3 font-bold">العرض المُجمّد <span class="en">(Locked Quote)</span></td><td class="p-3">تجميد السعر بعد الموافقة؛ أي إضافة = عرض تكميلي بموافقة جديدة</td><td class="p-3">نظام حماية المستهلك (منع التضليل)</td></tr>
+          <tr class="bg-paper/60"><td class="p-3 num font-bold">8</td><td class="p-3 font-bold">منع تربّح الفني الذاتي</td><td class="p-3">حجب الإدخال اليدوي + منع الدفع النقدي الجانبي + تصوير القطعة المركّبة</td><td class="p-3">نظام مكافحة الغش التجاري</td></tr>
+          <tr><td class="p-3 num font-bold">9</td><td class="p-3 font-bold">الفاتورة المانعة للتلاعب</td><td class="p-3">فاتورة عربية مفصّلة موقّعة رقمياً مطابقة للعرض بنداً ببند</td><td class="p-3">«فاتورة» — هيئة الزكاة والضريبة <span class="en">(ZATCA)</span></td></tr>
+          <tr class="bg-paper/60"><td class="p-3 num font-bold">10</td><td class="p-3 font-bold">التدقيق والنزاع والاسترداد</td><td class="p-3">نافذة نزاع + تجميد مستحقات + استرداد آلي للفرق عند ثبوت التضخيم</td><td class="p-3">نظام حماية المستهلك (حقوق ما بعد البيع)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-2 text-[12px] text-ink-600 bg-gold-ghost border border-gold/30 rounded-lg p-2.5">⚖️ <strong>الثغرة المعاكسة مُغطّاة:</strong> بعد نزع ربح القطعة عن الفني، ينتقل حافز التضخيم لبند العمالة — فنُعمّم نفس آلية (مرجع + سقف + كشف شذوذ) على جدول أجور موازٍ <span class="en">(labor_rates)</span>، ومؤشّر «عدالة سعر العمالة» منفصل في تقييم العميل.</p>
+
+    <!-- 5) SETTLEMENT + WARRANTY + TAX -->
+    <h3 class="mt-8 text-xl font-extrabold text-ink-900">٥) التسوية والعمولة والضمان والضريبة</h3>
+    <div class="mt-3 overflow-x-auto rounded-2xl border border-ink-300/40 shadow-card bg-white">
+      <table class="min-w-[820px] w-full text-[12px] text-right">
+        <caption class="text-[12px] font-bold text-ink-700 p-2 bg-paper">تقسيم التسوية على طلب «قطعة + عمالة» (نِسب أمثلة قابلة للحسم التجاري — ليست أرقاماً نظامية)</caption>
+        <thead class="bg-ink-900 text-white text-xs"><tr><th class="p-3 font-bold">البند</th><th class="p-3 font-bold">المستفيد</th><th class="p-3 font-bold">عمولة سيرف</th><th class="p-3 font-bold">الإفراج</th></tr></thead>
+        <tbody class="divide-y divide-ink-300/30">
+          <tr><td class="p-3 font-bold">حصة العمالة</td><td class="p-3">منفّذ العمل (عامل حر / A / B)</td><td class="p-3">سُلّم الفئات المعتمد <a href="legal.html#tiers" class="text-brand-dark underline">(20%→7%)</a></td><td class="p-3">بعد تأكيد الإنجاز من الضمان</td></tr>
+          <tr class="bg-paper/60"><td class="p-3 font-bold">حصة القطعة</td><td class="p-3">مورّد القطعة (A / C) الفائز بالمزايدة</td><td class="p-3">نموذج منفصل أدنى (الهامش محدود بالسقف)</td><td class="p-3">بعد تسليم/تركيب القطعة</td></tr>
+          <tr><td class="p-3 font-bold">رسوم خدمة سيرف</td><td class="p-3">المنصّة</td><td class="p-3">بند مستقل شفّاف</td><td class="p-3">فاتورة «فاتورة» لكل معاملة</td></tr>
+          <tr class="bg-paper/60"><td class="p-3 font-bold">المبلغ المُحتجز <span class="en">(Escrow)</span></td><td class="p-3">يُحتجز مؤقتاً لدى سيرف</td><td class="p-3">—</td><td class="p-3">يموّل الاسترداد قبل التوزيع</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mt-3 grid md:grid-cols-3 gap-3 text-[13px]">
+      <div class="rounded-2xl bg-ok-light/60 border border-ok/30 p-4"><div class="font-bold text-ink-900">🛡️ ضامن أمامي موحّد</div><p class="text-ink-700 mt-1">سيرف الضامن الوحيد للعميل بمدد الباقة (٣٠/٦٠/٩٠ يوماً)؛ تُحدّد داخلياً المسؤول (قطعة معيبة ← المورّد، تركيب خاطئ ← الفني) بتشخيص محايد — فلا تنصّل متبادل على العميل.</p></div>
+      <div class="rounded-2xl bg-brand-ghost border border-brand/30 p-4"><div class="font-bold text-ink-900">🔗 ربط Pulse + Sense</div><p class="text-ink-700 mt-1">كل قطعة مُركّبة تُسجَّل أصلاً في «سجلّ بيتي» <a href="pulse.html" class="text-brand-dark underline">(Pulse)</a> بمدّة ضمانها؛ والتشخيص/التسعير عبر طبقات <a href="sense.html" class="text-brand-dark underline">Sense</a> المعتمدة (تصنيف رخيص → تسعير دقيق → تصعيد محدود).</p></div>
+      <div class="rounded-2xl bg-warn-light border border-warn/30 p-4"><div class="font-bold text-ink-900">⚠️ قرار ضريبي مفتوح</div><p class="text-ink-700 mt-1"><strong>«بائع السجل» للفاتورة</strong> (المورّد لكل بند مقابل سيرف موحّدة) قرار <strong>يتطلّب إقرار مستشار ضريبي معتمد</strong> قبل التثبيت؛ ضريبة القيمة المضافة ١٥٪ معطىً قائم، والعتبات والمراحل تُؤخذ من منشورات هيئة الزكاة والضريبة وقت التنفيذ — لا تُخترع.</p></div>
+    </div>
+
+    <!-- prerequisite -->
+    <div class="mt-4 rounded-2xl bg-ink-900 text-white p-5">
+      <div class="text-xs font-bold text-gold-light tracking-widest uppercase">شرط مسبق تقني — قبل بناء السوق</div>
+      <p class="mt-2 text-[13.5px] text-white/85 leading-relaxed">لا يُبنى السوق التنافسي قبل ترقية مخطط مخرَج <span class="en">Sense</span>: فصل الحقل المدموج <span class="en latin">cost_range</span> إلى حقلين صريحين <span class="en latin">part_cost_range</span> و<span class="en latin">labor_cost_range</span> لكل حلٍّ (بمعرّف مصدر) — لأن <strong>السقف يُشتق من بند القطعة وحده</strong>، وفصل البندين هو جوهر حماية العميل. <span class="text-white/55">(مرجع: <a href="sense.html" class="text-gold-light underline">معمارية Sense</a>).</span></p>
+    </div>
+
+    <p class="mt-4 text-[12px] text-ink-500 leading-relaxed">📚 <strong>الإسناد التنظيمي:</strong> نظام حماية المستهلك (الإفصاح والفاتورة المفصّلة) · نظام مكافحة الغش التجاري (تجريم القطع المقلّدة) · نظام المنافسة (منع التواطؤ مع إتاحة منافسة حرّة تحت سقف هامش لا سعر موحّد) · الفوترة الإلكترونية «فاتورة» لدى هيئة الزكاة والضريبة والجمارك · السجل التجاري (المركز السعودي للأعمال) و«نفاذ» في الاعتماد. لم تُثبَّت نِسب أنظمة أو عتبات من الذاكرة — تُؤخذ من المنشورات الرسمية ومستشار معتمد وقت التنفيذ.</p>
+  </div>
+</section>
+
+<!-- ================== GATES PRINCIPLE ================== -->
+<section id="gates" class="doc-section bg-white border-y border-ink-300/30">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+    <div class="flex items-center gap-3">
+      <span class="sec-num text-gold text-3xl">04</span>
+      <div>
+        <h2 class="text-2xl lg:text-3xl font-black text-ink-900">مبدأ البوّابات — لماذا لا تواريخ</h2>
+        <p class="text-ink-500 text-sm">ننتقل بالإنجاز لا بالتقويم؛ كل مرحلة تُموّل وتُمكّن التي تليها.</p>
+      </div>
+    </div>
+    <div class="mt-6 grid md:grid-cols-3 gap-3">
+      <div class="rounded-2xl bg-white shadow-card border-r-4 border-brand p-5"><div class="text-2xl">✅</div><div class="font-bold mt-2 text-ink-900">معيار قبول لا تاريخ</div><p class="text-[13px] text-ink-600 mt-1">لا ننتقل لمرحلة قبل استيفاء بوّابتها — التاريخ يُغري بالتسرّع، والبوّابة تحمي الجودة.</p></div>
+      <div class="rounded-2xl bg-white shadow-card border-r-4 border-gold p-5"><div class="text-2xl">🪜</div><div class="font-bold mt-2 text-ink-900">تسلسل يموّل نفسه</div><p class="text-[13px] text-ink-600 mt-1">كل مرحلة تُنتج القوة (ربحية/قاعدة/بيانات) التي تموّل وتُمكّن التالية — لا قفز على فجوة.</p></div>
+      <div class="rounded-2xl bg-white shadow-card border-r-4 border-ok p-5"><div class="text-2xl">🛡️</div><div class="font-bold mt-2 text-ink-900">الجودة قبل التوسّع</div><p class="text-[13px] text-ink-600 mt-1">لا يُفتح توسّع جغرافي/قطاعي قبل أن يثبت المحرّك في السوق الأمّ — التمدّد على أساس هشّ هدم مؤجّل.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== END / COMPLETION ================== -->
+<section id="end" class="doc-section max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+  <div class="flex items-center gap-3">
+    <span class="sec-num text-gold text-3xl">05</span>
+    <div>
+      <h2 class="text-2xl lg:text-3xl font-black text-ink-900">كيف نعرف أننا اكتملنا</h2>
+      <p class="text-ink-500 text-sm">معايير «الاكتمال الشامل» — لا مرحلة بعدها إلا الخيارات الكبرى.</p>
+    </div>
+  </div>
+  <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+    <div class="rounded-2xl bg-ok-light/60 border border-ok/30 p-5"><div class="font-bold text-ink-900">① مزدوج الإيراد</div><p class="text-[13px] text-ink-700 mt-1">معاملة فورية + إيراد متكرر (اشتراكات + Pulse) مثبتان بربحية.</p></div>
+    <div class="rounded-2xl bg-brand-ghost border border-brand/30 p-5"><div class="font-bold text-ink-900">② خندق ثلاثي</div><p class="text-[13px] text-ink-700 mt-1">ثقة (ضمان/جودة) + بيانات (Sense/Pulse) + علاقة مؤسسية وحكومية.</p></div>
+    <div class="rounded-2xl bg-gold-ghost border border-gold/30 p-5"><div class="font-bold text-ink-900">③ حضور وطني</div><p class="text-[13px] text-ink-700 mt-1">أكثر من مدينة بنفس الجودة والربحية + قنوات شراكة فعّالة.</p></div>
+    <div class="rounded-2xl bg-white shadow-card border border-ink-300/40 p-5"><div class="font-bold text-ink-900">④ جاهزية الخيارات</div><p class="text-[13px] text-ink-700 mt-1">قصة استثمارية بأرقام حقيقية وحوكمة تصمد أمام العناية الواجبة.</p></div>
+  </div>
+  <div class="mt-6 rounded-3xl bg-gradient-to-bl from-gold to-brand/80 text-ink-900 p-6 lg:p-8 text-center shadow-float">
+    <h3 class="text-xl lg:text-2xl font-black max-w-3xl mx-auto leading-tight">الاكتمال ليس نهاية — بل اللحظة التي يصبح فيها السؤال «أيّ الخيارات الكبرى نختار؟» لا «هل ننجو؟».</h3>
+    <div class="mt-5 flex flex-wrap items-center justify-center gap-3">
+      <a href="plan.html" class="inline-flex items-center gap-2 text-sm font-bold bg-ink-900 text-white px-5 py-2.5 rounded-full hover:bg-ink-800 transition">🎯 الخطة الشاملة (الاتجاه) ←</a>
+      <a href="now.html" class="inline-flex items-center gap-2 text-sm font-bold bg-white text-ink-900 px-5 py-2.5 rounded-full hover:bg-paper transition">📊 نقطة البداية بالأرقام</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================== FOOTER ================== -->
+<section id="launch-incentives" class="doc-section bg-paper border-y border-ink-300/30">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+
+    <!-- section header (badge + title + lead) -->
+    <div class="flex items-center gap-3">
+      <span class="w-11 h-11 rounded-2xl bg-gradient-to-br from-gold to-ink-900 grid place-items-center text-white text-xl shrink-0 shadow-card">🚀</span>
+      <div>
+        <div class="text-xs font-bold text-gold-dark tracking-widest uppercase">تفصيل المرحلة الثانية</div>
+        <h2 class="text-2xl lg:text-3xl font-black text-ink-900">الخطة التحفيزية للإطلاق — كيف تعمل آلية «الإطلاق التحفيزي»</h2>
+        <p class="text-ink-500 text-sm mt-0.5">المحرّك الكامل خلف المرحلة <span class="num">2</span>: محفّزات محكومة تُصرف <strong>بعد الإنجاز</strong> لا قبله، بسقفٍ لا يمسّ فترة الأمان (<span class="num">4</span> أشهر) ولا يُكرّس عادة الخصم.</p>
+      </div>
+    </div>
+
+    <!-- governing principle -->
+    <div class="mt-6 rounded-3xl bg-gradient-to-bl from-gold-ghost to-white border-2 border-gold/40 p-6 lg:p-7 shadow-card">
+      <div class="text-xs font-bold text-gold-dark tracking-widest uppercase">المبدأ الحاكم</div>
+      <h3 class="mt-2 text-lg lg:text-xl font-black text-ink-900">كل ريال تحفيز يُصرف <span class="text-gold-dark">بعد</span> سلوكٍ يرفع مؤشّراً — لا قبله.</h3>
+      <div class="mt-4 grid lg:grid-cols-3 gap-3">
+        <div class="rounded-2xl bg-white shadow-card border-r-4 border-brand p-4"><div class="font-bold text-ink-900">① مرتبط بالإنجاز</div><p class="text-[13px] text-ink-600 mt-1">يُفتح التحفيز عند بلوغ <strong>عدد تنفيذات/طلبات</strong> — ندفع مقابل نشاط حقيقي لا تسجيل خامل.</p></div>
+        <div class="rounded-2xl bg-white shadow-card border-r-4 border-gold p-4"><div class="font-bold text-ink-900">② مؤقّت ومتناقص</div><p class="text-[13px] text-ink-600 mt-1">لكل عرض <strong>نافذة وسقف</strong> ثم ينطفئ تدريجياً — يمنع ترسّخ «عادة الخصم» التي تُفسد التسعير لاحقاً.</p></div>
+        <div class="rounded-2xl bg-ink-900 text-white p-4"><div class="font-bold text-gold-light">③ محكوم بالهامش</div><p class="text-[13px] text-white/85 mt-1">إجمالي الصرف <strong>≤ ميزانية مخصّصة</strong> لا تمسّ احتياطي الأمان؛ كل عرض يُقاس بأثره على القيمة للتكلفة.</p></div>
+      </div>
+      <div class="mt-4 grid sm:grid-cols-4 gap-2 text-center text-[13px]">
+        <div class="rounded-xl bg-paper border border-ink-300/40 p-3"><div class="font-bold text-ink-900">الهدف <span class="num">1</span></div><div class="text-ink-600">رفع الإتمام <span class="num">54%→62%</span></div></div>
+        <div class="rounded-xl bg-paper border border-ink-300/40 p-3"><div class="font-bold text-ink-900">الهدف <span class="num">2</span></div><div class="text-ink-600">رفع الدفع الأونلاين <span class="num">41%→52%</span></div></div>
+        <div class="rounded-xl bg-paper border border-ink-300/40 p-3"><div class="font-bold text-ink-900">الهدف <span class="num">3</span></div><div class="text-ink-600">تفعيل المزوّدين <span class="num">66%→75%</span></div></div>
+        <div class="rounded-xl bg-paper border border-ink-300/40 p-3"><div class="font-bold text-ink-900">الهدف <span class="num">4</span></div><div class="text-ink-600">تكرار العميل + أول اشتراك</div></div>
+      </div>
+      <p class="mt-2 text-[11px] text-ink-500">المستهدفات مأخوذة من <a href="now.html#q1-2026" class="text-brand-dark font-bold underline">بيانات الربع الأحدث</a> ومعايير الأداء التشغيلية.</p>
+    </div>
+
+    <!-- A) PROVIDER: commission ladder -->
+    <h3 class="mt-8 text-xl font-extrabold text-ink-900">أ) تحفيز المزوّد — تخفيض العمولة المتدرّج مقابل التنفيذ</h3>
+    <p class="text-ink-500 text-sm mt-1">سلّم «عمولة الإطلاق» <span class="en">(Founding Provider)</span> يجذب الفنّيين ويرفع الإتمام ويسرّع الترقية وفق <a href="legal.html#tiers" class="text-brand-dark font-bold underline">سُلّم الفئات</a>.</p>
+    <div class="mt-3 overflow-x-auto rounded-2xl border border-ink-300/40 shadow-card bg-white">
+      <table class="min-w-[640px] w-full text-[13px] text-right">
+        <thead class="bg-ink-900 text-white text-xs"><tr><th class="p-3 font-bold">الإنجاز خلال نافذة الإطلاق</th><th class="p-3 font-bold">المكافأة</th><th class="p-3 font-bold">العمولة المؤقّتة</th><th class="p-3 font-bold">المدّة</th></tr></thead>
+        <tbody class="divide-y divide-ink-300/30">
+          <tr><td class="p-3 font-bold">أول <span class="num">10</span> طلبات مكتملة بتقييم ≥ <span class="num">4.5</span></td><td class="p-3">شارة «مزوّد مؤسِّس» + أولوية ظهور</td><td class="p-3 num text-ok font-bold">−3 نقاط</td><td class="p-3 num">60 يوماً</td></tr>
+          <tr class="bg-paper/60"><td class="p-3 font-bold"><span class="num">25</span> طلباً + دفع أونلاين ≥ <span class="num">40%</span></td><td class="p-3">تخفيض أعمق + إشعار مبكر بالطلبات</td><td class="p-3 num text-ok font-bold">−5 نقاط</td><td class="p-3 num">60 يوماً</td></tr>
+          <tr><td class="p-3 font-bold"><span class="num">50</span> طلباً + إتمام ≥ <span class="num">60%</span> + ضمان ‹ <span class="num">8%</span></td><td class="p-3">أقصى تخفيض + ترقية مسرّعة لبلاتيني</td><td class="p-3 num text-ok font-black">−7 نقاط</td><td class="p-3 num">90 يوماً</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mt-2 rounded-xl bg-warn-light border border-warn/30 p-3 text-[13px] text-ink-700">⚖️ التخفيض <strong>مؤقّت ومشروط بالاستمرار في الأداء</strong>؛ ينطفئ تلقائياً بعد المدّة أو إن هبط المؤشّر — ثم يعود المزوّد إلى عمولة فئته المعتمدة.</div>
+    <div class="mt-4 grid sm:grid-cols-3 gap-3">
+      <div class="rounded-2xl bg-white shadow-card border-r-4 border-brand p-5"><div class="text-2xl">⚡</div><div class="font-bold mt-2 text-ink-900">مكافأة الذروة</div><p class="text-[13px] text-ink-600 mt-1">قبول طلب خلال دقيقتين في أوقات الذروة = نقاط ترقية إضافية (ترفع زمن الاستجابة).</p></div>
+      <div class="rounded-2xl bg-white shadow-card border-r-4 border-gold p-5"><div class="text-2xl">🎯</div><div class="font-bold mt-2 text-ink-900">تحدّي أسبوعي</div><p class="text-[13px] text-ink-600 mt-1">إتمام عدد طلبات بجودة عالية خلال الأسبوع = مكافأة ثابتة صغيرة (يملأ فجوات الطلب).</p></div>
+      <div class="rounded-2xl bg-white shadow-card border-r-4 border-ok p-5"><div class="text-2xl">🤝</div><div class="font-bold mt-2 text-ink-900">إحالة فنّي</div><p class="text-[13px] text-ink-600 mt-1">مزوّد يُحيل فنّياً يُكمل <span class="num">10</span> طلبات = مكافأة للطرفين (أرخص قناة لتكثيف الشبكة).</p></div>
+    </div>
+
+    <!-- B) CUSTOMER: earn your subscription + cashback -->
+    <h3 class="mt-8 text-xl font-extrabold text-ink-900">ب) تحفيز العميل — «اكسب اشتراكك» وخصم الاشتراك مقابل الطلبات</h3>
+    <p class="text-ink-500 text-sm mt-1">يحوّل المستخدم إلى أول اشتراك ويبني عادة التكرار — خصم تعريفي لمرّة واحدة مرتبط بالباقات المعتمدة، لا خصم دائم.</p>
+    <div class="mt-3 grid lg:grid-cols-2 gap-4">
+      <div class="rounded-2xl bg-white shadow-card border border-ink-300/40 p-5">
+        <div class="font-extrabold text-ink-900">① «اكسب اشتراكك» — خصم مقابل إنجاز</div>
+        <div class="mt-3 space-y-2 text-[13px]">
+          <div class="flex items-center justify-between rounded-lg bg-paper p-3"><span>أول طلب مدفوع أونلاين</span><span class="font-bold text-ok">شهر <span class="en">Smart</span> مجاناً</span></div>
+          <div class="flex items-center justify-between rounded-lg bg-paper p-3"><span><span class="num">3</span> طلبات خلال <span class="num">60</span> يوماً</span><span class="font-bold text-ok">−50% على أول اشتراك (<span class="num">3</span> أشهر)</span></div>
+          <div class="flex items-center justify-between rounded-lg bg-paper p-3"><span><span class="num">5</span> طلبات أو إحالة صديق نفّذ</span><span class="font-bold text-ok">ترقية مجانية <span class="en">Smart→Plus</span> شهراً</span></div>
+        </div>
+        <p class="text-[11px] text-ink-500 mt-2">يربط الخصم بالباقات المعتمدة (<span class="en">Smart</span> <span class="num">39</span> / <span class="en">Plus</span> <span class="num">119</span> / <span class="en">Elite</span> <span class="num">249</span>) — تعريفي لمرّة لا دائم.</p>
+      </div>
+      <div class="space-y-3">
+        <div class="rounded-2xl bg-white shadow-card border-r-4 border-gold p-5"><div class="font-bold text-ink-900">② «العميل المؤسِّس»</div><p class="text-[13px] text-ink-600 mt-1">أول <span class="num">500</span> مشترك: كاش باك (استرداد نقدي) مضاعف (<span class="num">6%</span> بدل <span class="num">3%</span>) لمدّة <span class="num">3</span> أشهر + فحص تكييف مجاني قبل الصيف — يخلق ندرة وإلحاحاً.</p></div>
+        <div class="rounded-2xl bg-white shadow-card border-r-4 border-brand p-5"><div class="font-bold text-ink-900">③ كاش باك على الدفع الأونلاين</div><p class="text-[13px] text-ink-600 mt-1">استرداد نقدي إضافي عند الدفع داخل التطبيق (لا نقداً) — يدفع نسبة الأونلاين <span class="num">41%→52%</span> مباشرةً.</p></div>
+        <div class="rounded-2xl bg-white shadow-card border-r-4 border-ok p-5"><div class="font-bold text-ink-900">④ خصم الموعد المتأخّر</div><p class="text-[13px] text-ink-600 mt-1">إن تأخّر الفني فوق <span class="num">30</span> دقيقة = خصم تلقائي — يبني ثقة الالتزام بلا تكلفة تسويق.</p></div>
+      </div>
+    </div>
+
+    <!-- C) REFERRAL ENGINE -->
+    <h3 class="mt-8 text-xl font-extrabold text-ink-900">ج) محرّك الإحالة <span class="en">(Referral)</span> — أرخص قناة نمو</h3>
+    <p class="text-ink-500 text-sm mt-1">المكافأة تُصرف <strong>فقط</strong> عند تنفيذ الطلب الأول للمُحال — لا تكلفة بلا نتيجة.</p>
+    <div class="mt-3 grid md:grid-cols-3 gap-3">
+      <div class="rounded-2xl bg-ink-900 text-white p-5"><div class="num w-8 h-8 rounded-lg bg-gold text-ink-900 grid place-items-center font-black">1</div><div class="font-bold mt-2 text-gold-light">عميل يُحيل عميلاً</div><p class="text-[13px] text-white/80 mt-1">رصيد للطرفين يُفعّل بعد إتمام أول طلب للمُحال — كلفة اكتساب شبه صفرية (مرتبطة بـ<span class="num">17.5</span> ر).</p></div>
+      <div class="rounded-2xl bg-ink-900 text-white p-5"><div class="num w-8 h-8 rounded-lg bg-gold text-ink-900 grid place-items-center font-black">2</div><div class="font-bold mt-2 text-gold-light">حملة الحيّ</div><p class="text-[13px] text-white/80 mt-1">عند بلوغ حيٍّ عدداً من الطلبات يُفتح عرض جماعي للحيّ — يكثّف الشبكة جغرافياً (أحياء الطلب الأعلى أولاً).</p></div>
+      <div class="rounded-2xl bg-ink-900 text-white p-5"><div class="num w-8 h-8 rounded-lg bg-gold text-ink-900 grid place-items-center font-black">3</div><div class="font-bold mt-2 text-gold-light">شراكة الكمباوند</div><p class="text-[13px] text-white/80 mt-1">اتفاق مع المجمّعات السكنية: خصم لسكّانها مقابل حجم — قناة <span class="en">B2B2C</span> (شركة لشركة لمستهلك) مبكّرة بتكلفة منخفضة.</p></div>
+    </div>
+
+    <!-- D) FINANCIAL GUARDRAILS -->
+    <h3 class="mt-8 text-xl font-extrabold text-ink-900">د) الضوابط المالية وسقف الميزانية — لئلّا يحرق التحفيز النقد</h3>
+    <p class="text-ink-500 text-sm mt-1">أهمّ ركيزة: التحفيز بلا حدود يقتل الشركة قبل أن ينهض التطبيق.</p>
+    <div class="mt-3 grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      <div class="rounded-2xl bg-white shadow-card border border-ink-300/40 p-5"><div class="text-2xl">💰</div><div class="font-bold mt-2 text-ink-900">سقف ميزانية شهري</div><p class="text-[13px] text-ink-600 mt-1">إجمالي صرف التحفيز ≤ نسبة محدّدة من إيراد الشهر، ولا يمسّ احتياطي الأمان (<span class="num">180,000</span> ر / <span class="num">4</span> أشهر).</p></div>
+      <div class="rounded-2xl bg-white shadow-card border border-ink-300/40 p-5"><div class="text-2xl">⏳</div><div class="font-bold mt-2 text-ink-900">نوافذ زمنية مغلقة</div><p class="text-[13px] text-ink-600 mt-1">كل عرض له بداية ونهاية وعدد مستفيدين أقصى — لا عروض مفتوحة دائمة.</p></div>
+      <div class="rounded-2xl bg-white shadow-card border border-ink-300/40 p-5"><div class="text-2xl">📉</div><div class="font-bold mt-2 text-ink-900">هامش وحدة موجب دائماً</div><p class="text-[13px] text-ink-600 mt-1">حتى مع التخفيض الأقصى يبقى ربح المنصّة من الطلب موجباً — التحفيز يقلّل الربح لا يقلبه خسارة.</p></div>
+      <div class="rounded-2xl bg-white shadow-card border border-ink-300/40 p-5"><div class="text-2xl">🛡️</div><div class="font-bold mt-2 text-ink-900">مكافحة التلاعب</div><p class="text-[13px] text-ink-600 mt-1">منع الطلبات الوهمية/الاتفاق الخارجي عبر كاشف التلاعب (إيقاف فوري للحساب المخالف).</p></div>
+      <div class="rounded-2xl bg-white shadow-card border border-ink-300/40 p-5"><div class="text-2xl">🔚</div><div class="font-bold mt-2 text-ink-900">خطّة فطام واضحة</div><p class="text-[13px] text-ink-600 mt-1">التخفيضات تتناقص تدريجياً حتى تنطفئ — ينتقل المستخدم/المزوّد للقيمة الحقيقية لا للسعر المخفّض.</p></div>
+      <div class="rounded-2xl bg-white shadow-card border border-ink-300/40 p-5"><div class="text-2xl">📊</div><div class="font-bold mt-2 text-ink-900">قياس العائد لكل عرض</div><p class="text-[13px] text-ink-600 mt-1">كل عرض يُقاس بأثره على المؤشّر المستهدف؛ ما لا يحرّك مؤشّراً يُوقَف فوراً.</p></div>
+    </div>
+
+    <!-- E) WAVES + measure of success -->
+    <h3 class="mt-8 text-xl font-extrabold text-ink-900">هـ) موجات الإطلاق الثلاث + مؤشّر النجاح</h3>
+    <p class="text-ink-500 text-sm mt-1">ثلاث موجات متتابعة بلا تواريخ مُلزِمة — بوّابات إنجاز تنسجم مع منطق المراحل أعلاه.</p>
+    <div class="mt-3 grid md:grid-cols-3 gap-4">
+      <div class="rounded-2xl bg-brand-ghost border border-brand/30 p-5"><div class="text-xs font-bold text-brand-dark tracking-widest uppercase">الموجة <span class="num">1</span> — الإشعال</div><p class="text-[13px] text-ink-700 mt-2">«المزوّد/العميل المؤسِّس» + الإحالة. الهدف: كثافة الشبكة في أحياء الطلب الأعلى + أول قاعدة مشتركين.</p></div>
+      <div class="rounded-2xl bg-gold-ghost border border-gold/30 p-5"><div class="text-xs font-bold text-gold-dark tracking-widest uppercase">الموجة <span class="num">2</span> — التحويل</div><p class="text-[13px] text-ink-700 mt-2">«اكسب اشتراكك» + كاش باك الأونلاين + التحدّي الأسبوعي. الهدف: رفع الإتمام والدفع الرقمي والتكرار.</p></div>
+      <div class="rounded-2xl bg-paper border border-ink-300/40 p-5"><div class="text-xs font-bold text-ink-700 tracking-widest uppercase">الموجة <span class="num">3</span> — الفطام</div><p class="text-[13px] text-ink-700 mt-2">تناقص التخفيضات + إبراز القيمة (ضمان/جودة/<span class="en">Pulse</span>). الهدف: بقاء التفاعل بعد انطفاء الحوافز.</p></div>
+    </div>
+    <div class="mt-4 grid sm:grid-cols-2 gap-3">
+      <div class="rounded-2xl bg-brand-ghost border border-brand/30 p-4"><div class="text-xs text-ink-500">مؤشّر القياس الأهم</div><div class="text-base font-black text-brand-dark mt-1">العائد لكل ريال تحفيز</div><div class="text-[11px] text-ink-500">طلبات/اشتراكات مضافة ÷ الصرف</div></div>
+      <div class="rounded-2xl bg-gold-ghost border border-gold/30 p-4"><div class="text-xs text-ink-500">شرط الاستمرار</div><div class="text-base font-black text-gold-dark mt-1">يحرّك مؤشّراً — وإلّا يُوقَف</div><div class="text-[11px] text-ink-500">كل عرض مشروط بأثرٍ مقيس على المستهدف</div></div>
+    </div>
+
+    <!-- closing strip -->
+    <div class="mt-8 rounded-3xl bg-gradient-to-bl from-gold to-brand/80 text-ink-900 p-6 lg:p-8 text-center shadow-float">
+      <h3 class="text-lg lg:text-2xl font-black max-w-3xl mx-auto leading-tight">نُكافئ مَن يُنجز — فيرتفع التفاعل، وتبقى فترة الأمان، ولا تُكرَّس عادة الخصم.</h3>
+      <p class="mt-3 text-[15px] text-ink-900/85 max-w-2xl mx-auto">حوافز مؤقّتة مرتبطة بالإنجاز، محكومة بسقفٍ لا يمسّ الهامش، مع خطّة فطام تنقل الجميع إلى القيمة الحقيقية — وهي جوهر <a href="#stages" class="font-black underline">المرحلة الثانية</a> في خطة التدشين.</p>
+    </div>
+
+  </div>
+</section>
+
+<section id="hiring-execution" class="doc-section bg-paper border-y border-ink-300/30">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+
+    <!-- distinctive header (icon badge, no global 01/02 numbering) -->
+    <div class="flex items-start gap-3">
+      <span class="w-11 h-11 rounded-2xl bg-gradient-to-br from-brand to-ink-900 grid place-items-center text-white text-xl shrink-0 shadow-card">👥</span>
+      <div>
+        <div class="text-[12px] font-bold text-brand tracking-widest uppercase">طبقة التنفيذ البشرية</div>
+        <h2 class="mt-1 text-2xl lg:text-3xl font-black text-ink-900">خطة التوظيف والتنفيذ التفصيلي</h2>
+        <p class="text-ink-500 text-sm mt-1">مَن نوظّف، ومتى — مربوطاً ببوّابات <a href="#stages" class="text-brand-dark font-bold underline">المراحل السبع</a> لا بتاريخ. التعيين يأتي عند تحقّق شرط، لا لأن الخطة تذكر المنصب.</p>
+      </div>
+    </div>
+
+    <!-- governing principle -->
+    <div class="mt-6 rounded-3xl bg-gradient-to-bl from-ink-900 to-ink-700 text-white p-6 lg:p-7 shadow-float">
+      <div class="text-xs font-bold text-gold-light tracking-widest uppercase">المبدأ الحاكم للتوظيف</div>
+      <h3 class="mt-2 text-lg lg:text-xl font-black leading-snug">لا تُوظِّف لأن الخطة تذكر المنصب — <span class="text-gold-light">وظِّف فقط حين يفرض شرطٌ واضح ذلك</span>.</h3>
+      <p class="mt-3 text-white/80 text-[14px] leading-relaxed">كل دور جديد يُموَّل بإنجاز المرحلة السابقة (ربحية وحدة أو قاعدة عملاء أو بيانات)، تماماً كما تنتقل المراحل ببوّابة لا بتقويم. الترتيب أدناه أولوية تنفيذ — لا جدول زمني.</p>
+    </div>
+
+    <!-- 4 priority layers -->
+    <div class="mt-8">
+      <h3 class="font-black text-ink-900 text-lg">أولويات التوظيف — أربع طبقات، ابدأ من الأعلى</h3>
+      <p class="text-ink-500 text-sm mt-1">الترتيب بالأولوية والاستحقاق (شرط التفعيل)، لا بالشهر أو الربع.</p>
+
+      <div class="mt-5 space-y-4">
+
+        <!-- Layer 1 -->
+        <div class="rounded-2xl bg-gradient-to-l from-danger to-warn text-white p-5 lg:p-6 shadow-float">
+          <div class="flex items-center justify-between flex-wrap gap-2">
+            <div>
+              <div class="text-[11px] font-bold tracking-widest uppercase opacity-80">الطبقة الأولى · ضرورة الآن — أثناء التأسيس والتشغيل</div>
+              <h4 class="text-xl font-black mt-1">التوظيف الضروري أولاً</h4>
+            </div>
+            <span class="num text-5xl font-black opacity-25">1</span>
+          </div>
+          <div class="mt-4 overflow-x-auto rounded-xl">
+            <table class="w-full text-[13px]">
+              <thead class="bg-white/10"><tr><th class="text-right p-2 font-bold">#</th><th class="text-right p-2 font-bold">المنصب</th><th class="text-right p-2 font-bold">السبب</th></tr></thead>
+              <tbody class="divide-y divide-white/20">
+                <tr><td class="p-2 num font-bold">1</td><td class="p-2 font-bold">رئيس العمليات</td><td class="p-2">ضبط الجودة والتشغيل وتفعيل تصنيف المزوّدين.</td></tr>
+                <tr><td class="p-2 num font-bold">2</td><td class="p-2 font-bold">مدير المنتج <span class="en">(PM)</span></td><td class="p-2">تحويل الخطة إلى منتج واضح ومسار طلب يرفع الإتمام.</td></tr>
+                <tr><td class="p-2 num font-bold">3</td><td class="p-2 font-bold">مدير الجودة</td><td class="p-2">ضمان الخدمة وتقليل الشكاوى عبر معيار موحّد.</td></tr>
+                <tr><td class="p-2 num font-bold">4</td><td class="p-2 font-bold">مدير تجربة العميل <span class="en">(CX)</span></td><td class="p-2">رفع الرضا وتكرار الطلب قبل الاشتراكات.</td></tr>
+                <tr><td class="p-2 num font-bold">5</td><td class="p-2 font-bold">مدير تسويق النمو</td><td class="p-2">تحويل القاعدة الحالية إلى مشتركين بأقل تكلفة.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Layer 2 -->
+        <div class="rounded-2xl bg-gradient-to-l from-brand to-brand-dark text-white p-5 lg:p-6 shadow-card mx-1 lg:mx-8">
+          <div class="flex items-center justify-between flex-wrap gap-2">
+            <div>
+              <div class="text-[11px] font-bold tracking-widest uppercase opacity-80">الطبقة الثانية · بعد ثبات التشغيل — مع الاشتراكات وبدء التوسّع</div>
+              <h4 class="text-xl font-black mt-1">مرحلة النمو</h4>
+            </div>
+            <span class="num text-5xl font-black opacity-25">2</span>
+          </div>
+          <div class="mt-4 overflow-x-auto rounded-xl">
+            <table class="w-full text-[13px]">
+              <thead class="bg-white/10"><tr><th class="text-right p-2 font-bold">#</th><th class="text-right p-2 font-bold">المنصب</th><th class="text-right p-2 font-bold">السبب</th></tr></thead>
+              <tbody class="divide-y divide-white/20">
+                <tr><td class="p-2 num font-bold">6</td><td class="p-2 font-bold">رئيس قطاع الشركات <span class="en">(B2B)</span></td><td class="p-2">بدء عقود الأعمال والقطاع المؤسسي.</td></tr>
+                <tr><td class="p-2 num font-bold">7</td><td class="p-2 font-bold">مدير حساب</td><td class="p-2">إدارة العملاء المؤسسيين والاحتفاظ بهم.</td></tr>
+                <tr><td class="p-2 num font-bold">8</td><td class="p-2 font-bold">مدير عمليات الشركات</td><td class="p-2">ضمان تنفيذ عقود الشركات باتفاقيات مستوى الخدمة <span class="en">(SLA)</span>.</td></tr>
+                <tr><td class="p-2 num font-bold">9</td><td class="p-2 font-bold">محلل مالي</td><td class="p-2">مراقبة ربحية الباقات والوحدة.</td></tr>
+                <tr><td class="p-2 num font-bold">10</td><td class="p-2 font-bold">مدير الشراكات</td><td class="p-2">تطوير قنوات الإيراد (تأمين وتجزئة).</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Layer 3 -->
+        <div class="rounded-2xl bg-gradient-to-l from-gold to-gold-dark text-ink-900 p-5 lg:p-6 shadow-card mx-2 lg:mx-16">
+          <div class="flex items-center justify-between flex-wrap gap-2">
+            <div>
+              <div class="text-[11px] font-bold tracking-widest uppercase opacity-80">الطبقة الثالثة · بعد ثبوت الشركات فعلياً — مع محرّك Pulse</div>
+              <h4 class="text-xl font-black mt-1">بناء <span class="en">Pulse</span></h4>
+            </div>
+            <span class="num text-5xl font-black opacity-25">3</span>
+          </div>
+          <div class="mt-4 overflow-x-auto rounded-xl">
+            <table class="w-full text-[13px]">
+              <thead class="bg-white/30"><tr><th class="text-right p-2 font-bold">#</th><th class="text-right p-2 font-bold">المنصب</th><th class="text-right p-2 font-bold">السبب</th></tr></thead>
+              <tbody class="divide-y divide-white/30">
+                <tr><td class="p-2 num font-bold">11</td><td class="p-2 font-bold">مدير منتج <span class="en">Pulse</span></td><td class="p-2">بناء منتج البرمجيات كخدمة <span class="en">(SaaS)</span> حقيقي بقناة بيع.</td></tr>
+                <tr><td class="p-2 num font-bold">12</td><td class="p-2 font-bold">مهندس حلول</td><td class="p-2">تصميم منصّة سجلّ الأصول وأوامر العمل.</td></tr>
+                <tr><td class="p-2 num font-bold">13</td><td class="p-2 font-bold">مطوّرو الواجهة الخلفية/الأمامية</td><td class="p-2">تطوير Pulse وربطه بالشبكة الميدانية.</td></tr>
+                <tr><td class="p-2 num font-bold">14</td><td class="p-2 font-bold">أخصائي التطبيق <span class="en">(Implementation)</span></td><td class="p-2">تطبيق المنصّة عند العملاء المؤسسيين.</td></tr>
+                <tr><td class="p-2 num font-bold">15</td><td class="p-2 font-bold">مدير نجاح العملاء</td><td class="p-2">ضمان استخدام العملاء وتقليل الإلغاء.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Layer 4 -->
+        <div class="rounded-2xl bg-gradient-to-l from-ink-900 to-ink-700 text-white p-5 lg:p-6 shadow-card mx-3 lg:mx-24">
+          <div class="flex items-center justify-between flex-wrap gap-2">
+            <div>
+              <div class="text-[11px] font-bold tracking-widest uppercase opacity-80 text-gold-light">الطبقة الرابعة · بعد نضج البيانات — مع محرّك Sense والنضج</div>
+              <h4 class="text-xl font-black mt-1">بناء <span class="en">Sense</span> + الذكاء</h4>
+            </div>
+            <span class="num text-5xl font-black opacity-25">4</span>
+          </div>
+          <div class="mt-4 overflow-x-auto rounded-xl">
+            <table class="w-full text-[13px]">
+              <thead class="bg-white/10"><tr><th class="text-right p-2 font-bold">#</th><th class="text-right p-2 font-bold">المنصب</th><th class="text-right p-2 font-bold">السبب</th></tr></thead>
+              <tbody class="divide-y divide-white/15">
+                <tr><td class="p-2 num font-bold">16</td><td class="p-2 font-bold">مهندس الذكاء الاصطناعي والتعلم الآلي <span class="en">(AI/ML)</span></td><td class="p-2">تطوير محرّك التشخيص <span class="en">Sense</span>.</td></tr>
+                <tr><td class="p-2 num font-bold">17</td><td class="p-2 font-bold">مهندس بيانات</td><td class="p-2">تنظيم بيانات الأعطال وقاعدة الأسعار.</td></tr>
+                <tr><td class="p-2 num font-bold">18</td><td class="p-2 font-bold">مدير منتج الذكاء الاصطناعي</td><td class="p-2">تحويل الذكاء إلى منتج مُسعّر فعلي.</td></tr>
+                <tr><td class="p-2 num font-bold">19</td><td class="p-2 font-bold">مستشار الامتثال</td><td class="p-2">مراجعة الخصوصية وبيانات العملاء.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- per-stage key hires, keyed to the target's own 7 stages -->
+    <div class="mt-10">
+      <h3 class="font-black text-ink-900 text-lg">أبرز التعيينات عند كل بوّابة</h3>
+      <p class="text-ink-500 text-sm mt-1">مربوطة بمراحل التدشين السبع — يُفعَّل الدور حين تُستوفى بوّابة مرحلته، لا قبلها.</p>
+      <div class="mt-5 overflow-x-auto rounded-2xl border border-ink-300/40 shadow-card bg-white">
+        <table class="min-w-[760px] w-full text-[13px] text-right">
+          <thead class="bg-ink-900 text-white text-xs">
+            <tr><th class="p-3 font-bold">المرحلة</th><th class="p-3 font-bold">شرط التفعيل (البوّابة)</th><th class="p-3 font-bold">أبرز التعيينات</th></tr>
+          </thead>
+          <tbody class="divide-y divide-ink-300/30">
+            <tr><td class="p-3 font-bold text-ink-900">0 · التأسيس</td><td class="p-3 text-ink-600">ربحية وحدة موجبة + حوكمة بمالك لكل مسار.</td><td class="p-3">مدير تطوير الأعمال <span class="en">(CBDO)</span> · مدير منتج جزئي · مستشار مالي (جزئي)</td></tr>
+            <tr class="bg-paper/60"><td class="p-3 font-bold text-brand-dark">1 · التشغيل والجودة</td><td class="p-3 text-ink-600">نظام التصنيف يعمل + إتمام في صعود مستقر.</td><td class="p-3">رئيس العمليات · مدير الجودة · مدير الموردين والفنيين · قائد دعم العملاء</td></tr>
+            <tr class="bg-gold-ghost/40"><td class="p-3 font-bold text-gold-dark">2 · الإطلاق التحفيزي</td><td class="p-3 text-ink-600">ارتفاع مثبت في الإتمام والدفع الأونلاين بهامش موجب.</td><td class="p-3">مدير تجربة العميل <span class="en">(CX)</span> · أخصائي تسويق/إحالة · مصمم تجربة وواجهة (تعاقد)</td></tr>
+            <tr><td class="p-3 font-bold text-brand-dark">3 · الاشتراكات</td><td class="p-3 text-ink-600">قاعدة مشتركين ببقاء صحّي + أول إيراد متكرر مثبت.</td><td class="p-3">مدير تسويق النمو · أخصائي نجاح العملاء · محلل مالي · مطوّر فوترة (تعاقد)</td></tr>
+            <tr class="bg-gold-ghost/40"><td class="p-3 font-bold text-gold-dark">4 · المحرّكان <span class="en">Pulse + Sense</span></td><td class="p-3 text-ink-600">إيراد <span class="en">Pulse</span> مؤسسي + أثر <span class="en">Sense</span> مثبت.</td><td class="p-3">مدير منتج Pulse · مهندس حلول · مطوّرون · مهندس ذكاء اصطناعي · مهندس بيانات</td></tr>
+            <tr><td class="p-3 font-bold text-brand-dark">5 · التوسّع</td><td class="p-3 text-ink-600">محفظة عقود متعاقدة + ربح مثبت في أكثر من سوق.</td><td class="p-3">مدير الشراكات · مدير حساب · مدير عمليات مدينة · مشرف ميداني</td></tr>
+            <tr class="bg-ink-900 text-white"><td class="p-3 font-bold">6 · النضج</td><td class="p-3 text-white/70">نموذج مزدوج الإيراد + ملف عناية واجبة جاهز.</td><td class="p-3">المدير المالي · مستشار استثماري · مستشار قانوني/امتثال</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- golden hiring rule: 6 triggers -->
+    <div class="mt-10">
+      <h3 class="font-black text-ink-900 text-lg">القاعدة الذهبية — شروط استحقاق التعيين</h3>
+      <p class="text-ink-500 text-sm mt-1">وظِّف فقط عند تحقّق أحد هذه الشروط؛ وإذا اجتمع شرطان فأكثر صار التعيين إلزامياً.</p>
+      <div class="mt-5 grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        <div class="rounded-2xl bg-white p-5 border-r-4 border-danger shadow-card"><div class="text-2xl">📈</div><div class="font-bold mt-2 text-ink-900">ضغط تشغيلي واضح</div><p class="text-[13px] text-ink-600 mt-1">الطلبات أو الشكاوى تتجاوز قدرة الفريق الحالي.</p></div>
+        <div class="rounded-2xl bg-white p-5 border-r-4 border-brand shadow-card"><div class="text-2xl">💰</div><div class="font-bold mt-2 text-ink-900">إيراد يغطّي تكلفة الدور</div><p class="text-[13px] text-ink-600 mt-1">خصوصاً في المبيعات والشركات <span class="en">(B2B)</span> والاشتراكات.</p></div>
+        <div class="rounded-2xl bg-white p-5 border-r-4 border-gold shadow-card"><div class="text-2xl">📦</div><div class="font-bold mt-2 text-ink-900">منتج يحتاج مالكاً واضحاً</div><p class="text-[13px] text-ink-600 mt-1">مثل <span class="en">Pulse</span> أو <span class="en">Sense</span>.</p></div>
+        <div class="rounded-2xl bg-white p-5 border-r-4 border-warn shadow-card"><div class="text-2xl">⚠️</div><div class="font-bold mt-2 text-ink-900">مخاطر جودة أو قانونية</div><p class="text-[13px] text-ink-600 mt-1">مثل الضمان والصور وبيانات العملاء.</p></div>
+        <div class="rounded-2xl bg-white p-5 border-r-4 border-ok shadow-card"><div class="text-2xl">📜</div><div class="font-bold mt-2 text-ink-900">عقود تحتاج إدارة مستمرة</div><p class="text-[13px] text-ink-600 mt-1">خصوصاً الشركات <span class="en">(B2B)</span> والبرمجيات كخدمة <span class="en">(SaaS)</span>.</p></div>
+        <div class="rounded-2xl bg-gradient-to-br from-brand-ghost to-gold-ghost p-5 shadow-card border-r-4 border-ink-900"><div class="text-2xl">🎯</div><div class="font-bold mt-2 text-ink-900">القاعدة المركّبة</div><p class="text-[13px] text-ink-600 mt-1">اجتماع شرطين أو أكثر يجعل التعيين <strong>إلزامياً</strong>.</p></div>
+      </div>
+    </div>
+
+    <!-- org structure: 9 responsibilities -->
+    <div class="mt-10">
+      <h3 class="font-black text-ink-900 text-lg">الهيكل التشغيلي — تسع مسؤوليات تدعم الخطة</h3>
+      <p class="text-ink-500 text-sm mt-1">قيادة واحدة، محوران (تجاري وتقني)، وست مسؤوليات تشغيلية تنضج تدريجياً.</p>
+
+      <div class="mt-6 flex justify-center">
+        <div class="w-full max-w-3xl">
+          <div class="grid place-items-center">
+            <div class="rounded-2xl bg-ink-900 text-white px-6 py-4 shadow-float text-center">
+              <div class="text-[11px] font-bold text-brand-light tracking-widest uppercase">القيادة</div>
+              <div class="font-extrabold text-lg mt-1">الرئيس التنفيذي / المؤسس</div>
+              <div class="text-[11px] text-white/65">التوجّه · التمويل · الشراكات الكبرى</div>
+            </div>
+          </div>
+          <div class="my-3 h-6 w-px bg-ink-300 mx-auto"></div>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="rounded-2xl bg-brand text-white px-4 py-3 text-center shadow-card">
+              <div class="text-[11px] font-bold opacity-80 tracking-widest uppercase">التجارية</div>
+              <div class="font-extrabold mt-1">مدير تطوير الأعمال <span class="en">(CBDO)</span></div>
+              <div class="text-[11px] opacity-80">الشركات · الشراكات · التوسّع · الإيرادات</div>
+            </div>
+            <div class="rounded-2xl bg-gold text-ink-900 px-4 py-3 text-center shadow-card">
+              <div class="text-[11px] font-bold opacity-80 tracking-widest uppercase">التقنية</div>
+              <div class="font-extrabold mt-1">قائد التقنية</div>
+              <div class="text-[11px] opacity-80">الأنظمة · التكاملات · الأمن · البيانات</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        <div class="rounded-2xl bg-white p-4 border border-ink-300/40 shadow-card"><div class="text-[11px] font-bold text-ink-500 tracking-widest uppercase">رئيس العمليات</div><div class="font-bold mt-1 text-ink-900">التشغيل والجودة</div></div>
+        <div class="rounded-2xl bg-white p-4 border border-ink-300/40 shadow-card"><div class="text-[11px] font-bold text-ink-500 tracking-widest uppercase">مدير المنتج</div><div class="font-bold mt-1 text-ink-900">المنتج وتجربة المستخدم</div></div>
+        <div class="rounded-2xl bg-white p-4 border border-ink-300/40 shadow-card"><div class="text-[11px] font-bold text-ink-500 tracking-widest uppercase">قائد تجربة العميل</div><div class="font-bold mt-1 text-ink-900">تجربة العملاء</div></div>
+        <div class="rounded-2xl bg-white p-4 border border-ink-300/40 shadow-card"><div class="text-[11px] font-bold text-ink-500 tracking-widest uppercase">قائد المالية</div><div class="font-bold mt-1 text-ink-900">المالية والتسعير</div></div>
+        <div class="rounded-2xl bg-white p-4 border border-ink-300/40 shadow-card"><div class="text-[11px] font-bold text-ink-500 tracking-widest uppercase">قائد مبيعات الشركات</div><div class="font-bold mt-1 text-ink-900">مبيعات الشركات</div></div>
+        <div class="rounded-2xl bg-white p-4 border border-ink-300/40 shadow-card"><div class="text-[11px] font-bold text-ink-500 tracking-widest uppercase">مدير الجودة</div><div class="font-bold mt-1 text-ink-900">الجودة والتدقيق</div></div>
+      </div>
+    </div>
+
+    <p class="mt-8 text-[12px] text-ink-500 leading-relaxed">📚 ملاحظة ربط: هذه الخطة طبقةٌ بشرية فوق <a href="#stages" class="text-brand-dark font-bold underline">المراحل السبع</a> و<a href="#workstreams" class="text-brand-dark font-bold underline">المسارات المتوازية</a> — لا تكرّر سردها، بل تُسند كل دور إلى بوّابته. تفاصيل التسعير في <a href="details.html#pricing" class="text-brand-dark font-bold underline">الباقات</a>، وسُلّم الفئات في <a href="legal.html#tiers" class="text-brand-dark font-bold underline">القانوني</a>، والاتجاه العام في <a href="plan.html" class="text-brand-dark font-bold underline">الخطة الشاملة</a>.</p>
+
+  </div>
+</section>
+
+<footer class="bg-ink-900 text-white/75 no-print">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-8 flex flex-wrap items-center justify-between gap-4 text-sm">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-gold to-brand grid place-items-center text-white font-extrabold">🗺️</div>
+      <div><div class="font-bold text-white">خطة التدشين · سيرف</div><div class="text-[11px] text-white/55">من الوضع الحالي إلى الاكتمال · 7 مراحل ببوّابات إنجاز</div></div>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="home.html" class="px-3 py-1.5 rounded-md bg-white/10 hover:bg-white/20 font-bold text-white text-xs">الرئيسية</a>
+      <button onclick="window.print()" class="px-3 py-1.5 rounded-md bg-gold text-ink-900 font-bold text-xs">طباعة PDF</button>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){var ds=document.querySelectorAll('.navgrp');
+ds.forEach(function(d){d.addEventListener('toggle',function(){if(d.open)ds.forEach(function(o){if(o!==d)o.open=false;});});});
+document.addEventListener('click',function(e){ds.forEach(function(d){if(d.open&&!d.contains(e.target))d.open=false;});});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')ds.forEach(function(d){d.open=false;});});})();
+</script>
+</body>
+</html>
