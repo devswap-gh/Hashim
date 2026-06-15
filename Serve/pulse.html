@@ -153,7 +153,10 @@
             <button class="pnav active w-full text-right px-3 py-2 rounded-lg flex items-center gap-2 hover:bg-paper transition" data-tab="t-dash" role="tab" aria-selected="true">📊 <span>لوحة القيادة</span></button>
             <button class="pnav w-full text-right px-3 py-2 rounded-lg flex items-center gap-2 text-ink-500 hover:bg-paper transition" data-tab="t-wo" role="tab" aria-selected="false">🧰 <span>أوامر العمل</span></button>
             <button class="pnav w-full text-right px-3 py-2 rounded-lg flex items-center gap-2 text-ink-500 hover:bg-paper transition" data-tab="t-assets" role="tab" aria-selected="false">🏢 <span>الأصول</span></button>
+            <button class="pnav w-full text-right px-3 py-2 rounded-lg flex items-center gap-2 text-gold-dark font-bold hover:bg-paper transition ring-1 ring-gold/30 bg-gold-ghost/50" data-tab="t-market" role="tab" aria-selected="false">🛒 <span>الطلب الخارجي</span><span class="text-[9px] bg-gold text-ink-900 px-1.5 py-0.5 rounded-full mr-auto">Serve حصراً</span></button>
+            <button class="pnav w-full text-right px-3 py-2 rounded-lg flex items-center gap-2 text-ink-500 hover:bg-paper transition" data-tab="t-inv" role="tab" aria-selected="false">📦 <span>المخزون والقطع</span></button>
             <button class="pnav w-full text-right px-3 py-2 rounded-lg flex items-center gap-2 text-ink-500 hover:bg-paper transition" data-tab="t-sla" role="tab" aria-selected="false">📜 <span>العقود والامتثال</span></button>
+            <button class="pnav w-full text-right px-3 py-2 rounded-lg flex items-center gap-2 text-ink-500 hover:bg-paper transition" data-tab="t-reports" role="tab" aria-selected="false">📈 <span>التقارير</span></button>
           </nav>
           <div class="mt-4 mx-2 rounded-xl bg-brand-ghost p-3">
             <div class="text-[11px] text-brand-dark font-bold">المنشأة النشطة</div>
@@ -241,6 +244,126 @@
             <div class="mt-3 rounded-xl bg-gold-ghost border border-gold/30 p-3 text-[13px] text-ink-700">💡 <strong>توصية Sense:</strong> نمط استهلاك المصعد رقم 2 يشير إلى تآكل في المحرّك — جدولة صيانة وقائية الآن توفّر ~<span class="num">40%</span> من كلفة العطل الكامل.</div>
           </div>
 
+          <!-- TAB: EXTERNAL PROCUREMENT (Serve-exclusive) -->
+          <div id="t-market" class="ptab" hidden>
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <h3 class="font-extrabold text-ink-900">الطلب الخارجي — مشتريات · تركيب · صيانة من خارج المنشأة</h3>
+                <p class="text-[11px] text-ink-500 mt-0.5">أي احتياج يتجاوز إمكانات الفريق الداخلي يُوجَّه عبر <span class="en">Pulse</span> — والمزوّد الحصري هو <span class="font-bold text-brand-dark">Serve</span>.</p>
+              </div>
+              <span class="inline-flex items-center gap-1.5 text-[11px] bg-ink-900 text-gold-light px-2.5 py-1 rounded-md font-bold ring-1 ring-gold-light/40">🔒 مزوّد حصري · <span class="en">Serve</span></span>
+            </div>
+
+            <!-- exclusive banner -->
+            <div class="mt-4 rounded-xl bg-gradient-to-l from-brand to-brand-dark text-white p-4 flex items-start gap-3">
+              <div class="text-2xl shrink-0">🛡️</div>
+              <p class="text-[13px] leading-relaxed">داخل <span class="en">Pulse</span>، كل طلبات <strong>المنتجات والقطع</strong>، و<strong>التركيب</strong>، و<strong>الصيانة المتخصّصة</strong> تُلبّى عبر <strong class="text-gold-light"><span class="en">Serve</span> حصراً</strong> — بسعرٍ موحّد، وضمان، واتفاقية مستوى خدمة. لا تظهر أي جهةٍ خارجية: <strong>حلقة مغلقة</strong> تحمي الجودة وتمنع تسرّب الإيراد.</p>
+            </div>
+
+            <!-- category segmented control -->
+            <div class="mt-4 grid grid-cols-3 gap-2 text-center text-[13px] font-bold">
+              <button class="mktcat active rounded-lg py-2 ring-1 ring-brand/40 bg-brand-ghost text-brand-dark transition" data-cat="m-products">🛒 منتجات وقطع</button>
+              <button class="mktcat rounded-lg py-2 ring-1 ring-ink-300/40 bg-white text-ink-600 transition" data-cat="m-install">🔧 تركيب</button>
+              <button class="mktcat rounded-lg py-2 ring-1 ring-ink-300/40 bg-white text-ink-600 transition" data-cat="m-maint">🛠️ صيانة متخصّصة</button>
+            </div>
+
+            <div class="mt-4 grid lg:grid-cols-[1fr_280px] gap-4 items-start">
+              <!-- catalog -->
+              <div>
+                <!-- products -->
+                <div id="m-products" class="mktpanel grid sm:grid-cols-2 gap-3">
+                  <div class="rounded-xl bg-white shadow-card border border-ink-300/30 p-4"><div class="flex items-start justify-between"><div class="font-bold text-ink-900 text-sm">مضخة مياه — 1 حصان</div><span class="text-[9px] bg-brand-ghost text-brand-dark font-bold px-1.5 py-0.5 rounded">Serve فقط</span></div><div class="num text-xl font-black text-ink-900 mt-2">850 <span class="text-xs">ر</span></div><div class="text-[11px] text-ink-500 mt-0.5">ضمان <span class="num">12</span> شهراً · توصيل <span class="num">24</span>س</div><button class="mt-2 w-full text-[12px] font-bold bg-brand text-white py-1.5 rounded-lg hover:bg-brand-dark transition">+ أضِف للطلب</button></div>
+                  <div class="rounded-xl bg-white shadow-card border border-ink-300/30 p-4"><div class="flex items-start justify-between"><div class="font-bold text-ink-900 text-sm">محرّك مكيف مركزي</div><span class="text-[9px] bg-brand-ghost text-brand-dark font-bold px-1.5 py-0.5 rounded">Serve فقط</span></div><div class="num text-xl font-black text-ink-900 mt-2">2,400 <span class="text-xs">ر</span></div><div class="text-[11px] text-ink-500 mt-0.5">أصلي · معتمد · تركيب اختياري</div><button class="mt-2 w-full text-[12px] font-bold bg-brand text-white py-1.5 rounded-lg hover:bg-brand-dark transition">+ أضِف للطلب</button></div>
+                  <div class="rounded-xl bg-white shadow-card border border-ink-300/30 p-4"><div class="flex items-start justify-between"><div class="font-bold text-ink-900 text-sm">لوحة كهرباء — 12 خط</div><span class="text-[9px] bg-brand-ghost text-brand-dark font-bold px-1.5 py-0.5 rounded">Serve فقط</span></div><div class="num text-xl font-black text-ink-900 mt-2">620 <span class="text-xs">ر</span></div><div class="text-[11px] text-ink-500 mt-0.5">مطابقة للكود السعودي</div><button class="mt-2 w-full text-[12px] font-bold bg-brand text-white py-1.5 rounded-lg hover:bg-brand-dark transition">+ أضِف للطلب</button></div>
+                  <div class="rounded-xl bg-white shadow-card border border-ink-300/30 p-4"><div class="flex items-start justify-between"><div class="font-bold text-ink-900 text-sm">طقم إنذار حريق</div><span class="text-[9px] bg-brand-ghost text-brand-dark font-bold px-1.5 py-0.5 rounded">Serve فقط</span></div><div class="num text-xl font-black text-ink-900 mt-2">1,150 <span class="text-xs">ر</span></div><div class="text-[11px] text-ink-500 mt-0.5">معتمد دفاع مدني</div><button class="mt-2 w-full text-[12px] font-bold bg-brand text-white py-1.5 rounded-lg hover:bg-brand-dark transition">+ أضِف للطلب</button></div>
+                </div>
+                <!-- install -->
+                <div id="m-install" class="mktpanel space-y-2.5" hidden>
+                  <div class="rounded-xl bg-white shadow-card border border-ink-300/30 p-4 flex items-center justify-between gap-3"><div><div class="font-bold text-ink-900 text-sm">تركيب مكيف مركزي</div><div class="text-[11px] text-ink-500 mt-0.5">فريق <span class="font-bold text-brand-dark">Serve</span> معتمد · ضمان تركيب 6 أشهر</div></div><div class="text-left shrink-0"><div class="num font-black text-ink-900">من 600 ر</div><button class="mt-1 text-[12px] font-bold bg-brand text-white px-3 py-1.5 rounded-lg hover:bg-brand-dark transition">احجز Serve</button></div></div>
+                  <div class="rounded-xl bg-white shadow-card border border-ink-300/30 p-4 flex items-center justify-between gap-3"><div><div class="font-bold text-ink-900 text-sm">تركيب نظام مراقبة (CCTV)</div><div class="text-[11px] text-ink-500 mt-0.5">معاينة مجانية · تنفيذ شبكة Serve</div></div><div class="text-left shrink-0"><div class="num font-black text-ink-900">عرض سعر</div><button class="mt-1 text-[12px] font-bold bg-brand text-white px-3 py-1.5 rounded-lg hover:bg-brand-dark transition">احجز Serve</button></div></div>
+                  <div class="rounded-xl bg-white shadow-card border border-ink-300/30 p-4 flex items-center justify-between gap-3"><div><div class="font-bold text-ink-900 text-sm">تمديدات كهرباء وإضاءة</div><div class="text-[11px] text-ink-500 mt-0.5">حسب المعاينة · فنّيون موثّقون</div></div><div class="text-left shrink-0"><div class="num font-black text-ink-900">حسب المعاينة</div><button class="mt-1 text-[12px] font-bold bg-brand text-white px-3 py-1.5 rounded-lg hover:bg-brand-dark transition">احجز Serve</button></div></div>
+                </div>
+                <!-- maintenance -->
+                <div id="m-maint" class="mktpanel space-y-2.5" hidden>
+                  <div class="rounded-xl bg-white shadow-card border border-ink-300/30 p-4 flex items-center justify-between gap-3"><div><div class="font-bold text-ink-900 text-sm">صيانة مصاعد متخصّصة</div><div class="text-[11px] text-ink-500 mt-0.5">عقد دوري · فنّيون معتمدون عبر <span class="font-bold text-brand-dark">Serve</span></div></div><div class="text-left shrink-0"><div class="num font-black text-ink-900">عقد</div><button class="mt-1 text-[12px] font-bold bg-brand text-white px-3 py-1.5 rounded-lg hover:bg-brand-dark transition">اطلب Serve</button></div></div>
+                  <div class="rounded-xl bg-white shadow-card border border-ink-300/30 p-4 flex items-center justify-between gap-3"><div><div class="font-bold text-ink-900 text-sm">معالجة عوازل وتسرّبات</div><div class="text-[11px] text-ink-500 mt-0.5">ضمان عمل + متابعة Sense</div></div><div class="text-left shrink-0"><div class="num font-black text-ink-900">من 900 ر</div><button class="mt-1 text-[12px] font-bold bg-brand text-white px-3 py-1.5 rounded-lg hover:bg-brand-dark transition">اطلب Serve</button></div></div>
+                  <div class="rounded-xl bg-white shadow-card border border-ink-300/30 p-4 flex items-center justify-between gap-3"><div><div class="font-bold text-ink-900 text-sm">صيانة مولّدات الطوارئ</div><div class="text-[11px] text-ink-500 mt-0.5">فحص دوري + قطع أصلية من Serve</div></div><div class="text-left shrink-0"><div class="num font-black text-ink-900">عقد</div><button class="mt-1 text-[12px] font-bold bg-brand text-white px-3 py-1.5 rounded-lg hover:bg-brand-dark transition">اطلب Serve</button></div></div>
+                </div>
+              </div>
+
+              <!-- order summary / lock -->
+              <aside class="rounded-xl bg-ink-900 text-white p-4">
+                <div class="text-[11px] text-white/60 font-bold tracking-widest uppercase">ملخّص الطلب</div>
+                <div class="mt-2 flex items-center gap-2 rounded-lg bg-white/10 ring-1 ring-gold-light/30 p-2.5">
+                  <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand to-gold grid place-items-center font-extrabold shrink-0">S</div>
+                  <div class="text-[12px]"><div class="font-bold text-gold-light">المزوّد: Serve</div><div class="text-white/55 text-[10px]">مقفل — لا بدائل خارجية</div></div>
+                </div>
+                <ul class="mt-3 space-y-1.5 text-[12px] text-white/85">
+                  <li class="flex items-center gap-2"><span class="text-ok">✓</span> سعر موحّد وشفّاف (محرّك تسعير Serve)</li>
+                  <li class="flex items-center gap-2"><span class="text-ok">✓</span> ضمان على القطعة والتنفيذ</li>
+                  <li class="flex items-center gap-2"><span class="text-ok">✓</span> اتفاقية مستوى خدمة (SLA) ملزمة</li>
+                  <li class="flex items-center gap-2"><span class="text-ok">✓</span> فاتورة واحدة متوافقة مع <span class="en">ZATCA</span></li>
+                </ul>
+                <div class="mt-3 pt-3 border-t border-white/10">
+                  <div class="text-[11px] text-white/60">الإنفاق الخارجي الملتقَط عبر Serve</div>
+                  <div class="num text-3xl font-black text-gold-light">100%</div>
+                  <div class="text-[10px] text-white/50">صفر تسرّب خارج المنظومة</div>
+                </div>
+              </aside>
+            </div>
+
+            <!-- open market vs pulse -->
+            <div class="mt-4 grid sm:grid-cols-2 gap-3">
+              <div class="rounded-xl bg-danger-light/40 border border-danger/20 p-4">
+                <div class="font-bold text-danger flex items-center gap-2">✕ السوق المفتوح (بدون Pulse)</div>
+                <ul class="mt-2 text-[12px] text-ink-700 space-y-1">
+                  <li>• مزوّدون متعدّدون مجهولون، جودة متذبذبة</li>
+                  <li>• لا ضمان ولا اتفاقية مستوى خدمة</li>
+                  <li>• فواتير متفرّقة وتسعير عشوائي</li>
+                  <li>• الإيراد يتسرّب خارج المنظومة</li>
+                </ul>
+              </div>
+              <div class="rounded-xl bg-ok-light/60 border border-ok/30 p-4">
+                <div class="font-bold text-ok flex items-center gap-2">✓ عبر Pulse → Serve حصراً</div>
+                <ul class="mt-2 text-[12px] text-ink-700 space-y-1">
+                  <li>• مزوّد واحد موثّق ومُدقّق (Serve)</li>
+                  <li>• ضمان + اتفاقية مستوى خدمة على كل طلب</li>
+                  <li>• فاتورة واحدة وتسعير موحّد</li>
+                  <li>• كل ريال إنفاق يبقى داخل منظومة سيرف</li>
+                </ul>
+              </div>
+            </div>
+            <p class="mt-2 text-[11px] text-ink-500">هذه الحلقة المغلقة هي ما يحوّل <span class="en">Pulse</span> من أداة إدارة إلى <strong>قناة استحواذ على كامل إنفاق المنشأة</strong> — منتجاتٍ وتركيباً وصيانة.</p>
+          </div>
+
+          <!-- TAB: INVENTORY & PARTS -->
+          <div id="t-inv" class="ptab" hidden>
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <h3 class="font-extrabold text-ink-900">المخزون والقطع</h3>
+                <p class="text-[11px] text-ink-500 mt-0.5">إعادة التزويد تتم عبر <strong class="text-brand-dark">سوق قطع Serve</strong> حصراً — بنقرة واحدة عند بلوغ حدّ الطلب.</p>
+              </div>
+              <span class="inline-flex items-center gap-1.5 text-[11px] bg-brand-ghost text-brand-dark px-2.5 py-1 rounded-md font-bold">🔁 تزويد آلي من Serve</span>
+            </div>
+            <div class="mt-4 overflow-x-auto rounded-xl border border-ink-300/30 bg-white shadow-card">
+              <table class="min-w-[680px] w-full text-[13px] text-right">
+                <thead class="bg-paper text-ink-600 text-xs"><tr><th class="p-3 font-bold">القطعة</th><th class="p-3 font-bold">المخزون</th><th class="p-3 font-bold">حدّ الطلب</th><th class="p-3 font-bold">الحالة</th><th class="p-3 font-bold">إجراء</th></tr></thead>
+                <tbody class="divide-y divide-ink-300/30">
+                  <tr class="bg-danger-light/30"><td class="p-3 font-bold">فلتر مكيف مركزي</td><td class="p-3 num">3</td><td class="p-3 num">10</td><td class="p-3"><span class="text-[11px] font-bold text-danger bg-danger-light px-2 py-0.5 rounded">منخفض</span></td><td class="p-3"><button class="text-[11px] font-bold bg-brand text-white px-2.5 py-1 rounded hover:bg-brand-dark transition">اطلب من Serve</button></td></tr>
+                  <tr><td class="p-3 font-bold">لمبات LED صناعية</td><td class="p-3 num">42</td><td class="p-3 num">20</td><td class="p-3"><span class="text-[11px] font-bold text-ok bg-ok-light px-2 py-0.5 rounded">جيّد</span></td><td class="p-3"><button class="text-[11px] font-bold text-brand-dark bg-brand-ghost px-2.5 py-1 rounded">اطلب من Serve</button></td></tr>
+                  <tr class="bg-warn-light/40"><td class="p-3 font-bold">صمّامات سباكة 1″</td><td class="p-3 num">8</td><td class="p-3 num">12</td><td class="p-3"><span class="text-[11px] font-bold text-warn bg-warn-light px-2 py-0.5 rounded">قارب الحدّ</span></td><td class="p-3"><button class="text-[11px] font-bold bg-brand text-white px-2.5 py-1 rounded hover:bg-brand-dark transition">اطلب من Serve</button></td></tr>
+                  <tr><td class="p-3 font-bold">زيت مولّد 20 لتر</td><td class="p-3 num">15</td><td class="p-3 num">6</td><td class="p-3"><span class="text-[11px] font-bold text-ok bg-ok-light px-2 py-0.5 rounded">جيّد</span></td><td class="p-3"><button class="text-[11px] font-bold text-brand-dark bg-brand-ghost px-2.5 py-1 rounded">اطلب من Serve</button></td></tr>
+                  <tr class="bg-danger-light/30"><td class="p-3 font-bold">حسّاس دخان</td><td class="p-3 num">2</td><td class="p-3 num">8</td><td class="p-3"><span class="text-[11px] font-bold text-danger bg-danger-light px-2 py-0.5 rounded">منخفض</span></td><td class="p-3"><button class="text-[11px] font-bold bg-brand text-white px-2.5 py-1 rounded hover:bg-brand-dark transition">اطلب من Serve</button></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="mt-3 grid sm:grid-cols-3 gap-3">
+              <div class="rounded-xl bg-white shadow-card border border-ink-300/30 p-4"><div class="text-[11px] text-ink-500">أصناف تحت حدّ الطلب</div><div class="num text-2xl font-black text-danger mt-1">3</div></div>
+              <div class="rounded-xl bg-white shadow-card border border-ink-300/30 p-4"><div class="text-[11px] text-ink-500">طلبات تزويد هذا الشهر</div><div class="num text-2xl font-black text-ink-900 mt-1">18</div></div>
+              <div class="rounded-xl bg-brand-ghost border border-brand/30 p-4"><div class="text-[11px] text-ink-500">نسبة التزويد عبر Serve</div><div class="num text-2xl font-black text-brand-dark mt-1">100%</div></div>
+            </div>
+          </div>
+
           <!-- TAB: SLA & COMPLIANCE -->
           <div id="t-sla" class="ptab" hidden>
             <div class="grid lg:grid-cols-2 gap-4">
@@ -264,6 +387,36 @@
                 <div class="mt-3 rounded-xl bg-ink-900 text-white p-3 text-[13px]">الامتثال الجاهز هو <strong class="text-gold-light">مفتاح بوابة القطاع الحكومي (B2G)</strong> — لا يدخلها إلا مزوّد موثّق ومدقّق.</div>
               </div>
             </div>
+          </div>
+
+          <!-- TAB: REPORTS -->
+          <div id="t-reports" class="ptab" hidden>
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <h3 class="font-extrabold text-ink-900">التقارير والتحليلات</h3>
+              <span class="text-[11px] text-ink-500">الفترة: آخر <span class="num">6</span> أشهر · قابل للتصدير</span>
+            </div>
+            <div class="mt-4 grid grid-cols-2 lg:grid-cols-4 gap-3">
+              <div class="rounded-xl bg-white shadow-card border border-ink-300/30 p-4"><div class="text-[11px] text-ink-500">إجمالي الإنفاق التشغيلي</div><div class="num text-2xl font-black text-ink-900 mt-1">1.84M ر</div><div class="text-[10px] text-ink-500 mt-0.5">آخر 6 أشهر</div></div>
+              <div class="rounded-xl bg-white shadow-card border border-ink-300/30 p-4"><div class="text-[11px] text-ink-500">موفّر عبر الصيانة الوقائية</div><div class="num text-2xl font-black text-ok mt-1">312k ر</div><div class="text-[10px] text-ok mt-0.5">▲ بفضل Sense</div></div>
+              <div class="rounded-xl bg-white shadow-card border border-ink-300/30 p-4"><div class="text-[11px] text-ink-500">متوسط الالتزام بـ SLA</div><div class="num text-2xl font-black text-brand-dark mt-1">95.7%</div></div>
+              <div class="rounded-xl bg-brand-ghost border border-brand/30 p-4"><div class="text-[11px] text-ink-500">الإنفاق عبر Serve</div><div class="num text-2xl font-black text-brand-dark mt-1">100%</div><div class="text-[10px] text-ink-500 mt-0.5">حلقة مغلقة</div></div>
+            </div>
+            <div class="mt-4 grid lg:grid-cols-3 gap-3">
+              <div class="rounded-xl bg-white shadow-card border border-ink-300/30 p-4 lg:col-span-2">
+                <div class="text-xs font-bold text-ink-700">الإنفاق الشهري عبر Serve — ألف ريال</div>
+                <div class="mt-2 h-56"><canvas id="costChart"></canvas></div>
+              </div>
+              <div class="rounded-xl bg-white shadow-card border border-ink-300/30 p-4">
+                <div class="text-xs font-bold text-ink-700">توزيع الإنفاق حسب الفئة</div>
+                <ul class="mt-3 space-y-2.5 text-[12.5px]">
+                  <li><div class="flex justify-between"><span>المنتجات والقطع</span><span class="num font-bold">38%</span></div><div class="mt-1 h-2 rounded-full bg-ink-300/30"><div class="h-2 rounded-full bg-brand" style="width:38%"></div></div></li>
+                  <li><div class="flex justify-between"><span>الصيانة المتخصّصة</span><span class="num font-bold">34%</span></div><div class="mt-1 h-2 rounded-full bg-ink-300/30"><div class="h-2 rounded-full bg-gold" style="width:34%"></div></div></li>
+                  <li><div class="flex justify-between"><span>التركيب والمشاريع</span><span class="num font-bold">19%</span></div><div class="mt-1 h-2 rounded-full bg-ink-300/30"><div class="h-2 rounded-full bg-ok" style="width:19%"></div></div></li>
+                  <li><div class="flex justify-between"><span>أخرى</span><span class="num font-bold">9%</span></div><div class="mt-1 h-2 rounded-full bg-ink-300/30"><div class="h-2 rounded-full bg-ink-400" style="width:9%"></div></div></li>
+                </ul>
+              </div>
+            </div>
+            <div class="mt-3 rounded-xl bg-ink-900 text-white p-4 text-[13px] leading-relaxed">📊 كل هذا الإنفاق — منتجاتٍ وتركيباً وصيانة — يمرّ عبر <strong class="text-gold-light">Serve</strong>، فيتحوّل تقرير مصروفات المنشأة إلى <strong>تقرير إيرادٍ لسيرف</strong>. هذا جوهر تحويل <span class="en">Pulse</span> من تكلفةٍ على العميل إلى قناة دخلٍ للمنصّة.</div>
           </div>
 
         </div>
@@ -339,7 +492,17 @@
       </div>
     </div>
 
-    <div class="mt-6 rounded-2xl bg-gradient-to-l from-brand/30 to-gold/20 ring-1 ring-white/15 p-5 lg:p-6">
+    <div class="mt-4 rounded-2xl bg-gradient-to-br from-gold/25 to-transparent ring-1 ring-gold-light/30 p-5 lg:p-6">
+      <div class="flex items-start gap-3">
+        <div class="text-3xl shrink-0">🛒</div>
+        <div>
+          <div class="font-black text-gold-light text-lg">حلقة المشتريات المغلقة — كل إنفاقٍ خارجي يتحوّل إلى إيراد</div>
+          <p class="text-[14px] text-white/85 mt-1.5 leading-relaxed">حين تطلب المنشأة <strong>منتجاً أو تركيباً أو صيانة</strong> من خارج فريقها الداخلي، لا يعرض <span class="en">Pulse</span> سوى <strong class="text-white">Serve</strong> — مزوّداً حصرياً بسعرٍ موحّد وضمانٍ واتفاقية مستوى خدمة. بهذا تتحوّل المنصّة من تكلفةٍ تشغيلية على العميل إلى <strong class="text-white">قناة استحواذ على كامل إنفاق المنشأة</strong>، ويُغلق باب الالتفاف <span class="en">(Disintermediation)</span> نهائياً.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4 rounded-2xl bg-gradient-to-l from-brand/30 to-gold/20 ring-1 ring-white/15 p-5 lg:p-6">
       <p class="text-[15px] text-white leading-relaxed">باختصار: بدون <span class="en">Pulse</span> تبقى سيرف «تطبيق صيانة في مدينة». ومعه تصبح <strong class="text-gold-light">بنية التشغيل المرجعية للصيانة وإدارة المرافق في المملكة</strong> — وهنا فقط يصبح الطموح المالي قابلاً للتحقّق.</p>
     </div>
   </div>
@@ -462,6 +625,40 @@
         backgroundColor:['#94A8BD','#5C7896','#1FC7B8','#0FA89C','#0A8378'],borderRadius:6}]},
       options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{font:{family:'Inter'}}},x:{ticks:{font:{family:'Inter'}}}}}});
   })();
+
+  // ---- Marketplace category sub-tabs (Serve-exclusive) ----
+  document.querySelectorAll('.mktcat').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var cat = btn.getAttribute('data-cat');
+      document.querySelectorAll('.mktpanel').forEach(function(p){ p.hidden = (p.id !== cat); });
+      document.querySelectorAll('.mktcat').forEach(function(b){
+        var on = (b === btn);
+        b.classList.toggle('active', on);
+        b.classList.toggle('bg-brand-ghost', on);
+        b.classList.toggle('text-brand-dark', on);
+        b.classList.toggle('ring-brand/40', on);
+        b.classList.toggle('bg-white', !on);
+        b.classList.toggle('text-ink-600', !on);
+        b.classList.toggle('ring-ink-300/40', !on);
+      });
+    });
+  });
+
+  // ---- Lazy-init cost chart when Reports tab is first shown ----
+  var costInst = null;
+  function initCost(){
+    if(costInst){ costInst.resize(); return; }
+    var c = document.getElementById('costChart'); if(!c) return;
+    costInst = new Chart(c,{type:'bar',data:{labels:['1','2','3','4','5','6'],
+      datasets:[{label:'الإنفاق عبر Serve — ألف ر',data:[245,268,290,305,332,400],
+        backgroundColor:'#0FA89C',borderRadius:6}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{font:{family:'Inter'}}},x:{ticks:{font:{family:'Inter'}}}}}});
+  }
+  document.querySelectorAll('.pnav').forEach(function(b){
+    b.addEventListener('click', function(){
+      if(b.getAttribute('data-tab') === 't-reports'){ setTimeout(initCost, 40); }
+    });
+  });
 </script>
 
 <script>
