@@ -3,15 +3,14 @@ name: Deploy protected site to GitHub Pages
 # Publishes the password-protected (AES-encrypted) build in /docs.
 # The /docs folder contains ONLY encrypted output — no plaintext, no password.
 # Access password is entered by the visitor in the browser (StatiCrypt gate).
+#
+# NOTE: This repository is PRIVATE on a plan that does not include GitHub Pages,
+# so this workflow cannot publish from here (it will fail with "Resource not
+# accessible by integration"). It is kept as manual-only for the case where the
+# account is later upgraded to GitHub Pro/Team (Pages for private repos).
+# The site is currently hosted from a separate PUBLIC repo — see README.
 
 on:
-  push:
-    branches:
-      - claude/practical-ramanujan-7h9639
-      - main
-    paths:
-      - "docs/**"
-      - ".github/workflows/deploy-pages.yml"
   workflow_dispatch:
 
 permissions:
