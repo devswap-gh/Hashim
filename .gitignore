@@ -1,0 +1,9 @@
+# Generated Cloudflare Pages deploy folder (rebuild with scripts/build-cloudflare.sh)
+cloudflare/dist/
+
+# Local secrets for `wrangler pages dev` — never commit
+**/.dev.vars
+.dev.vars
+
+# Node
+node_modules/

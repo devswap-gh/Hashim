@@ -30,31 +30,36 @@
 
 ## النشر المحمي بكلمة مرور (Deployment)
 
-الموقع يُبنى بنسخة **مشفّرة بالكامل (AES‑256)** عبر [StatiCrypt](https://github.com/robinmoisson/staticrypt) — كل صفحة في مجلد `docs/` مشفّرة، ولا يظهر أي محتوى قبل إدخال كلمة المرور في المتصفّح.
+الطريقة المعتمدة: **Cloudflare Pages** مع بوابة كلمة مرور **من الخادم** (Cloudflare Worker / Basic Auth). المحتوى لا يُرسَل للمتصفّح إطلاقاً قبل إدخال كلمة المرور، وكل الصفحات محميّة بكلمة مرور واحدة مشتركة.
 
-- **بوابة الدخول:** كل الصفحات محميّة بكلمة مرور واحدة. خيار «تذكّرني» يفتح بقية الصفحات تلقائياً بعد أول تسجيل دخول (ملح موحّد لكل الصفحات).
-- **مجلد `docs/`** يحتوي فقط على المخرجات المشفّرة — **لا يحتوي أي نص صريح ولا كلمة المرور**، لذا فهو آمن للرفع على أي استضافة ثابتة عامة.
+### الطريقة المعتمدة — Cloudflare Pages + كلمة مرور (Worker)
 
-### الاستضافة (مستودع عام منفصل + GitHub Pages مجاناً)
+الملفات في `cloudflare/`:
+- `_worker.js` — يفرض كلمة المرور على كل الطلبات ويقرأها من متغيّر البيئة `SITE_PASSWORD` (لا كلمة مرور مخزّنة في الملفات؛ يفشل مغلقاً إن لم تُضبط).
+- `scripts/build-cloudflare.sh` — يجمّع مجلد النشر `cloudflare/dist/` = صفحات `Serve/*.html` الأصلية + `_worker.js`.
 
-هذا المستودع `hashem` **خاص** على خطة لا تشمل GitHub Pages، لذا تُستضاف النسخة المشفّرة من **مستودع عام منفصل** (يحتوي فقط الملفات المشفّرة — بلا نص صريح):
+**خطوات النشر (رفع مباشر من اللوحة):**
+1. `./scripts/build-cloudflare.sh` لإنشاء `cloudflare/dist/` (أو استخدم ملف `dist` المُرسَل).
+2. Cloudflare Dashboard → **Workers & Pages → Create → Pages → Upload assets** → اسحب محتويات `cloudflare/dist/` (الـ14 صفحة + `_worker.js`).
+3. بعد الإنشاء: **Settings → Variables and Secrets → Add** → `SITE_PASSWORD` = كلمة المرور (Secret) → احفظ، ثم **Retry deployment**.
+4. الموقع يصبح على `https://<project>.pages.dev` ويطلب كلمة المرور (أي اسم مستخدم + كلمة المرور).
 
-1. أنشئ مستودعاً **عاماً** جديداً، مثل `serve-deck`.
-2. ارفع إليه محتويات مجلد `docs/` (الـ14 ملف `*.html` + ملف `.nojekyll`) في الجذر.
-3. **Settings → Pages → Source: Deploy from a branch → Branch: `main` / `(root)` → Save**.
-4. خلال دقيقة يصبح الموقع على: `https://<user>.github.io/serve-deck/` ويطلب كلمة المرور.
+**أو عبر Wrangler CLI:**
+```bash
+./scripts/build-cloudflare.sh
+npx wrangler login
+npx wrangler pages deploy cloudflare/dist --project-name serve-deck
+npx wrangler pages secret put SITE_PASSWORD --project-name serve-deck   # أدخل كلمة المرور
+```
 
-> المستودع الأصلي `hashem` يبقى خاصاً؛ المستودع العام يحوي فقط بيانات مشفّرة لا تُقرأ بدون كلمة المرور.
+> المستودع `hashem` يبقى خاصاً. كلمة المرور تُضبط في إعدادات Cloudflare فقط ولا تُحفَظ في المستودع إطلاقاً.
 
-### إعادة البناء بعد تعديل المحتوى
+### بديل — استضافة ثابتة عامة بمحتوى مشفّر (StatiCrypt)
 
+مجلد `docs/` يحتوي نسخة **مشفّرة AES‑256** عبر [StatiCrypt](https://github.com/robinmoisson/staticrypt) (بلا نص صريح)، تصلح للرفع على أي استضافة ثابتة عامة (GitHub Pages على مستودع عام / Netlify Drop). إعادة البناء:
 ```bash
 STATICRYPT_PASSWORD='********' ./scripts/build.sh
-git add docs && git commit -m "rebuild protected site" && git push   # في hashem (المصدر)
-# ثم أعِد رفع docs/ إلى المستودع العام
 ```
-(كلمة المرور تُمرَّر وقت البناء فقط ولا تُحفَظ في المستودع إطلاقاً.)
+ملف `.github/workflows/deploy-pages.yml` معطّل تلقائياً (يدوي فقط)؛ يصلح للنشر من هذا المستودع **فقط** بعد ترقية الخطة إلى GitHub Pro (Pages للمستودعات الخاصة).
 
-> ملف `.github/workflows/deploy-pages.yml` معطّل تلقائياً (يدوي فقط)؛ يصلح للنشر مباشرةً من هذا المستودع **فقط إذا** رُقّيت الخطة إلى GitHub Pro فأعلى (Pages للمستودعات الخاصة).
-
-> ⚠️ كلمة المرور تُشفّر باستخدام PBKDF2 بـ‍600,000 تكرار. الرابط نفسه عام (لكن المحتوى مشفّر)؛ يُفضّل اختيار كلمة مرور قوية وعدم مشاركة الرابط علناً.
+> ⚠️ في طريقة Cloudflare، الحماية من الخادم (المحتوى لا يُرى بدون كلمة المرور). يُفضّل دائماً كلمة مرور قوية وعدم مشاركة الرابط علناً.

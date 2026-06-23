@@ -1,0 +1,6 @@
+# Optional: only needed if you deploy with the Wrangler CLI instead of the dashboard.
+#   npx wrangler pages deploy dist --project-name serve-deck
+# (Run ./scripts/build-cloudflare.sh first to create the dist/ folder.)
+name = "serve-deck"
+pages_build_output_dir = "cloudflare/dist"
+compatibility_date = "2024-11-01"
