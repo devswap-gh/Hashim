@@ -1,0 +1,48 @@
+name: Deploy protected site to GitHub Pages
+
+# Publishes the password-protected (AES-encrypted) build in /docs.
+# The /docs folder contains ONLY encrypted output — no plaintext, no password.
+# Access password is entered by the visitor in the browser (StatiCrypt gate).
+
+on:
+  push:
+    branches:
+      - claude/practical-ramanujan-7h9639
+      - main
+    paths:
+      - "docs/**"
+      - ".github/workflows/deploy-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload encrypted site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
