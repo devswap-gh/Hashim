@@ -1,0 +1,49 @@
+name: Deploy protected site to GitHub Pages
+
+# Publishes the password-protected (StatiCrypt) build in _site/ to GitHub Pages.
+# Only the encrypted output is uploaded — the plaintext source in Serve/ is never
+# served on the live site. The gate password is NOT stored anywhere in this repo.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "_site/**"
+      - ".github/workflows/deploy-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment; don't cancel an in-progress publish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Enables Pages and switches the build source to "GitHub Actions"
+      # (build_type: workflow), even if it was previously "Deploy from a branch".
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload encrypted site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

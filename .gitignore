@@ -1,0 +1,4 @@
+# Local build tooling (StatiCrypt is fetched on demand via `npx --yes staticrypt`)
+node_modules/
+package.json
+package-lock.json
